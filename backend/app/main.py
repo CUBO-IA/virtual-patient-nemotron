@@ -24,6 +24,7 @@ def _get_session(session_id: str) -> sessions.Session:
     return s
 
 
+@app.get("/health")
 @app.get("/api/health")
 async def health():
     info = await llm.health()
