@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { renderWithGlossaryTips } from './GlossaryTip.jsx'
 
 export default function Chat({
   mensajes,
@@ -36,7 +37,11 @@ export default function Chat({
         {mensajes.map((m, i) => (
           <div key={i} className={`msg ${m.role === 'user' ? 'yo' : 'paciente'}`}>
             <span className="quien">{m.role === 'user' ? 'Tú' : nombre}</span>
-            <p>{m.content || '…'}</p>
+            <p>
+              {m.role === 'user'
+                ? m.content || '…'
+                : renderWithGlossaryTips(m.content) || '…'}
+            </p>
           </div>
         ))}
         <div ref={fin} />

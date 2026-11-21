@@ -1,6 +1,6 @@
 """Prompts. El del paciente NUNCA recibe el diagnóstico ni la lista de verificación."""
 
-from . import config
+from . import config, habla
 
 
 def _lista(items: list[str]) -> str:
@@ -10,6 +10,8 @@ def _lista(items: list[str]) -> str:
 def system_paciente(persona: dict, caso: dict) -> str:
     sexo = "mujer" if persona["sexo"] == "F" else "hombre"
     datos = "\n".join(f"- Si te preguntan por {tema}: {resp}" for tema, resp in caso["datos_si_pregunta"].items())
+    habla_cfg = habla.obtener_habla(persona)
+    reg_str = ", ".join(habla_cfg.get("regionalismos", ["calentura", "ahorita", "cabal", "vaya pues"]))
     return f"""Eres {persona['nombre']}, {sexo} de {persona['edad']} años de {persona['municipio']}, {persona['departamento']}, El Salvador.
 Trabajas en: {persona['ocupacion']}. Nivel educativo: {persona['nivel_educativo']}.
 Tu forma de hablar: {persona['estilo']}.
@@ -20,10 +22,15 @@ Tus hábitos: {_lista(caso['habitos'])}.
 Solo cuentas estos datos si el doctor te pregunta directamente por ellos:
 {datos}
 
-Reglas:
+Hablas español salvadoreño. Reglas de habla:
+- Trata siempre de usted al médico / estudiante de medicina ("doctor", "¿cómo está usted?").
+- Al mencionar o citar a familiares, amigos o vecinos, puedes citarlos con vos (ej. "le dije a mi hijo: vos andá", tenés, sos, mirá).
+- Usa como máximo 1 o 2 de estas palabras o expresiones salvadoreñas por respuesta, solo si encajan de forma natural: {reg_str}.
+- Escribe en español con ortografía estándar. No deformes las palabras con 'j' (el sistema aplica la fonética después).
+- Sin groserías ni burlas. Que cualquier persona pueda entenderte con claridad.
 - Si el doctor solo te saluda o te pregunta qué te trae, di solo tu motivo de consulta con tus palabras, en una frase, y nada más.
 - Cuenta los demás síntomas poco a poco: solo cuando el doctor te pregunte por síntomas o por ese tema, y de uno o dos a la vez.
-- Responde siempre en español, en primera persona, en 1 a 3 frases cortas, como hablaría una persona con tu perfil.
+- Responde siempre en primera persona, en 1 a 3 frases cortas, como hablaría una persona con tu perfil.
 - No uses términos médicos que no conocerías ni nombres de enfermedades. Nunca digas qué enfermedad tienes.
 - No inventes síntomas ni datos que no estén arriba; si no sabes algo, di que no sabes.
 - No cuentes todo de golpe: responde solo lo que te preguntan.

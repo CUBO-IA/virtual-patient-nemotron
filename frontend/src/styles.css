@@ -136,6 +136,10 @@ body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 syst
   color: var(--accent-text);
   outline: none;
 }
+.glossary-term {
+  display: inline;
+  border-bottom: 1px dotted color-mix(in srgb, var(--accent) 70%, transparent);
+}
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }

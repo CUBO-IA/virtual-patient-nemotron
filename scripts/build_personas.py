@@ -67,7 +67,7 @@ def main():
         sexo = {"Masculino": "M", "Femenino": "F"}.get(row.get("sex"))
         if not nombre or not sexo:
             continue
-        personas.append({
+        p_data = {
             "id": f"p_{len(personas) + 1:03d}",
             "nombre": nombre,
             "edad": edad,
@@ -79,7 +79,15 @@ def main():
             "nivel_educativo": row.get("education_level"),
             "estado_civil": row.get("marital_status"),
             "estilo": estilo(row),
-        })
+        }
+        es_oriente = p_data["departamento"] in {"San Miguel", "Usulután", "La Unión", "Morazán"}
+        p_data["habla"] = {
+            "trato_medico": "usted",
+            "aspiracion": "media" if es_oriente else "ninguna",
+            "voseo_con_familia": True,
+            "regionalismos": ["calentura", "cuerpo cortado", "ruco", "pisto"] if edad >= 60 else ["calentura", "cipote", "ahorita", "cabal"],
+        }
+        personas.append(p_data)
         if len(personas) >= N:
             break
 

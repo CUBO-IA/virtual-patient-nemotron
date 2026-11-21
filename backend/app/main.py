@@ -5,7 +5,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 
-from . import assign, avatars, config, evaluate, llm, prompts, rag, sessions
+from . import assign, avatars, config, evaluate, habla, llm, prompts, rag, sessions
 from .models import ChatIn, FinishIn
 
 app = FastAPI(title="Paciente Virtual")
@@ -54,6 +54,7 @@ async def crear_sesion():
             "departamento": persona["departamento"],
             "municipio": persona["municipio"],
             "avatar_url": avatars.avatar_url(persona),
+            "habla": habla.obtener_habla(persona),
         },
         "motivo_consulta": caso["motivo_consulta"],
     }
@@ -76,8 +77,10 @@ async def chat(session_id: str, body: ChatIn):
 
     async def gen():
         partial: list[str] = []
+        nivel = habla.nivel_aspiracion(s.persona)
         try:
-            async for tok in llm.stream_chat(prompts.mensajes_paciente(s.persona, s.caso, s.mensajes)):
+            tok_stream = llm.stream_chat(prompts.mensajes_paciente(s.persona, s.caso, s.mensajes))
+            async for tok in habla.aspirar_stream(tok_stream, nivel):
                 partial.append(tok)
                 yield _sse({"token": tok})
             yield _sse({"done": True})

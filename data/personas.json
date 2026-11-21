@@ -10,7 +10,18 @@
     "area": "rural",
     "nivel_educativo": "primaria",
     "estado_civil": "casado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_002",
@@ -23,7 +34,18 @@
     "area": "urbano",
     "nivel_educativo": "secundaria",
     "estado_civil": "separado",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_003",
@@ -36,7 +58,18 @@
     "area": "rural",
     "nivel_educativo": "primaria",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_004",
@@ -49,7 +82,18 @@
     "area": "rural",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_005",
@@ -62,7 +106,18 @@
     "area": "rural",
     "nivel_educativo": "primaria",
     "estado_civil": "separado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_006",
@@ -75,7 +130,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "casado",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_007",
@@ -88,7 +154,18 @@
     "area": "rural",
     "nivel_educativo": "secundaria",
     "estado_civil": "separado",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_008",
@@ -101,7 +178,18 @@
     "area": "urbano",
     "nivel_educativo": "ninguno",
     "estado_civil": "viudo",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_009",
@@ -114,7 +202,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "casado",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_010",
@@ -127,7 +226,18 @@
     "area": "rural",
     "nivel_educativo": "ninguno",
     "estado_civil": "soltero",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_011",
@@ -140,7 +250,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_012",
@@ -153,7 +274,18 @@
     "area": "rural",
     "nivel_educativo": "secundaria",
     "estado_civil": "casado",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_013",
@@ -166,7 +298,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_014",
@@ -179,7 +322,18 @@
     "area": "rural",
     "nivel_educativo": "primaria",
     "estado_civil": "casado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_015",
@@ -192,7 +346,18 @@
     "area": "rural",
     "nivel_educativo": "tecnico",
     "estado_civil": "union_libre",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_016",
@@ -205,7 +370,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_017",
@@ -218,7 +394,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_018",
@@ -231,7 +418,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_019",
@@ -244,7 +442,18 @@
     "area": "urbano",
     "nivel_educativo": "secundaria",
     "estado_civil": "separado",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_020",
@@ -257,7 +466,18 @@
     "area": "rural",
     "nivel_educativo": "bachillerato",
     "estado_civil": "union_libre",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_021",
@@ -270,7 +490,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_022",
@@ -283,7 +514,18 @@
     "area": "urbano",
     "nivel_educativo": "ninguno",
     "estado_civil": "divorciado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_023",
@@ -296,7 +538,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "union_libre",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_024",
@@ -309,7 +562,18 @@
     "area": "rural",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_025",
@@ -322,7 +586,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "soltero",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_026",
@@ -335,7 +610,18 @@
     "area": "urbano",
     "nivel_educativo": "secundaria",
     "estado_civil": "union_libre",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_027",
@@ -348,7 +634,18 @@
     "area": "rural",
     "nivel_educativo": "primaria",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_028",
@@ -361,7 +658,18 @@
     "area": "urbano",
     "nivel_educativo": "secundaria",
     "estado_civil": "soltero",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_029",
@@ -374,7 +682,18 @@
     "area": "rural",
     "nivel_educativo": "secundaria",
     "estado_civil": "union_libre",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_030",
@@ -387,7 +706,18 @@
     "area": "rural",
     "nivel_educativo": "ninguno",
     "estado_civil": "soltero",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_031",
@@ -400,7 +730,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "soltero",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_032",
@@ -413,7 +754,18 @@
     "area": "urbano",
     "nivel_educativo": "secundaria",
     "estado_civil": "soltero",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_033",
@@ -426,7 +778,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "soltero",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_034",
@@ -439,7 +802,18 @@
     "area": "urbano",
     "nivel_educativo": "ninguno",
     "estado_civil": "casado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_035",
@@ -452,7 +826,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "union_libre",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_036",
@@ -465,7 +850,18 @@
     "area": "rural",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_037",
@@ -478,7 +874,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "separado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_038",
@@ -491,7 +898,18 @@
     "area": "urbano",
     "nivel_educativo": "tecnico",
     "estado_civil": "union_libre",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_039",
@@ -504,7 +922,18 @@
     "area": "rural",
     "nivel_educativo": "secundaria",
     "estado_civil": "soltero",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_040",
@@ -517,7 +946,18 @@
     "area": "rural",
     "nivel_educativo": "bachillerato",
     "estado_civil": "union_libre",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_041",
@@ -530,7 +970,18 @@
     "area": "urbano",
     "nivel_educativo": "ninguno",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_042",
@@ -543,7 +994,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "separado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_043",
@@ -556,7 +1018,18 @@
     "area": "urbano",
     "nivel_educativo": "tecnico",
     "estado_civil": "union_libre",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_044",
@@ -569,7 +1042,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_045",
@@ -582,7 +1066,18 @@
     "area": "rural",
     "nivel_educativo": "secundaria",
     "estado_civil": "casado",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_046",
@@ -595,7 +1090,18 @@
     "area": "urbano",
     "nivel_educativo": "universitario",
     "estado_civil": "separado",
-    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor"
+    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_047",
@@ -608,7 +1114,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_048",
@@ -621,7 +1138,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_049",
@@ -634,7 +1162,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_050",
@@ -647,7 +1186,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_051",
@@ -660,7 +1210,18 @@
     "area": "rural",
     "nivel_educativo": "secundaria",
     "estado_civil": "separado",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_052",
@@ -673,7 +1234,18 @@
     "area": "urbano",
     "nivel_educativo": "ninguno",
     "estado_civil": "casado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_053",
@@ -686,7 +1258,18 @@
     "area": "rural",
     "nivel_educativo": "ninguno",
     "estado_civil": "separado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_054",
@@ -699,7 +1282,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_055",
@@ -712,7 +1306,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_056",
@@ -725,7 +1330,18 @@
     "area": "urbano",
     "nivel_educativo": "ninguno",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_057",
@@ -738,7 +1354,18 @@
     "area": "rural",
     "nivel_educativo": "secundaria",
     "estado_civil": "separado",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_058",
@@ -751,7 +1378,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_059",
@@ -764,7 +1402,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_060",
@@ -777,7 +1426,18 @@
     "area": "rural",
     "nivel_educativo": "secundaria",
     "estado_civil": "soltero",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_061",
@@ -790,7 +1450,18 @@
     "area": "urbano",
     "nivel_educativo": "secundaria",
     "estado_civil": "union_libre",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_062",
@@ -803,7 +1474,18 @@
     "area": "rural",
     "nivel_educativo": "bachillerato",
     "estado_civil": "casado",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_063",
@@ -816,7 +1498,18 @@
     "area": "rural",
     "nivel_educativo": "primaria",
     "estado_civil": "viudo",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_064",
@@ -829,7 +1522,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_065",
@@ -842,7 +1546,18 @@
     "area": "urbano",
     "nivel_educativo": "universitario",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor"
+    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_066",
@@ -855,7 +1570,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_067",
@@ -868,7 +1594,18 @@
     "area": "urbano",
     "nivel_educativo": "universitario",
     "estado_civil": "union_libre",
-    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor"
+    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_068",
@@ -881,7 +1618,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_069",
@@ -894,7 +1642,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_070",
@@ -907,7 +1666,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "union_libre",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_071",
@@ -920,7 +1690,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "casado",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_072",
@@ -933,7 +1714,18 @@
     "area": "rural",
     "nivel_educativo": "secundaria",
     "estado_civil": "union_libre",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_073",
@@ -946,7 +1738,18 @@
     "area": "urbano",
     "nivel_educativo": "universitario",
     "estado_civil": "union_libre",
-    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor"
+    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_074",
@@ -959,7 +1762,18 @@
     "area": "urbano",
     "nivel_educativo": "universitario",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor"
+    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_075",
@@ -972,7 +1786,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_076",
@@ -985,7 +1810,18 @@
     "area": "rural",
     "nivel_educativo": "secundaria",
     "estado_civil": "soltero",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_077",
@@ -998,7 +1834,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_078",
@@ -1011,7 +1858,18 @@
     "area": "urbano",
     "nivel_educativo": "posgrado",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor"
+    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_079",
@@ -1024,7 +1882,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "casado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_080",
@@ -1037,7 +1906,18 @@
     "area": "urbano",
     "nivel_educativo": "secundaria",
     "estado_civil": "union_libre",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_081",
@@ -1050,7 +1930,18 @@
     "area": "rural",
     "nivel_educativo": "bachillerato",
     "estado_civil": "union_libre",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_082",
@@ -1063,7 +1954,18 @@
     "area": "rural",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_083",
@@ -1076,7 +1978,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "soltero",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_084",
@@ -1089,7 +2002,18 @@
     "area": "rural",
     "nivel_educativo": "ninguno",
     "estado_civil": "casado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_085",
@@ -1102,7 +2026,18 @@
     "area": "rural",
     "nivel_educativo": "ninguno",
     "estado_civil": "casado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_086",
@@ -1115,7 +2050,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_087",
@@ -1128,7 +2074,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "casado",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_088",
@@ -1141,7 +2098,18 @@
     "area": "rural",
     "nivel_educativo": "bachillerato",
     "estado_civil": "union_libre",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_089",
@@ -1154,7 +2122,18 @@
     "area": "rural",
     "nivel_educativo": "primaria",
     "estado_civil": "casado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_090",
@@ -1167,7 +2146,18 @@
     "area": "urbano",
     "nivel_educativo": "ninguno",
     "estado_civil": "viudo",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_091",
@@ -1180,7 +2170,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "casado",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_092",
@@ -1193,7 +2194,18 @@
     "area": "rural",
     "nivel_educativo": "bachillerato",
     "estado_civil": "union_libre",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_093",
@@ -1206,7 +2218,18 @@
     "area": "rural",
     "nivel_educativo": "ninguno",
     "estado_civil": "separado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_094",
@@ -1219,7 +2242,18 @@
     "area": "urbano",
     "nivel_educativo": "ninguno",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_095",
@@ -1232,7 +2266,18 @@
     "area": "rural",
     "nivel_educativo": "primaria",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_096",
@@ -1245,7 +2290,18 @@
     "area": "urbano",
     "nivel_educativo": "ninguno",
     "estado_civil": "casado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_097",
@@ -1258,7 +2314,18 @@
     "area": "urbano",
     "nivel_educativo": "secundaria",
     "estado_civil": "casado",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_098",
@@ -1271,7 +2338,18 @@
     "area": "urbano",
     "nivel_educativo": "tecnico",
     "estado_civil": "separado",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_099",
@@ -1284,7 +2362,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_100",
@@ -1297,7 +2386,18 @@
     "area": "rural",
     "nivel_educativo": "primaria",
     "estado_civil": "viudo",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_101",
@@ -1310,7 +2410,18 @@
     "area": "rural",
     "nivel_educativo": "primaria",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_102",
@@ -1323,7 +2434,18 @@
     "area": "urbano",
     "nivel_educativo": "secundaria",
     "estado_civil": "soltero",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_103",
@@ -1336,7 +2458,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "separado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_104",
@@ -1349,7 +2482,18 @@
     "area": "urbano",
     "nivel_educativo": "secundaria",
     "estado_civil": "soltero",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_105",
@@ -1362,7 +2506,18 @@
     "area": "rural",
     "nivel_educativo": "secundaria",
     "estado_civil": "soltero",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_106",
@@ -1375,7 +2530,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_107",
@@ -1388,7 +2554,18 @@
     "area": "rural",
     "nivel_educativo": "secundaria",
     "estado_civil": "soltero",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_108",
@@ -1401,7 +2578,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_109",
@@ -1414,7 +2602,18 @@
     "area": "rural",
     "nivel_educativo": "primaria",
     "estado_civil": "soltero",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_110",
@@ -1427,7 +2626,18 @@
     "area": "urbano",
     "nivel_educativo": "ninguno",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_111",
@@ -1440,7 +2650,18 @@
     "area": "urbano",
     "nivel_educativo": "secundaria",
     "estado_civil": "union_libre",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_112",
@@ -1453,7 +2674,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "casado",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_113",
@@ -1466,7 +2698,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "casado",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_114",
@@ -1479,7 +2722,18 @@
     "area": "rural",
     "nivel_educativo": "primaria",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_115",
@@ -1492,7 +2746,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_116",
@@ -1505,7 +2770,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "separado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_117",
@@ -1518,7 +2794,18 @@
     "area": "rural",
     "nivel_educativo": "bachillerato",
     "estado_civil": "union_libre",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_118",
@@ -1531,7 +2818,18 @@
     "area": "rural",
     "nivel_educativo": "bachillerato",
     "estado_civil": "union_libre",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_119",
@@ -1544,7 +2842,18 @@
     "area": "rural",
     "nivel_educativo": "universitario",
     "estado_civil": "union_libre",
-    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_120",
@@ -1557,7 +2866,18 @@
     "area": "rural",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_121",
@@ -1570,7 +2890,18 @@
     "area": "rural",
     "nivel_educativo": "universitario",
     "estado_civil": "casado",
-    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_122",
@@ -1583,7 +2914,18 @@
     "area": "urbano",
     "nivel_educativo": "universitario",
     "estado_civil": "union_libre",
-    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor"
+    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_123",
@@ -1596,7 +2938,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_124",
@@ -1609,7 +2962,18 @@
     "area": "rural",
     "nivel_educativo": "primaria",
     "estado_civil": "separado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_125",
@@ -1622,7 +2986,18 @@
     "area": "rural",
     "nivel_educativo": "primaria",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_126",
@@ -1635,7 +3010,18 @@
     "area": "rural",
     "nivel_educativo": "ninguno",
     "estado_civil": "soltero",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_127",
@@ -1648,7 +3034,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "casado",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_128",
@@ -1661,7 +3058,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_129",
@@ -1674,7 +3082,18 @@
     "area": "urbano",
     "nivel_educativo": "ninguno",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_130",
@@ -1687,7 +3106,18 @@
     "area": "rural",
     "nivel_educativo": "secundaria",
     "estado_civil": "union_libre",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_131",
@@ -1700,7 +3130,18 @@
     "area": "urbano",
     "nivel_educativo": "universitario",
     "estado_civil": "casado",
-    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor"
+    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_132",
@@ -1713,7 +3154,18 @@
     "area": "urbano",
     "nivel_educativo": "posgrado",
     "estado_civil": "separado",
-    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor"
+    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_133",
@@ -1726,7 +3178,18 @@
     "area": "urbano",
     "nivel_educativo": "ninguno",
     "estado_civil": "union_libre",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_134",
@@ -1739,7 +3202,18 @@
     "area": "urbano",
     "nivel_educativo": "universitario",
     "estado_civil": "divorciado",
-    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor"
+    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_135",
@@ -1752,7 +3226,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "union_libre",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_136",
@@ -1765,7 +3250,18 @@
     "area": "rural",
     "nivel_educativo": "secundaria",
     "estado_civil": "casado",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_137",
@@ -1778,7 +3274,18 @@
     "area": "urbano",
     "nivel_educativo": "secundaria",
     "estado_civil": "union_libre",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_138",
@@ -1791,7 +3298,18 @@
     "area": "rural",
     "nivel_educativo": "primaria",
     "estado_civil": "soltero",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_139",
@@ -1804,7 +3322,18 @@
     "area": "urbano",
     "nivel_educativo": "secundaria",
     "estado_civil": "divorciado",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_140",
@@ -1817,7 +3346,18 @@
     "area": "urbano",
     "nivel_educativo": "ninguno",
     "estado_civil": "casado",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_141",
@@ -1830,7 +3370,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "casado",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_142",
@@ -1843,7 +3394,18 @@
     "area": "urbano",
     "nivel_educativo": "secundaria",
     "estado_civil": "soltero",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_143",
@@ -1856,7 +3418,18 @@
     "area": "urbano",
     "nivel_educativo": "secundaria",
     "estado_civil": "soltero",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_144",
@@ -1869,7 +3442,18 @@
     "area": "urbano",
     "nivel_educativo": "primaria",
     "estado_civil": "soltero",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_145",
@@ -1882,7 +3466,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "viudo",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_146",
@@ -1895,7 +3490,18 @@
     "area": "rural",
     "nivel_educativo": "secundaria",
     "estado_civil": "separado",
-    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla sencilla, frases cortas y modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   },
   {
     "id": "p_147",
@@ -1908,7 +3514,18 @@
     "area": "urbano",
     "nivel_educativo": "bachillerato",
     "estado_civil": "casado",
-    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor"
+    "estilo": "habla con claridad, lenguaje cotidiano y algunos modismos salvadoreños; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cipote",
+        "ahorita",
+        "cabal"
+      ]
+    }
   },
   {
     "id": "p_148",
@@ -1921,7 +3538,18 @@
     "area": "rural",
     "nivel_educativo": "primaria",
     "estado_civil": "viudo",
-    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor"
+    "estilo": "habla muy sencilla, frases cortas, modismos salvadoreños, con expresiones del campo; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "media",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_149",
@@ -1934,7 +3562,18 @@
     "area": "urbano",
     "nivel_educativo": "universitario",
     "estado_civil": "casado",
-    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor"
+    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "calentura",
+        "cuerpo cortado",
+        "ruco",
+        "pisto"
+      ]
+    }
   },
   {
     "id": "p_150",
@@ -1947,6 +3586,17 @@
     "area": "urbano",
     "nivel_educativo": "universitario",
     "estado_civil": "soltero",
-    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor"
+    "estilo": "habla con claridad y vocabulario variado, pero sin tecnicismos médicos; trata de usted al doctor",
+    "habla": {
+      "trato_medico": "usted",
+      "aspiracion": "ninguna",
+      "voseo_con_familia": true,
+      "regionalismos": [
+        "cipote",
+        "ahorita",
+        "cabal",
+        "púchica"
+      ]
+    }
   }
 ]
