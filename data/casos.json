@@ -1,0 +1,424 @@
+[
+  {
+    "id": "c_dengue_01",
+    "guia_ref": "dengue",
+    "motivo_consulta": "Fiebre alta y dolor de cabeza desde hace 3 días",
+    "sintomas": [
+      "fiebre alta (como 39 grados)",
+      "dolor de cabeza fuerte",
+      "dolor detrás de los ojos",
+      "dolor de huesos y músculos, como cuerpo cortado",
+      "náuseas y sin ganas de comer"
+    ],
+    "antecedentes": ["no tiene enfermedades conocidas", "no es alérgico/a a ninguna medicina"],
+    "habitos": [
+      "vive en una zona con muchos zancudos",
+      "en su casa hay pila y barriles de agua destapados",
+      "no usa repelente ni mosquitero"
+    ],
+    "datos_si_pregunta": {
+      "viajes": "no ha salido de su municipio en el último mes",
+      "vecinos o familiares enfermos": "dos vecinos tuvieron lo mismo la semana pasada y uno fue al hospital",
+      "sangrado": "ayer le sangraron las encías al cepillarse",
+      "manchas en la piel": "hoy le salieron unas manchitas rojas en los brazos",
+      "dolor de barriga": "desde ayer le duele la barriga, sobre todo arriba, y siente que no aguanta",
+      "vómitos": "ha vomitado dos veces hoy",
+      "medicinas": "solo ha tomado acetaminofén (Dolex); no ha tomado aspirina ni ibuprofeno"
+    },
+    "restricciones": {
+      "sexo": ["F", "M"],
+      "edad_min": 18,
+      "edad_max": 70,
+      "departamentos_tipicos": ["Sonsonate", "La Libertad", "San Salvador", "Ahuachapán", "San Miguel", "Usulután", "La Paz"]
+    },
+    "diagnostico": "Dengue con signos de alarma",
+    "diagnostico_alias": ["dengue"],
+    "lista_verificacion": [
+      { "id": "fiebre_dur", "texto": "Duración e intensidad de la fiebre", "keywords": ["cuanto tiempo", "desde cuando", "cuantos dias", "hace cuanto", "fiebre"] },
+      { "id": "dolor_ojos", "texto": "Dolor de cabeza y detrás de los ojos", "keywords": ["ojos", "retroocular", "dolor de cabeza"] },
+      { "id": "dolor_musc", "texto": "Dolor de músculos, huesos o articulaciones", "keywords": ["huesos", "musculos", "dolor en el cuerpo", "articulaciones", "cuerpo cortado"] },
+      { "id": "contactos", "texto": "Contactos o vecinos enfermos", "keywords": ["vecinos", "familiares", "alguien mas", "en su casa", "contacto"] },
+      { "id": "zancudos", "texto": "Exposición a zancudos y agua estancada", "keywords": ["zancudo", "mosquito", "repelente", "agua estancada", "barril", "pila", "criadero"] },
+      { "id": "viajes", "texto": "Viajes recientes", "keywords": ["viaj", "salio de", "fuera de"] },
+      { "id": "medicinas", "texto": "Medicinas que ha tomado (evitar aspirina/AINE)", "keywords": ["medicina", "medicamento", "tomado algo", "pastilla", "acetaminofen", "ibuprofeno", "aspirina", "dolex"] },
+      { "id": "piel", "texto": "Manchas o erupción en la piel", "keywords": ["manchas", "sarpullido", "ronchas", "erupcion", "piel"] }
+    ],
+    "banderas_rojas": [
+      { "id": "sangrado", "texto": "Sangrado de encías, nariz o heces", "keywords": ["sangrado", "sangre", "encias", "sangra"] },
+      { "id": "dolor_abd", "texto": "Dolor abdominal intenso", "keywords": ["dolor abdominal", "barriga", "estomago", "vientre", "panza"] },
+      { "id": "vomitos", "texto": "Vómitos persistentes", "keywords": ["vomit", "devuelve", "devolver"] }
+    ]
+  },
+  {
+    "id": "c_erc_01",
+    "guia_ref": "erc",
+    "motivo_consulta": "Cansancio, pies hinchados y orina con espuma desde hace unos meses",
+    "sintomas": [
+      "mucho cansancio, ya no rinde en el trabajo",
+      "los pies se le hinchan al final del día",
+      "orina con espuma",
+      "menos ganas de comer y náuseas en las mañanas",
+      "calambres en las piernas"
+    ],
+    "antecedentes": ["nunca le han medido la presión ni hecho exámenes de riñón", "no sabe de diabetes"],
+    "habitos": [
+      "trabaja al sol muchas horas",
+      "toma poca agua durante la jornada",
+      "fumiga sin mascarilla ni guantes",
+      "toma diclofenaco casi a diario por dolor de espalda"
+    ],
+    "datos_si_pregunta": {
+      "dolor de espalda y pastillas": "toma diclofenaco casi todos los días porque le duele la espalda del trabajo",
+      "agua": "en el trabajo casi no toma agua, solo cuando llega a la casa",
+      "familiares": "su papá y un tío murieron de problemas de los riñones",
+      "cantidad de orina": "orina menos que antes y se levanta una o dos veces por la noche",
+      "agroquímicos": "fumiga con veneno para la plaga y no se protege",
+      "presión": "nunca se la ha medido",
+      "hinchazón de la cara": "a veces amanece con los párpados hinchados"
+    },
+    "restricciones": {
+      "sexo": ["M"],
+      "edad_min": 25,
+      "edad_max": 60,
+      "departamentos_tipicos": ["Usulután", "La Paz", "San Vicente", "Sonsonate", "Ahuachapán", "San Miguel"],
+      "ocupaciones_tipicas": ["agric", "cultiv", "ganader", "caña", "pesca"]
+    },
+    "diagnostico": "Enfermedad renal crónica",
+    "diagnostico_alias": ["enfermedad renal", "erc", "insuficiencia renal", "nefropatia", "falla renal"],
+    "lista_verificacion": [
+      { "id": "orina", "texto": "Cambios en la orina (espuma, cantidad)", "keywords": ["orina", "espuma", "espumosa", "orinar"] },
+      { "id": "hinchazon", "texto": "Hinchazón de pies o cara", "keywords": ["hinch", "inflam", "edema", "pies", "parpados"] },
+      { "id": "trabajo", "texto": "Ocupación y condiciones de trabajo", "keywords": ["trabaja", "trabajo", "ocupacion", "a que se dedica", "en que trabaja"] },
+      { "id": "agua_calor", "texto": "Hidratación y exposición al calor", "keywords": ["agua", "sol", "calor", "hidrata"] },
+      { "id": "agroquimicos", "texto": "Exposición a agroquímicos", "keywords": ["fumiga", "agroquimico", "pesticida", "quimicos", "veneno"] },
+      { "id": "aine", "texto": "Uso de antiinflamatorios o analgésicos", "keywords": ["diclofenaco", "ibuprofeno", "antiinflamatorio", "analgesico", "pastillas", "medicamento", "medicina"] },
+      { "id": "familia", "texto": "Antecedentes familiares de enfermedad renal", "keywords": ["familiar", "papa", "padre", "tio", "heredit", "en la familia"] },
+      { "id": "presion", "texto": "Presión arterial e hipertensión", "keywords": ["presion", "hipertens"] }
+    ],
+    "banderas_rojas": [
+      { "id": "aine", "texto": "Medicamentos nefrotóxicos (AINE)", "keywords": ["diclofenaco", "ibuprofeno", "antiinflamatorio", "analgesico", "pastillas para el dolor"] },
+      { "id": "diuresis", "texto": "Cambio en la cantidad de orina", "keywords": ["cantidad de orina", "orina poco", "orina menos", "orinas menos", "cuanto orina", "veces orina", "orinar de noche"] }
+    ]
+  },
+  {
+    "id": "c_dm2_01",
+    "guia_ref": "dm2",
+    "motivo_consulta": "Mucha sed, orino muchas veces y he bajado de peso",
+    "sintomas": [
+      "mucha sed todo el día",
+      "orina muchas veces, incluso de noche",
+      "cansancio",
+      "la vista borrosa a ratos",
+      "hormigueo en los pies",
+      "ha bajado unas 5 libras en dos meses aunque come igual"
+    ],
+    "antecedentes": ["a su mamá le descubrieron azúcar en la sangre", "nunca se ha hecho un examen de laboratorio", "tiene sobrepeso"],
+    "habitos": [
+      "toma dos o tres refrescos o gaseosas al día",
+      "come pan dulce y comida frita seguido",
+      "casi no hace ejercicio",
+      "no fuma"
+    ],
+    "datos_si_pregunta": {
+      "familiares": "a su mamá le descubrieron azúcar en la sangre y toma pastillas",
+      "dieta": "toma dos o tres refrescos al día y le gusta el pan dulce",
+      "peso": "ha bajado como 5 libras en dos meses sin querer",
+      "vista": "a veces ve borroso, sobre todo por la tarde",
+      "hormigueo": "siente hormigueo y como adormecimiento en los pies, sobre todo de noche",
+      "heridas": "tiene una herida en el pie que lleva semanas sin sanar",
+      "ejercicio": "casi no camina ni hace ejercicio"
+    },
+    "restricciones": {
+      "sexo": ["F", "M"],
+      "edad_min": 30,
+      "edad_max": 75
+    },
+    "diagnostico": "Diabetes mellitus tipo 2",
+    "diagnostico_alias": ["diabetes", "dm2", "azucar alta"],
+    "lista_verificacion": [
+      { "id": "sed", "texto": "Sed excesiva", "keywords": ["sed", "toma mucha agua"] },
+      { "id": "orina", "texto": "Orina frecuente o nocturna", "keywords": ["orina", "orinar", "ir al bano"] },
+      { "id": "peso", "texto": "Pérdida de peso", "keywords": ["peso", "bajado", "adelgaz", "libras"] },
+      { "id": "vision", "texto": "Cambios en la vista", "keywords": ["vision", "vista", "borros", "ve mal"] },
+      { "id": "familia", "texto": "Antecedentes familiares de diabetes", "keywords": ["familiar", "mama", "papa", "madre", "padre", "heredit"] },
+      { "id": "dieta", "texto": "Alimentación y consumo de azúcar", "keywords": ["come", "comida", "refresco", "dulce", "gaseosa", "dieta", "alimentacion", "azucar"] },
+      { "id": "actividad", "texto": "Actividad física", "keywords": ["ejercicio", "actividad fisica", "deporte", "camina"] },
+      { "id": "hormigueo", "texto": "Hormigueo o adormecimiento en pies", "keywords": ["hormigueo", "adormec", "neuropatia", "sensibilidad"] }
+    ],
+    "banderas_rojas": [
+      { "id": "heridas", "texto": "Heridas que no cicatrizan (pie diabético)", "keywords": ["herida", "cicatriza", "sanar", "ulcera", "llaga"] },
+      { "id": "hiperglucemia", "texto": "Vómitos, confusión o aliento con olor a fruta", "keywords": ["vomit", "confusion", "aliento", "somnolien", "desmayo"] }
+    ]
+  },
+  {
+    "id": "c_hta_01",
+    "guia_ref": "hipertension",
+    "motivo_consulta": "Dolor de cabeza fuerte en la nuca y mareos desde esta mañana",
+    "sintomas": [
+      "dolor de cabeza fuerte, como que le late atrás en la nuca",
+      "mareos y sensación de inestabilidad al levantarse",
+      "zumbido en los oídos como un pito constante",
+      "visión borrosa por ratos y ve como lucecitas",
+      "sensación de opresión leve en el pecho y calor en la cara"
+    ],
+    "antecedentes": [
+      "le dijeron hace dos años en la unidad de salud que tenía la tensión alta",
+      "le recetaron unas pastillas pero las dejó de tomar hace dos meses porque se sentía bien",
+      "su papá murió de un derrame cerebral",
+      "no padece de los bronquios"
+    ],
+    "habitos": [
+      "le gusta comer con bastante sal y tomar café bien cargado tres veces al día",
+      "trabaja con mucho estrés y duerme pocas horas",
+      "fuma un par de cigarros al día los fines de semana"
+    ],
+    "datos_si_pregunta": {
+      "pastillas previas": "le habían dejado enalapril de 20 miligramos al día, pero se le acabaron y no fue a consulta",
+      "dolor de pecho": "siente una pesadez en el pecho desde que empezó el dolor de cabeza, pero no se le va al brazo",
+      "visión": "ve lucecitas brillantes cuando se agacha y se levanta rápido",
+      "orina": "no ha tenido problemas al orinar ni ha visto sangre",
+      "sal y café": "le pone sal a la comida antes de probarla y toma bastante café para aguantar el día",
+      "consumo de alcohol o sustancias": "no toma licor seguido ni usa drogas, solo un par de cervezas al mes",
+      "dificultad para respirar": "siente que le falta un poco el aire si sube gradas"
+    },
+    "restricciones": {
+      "sexo": ["F", "M"],
+      "edad_min": 40,
+      "edad_max": 75,
+      "departamentos_tipicos": ["San Salvador", "La Libertad", "Santa Ana", "San Miguel"],
+      "ocupaciones_tipicas": ["comercio", "venta", "transporte", "administracion", "restaurante"]
+    },
+    "diagnostico": "Crisis hipertensiva",
+    "diagnostico_alias": ["hipertension", "hipertension arterial", "descontrol hipertensivo", "urgencia hipertensiva", "emergencia hipertensiva", "presion alta"],
+    "lista_verificacion": [
+      { "id": "cefalea_carac", "texto": "Características y localización del dolor de cabeza", "keywords": ["cabeza", "nuca", "late", "pulsatil", "dolor"] },
+      { "id": "tinnitus_vision", "texto": "Alteraciones visuales y zumbido de oídos", "keywords": ["oidos", "zumbido", "pito", "luces", "vision", "vista", "borros", "lucecitas"] },
+      { "id": "adherencia", "texto": "Uso y suspensión de medicamentos antihipertensivos", "keywords": ["pastilla", "medicina", "medicamento", "enalapril", "tomando", "dejo de tomar", "suspension", "tratamiento"] },
+      { "id": "dolor_pecho", "texto": "Presencia de dolor u opresión en el pecho", "keywords": ["pecho", "opresion", "corazon", "pesadez"] },
+      { "id": "disnea", "texto": "Dificultad para respirar (disnea)", "keywords": ["falta de aire", "respira", "ahogo", "fatiga", "cansa al caminar"] },
+      { "id": "habitos_sal", "texto": "Consumo de sal, café y tabaco", "keywords": ["sal", "cafe", "cigarro", "tabaco", "fuma", "dieta"] },
+      { "id": "antecedentes_fam", "texto": "Antecedentes familiares cardiovasculares", "keywords": ["familiar", "papa", "padre", "mama", "derrame", "infarto", "en su familia"] }
+    ],
+    "banderas_rojas": [
+      { "id": "dolor_toracico", "texto": "Dolor torácico opresivo sugestivo de síndrome coronario", "keywords": ["pecho", "torax", "opresion en el pecho", "irradia", "corazon"] },
+      { "id": "deficit_neuro", "texto": "Signos neurológicos focales o pérdida de fuerza", "keywords": ["fuerza", "hablar", "adormecimiento", "brazo", "cara torcida", "paralisis", "debilidad"] },
+      { "id": "dificultad_respiratoria", "texto": "Falta de aire aguda (edema agudo de pulmón)", "keywords": ["falta de aire", "asfixia", "ahogo", "pulmon", "respirar"] }
+    ]
+  },
+  {
+    "id": "c_trauma_01",
+    "guia_ref": "trauma",
+    "motivo_consulta": "Choqué en la moto hace dos horas y me duele fuerte el hombro y la rodilla",
+    "sintomas": [
+      "dolor fuerte en el hombro derecho que no le permite mover el brazo",
+      "raspón y dolor hinchado en la rodilla derecha",
+      "dolor en las costillas del lado derecho al respirar profundo",
+      "le arden varias raspaduras en los brazos y el costado",
+      "un poco de aturdimiento pero no se desmayó"
+    ],
+    "antecedentes": [
+      "joven sano, no padece de enfermedades crónicas",
+      "no toma medicinas diarias",
+      "vacuna contra el tétanos hace más de diez años en la escuela"
+    ],
+    "habitos": [
+      "maneja moto todos los días para repartir pedidos y transportarse",
+      "llevaba casco puesto pero era de los sencillos, no cerrado",
+      "no había consumido bebidas alcohólicas antes del choque"
+    ],
+    "datos_si_pregunta": {
+      "casco y golpe en cabeza": "llevaba casco pero se le salió al caer; se pegó un raspón en la frente pero no perdió el conocimiento",
+      "velocidad y choque": "iba como a 40 por hora y un carro se le atravesó, cayó sobre el lado derecho",
+      "respiración y pecho": "le duele al tomar aire hondo en las costillas del lado derecho",
+      "cuello y columna": "no siente dolor en el cuello ni en la espalda, solo en el hombro y las costillas",
+      "sangrado": "sangra de los raspones de los brazos y rodilla pero no a chorros",
+      "sensibilidad en extremidades": "mueve los dedos de la mano y de los pies, solo el hombro no lo puede alzar",
+      "vacuna tetánica": "no se ha puesto refuerzo de tétanos desde pequeño"
+    },
+    "restricciones": {
+      "sexo": ["F", "M"],
+      "edad_min": 18,
+      "edad_max": 45,
+      "departamentos_tipicos": ["San Salvador", "La Libertad", "Sonsonate", "San Miguel", "Santa Ana"],
+      "ocupaciones_tipicas": ["transporte", "restaurante", "mantenimiento", "vehicul", "comercio"]
+    },
+    "diagnostico": "Politraumatismo por accidente de tránsito",
+    "diagnostico_alias": ["trauma", "politrauma", "accidente de moto", "accidente de transito", "traumatismo", "contusion"],
+    "lista_verificacion": [
+      { "id": "mecanismo_lesion", "texto": "Mecanismo del accidente (velocidad, tipo de choque)", "keywords": ["como fue", "velocidad", "como cayo", "como choco", "mecanismo", "impacto"] },
+      { "id": "uso_casco", "texto": "Uso de casco y protección", "keywords": ["casco", "proteccion", "chaleco", "guantes", "llevaba puesto"] },
+      { "id": "perdida_conciencia", "texto": "Pérdida del conocimiento o amnesia del evento", "keywords": ["perdio el conocimiento", "desmay", "conciencia", "desmayo", "recuerda lo que paso", "aturdido"] },
+      { "id": "dolor_toracico", "texto": "Dolor torácico y dificultad para respirar", "keywords": ["pecho", "costilla", "respirar", "aire", "tomar aire"] },
+      { "id": "dolor_cervical", "texto": "Dolor en cuello o columna", "keywords": ["cuello", "columna", "espalda", "nuca"] },
+      { "id": "sensibilidad_motora", "texto": "Movilidad y sensibilidad en extremidades", "keywords": ["mover", "siente", "fuerza", "dedos", "adormec", "extremidades"] },
+      { "id": "vacuna_tetanos", "texto": "Estado vacunal antitetánico por heridas abiertas", "keywords": ["tetano", "vacuna", "herida", "raspon"] }
+    ],
+    "banderas_rojas": [
+      { "id": "trauma_craneal", "texto": "Pérdida de alerta, vómitos en proyectil o amnesia (TEC)", "keywords": ["vomit", "conciencia", "desmay", "despierto", "somnolien", "amnesia", "golpe en la cabeza"] },
+      { "id": "compromiso_respiratorio", "texto": "Neumotórax o fracturas costales con dificultad respiratoria", "keywords": ["falta de aire", "respira", "costilla", "ahogo", "aire", "pecho"] },
+      { "id": "hemorragia_activa", "texto": "Hemorragia profusa o signos de choque", "keywords": ["sangre a chorros", "mucha sangre", "hemorragia", "palido", "sudor frio"] }
+    ]
+  },
+  {
+    "id": "c_gea_01",
+    "guia_ref": "gastroenteritis",
+    "motivo_consulta": "Llevo dos días con bastante diarrea líquida, cólicos y vómitos",
+    "sintomas": [
+      "deposiciones líquidas como seis o siete veces al día",
+      "cólicos fuertes en la panza antes de ir al baño",
+      "vómitos de lo que come, ya van cuatro veces hoy",
+      "mucha resequedad en la boca y sed",
+      "siente el cuerpo flojo y se marea cuando se para"
+    ],
+    "antecedentes": [
+      "no tiene enfermedades del estómago previas",
+      "no es alérgico a medicamentos",
+      "no toma medicinas fijas"
+    ],
+    "habitos": [
+      "comió pupusas y curtido en un puesto de la calle hace dos días",
+      "en su casa a veces toman agua del chorro sin hervir",
+      "no acostumbra lavarse las manos con jabón antes de comer en la calle"
+    ],
+    "datos_si_pregunta": {
+      "alimentos recientes": "el día que empezó comió pupusas con curtido en la calle que sintió con olor raro",
+      "características de las heces": "son completamente líquidas, amarillentas, sin moco ni sangre visible",
+      "orina y sed": "ha orinado solo una vez en todo el día y la orina salió bien oscura",
+      "fiebre": "sintió calentura anoche pero no se puso termómetro",
+      "medicinas tomadas": "se tomó unas pastillas de carbón y un sueroral que compró en la tienda",
+      "otros enfermos": "su sobrino que comió en el mismo lugar también está con soltura de estómago",
+      "tolerancia de líquidos": "ahorita le cuesta retener agua, la devuelve casi de inmediato"
+    },
+    "restricciones": {
+      "sexo": ["F", "M"],
+      "edad_min": 18,
+      "edad_max": 65,
+      "departamentos_tipicos": ["La Libertad", "San Salvador", "Sonsonate", "Ahuachapán", "Santa Ana", "Cuscatlán"],
+      "ocupaciones_tipicas": ["restaurante", "comercio", "venta", "panaderia", "hogar"]
+    },
+    "diagnostico": "Gastroenteritis aguda",
+    "diagnostico_alias": ["diarrea aguda", "infeccion gastrointestinal", "gea", "gastroenteritis", "enteritis", "gastroenterocolitis"],
+    "lista_verificacion": [
+      { "id": "heces_frecuencia", "texto": "Frecuencia y características de las evacuaciones", "keywords": ["cuantas veces", "evacuaciones", "diarrea", "liquida", "heces", "cuantas deposiciones"] },
+      { "id": "sangre_moco", "texto": "Presencia de sangre o moco en heces (disentería)", "keywords": ["sangre", "moco", "roja", "sangrado", "heces con sangre"] },
+      { "id": "vomitos_tolerancia", "texto": "Frecuencia de vómitos y tolerancia a líquidos", "keywords": ["vomit", "tolera", "retiene", "devolver", "liquido", "tomar agua"] },
+      { "id": "signos_deshidratacion", "texto": "Signos de deshidratación (sed, resequedad de mucosas, diuresis)", "keywords": ["sed", "boca seca", "orina", "orinado", "cuanto ha orinado", "lagrimas", "orina oscura"] },
+      { "id": "origen_alimentos", "texto": "Consumo de alimentos sospechosos o agua no potable", "keywords": ["comio", "alimento", "calle", "agua", "chorro", "pupusa", "curtido", "comida"] },
+      { "id": "fiebre", "texto": "Presencia de fiebre o escalofríos", "keywords": ["fiebre", "calentura", "temperatura", "escalofrio"] },
+      { "id": "tratamiento_previo", "texto": "Uso de sales de rehidratación oral o antibióticos", "keywords": ["suero", "rehidratacion", "pastilla", "antibiotico", "medicina", "remedio", "sueroral"] }
+    ],
+    "banderas_rojas": [
+      { "id": "deshidratacion_severa", "texto": "Signos de deshidratación grave o choque hipovolémico", "keywords": ["orina", "no ha orinado", "mareo", "desmayo", "confusion", "boca seca", "ojos hundidos"] },
+      { "id": "intolerancia_oral", "texto": "Intolerancia completa a la vía oral por vómitos incoercibles", "keywords": ["no tolera", "devuelve todo", "vomita todo", "vomito constante", "no retiene"] },
+      { "id": "sangrado_heces", "texto": "Sangre en heces (síndrome disentérico)", "keywords": ["sangre", "disenteria", "sangrado", "heces con sangre"] }
+    ]
+  },
+  {
+    "id": "c_nac_01",
+    "guia_ref": "neumonia",
+    "motivo_consulta": "Tengo una tos con flema amarillenta, calentura y me cuesta respirar desde hace cuatro días",
+    "sintomas": [
+      "tos con bastante flema verde amarillenta",
+      "fiebre con temblores y sudoración de noche",
+      "punzada fuerte en el costado de la espalda al toser o respirar hondo",
+      "sensación de ahogo y fatiga al caminar un poquito",
+      "decaído y sin apetito"
+    ],
+    "antecedentes": [
+      "cocinó con leña durante más de 20 años en cocina cerrada",
+      "no es asmático ni tiene problemas del corazón conocidos",
+      "no tiene vacunas de la influenza ni del neumococo este año"
+    ],
+    "habitos": [
+      "no fuma cigarrillos de fábrica, pero estuvo expuesto al humo de leña diario",
+      "trabaja vendiendo en el mercado de mayoreo desde la madrugada",
+      "se moja seguido con las lluvias de la temporada"
+    ],
+    "datos_si_pregunta": {
+      "flema y sangre": "la flema es espesa y amarilla oscura, ayer vio como hilitos de sangre pero poquito",
+      "dolor de costado": "le duele como si le clavaran una aguja en el lado derecho de la espalda cuando tose",
+      "fiebre": "anoche le subió como a 38.5 y le castañeteaban los dientes del frío",
+      "humo de leña": "desde tierna cocinó en poyo de leña sin chimenea adentro de la casa",
+      "medicinas": "ha estado tomando jarabe de la farmacia y acetaminofén pero no le baja la calentura",
+      "falta de aire": "siente el pecho apretado y que no le entra el aire completo si camina al baño",
+      "contactos": "en su casa nadie más está así con esa calentura y ahogo"
+    },
+    "restricciones": {
+      "sexo": ["F", "M"],
+      "edad_min": 50,
+      "edad_max": 85,
+      "departamentos_tipicos": ["Santa Ana", "Chalatenango", "Cabañas", "San Salvador", "Morazán", "Cuscatlán"],
+      "ocupaciones_tipicas": ["mercado", "venta", "alimentos", "hogar", "cultiv"]
+    },
+    "diagnostico": "Neumonía adquirida en la comunidad",
+    "diagnostico_alias": ["neumonia", "nac", "pulmonia", "infeccion pulmonar"],
+    "lista_verificacion": [
+      { "id": "tos_expectoracion", "texto": "Características de la tos y de la expectoración", "keywords": ["tos", "flema", "expectoracion", "color", "amarilla", "verde"] },
+      { "id": "fiebre_escalofrios", "texto": "Duración y magnitud de la fiebre o escalofríos", "keywords": ["fiebre", "calentura", "escalofrio", "temperatura", "cuantos dias"] },
+      { "id": "dolor_pleuritico", "texto": "Dolor torácico tipo pleurítico en puntada de costado", "keywords": ["pecho", "costado", "espalda", "puntada", "al toser", "al respirar"] },
+      { "id": "dificultad_respiratoria", "texto": "Grado de dificultad respiratoria o disnea", "keywords": ["falta de aire", "respira", "ahogo", "dificultad para respirar", "pecho apretado"] },
+      { "id": "exposicion_humo", "texto": "Exposición a humo de biomasa (leña) o tabaco", "keywords": ["humo", "lena", "cocina", "fuma", "tabaco", "cigarro"] },
+      { "id": "antecedentes_vacunas", "texto": "Antecedentes de vacunación (influenza, neumococo)", "keywords": ["vacuna", "influenza", "neumococo", "inmuniz"] },
+      { "id": "medicacion_previa", "texto": "Uso de jarabes, antibióticos o analgésicos previos", "keywords": ["jarabe", "antibiotico", "acetaminofen", "medicina", "pastilla", "remedio"] }
+    ],
+    "banderas_rojas": [
+      { "id": "insuficiencia_respiratoria", "texto": "Signos de insuficiencia respiratoria aguda o cianosis", "keywords": ["falta de aire", "ahogo", "labios morados", "cianosis", "asfixia", "respirar rapido"] },
+      { "id": "compromiso_conciencia", "texto": "Confusión, desorientación o letargo (criterio CURB-65)", "keywords": ["confusion", "desorienta", "somnolien", "dormido", "despierto", "conciencia"] },
+      { "id": "hemoptisis", "texto": "Expectoración con sangre franca (hemoptisis)", "keywords": ["sangre", "escupe sangre", "tos con sangre", "hemoptisis"] }
+    ]
+  },
+  {
+    "id": "c_depresion_01",
+    "guia_ref": "depresion",
+    "motivo_consulta": "Paso sin ganas de nada, no puedo dormir y lloro a cada rato desde hace un mes",
+    "sintomas": [
+      "tristeza profunda la mayor parte del día, siente un vacío en el pecho",
+      "perdió el interés en cosas que antes le gustaban como bordar y salir",
+      "le cuesta mucho conciliar el sueño y se despierta a las tres de la madrugada",
+      "falta de energía, siente el cuerpo pesado hasta para bañarse",
+      "dificultad para concentrarse en su trabajo y olvidos frecuentes",
+      "pérdida de apetito y ha bajado varias libras de peso"
+    ],
+    "antecedentes": [
+      "hace seis meses falleció su esposo y se quedó viviendo sola",
+      "no tiene enfermedades físicas graves diagnosticadas",
+      "no toma medicamentos para los nervios ni para dormir"
+    ],
+    "habitos": [
+      "pasa encerrada en la casa la mayor parte del tiempo",
+      "no sale a caminar ni habla casi con los vecinos",
+      "no consume bebidas alcohólicas ni drogas"
+    ],
+    "datos_si_pregunta": {
+      "ideas de muerte o autolesion": "a veces ha pensado que mejor quisiera dormirse y no despertar, pero nunca ha intentado hacerse daño",
+      "duelo y pérdida": "desde que murió su compañero de vida siente que la casa está vacía y que no tiene propósito",
+      "sueño": "se acuesta a las 9 pero se duerme hasta la 1, y se despierta a las 3 o 4 sin poder volver a dormir",
+      "alimentación": "la comida no le sabe a nada, come solo por obligación unas tortillas con queso",
+      "red de apoyo": "tiene una hija pero vive en otro departamento y la visita poco",
+      "trabajo y tareas": "hace las labores del hogar a medias porque se cansa rapidito",
+      "angustia y malestar corporal": "a veces le dan dolores de cabeza y pesadez en el cuello de tanta angustia"
+    },
+    "restricciones": {
+      "sexo": ["F", "M"],
+      "edad_min": 35,
+      "edad_max": 75,
+      "departamentos_tipicos": ["San Salvador", "Santa Ana", "San Miguel", "La Paz", "Cuscatlán", "Usulután"],
+      "ocupaciones_tipicas": ["hogar", "comercio", "venta", "alimentos", "costura"]
+    },
+    "diagnostico": "Episodio depresivo mayor",
+    "diagnostico_alias": ["depresion", "trastorno depresivo", "depresion mayor", "sindrome depresivo"],
+    "lista_verificacion": [
+      { "id": "animo_tristeza", "texto": "Estado de ánimo y tristeza la mayor parte del día", "keywords": ["triste", "animo", "vacio", "llora", "llorar", "ganas de nada", "desanimo"] },
+      { "id": "anhedonia", "texto": "Pérdida de interés o placer en actividades habituales (anhedonia)", "keywords": ["placer", "interes", "disfruta", "gusta hacer", "actividades", "motivacion"] },
+      { "id": "alteracion_sueno", "texto": "Patrón de sueño e insomnio (inicial o terminal)", "keywords": ["duerme", "sueno", "insomnio", "despierta", "dormir"] },
+      { "id": "apetito_peso", "texto": "Cambios en el apetito o peso", "keywords": ["apetito", "hambre", "come", "comida", "peso", "libras"] },
+      { "id": "energia_fatiga", "texto": "Fatiga, cansancio o falta de energía", "keywords": ["energia", "cansa", "fatiga", "fuerza", "agotad"] },
+      { "id": "red_apoyo", "texto": "Red de apoyo familiar y eventos vitales estresantes (duelo)", "keywords": ["familia", "hija", "esposo", "duelo", "apoyo", "acompan", "sola", "vive sola"] },
+      { "id": "concentracion", "texto": "Dificultad de concentración o toma de decisiones", "keywords": ["concentra", "olvidos", "memoria", "mente", "atencion"] }
+    ],
+    "banderas_rojas": [
+      { "id": "ideacion_suicida", "texto": "Ideación o intención de muerte o autolesión", "keywords": ["muerte", "morir", "hacerse dano", "quitarse la vida", "suicid", "no despertar", "dormirse"] },
+      { "id": "aislamiento_total", "texto": "Aislamiento social extremo o abandono de autocuidado básico", "keywords": ["encerrada", "no sale", "banarse", "no come", "abandono", "descuido"] }
+    ]
+  }
+]

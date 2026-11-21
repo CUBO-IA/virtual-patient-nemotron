@@ -1,0 +1,32 @@
+import os
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+DATA_DIR = ROOT / "data"
+
+
+def _load_env_file():
+    path = ROOT / ".env"
+    if not path.exists():
+        return
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        os.environ.setdefault(key.strip(), value.strip())
+
+
+_load_env_file()
+
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434").rstrip("/")
+LLM_MODEL = os.getenv("LLM_MODEL", "qwen2.5:7b")
+EMBED_MODEL = os.getenv("EMBED_MODEL", "bge-m3")
+CHROMA_URL = os.getenv("CHROMA_URL", "http://localhost:8001").rstrip("/")
+RAG_ENABLED = os.getenv("RAG_ENABLED", "false").lower() in ("true", "1", "yes")
+GUIAS_DIR = DATA_DIR / "guias"
+NUM_CTX = int(os.getenv("NUM_CTX", "2048"))
+CORS_ORIGINS = [o.strip() for o in os.getenv("CORS_ORIGINS", "http://localhost:5173").split(",") if o.strip()]
+
+# Mensajes de historial enviados al modelo (evita desbordar el contexto y perder el prompt de sistema).
+MAX_HISTORY = 16
