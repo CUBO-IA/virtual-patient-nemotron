@@ -5,6 +5,7 @@ Usa edge-tts con las voces de El Salvador y ajusta tono y velocidad según la ed
 
 import asyncio
 import logging
+import re
 from pathlib import Path
 
 import edge_tts
@@ -81,16 +82,31 @@ async def _sintetizar_una_vez(texto: str, voz: str, perfil_edad: str) -> bytes:
     return audio
 
 
+def limpiar_texto_para_tts(texto: str) -> str:
+    """Remueve marcas de formato y acotaciones tipo *tose* o *suspira*."""
+    if not texto:
+        return ""
+    # Acotaciones entre corchetes: [tose]
+    t = re.sub(r"\[[^\]]+\]", "", texto)
+    # Acotaciones escénicas típicas entre asteriscos (ej. *suspira*, *se toca el pecho*)
+    t = re.sub(r"\*(?:suspira|tose|queja|llora|pausa|duda|asiente|se\s+[^*]+|\w+ndo)\*", "", t, flags=re.IGNORECASE)
+    # Quitar asteriscos y guiones bajos restantes (negritas/cursivas: **dolor** -> dolor)
+    t = t.replace("*", "").replace("_", "")
+    limpio = " ".join(t.split()).strip()
+    return limpio or texto.strip()
+
+
 async def sintetizar_bytes(texto: str, voz: str, perfil_edad: str) -> bytes:
     """Genera el MP3 en memoria. Reintenta si el servicio de Microsoft no manda audio."""
     limpio = (texto or "").strip()
     if not limpio:
         raise ValueError("El texto a sintetizar no puede estar vacío.")
 
+    texto_audio = limpiar_texto_para_tts(limpio)
     ultimo: Exception | None = None
     for intento in range(1, _INTENTOS + 1):
         try:
-            return await _sintetizar_una_vez(limpio, voz, perfil_edad)
+            return await _sintetizar_una_vez(texto_audio, voz, perfil_edad)
         except ValueError:
             raise
         except Exception as e:

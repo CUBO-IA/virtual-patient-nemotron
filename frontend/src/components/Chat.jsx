@@ -94,11 +94,15 @@ export default function Chat({
     // antes, el navegador rechaza el audio por falta de gesto del usuario.
     const intento = audio.play()
     if (intento) {
-      intento.catch(() => {
+      intento.catch((err) => {
         if (pedido.current !== id) return
         setCargandoAudioIdx(null)
         setReproduciendoIdx(null)
-        setErrorVoz('El navegador bloqueó el sonido. Pulsa el altavoz del mensaje para escucharlo.')
+        if (err && err.name === 'NotAllowedError') {
+          setErrorVoz('El navegador bloqueó la reproducción automática. Pulsa el botón 🔊 del mensaje para escucharlo.')
+        } else {
+          setErrorVoz('No se pudo reproducir el sonido. Comprueba la conexión o que el backend esté activo.')
+        }
       })
     }
   }

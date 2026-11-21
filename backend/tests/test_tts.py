@@ -4,7 +4,7 @@ import asyncio
 
 import pytest
 
-from app.tts_service import resolver_voz, sintetizar_bytes, voz_y_perfil_persona
+from app.tts_service import limpiar_texto_para_tts, resolver_voz, sintetizar_bytes, voz_y_perfil_persona
 
 
 def test_voz_por_sexo_y_edad():
@@ -23,3 +23,9 @@ def test_resolver_voz_ignora_mayusculas():
 def test_texto_vacio_no_llama_al_servicio():
     with pytest.raises(ValueError):
         asyncio.run(sintetizar_bytes("   ", "es-SV-LorenaNeural", "adulto"))
+
+
+def test_limpiar_texto_para_tts():
+    assert limpiar_texto_para_tts("*suspira* Hola doctor") == "Hola doctor"
+    assert limpiar_texto_para_tts("[tose] Me duele mucho *se toca el pecho*") == "Me duele mucho"
+    assert limpiar_texto_para_tts("**Fuerte dolor** en *la cabeza*") == "Fuerte dolor en la cabeza"
