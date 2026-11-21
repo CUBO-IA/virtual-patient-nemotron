@@ -154,6 +154,7 @@ export default function App() {
             {fase === 'chat' && (
               <>
                 <Chat
+                  sessionId={sesion.session_id}
                   mensajes={mensajes}
                   enviando={enviando}
                   onSend={enviar}

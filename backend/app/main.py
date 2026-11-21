@@ -3,9 +3,9 @@ from urllib.parse import quote
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
+from fastapi.responses import Response, StreamingResponse
 
-from . import assign, avatars, config, evaluate, habla, llm, prompts, rag, sessions
+from . import assign, avatars, config, evaluate, habla, llm, prompts, rag, sessions, tts_service
 from .models import ChatIn, FinishIn
 
 app = FastAPI(title="Paciente Virtual")
@@ -159,6 +159,39 @@ async def obtener_glosario():
         except Exception:
             pass
     return {}
+
+
+async def _audio_paciente(session_id: str, texto: str) -> Response:
+    """Sintetiza la respuesta del paciente. El navegador la pide por GET para poder
+    llamar a play() en el mismo clic; un fetch previo pierde el permiso de audio."""
+    s = _get_session(session_id)
+    limpio = (texto or "").strip()
+    if not limpio:
+        raise HTTPException(422, "Texto vacío.")
+    if len(limpio) > 4000:
+        raise HTTPException(422, "El texto es demasiado largo para leerlo en voz alta.")
+    voz, perfil = tts_service.voz_y_perfil_persona(s.persona)
+    try:
+        audio_bytes = await tts_service.sintetizar_bytes(limpio, voz, perfil)
+    except ValueError as e:
+        raise HTTPException(422, str(e))
+    except Exception as e:
+        raise HTTPException(503, f"No se pudo generar la voz. Revisa la conexión a internet. ({e})")
+    return Response(
+        content=audio_bytes,
+        media_type="audio/mpeg",
+        headers={"Cache-Control": "private, max-age=3600"},
+    )
+
+
+@app.get("/api/sessions/{session_id}/tts")
+async def sintetizar_audio_get(session_id: str, texto: str = ""):
+    return await _audio_paciente(session_id, texto)
+
+
+@app.post("/api/sessions/{session_id}/tts")
+async def sintetizar_audio(session_id: str, body: dict):
+    return await _audio_paciente(session_id, body.get("texto", ""))
 
 
 @app.post("/api/sessions/{session_id}/finish")

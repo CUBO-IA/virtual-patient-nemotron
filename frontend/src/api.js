@@ -75,3 +75,8 @@ export async function obtenerGlosario() {
   if (!r.ok) throw await apiError(r)
   return r.json()
 }
+
+/** URL que el elemento <audio> puede cargar solo. play() tiene que llamarse en el clic, sin un fetch previo. */
+export function urlAudioPaciente(sessionId, texto) {
+  return `/api/sessions/${encodeURIComponent(sessionId)}/tts?texto=${encodeURIComponent(texto)}`
+}

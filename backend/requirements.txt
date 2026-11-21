@@ -2,5 +2,6 @@ fastapi>=0.115
 uvicorn[standard]>=0.30
 httpx>=0.27
 pydantic>=2.7
+edge-tts>=7.3.1
 # Cliente HTTP ligero para Chroma (evita dependencias pesadas de servidor como torch/onnx en el backend)
 chromadb-client>=1.5.0
