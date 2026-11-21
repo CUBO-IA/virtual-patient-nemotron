@@ -30,3 +30,6 @@ CORS_ORIGINS = [o.strip() for o in os.getenv("CORS_ORIGINS", "http://localhost:5
 
 # Mensajes de historial enviados al modelo (evita desbordar el contexto y perder el prompt de sistema).
 MAX_HISTORY = 16
+
+# Penalización en puntaje por cada pista usada (configurable por .env)
+PENALIZACION_PISTA = float(os.getenv("PENALIZACION_PISTA", "0.5"))

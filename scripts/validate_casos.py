@@ -180,6 +180,42 @@ def validate() -> list[str]:
             if isinstance(v, str):
                 campos_a_verificar.append(("datos_si_pregunta (valor)", v))
 
+        # 6. Validación de pistas según pistas-por-caso.md
+        pistas = caso.get("pistas")
+        if pistas is not None:
+            if not isinstance(pistas, list):
+                errors.append(f"{prefix}: 'pistas' debe ser una lista.")
+            else:
+                pistas_by_item = {}
+                for p_idx, p in enumerate(pistas):
+                    if not isinstance(p, dict) or "item" not in p:
+                        errors.append(f"{prefix}: pista {p_idx} no tiene campo 'item'.")
+                        continue
+                    item_key = p["item"]
+                    pistas_by_item[item_key] = p
+                    for lvl in ["nivel_1", "nivel_2", "nivel_3"]:
+                        val = p.get(lvl)
+                        if not isinstance(val, str) or not val.strip():
+                            errors.append(f"{prefix}: pista '{item_key}' falta '{lvl}'.")
+                        else:
+                            words = val.strip().split()
+                            if len(words) > 20:
+                                errors.append(f"{prefix}: pista '{item_key}' {lvl} excede 20 palabras ({len(words)} palabras).")
+                            campos_a_verificar.append((f"pista {item_key} ({lvl})", val))
+
+                # Verificar que cada ítem de lista_verificacion tenga su pista
+                if isinstance(lv, list):
+                    for it in lv:
+                        if isinstance(it, dict) and "id" in it and it["id"] not in pistas_by_item:
+                            errors.append(f"{prefix}: falta pista para el ítem '{it['id']}' de lista_verificacion.")
+
+        # Verificar también textos de lista_verificacion
+        if isinstance(lv, list):
+            for it in lv:
+                if isinstance(it, dict) and "texto" in it:
+                    campos_a_verificar.append((f"lista_verificacion ({it.get('id', '')})", it["texto"]))
+
+        # 7. Fuga del diagnóstico o alias en campos visibles para el paciente
         for name in all_names:
             for campo_nombre, texto in campos_a_verificar:
                 if contains_whole_phrase(name, texto):
@@ -187,7 +223,7 @@ def validate() -> list[str]:
                         f"{prefix}: el término diagnóstico '{name}' aparece en '{campo_nombre}': \"{texto}\"."
                     )
 
-        # 6. Campo opcional guia_ref
+        # 8. Campo opcional guia_ref
         if "guia_ref" in caso:
             if not isinstance(caso["guia_ref"], str) or not caso["guia_ref"].strip():
                 errors.append(f"{prefix}: 'guia_ref' debe ser una cadena no vacía.")

@@ -4,6 +4,11 @@ export default function Results({ r, diagnosticoEstudiante }) {
       <div className="score">
         <span className="num">{r.puntaje}</span>
         <span className="de">/ 100</span>
+        {r.pistas_usadas > 0 && (
+          <span className="pistas-tag" title={r.descuento_pistas ? `Descuento de ${r.descuento_pistas} pts por pistas` : 'Sin penalización'}>
+            💡 {r.pistas_usadas} {r.pistas_usadas === 1 ? 'pista usada' : 'pistas usadas'}{r.descuento_pistas > 0 ? ` (-${r.descuento_pistas} pts)` : ''}
+          </span>
+        )}
       </div>
 
       <p className={`dx ${r.diagnostico_correcto ? 'ok' : 'mal'}`}>

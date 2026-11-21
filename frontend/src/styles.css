@@ -81,3 +81,62 @@ body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 syst
 .lista.ok li, li.ok { color: var(--ok); }
 .lista.mal li, li.mal { color: var(--mal); }
 .nota { color: var(--muted); font-size: .9rem; margin: 0; }
+
+/* Pistas opcionales */
+.pista-box {
+  background: color-mix(in srgb, var(--accent) 12%, var(--panel));
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  animation: fadeIn 0.2s ease-in;
+}
+.pista-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.pista-title { font-size: 0.85rem; color: var(--accent); }
+.pista-close { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--muted); line-height: 1; padding: 0 4px; }
+.pista-close:hover { color: var(--text); }
+.pista-texto { margin: 0; font-size: 0.95rem; line-height: 1.4; font-style: italic; }
+.btn-pista {
+  background: color-mix(in srgb, var(--accent) 10%, var(--panel));
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--line));
+  color: var(--text);
+  white-space: nowrap;
+}
+.btn-pista:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--accent) 20%, var(--panel));
+}
+.pistas-tag {
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 12%, var(--panel));
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--line));
+  color: var(--accent);
+  margin-left: 8px;
+}
+.glossary-tip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  font-size: 0.68rem;
+  font-weight: bold;
+  border-radius: 50%;
+  background: var(--line);
+  color: var(--muted);
+  cursor: help;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.glossary-tip:hover, .glossary-tip:focus {
+  background: var(--accent);
+  color: var(--accent-text);
+  outline: none;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}

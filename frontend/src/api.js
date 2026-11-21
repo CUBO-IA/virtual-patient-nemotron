@@ -63,3 +63,15 @@ export async function terminarConsulta(sessionId, diagnostico) {
   if (!r.ok) throw await apiError(r)
   return r.json()
 }
+
+export async function pedirPista(sessionId) {
+  const r = await fetch(`/api/sessions/${sessionId}/pista`, { method: 'POST' })
+  if (!r.ok) throw await apiError(r)
+  return r.json()
+}
+
+export async function obtenerGlosario() {
+  const r = await fetch('/api/glosario')
+  if (!r.ok) throw await apiError(r)
+  return r.json()
+}

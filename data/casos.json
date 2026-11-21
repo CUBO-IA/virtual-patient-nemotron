@@ -10,7 +10,10 @@
       "dolor de huesos y músculos, como cuerpo cortado",
       "náuseas y sin ganas de comer"
     ],
-    "antecedentes": ["no tiene enfermedades conocidas", "no es alérgico/a a ninguna medicina"],
+    "antecedentes": [
+      "no tiene enfermedades conocidas",
+      "no es alérgico/a a ninguna medicina"
+    ],
     "habitos": [
       "vive en una zona con muchos zancudos",
       "en su casa hay pila y barriles de agua destapados",
@@ -26,28 +29,200 @@
       "medicinas": "solo ha tomado acetaminofén (Dolex); no ha tomado aspirina ni ibuprofeno"
     },
     "restricciones": {
-      "sexo": ["F", "M"],
+      "sexo": [
+        "F",
+        "M"
+      ],
       "edad_min": 18,
       "edad_max": 70,
-      "departamentos_tipicos": ["Sonsonate", "La Libertad", "San Salvador", "Ahuachapán", "San Miguel", "Usulután", "La Paz"]
+      "departamentos_tipicos": [
+        "Sonsonate",
+        "La Libertad",
+        "San Salvador",
+        "Ahuachapán",
+        "San Miguel",
+        "Usulután",
+        "La Paz"
+      ]
     },
     "diagnostico": "Dengue con signos de alarma",
-    "diagnostico_alias": ["dengue"],
+    "diagnostico_alias": [
+      "dengue"
+    ],
     "lista_verificacion": [
-      { "id": "fiebre_dur", "texto": "Duración e intensidad de la fiebre", "keywords": ["cuanto tiempo", "desde cuando", "cuantos dias", "hace cuanto", "fiebre"] },
-      { "id": "dolor_ojos", "texto": "Dolor de cabeza y detrás de los ojos", "keywords": ["ojos", "retroocular", "dolor de cabeza"] },
-      { "id": "dolor_musc", "texto": "Dolor de músculos, huesos o articulaciones", "keywords": ["huesos", "musculos", "dolor en el cuerpo", "articulaciones", "cuerpo cortado"] },
-      { "id": "contactos", "texto": "Contactos o vecinos enfermos", "keywords": ["vecinos", "familiares", "alguien mas", "en su casa", "contacto"] },
-      { "id": "zancudos", "texto": "Exposición a zancudos y agua estancada", "keywords": ["zancudo", "mosquito", "repelente", "agua estancada", "barril", "pila", "criadero"] },
-      { "id": "viajes", "texto": "Viajes recientes", "keywords": ["viaj", "salio de", "fuera de"] },
-      { "id": "medicinas", "texto": "Medicinas que ha tomado (evitar aspirina/AINE)", "keywords": ["medicina", "medicamento", "tomado algo", "pastilla", "acetaminofen", "ibuprofeno", "aspirina", "dolex"] },
-      { "id": "piel", "texto": "Manchas o erupción en la piel", "keywords": ["manchas", "sarpullido", "ronchas", "erupcion", "piel"] }
+      {
+        "id": "fiebre_dur",
+        "texto": "Duración e intensidad de la fiebre",
+        "keywords": [
+          "cuanto tiempo",
+          "desde cuando",
+          "cuantos dias",
+          "hace cuanto",
+          "fiebre"
+        ]
+      },
+      {
+        "id": "dolor_ojos",
+        "texto": "Dolor de cabeza y detrás de los ojos",
+        "keywords": [
+          "ojos",
+          "retroocular",
+          "dolor de cabeza"
+        ]
+      },
+      {
+        "id": "dolor_musc",
+        "texto": "Dolor de músculos, huesos o articulaciones",
+        "keywords": [
+          "huesos",
+          "musculos",
+          "dolor en el cuerpo",
+          "articulaciones",
+          "cuerpo cortado"
+        ]
+      },
+      {
+        "id": "contactos",
+        "texto": "Contactos o vecinos enfermos",
+        "keywords": [
+          "vecinos",
+          "familiares",
+          "alguien mas",
+          "en su casa",
+          "contacto"
+        ]
+      },
+      {
+        "id": "zancudos",
+        "texto": "Exposición a zancudos y agua estancada",
+        "keywords": [
+          "zancudo",
+          "mosquito",
+          "repelente",
+          "agua estancada",
+          "barril",
+          "pila",
+          "criadero"
+        ]
+      },
+      {
+        "id": "viajes",
+        "texto": "Viajes recientes",
+        "keywords": [
+          "viaj",
+          "salio de",
+          "fuera de"
+        ]
+      },
+      {
+        "id": "medicinas",
+        "texto": "Medicinas que ha tomado (evitar aspirina/AINE)",
+        "keywords": [
+          "medicina",
+          "medicamento",
+          "tomado algo",
+          "pastilla",
+          "acetaminofen",
+          "ibuprofeno",
+          "aspirina",
+          "dolex"
+        ]
+      },
+      {
+        "id": "piel",
+        "texto": "Manchas o erupción en la piel",
+        "keywords": [
+          "manchas",
+          "sarpullido",
+          "ronchas",
+          "erupcion",
+          "piel"
+        ]
+      }
     ],
     "banderas_rojas": [
-      { "id": "sangrado", "texto": "Sangrado de encías, nariz o heces", "keywords": ["sangrado", "sangre", "encias", "sangra"] },
-      { "id": "dolor_abd", "texto": "Dolor abdominal intenso", "keywords": ["dolor abdominal", "barriga", "estomago", "vientre", "panza"] },
-      { "id": "vomitos", "texto": "Vómitos persistentes", "keywords": ["vomit", "devuelve", "devolver"] }
-    ]
+      {
+        "id": "sangrado",
+        "texto": "Sangrado de encías, nariz o heces",
+        "keywords": [
+          "sangrado",
+          "sangre",
+          "encias",
+          "sangra"
+        ]
+      },
+      {
+        "id": "dolor_abd",
+        "texto": "Dolor abdominal intenso",
+        "keywords": [
+          "dolor abdominal",
+          "barriga",
+          "estomago",
+          "vientre",
+          "panza"
+        ]
+      },
+      {
+        "id": "vomitos",
+        "texto": "Vómitos persistentes",
+        "keywords": [
+          "vomit",
+          "devuelve",
+          "devolver"
+        ]
+      }
+    ],
+    "pistas": [
+      {
+        "item": "fiebre_dur",
+        "nivel_1": "Piensa en el tiempo: ¿hace cuánto empezó la calentura?",
+        "nivel_2": "Pregunta cuántos días lleva con fiebre y qué tan alta ha sido.",
+        "nivel_3": "Pregunta: «¿Desde qué día tiene fiebre y qué tan alta ha sido?»"
+      },
+      {
+        "item": "dolor_ojos",
+        "nivel_1": "Explora el dolor: ¿dónde más le duele además de la cabeza?",
+        "nivel_2": "Pregunta si siente dolor detrás de los ojos o en la frente.",
+        "nivel_3": "Pregunta: «¿Le duele detrás de los ojos al mover la vista?»"
+      },
+      {
+        "item": "dolor_musc",
+        "nivel_1": "Revisa el resto del cuerpo y cómo siente los músculos.",
+        "nivel_2": "Pregunta si le duelen los huesos, músculos o las articulaciones.",
+        "nivel_3": "Pregunta: «¿Siente dolor en el cuerpo cortado, huesos o músculos?»"
+      },
+      {
+        "item": "contactos",
+        "nivel_1": "Indaga sobre el entorno y la salud de sus allegados.",
+        "nivel_2": "Pregunta si hay vecinos o familiares en casa con malestares parecidos.",
+        "nivel_3": "Pregunta: «¿Hay vecinos o familiares con síntomas parecidos en estos días?»"
+      },
+      {
+        "item": "zancudos",
+        "nivel_1": "Piensa en las condiciones ambientales del lugar donde vive.",
+        "nivel_2": "Pregunta por presencia de zancudos, picaduras o recipientes con agua.",
+        "nivel_3": "Pregunta: «¿Hay muchos zancudos o agua acumulada en su casa?»"
+      },
+      {
+        "item": "viajes",
+        "nivel_1": "Revisa si el paciente se ha desplazado recientemente.",
+        "nivel_2": "Pregunta si ha salido de su municipio o viajado el último mes.",
+        "nivel_3": "Pregunta: «¿Ha viajado o salido de su comunidad en las últimas semanas?»"
+      },
+      {
+        "item": "medicinas",
+        "nivel_1": "Averigua si ha tomado algún tratamiento por su cuenta.",
+        "nivel_2": "Pregunta qué medicamentos ha tomado para calmar el malestar.",
+        "nivel_3": "Pregunta: «¿Qué pastillas o medicinas ha tomado para el malestar?»"
+      },
+      {
+        "item": "piel",
+        "nivel_1": "Pregunta por cambios visibles en la superficie del cuerpo.",
+        "nivel_2": "Pregunta si ha notado manchas, ronchas o sarpullido en la piel.",
+        "nivel_3": "Pregunta: «¿Le han salido manchitas rojas o sarpullido en la piel?»"
+      }
+    ],
+    "prevalencia": 3
   },
   {
     "id": "c_erc_01",
@@ -60,7 +235,10 @@
       "menos ganas de comer y náuseas en las mañanas",
       "calambres en las piernas"
     ],
-    "antecedentes": ["nunca le han medido la presión ni hecho exámenes de riñón", "no sabe de diabetes"],
+    "antecedentes": [
+      "nunca le han medido la presión ni hecho exámenes de riñón",
+      "no sabe de diabetes"
+    ],
     "habitos": [
       "trabaja al sol muchas horas",
       "toma poca agua durante la jornada",
@@ -77,28 +255,200 @@
       "hinchazón de la cara": "a veces amanece con los párpados hinchados"
     },
     "restricciones": {
-      "sexo": ["M"],
+      "sexo": [
+        "M"
+      ],
       "edad_min": 25,
       "edad_max": 60,
-      "departamentos_tipicos": ["Usulután", "La Paz", "San Vicente", "Sonsonate", "Ahuachapán", "San Miguel"],
-      "ocupaciones_tipicas": ["agric", "cultiv", "ganader", "caña", "pesca"]
+      "departamentos_tipicos": [
+        "Usulután",
+        "La Paz",
+        "San Vicente",
+        "Sonsonate",
+        "Ahuachapán",
+        "San Miguel"
+      ],
+      "ocupaciones_tipicas": [
+        "agric",
+        "cultiv",
+        "ganader",
+        "caña",
+        "pesca"
+      ]
     },
     "diagnostico": "Enfermedad renal crónica",
-    "diagnostico_alias": ["enfermedad renal", "erc", "insuficiencia renal", "nefropatia", "falla renal"],
+    "diagnostico_alias": [
+      "enfermedad renal",
+      "erc",
+      "insuficiencia renal",
+      "nefropatia",
+      "falla renal"
+    ],
     "lista_verificacion": [
-      { "id": "orina", "texto": "Cambios en la orina (espuma, cantidad)", "keywords": ["orina", "espuma", "espumosa", "orinar"] },
-      { "id": "hinchazon", "texto": "Hinchazón de pies o cara", "keywords": ["hinch", "inflam", "edema", "pies", "parpados"] },
-      { "id": "trabajo", "texto": "Ocupación y condiciones de trabajo", "keywords": ["trabaja", "trabajo", "ocupacion", "a que se dedica", "en que trabaja"] },
-      { "id": "agua_calor", "texto": "Hidratación y exposición al calor", "keywords": ["agua", "sol", "calor", "hidrata"] },
-      { "id": "agroquimicos", "texto": "Exposición a agroquímicos", "keywords": ["fumiga", "agroquimico", "pesticida", "quimicos", "veneno"] },
-      { "id": "aine", "texto": "Uso de antiinflamatorios o analgésicos", "keywords": ["diclofenaco", "ibuprofeno", "antiinflamatorio", "analgesico", "pastillas", "medicamento", "medicina"] },
-      { "id": "familia", "texto": "Antecedentes familiares de enfermedad renal", "keywords": ["familiar", "papa", "padre", "tio", "heredit", "en la familia"] },
-      { "id": "presion", "texto": "Presión arterial e hipertensión", "keywords": ["presion", "hipertens"] }
+      {
+        "id": "orina",
+        "texto": "Cambios en la orina (espuma, cantidad)",
+        "keywords": [
+          "orina",
+          "espuma",
+          "espumosa",
+          "orinar"
+        ]
+      },
+      {
+        "id": "hinchazon",
+        "texto": "Hinchazón de pies o cara",
+        "keywords": [
+          "hinch",
+          "inflam",
+          "edema",
+          "pies",
+          "parpados"
+        ]
+      },
+      {
+        "id": "trabajo",
+        "texto": "Ocupación y condiciones de trabajo",
+        "keywords": [
+          "trabaja",
+          "trabajo",
+          "ocupacion",
+          "a que se dedica",
+          "en que trabaja"
+        ]
+      },
+      {
+        "id": "agua_calor",
+        "texto": "Hidratación y exposición al calor",
+        "keywords": [
+          "agua",
+          "sol",
+          "calor",
+          "hidrata"
+        ]
+      },
+      {
+        "id": "agroquimicos",
+        "texto": "Exposición a agroquímicos",
+        "keywords": [
+          "fumiga",
+          "agroquimico",
+          "pesticida",
+          "quimicos",
+          "veneno"
+        ]
+      },
+      {
+        "id": "aine",
+        "texto": "Uso de antiinflamatorios o analgésicos",
+        "keywords": [
+          "diclofenaco",
+          "ibuprofeno",
+          "antiinflamatorio",
+          "analgesico",
+          "pastillas",
+          "medicamento",
+          "medicina"
+        ]
+      },
+      {
+        "id": "familia",
+        "texto": "Antecedentes familiares de problemas en los riñones",
+        "keywords": [
+          "familiar",
+          "papa",
+          "padre",
+          "tio",
+          "heredit",
+          "en la familia"
+        ]
+      },
+      {
+        "id": "presion",
+        "texto": "Medición previa de la presión arterial",
+        "keywords": [
+          "presion",
+          "hipertens"
+        ]
+      }
     ],
     "banderas_rojas": [
-      { "id": "aine", "texto": "Medicamentos nefrotóxicos (AINE)", "keywords": ["diclofenaco", "ibuprofeno", "antiinflamatorio", "analgesico", "pastillas para el dolor"] },
-      { "id": "diuresis", "texto": "Cambio en la cantidad de orina", "keywords": ["cantidad de orina", "orina poco", "orina menos", "orinas menos", "cuanto orina", "veces orina", "orinar de noche"] }
-    ]
+      {
+        "id": "aine",
+        "texto": "Medicamentos nefrotóxicos (AINE)",
+        "keywords": [
+          "diclofenaco",
+          "ibuprofeno",
+          "antiinflamatorio",
+          "analgesico",
+          "pastillas para el dolor"
+        ]
+      },
+      {
+        "id": "diuresis",
+        "texto": "Cambio en la cantidad de orina",
+        "keywords": [
+          "cantidad de orina",
+          "orina poco",
+          "orina menos",
+          "orinas menos",
+          "cuanto orina",
+          "veces orina",
+          "orinar de noche"
+        ]
+      }
+    ],
+    "pistas": [
+      {
+        "item": "orina",
+        "nivel_1": "Piensa en cómo están funcionando los líquidos del cuerpo.",
+        "nivel_2": "Pregunta si ha notado cambios o espuma al orinar.",
+        "nivel_3": "Pregunta: «¿Ha notado si su orina sale espumosa o ha cambiado?»"
+      },
+      {
+        "item": "hinchazon",
+        "nivel_1": "Indaga si hay acumulación de líquidos en el cuerpo.",
+        "nivel_2": "Pregunta si se le inflaman los pies, tobillos o los párpados.",
+        "nivel_3": "Pregunta: «¿Se le hinchan los pies o amanece con ojos abotagados?»"
+      },
+      {
+        "item": "trabajo",
+        "nivel_1": "Explora la actividad laboral habitual del paciente.",
+        "nivel_2": "Pregunta en qué trabaja y cuáles son sus condiciones laborales diarias.",
+        "nivel_3": "Pregunta: «¿En qué trabaja y cómo es su jornada de trabajo?»"
+      },
+      {
+        "item": "agua_calor",
+        "nivel_1": "Revisa la hidratación y el ambiente de trabajo.",
+        "nivel_2": "Pregunta cuánta agua bebe al día y si se expone al sol.",
+        "nivel_3": "Pregunta: «¿Toma suficiente agua durante el día y trabaja bajo el sol?»"
+      },
+      {
+        "item": "agroquimicos",
+        "nivel_1": "Indaga sobre posibles sustancias tóxicas en su entorno.",
+        "nivel_2": "Pregunta si manipula pesticidas, venenos o abonos químicos sin protección.",
+        "nivel_3": "Pregunta: «¿Ha tenido contacto con plaguicidas o venenos para fumigar?»"
+      },
+      {
+        "item": "aine",
+        "nivel_1": "Revisa los analgésicos que consume con regularidad.",
+        "nivel_2": "Pregunta si toma pastillas para dolores musculares con frecuencia.",
+        "nivel_3": "Pregunta: «¿Toma seguido pastillas como diclofenaco o ibuprofeno para dolores?»"
+      },
+      {
+        "item": "familia",
+        "nivel_1": "Piensa en antecedentes de salud de la familia cercana.",
+        "nivel_2": "Pregunta si familiares directos han padecido de problemas urinarios o filtros.",
+        "nivel_3": "Pregunta: «¿Alguien en su familia ha sufrido de problemas en los riñones?»"
+      },
+      {
+        "item": "presion",
+        "nivel_1": "Pregunta sobre revisiones médicas o tomas de signos vitales.",
+        "nivel_2": "Pregunta si alguna vez le han medido la tensión o presión.",
+        "nivel_3": "Pregunta: «¿Le han tomado la presión arterial antes o sabe si la tiene?»"
+      }
+    ],
+    "prevalencia": 1
   },
   {
     "id": "c_dm2_01",
@@ -112,7 +462,11 @@
       "hormigueo en los pies",
       "ha bajado unas 5 libras en dos meses aunque come igual"
     ],
-    "antecedentes": ["a su mamá le descubrieron azúcar en la sangre", "nunca se ha hecho un examen de laboratorio", "tiene sobrepeso"],
+    "antecedentes": [
+      "a su mamá le descubrieron azúcar en la sangre",
+      "nunca se ha hecho un examen de laboratorio",
+      "tiene sobrepeso"
+    ],
     "habitos": [
       "toma dos o tres refrescos o gaseosas al día",
       "come pan dulce y comida frita seguido",
@@ -129,26 +483,179 @@
       "ejercicio": "casi no camina ni hace ejercicio"
     },
     "restricciones": {
-      "sexo": ["F", "M"],
+      "sexo": [
+        "F",
+        "M"
+      ],
       "edad_min": 30,
       "edad_max": 75
     },
     "diagnostico": "Diabetes mellitus tipo 2",
-    "diagnostico_alias": ["diabetes", "dm2", "azucar alta"],
+    "diagnostico_alias": [
+      "diabetes",
+      "dm2",
+      "azucar alta"
+    ],
     "lista_verificacion": [
-      { "id": "sed", "texto": "Sed excesiva", "keywords": ["sed", "toma mucha agua"] },
-      { "id": "orina", "texto": "Orina frecuente o nocturna", "keywords": ["orina", "orinar", "ir al bano"] },
-      { "id": "peso", "texto": "Pérdida de peso", "keywords": ["peso", "bajado", "adelgaz", "libras"] },
-      { "id": "vision", "texto": "Cambios en la vista", "keywords": ["vision", "vista", "borros", "ve mal"] },
-      { "id": "familia", "texto": "Antecedentes familiares de diabetes", "keywords": ["familiar", "mama", "papa", "madre", "padre", "heredit"] },
-      { "id": "dieta", "texto": "Alimentación y consumo de azúcar", "keywords": ["come", "comida", "refresco", "dulce", "gaseosa", "dieta", "alimentacion", "azucar"] },
-      { "id": "actividad", "texto": "Actividad física", "keywords": ["ejercicio", "actividad fisica", "deporte", "camina"] },
-      { "id": "hormigueo", "texto": "Hormigueo o adormecimiento en pies", "keywords": ["hormigueo", "adormec", "neuropatia", "sensibilidad"] }
+      {
+        "id": "sed",
+        "texto": "Sed excesiva",
+        "keywords": [
+          "sed",
+          "toma mucha agua"
+        ]
+      },
+      {
+        "id": "orina",
+        "texto": "Orina frecuente o nocturna",
+        "keywords": [
+          "orina",
+          "orinar",
+          "ir al bano"
+        ]
+      },
+      {
+        "id": "peso",
+        "texto": "Pérdida de peso",
+        "keywords": [
+          "peso",
+          "bajado",
+          "adelgaz",
+          "libras"
+        ]
+      },
+      {
+        "id": "vision",
+        "texto": "Cambios en la vista",
+        "keywords": [
+          "vision",
+          "vista",
+          "borros",
+          "ve mal"
+        ]
+      },
+      {
+        "id": "familia",
+        "texto": "Antecedentes familiares de problemas con el azúcar",
+        "keywords": [
+          "familiar",
+          "mama",
+          "papa",
+          "madre",
+          "padre",
+          "heredit"
+        ]
+      },
+      {
+        "id": "dieta",
+        "texto": "Alimentación y consumo de azúcar",
+        "keywords": [
+          "come",
+          "comida",
+          "refresco",
+          "dulce",
+          "gaseosa",
+          "dieta",
+          "alimentacion",
+          "azucar"
+        ]
+      },
+      {
+        "id": "actividad",
+        "texto": "Actividad física",
+        "keywords": [
+          "ejercicio",
+          "actividad fisica",
+          "deporte",
+          "camina"
+        ]
+      },
+      {
+        "id": "hormigueo",
+        "texto": "Hormigueo o adormecimiento en pies",
+        "keywords": [
+          "hormigueo",
+          "adormec",
+          "neuropatia",
+          "sensibilidad"
+        ]
+      }
     ],
     "banderas_rojas": [
-      { "id": "heridas", "texto": "Heridas que no cicatrizan (pie diabético)", "keywords": ["herida", "cicatriza", "sanar", "ulcera", "llaga"] },
-      { "id": "hiperglucemia", "texto": "Vómitos, confusión o aliento con olor a fruta", "keywords": ["vomit", "confusion", "aliento", "somnolien", "desmayo"] }
-    ]
+      {
+        "id": "heridas",
+        "texto": "Heridas que no cicatrizan (pie diabético)",
+        "keywords": [
+          "herida",
+          "cicatriza",
+          "sanar",
+          "ulcera",
+          "llaga"
+        ]
+      },
+      {
+        "id": "hiperglucemia",
+        "texto": "Vómitos, confusión o aliento con olor a fruta",
+        "keywords": [
+          "vomit",
+          "confusion",
+          "aliento",
+          "somnolien",
+          "desmayo"
+        ]
+      }
+    ],
+    "pistas": [
+      {
+        "item": "sed",
+        "nivel_1": "Explora la necesidad de beber líquidos del paciente.",
+        "nivel_2": "Pregunta si siente una sed exagerada que no se calma.",
+        "nivel_3": "Pregunta: «¿Tiene más sed de lo normal durante el día?»"
+      },
+      {
+        "item": "orina",
+        "nivel_1": "Piensa en la frecuencia con que va al baño.",
+        "nivel_2": "Pregunta cuántas veces orina al día y si se levanta de noche.",
+        "nivel_3": "Pregunta: «¿Orina muy seguido o se despierta en la noche para orinar?»"
+      },
+      {
+        "item": "peso",
+        "nivel_1": "Revisa variaciones físicas en su cuerpo en los últimos meses.",
+        "nivel_2": "Pregunta si ha perdido peso sin estar a dieta o sin buscarlo.",
+        "nivel_3": "Pregunta: «¿Ha bajado de peso en este tiempo sin haber cambiado su comida?»"
+      },
+      {
+        "item": "vision",
+        "nivel_1": "Indaga sobre la agudeza visual y la vista.",
+        "nivel_2": "Pregunta si ha sentido la vista nublada o borrosa por momentos.",
+        "nivel_3": "Pregunta: «¿Ha notado la vista borrosa o que le cuesta enfocar?»"
+      },
+      {
+        "item": "familia",
+        "nivel_1": "Piensa en antecedentes metabólicos o hereditarios familiares.",
+        "nivel_2": "Pregunta si sus padres o hermanos padecen del azúcar.",
+        "nivel_3": "Pregunta: «¿Tiene familiares cercanos que padezcan de problemas con el azúcar?»"
+      },
+      {
+        "item": "dieta",
+        "nivel_1": "Explora los hábitos diarios de comida y bebidas.",
+        "nivel_2": "Pregunta qué suele comer y si toma refrescos dulces o gaseosas.",
+        "nivel_3": "Pregunta: «¿Consume con frecuencia bebidas azucaradas, gaseosas o pan dulce?»"
+      },
+      {
+        "item": "actividad",
+        "nivel_1": "Indaga sobre el ejercicio o movimiento que realiza a diario.",
+        "nivel_2": "Pregunta si camina, hace ejercicio o pasa mucho tiempo sentado.",
+        "nivel_3": "Pregunta: «¿Realiza actividad física habitual o pasa casi todo el tiempo en reposo?»"
+      },
+      {
+        "item": "hormigueo",
+        "nivel_1": "Pregunta por sensaciones extrañas en las extremidades inferiores.",
+        "nivel_2": "Pregunta si siente cosquilleo, ardor o adormecimiento en los pies.",
+        "nivel_3": "Pregunta: «¿Siente hormigueo, pinchazos o falta de sensibilidad en los pies?»"
+      }
+    ],
+    "prevalencia": 2
   },
   {
     "id": "c_hta_01",
@@ -182,28 +689,204 @@
       "dificultad para respirar": "siente que le falta un poco el aire si sube gradas"
     },
     "restricciones": {
-      "sexo": ["F", "M"],
+      "sexo": [
+        "F",
+        "M"
+      ],
       "edad_min": 40,
-      "edad_max": 75,
-      "departamentos_tipicos": ["San Salvador", "La Libertad", "Santa Ana", "San Miguel"],
-      "ocupaciones_tipicas": ["comercio", "venta", "transporte", "administracion", "restaurante"]
+      "edad_max": 95,
+      "departamentos_tipicos": [
+        "San Salvador",
+        "La Libertad",
+        "Santa Ana",
+        "San Miguel"
+      ],
+      "ocupaciones_tipicas": [
+        "comercio",
+        "venta",
+        "transporte",
+        "administracion",
+        "restaurante"
+      ]
     },
     "diagnostico": "Crisis hipertensiva",
-    "diagnostico_alias": ["hipertension", "hipertension arterial", "descontrol hipertensivo", "urgencia hipertensiva", "emergencia hipertensiva", "presion alta"],
+    "diagnostico_alias": [
+      "hipertension",
+      "hipertension arterial",
+      "descontrol hipertensivo",
+      "urgencia hipertensiva",
+      "emergencia hipertensiva",
+      "presion alta"
+    ],
     "lista_verificacion": [
-      { "id": "cefalea_carac", "texto": "Características y localización del dolor de cabeza", "keywords": ["cabeza", "nuca", "late", "pulsatil", "dolor"] },
-      { "id": "tinnitus_vision", "texto": "Alteraciones visuales y zumbido de oídos", "keywords": ["oidos", "zumbido", "pito", "luces", "vision", "vista", "borros", "lucecitas"] },
-      { "id": "adherencia", "texto": "Uso y suspensión de medicamentos antihipertensivos", "keywords": ["pastilla", "medicina", "medicamento", "enalapril", "tomando", "dejo de tomar", "suspension", "tratamiento"] },
-      { "id": "dolor_pecho", "texto": "Presencia de dolor u opresión en el pecho", "keywords": ["pecho", "opresion", "corazon", "pesadez"] },
-      { "id": "disnea", "texto": "Dificultad para respirar (disnea)", "keywords": ["falta de aire", "respira", "ahogo", "fatiga", "cansa al caminar"] },
-      { "id": "habitos_sal", "texto": "Consumo de sal, café y tabaco", "keywords": ["sal", "cafe", "cigarro", "tabaco", "fuma", "dieta"] },
-      { "id": "antecedentes_fam", "texto": "Antecedentes familiares cardiovasculares", "keywords": ["familiar", "papa", "padre", "mama", "derrame", "infarto", "en su familia"] }
+      {
+        "id": "cefalea_carac",
+        "texto": "Características y localización del dolor de cabeza",
+        "keywords": [
+          "cabeza",
+          "nuca",
+          "late",
+          "pulsatil",
+          "dolor"
+        ]
+      },
+      {
+        "id": "tinnitus_vision",
+        "texto": "Alteraciones visuales y zumbido de oídos",
+        "keywords": [
+          "oidos",
+          "zumbido",
+          "pito",
+          "luces",
+          "vision",
+          "vista",
+          "borros",
+          "lucecitas"
+        ]
+      },
+      {
+        "id": "adherencia",
+        "texto": "Uso y suspensión de medicamentos para la tensión",
+        "keywords": [
+          "pastilla",
+          "medicina",
+          "medicamento",
+          "enalapril",
+          "tomando",
+          "dejo de tomar",
+          "suspension",
+          "tratamiento"
+        ]
+      },
+      {
+        "id": "dolor_pecho",
+        "texto": "Presencia de dolor u opresión en el pecho",
+        "keywords": [
+          "pecho",
+          "opresion",
+          "corazon",
+          "pesadez"
+        ]
+      },
+      {
+        "id": "disnea",
+        "texto": "Dificultad para respirar (disnea)",
+        "keywords": [
+          "falta de aire",
+          "respira",
+          "ahogo",
+          "fatiga",
+          "cansa al caminar"
+        ]
+      },
+      {
+        "id": "habitos_sal",
+        "texto": "Consumo de sal, café y tabaco",
+        "keywords": [
+          "sal",
+          "cafe",
+          "cigarro",
+          "tabaco",
+          "fuma",
+          "dieta"
+        ]
+      },
+      {
+        "id": "antecedentes_fam",
+        "texto": "Antecedentes familiares cardiovasculares",
+        "keywords": [
+          "familiar",
+          "papa",
+          "padre",
+          "mama",
+          "derrame",
+          "infarto",
+          "en su familia"
+        ]
+      }
     ],
     "banderas_rojas": [
-      { "id": "dolor_toracico", "texto": "Dolor torácico opresivo sugestivo de síndrome coronario", "keywords": ["pecho", "torax", "opresion en el pecho", "irradia", "corazon"] },
-      { "id": "deficit_neuro", "texto": "Signos neurológicos focales o pérdida de fuerza", "keywords": ["fuerza", "hablar", "adormecimiento", "brazo", "cara torcida", "paralisis", "debilidad"] },
-      { "id": "dificultad_respiratoria", "texto": "Falta de aire aguda (edema agudo de pulmón)", "keywords": ["falta de aire", "asfixia", "ahogo", "pulmon", "respirar"] }
-    ]
+      {
+        "id": "dolor_toracico",
+        "texto": "Dolor torácico opresivo sugestivo de síndrome coronario",
+        "keywords": [
+          "pecho",
+          "torax",
+          "opresion en el pecho",
+          "irradia",
+          "corazon"
+        ]
+      },
+      {
+        "id": "deficit_neuro",
+        "texto": "Signos neurológicos focales o pérdida de fuerza",
+        "keywords": [
+          "fuerza",
+          "hablar",
+          "adormecimiento",
+          "brazo",
+          "cara torcida",
+          "paralisis",
+          "debilidad"
+        ]
+      },
+      {
+        "id": "dificultad_respiratoria",
+        "texto": "Falta de aire aguda (edema agudo de pulmón)",
+        "keywords": [
+          "falta de aire",
+          "asfixia",
+          "ahogo",
+          "pulmon",
+          "respirar"
+        ]
+      }
+    ],
+    "pistas": [
+      {
+        "item": "cefalea_carac",
+        "nivel_1": "Indaga las características exactas del dolor de cabeza.",
+        "nivel_2": "Pregunta en qué zona de la cabeza duele y si siente palpitaciones.",
+        "nivel_3": "Pregunta: «¿El dolor de cabeza le late o aprieta atrás en la nuca?»"
+      },
+      {
+        "item": "tinnitus_vision",
+        "nivel_1": "Revisa alteraciones en los sentidos como el oído o la vista.",
+        "nivel_2": "Pregunta si escucha pitos en los oídos o ve lucecitas brillantes.",
+        "nivel_3": "Pregunta: «¿Siente zumbido en los oídos o ve luces al moverse rápido?»"
+      },
+      {
+        "item": "adherencia",
+        "nivel_1": "Explora si tomaba medicamentos previamente para el corazón o la tensión.",
+        "nivel_2": "Pregunta qué pastillas le habían dejado y si las sigue tomando.",
+        "nivel_3": "Pregunta: «¿Le habían recetado pastillas para la tensión y las continuó tomando?»"
+      },
+      {
+        "item": "dolor_pecho",
+        "nivel_1": "Revisa si hay molestias en el área del pecho.",
+        "nivel_2": "Pregunta si siente dolor, peso u opresión en el pecho.",
+        "nivel_3": "Pregunta: «¿Siente opresión, pesadez o molestia en el pecho?»"
+      },
+      {
+        "item": "disnea",
+        "nivel_1": "Evalúa cómo se siente su respiración al esforzarse.",
+        "nivel_2": "Pregunta si le falta el aire al caminar o subir gradas.",
+        "nivel_3": "Pregunta: «¿Siente cansancio o falta de aire al hacer esfuerzo?»"
+      },
+      {
+        "item": "habitos_sal",
+        "nivel_1": "Indaga sobre el consumo de condimentos o bebidas estimulantes.",
+        "nivel_2": "Pregunta cuánto café toma, cuánta sal usa y si fuma tabaco.",
+        "nivel_3": "Pregunta: «¿Acostumbra agregar bastante sal a la comida, tomar café o fumar?»"
+      },
+      {
+        "item": "antecedentes_fam",
+        "nivel_1": "Piensa en problemas del corazón o circulatorios en la familia.",
+        "nivel_2": "Pregunta si en su familia hubo derrames cerebrales o problemas cardíacos.",
+        "nivel_3": "Pregunta: «¿Alguien en su familia sufrió de infartos o derrames en la cabeza?»"
+      }
+    ],
+    "prevalencia": 3
   },
   {
     "id": "c_trauma_01",
@@ -236,28 +919,199 @@
       "vacuna tetánica": "no se ha puesto refuerzo de tétanos desde pequeño"
     },
     "restricciones": {
-      "sexo": ["F", "M"],
+      "sexo": [
+        "F",
+        "M"
+      ],
       "edad_min": 18,
       "edad_max": 45,
-      "departamentos_tipicos": ["San Salvador", "La Libertad", "Sonsonate", "San Miguel", "Santa Ana"],
-      "ocupaciones_tipicas": ["transporte", "restaurante", "mantenimiento", "vehicul", "comercio"]
+      "departamentos_tipicos": [
+        "San Salvador",
+        "La Libertad",
+        "Sonsonate",
+        "San Miguel",
+        "Santa Ana"
+      ],
+      "ocupaciones_tipicas": [
+        "transporte",
+        "restaurante",
+        "mantenimiento",
+        "vehicul",
+        "comercio"
+      ]
     },
     "diagnostico": "Politraumatismo por accidente de tránsito",
-    "diagnostico_alias": ["trauma", "politrauma", "accidente de moto", "accidente de transito", "traumatismo", "contusion"],
+    "diagnostico_alias": [
+      "trauma",
+      "politrauma",
+      "accidente de moto",
+      "accidente de transito",
+      "traumatismo",
+      "contusion"
+    ],
     "lista_verificacion": [
-      { "id": "mecanismo_lesion", "texto": "Mecanismo del accidente (velocidad, tipo de choque)", "keywords": ["como fue", "velocidad", "como cayo", "como choco", "mecanismo", "impacto"] },
-      { "id": "uso_casco", "texto": "Uso de casco y protección", "keywords": ["casco", "proteccion", "chaleco", "guantes", "llevaba puesto"] },
-      { "id": "perdida_conciencia", "texto": "Pérdida del conocimiento o amnesia del evento", "keywords": ["perdio el conocimiento", "desmay", "conciencia", "desmayo", "recuerda lo que paso", "aturdido"] },
-      { "id": "dolor_toracico", "texto": "Dolor torácico y dificultad para respirar", "keywords": ["pecho", "costilla", "respirar", "aire", "tomar aire"] },
-      { "id": "dolor_cervical", "texto": "Dolor en cuello o columna", "keywords": ["cuello", "columna", "espalda", "nuca"] },
-      { "id": "sensibilidad_motora", "texto": "Movilidad y sensibilidad en extremidades", "keywords": ["mover", "siente", "fuerza", "dedos", "adormec", "extremidades"] },
-      { "id": "vacuna_tetanos", "texto": "Estado vacunal antitetánico por heridas abiertas", "keywords": ["tetano", "vacuna", "herida", "raspon"] }
+      {
+        "id": "mecanismo_lesion",
+        "texto": "Mecanismo del accidente (velocidad, tipo de choque)",
+        "keywords": [
+          "como fue",
+          "velocidad",
+          "como cayo",
+          "como choco",
+          "mecanismo",
+          "impacto"
+        ]
+      },
+      {
+        "id": "uso_casco",
+        "texto": "Uso de casco y protección",
+        "keywords": [
+          "casco",
+          "proteccion",
+          "chaleco",
+          "guantes",
+          "llevaba puesto"
+        ]
+      },
+      {
+        "id": "perdida_conciencia",
+        "texto": "Pérdida del conocimiento o amnesia del evento",
+        "keywords": [
+          "perdio el conocimiento",
+          "desmay",
+          "conciencia",
+          "desmayo",
+          "recuerda lo que paso",
+          "aturdido"
+        ]
+      },
+      {
+        "id": "dolor_toracico",
+        "texto": "Dolor torácico y dificultad para respirar",
+        "keywords": [
+          "pecho",
+          "costilla",
+          "respirar",
+          "aire",
+          "tomar aire"
+        ]
+      },
+      {
+        "id": "dolor_cervical",
+        "texto": "Dolor en cuello o columna",
+        "keywords": [
+          "cuello",
+          "columna",
+          "espalda",
+          "nuca"
+        ]
+      },
+      {
+        "id": "sensibilidad_motora",
+        "texto": "Movilidad y sensibilidad en extremidades",
+        "keywords": [
+          "mover",
+          "siente",
+          "fuerza",
+          "dedos",
+          "adormec",
+          "extremidades"
+        ]
+      },
+      {
+        "id": "vacuna_tetanos",
+        "texto": "Estado vacunal antitetánico por heridas abiertas",
+        "keywords": [
+          "tetano",
+          "vacuna",
+          "herida",
+          "raspon"
+        ]
+      }
     ],
     "banderas_rojas": [
-      { "id": "trauma_craneal", "texto": "Pérdida de alerta, vómitos en proyectil o amnesia (TEC)", "keywords": ["vomit", "conciencia", "desmay", "despierto", "somnolien", "amnesia", "golpe en la cabeza"] },
-      { "id": "compromiso_respiratorio", "texto": "Neumotórax o fracturas costales con dificultad respiratoria", "keywords": ["falta de aire", "respira", "costilla", "ahogo", "aire", "pecho"] },
-      { "id": "hemorragia_activa", "texto": "Hemorragia profusa o signos de choque", "keywords": ["sangre a chorros", "mucha sangre", "hemorragia", "palido", "sudor frio"] }
-    ]
+      {
+        "id": "trauma_craneal",
+        "texto": "Pérdida de alerta, vómitos en proyectil o amnesia (TEC)",
+        "keywords": [
+          "vomit",
+          "conciencia",
+          "desmay",
+          "despierto",
+          "somnolien",
+          "amnesia",
+          "golpe en la cabeza"
+        ]
+      },
+      {
+        "id": "compromiso_respiratorio",
+        "texto": "Neumotórax o fracturas costales con dificultad respiratoria",
+        "keywords": [
+          "falta de aire",
+          "respira",
+          "costilla",
+          "ahogo",
+          "aire",
+          "pecho"
+        ]
+      },
+      {
+        "id": "hemorragia_activa",
+        "texto": "Hemorragia profusa o signos de choque",
+        "keywords": [
+          "sangre a chorros",
+          "mucha sangre",
+          "hemorragia",
+          "palido",
+          "sudor frio"
+        ]
+      }
+    ],
+    "pistas": [
+      {
+        "item": "mecanismo_lesion",
+        "nivel_1": "Averigua cómo ocurrió el percance físico o impacto.",
+        "nivel_2": "Pregunta a qué velocidad iba y cómo fue el golpe o caída.",
+        "nivel_3": "Pregunta: «¿A qué velocidad iba y contra qué impactó al caer?»"
+      },
+      {
+        "item": "uso_casco",
+        "nivel_1": "Revisa las medidas de protección usadas al transportarse.",
+        "nivel_2": "Pregunta si llevaba puesto casco u otro equipo de protección.",
+        "nivel_3": "Pregunta: «¿Llevaba puesto casco protector abrochado en el momento del choque?»"
+      },
+      {
+        "item": "perdida_conciencia",
+        "nivel_1": "Evalúa si hubo desconexión o desmayo tras el golpe.",
+        "nivel_2": "Pregunta si perdió el conocimiento o si recuerda todo lo sucedido.",
+        "nivel_3": "Pregunta: «¿Perdió el conocimiento o quedó desmayado aunque sea unos segundos?»"
+      },
+      {
+        "item": "dolor_toracico",
+        "nivel_1": "Indaga si hay dolor en el pecho o las costillas.",
+        "nivel_2": "Pregunta si le duele el tórax al respirar hondo o toser.",
+        "nivel_3": "Pregunta: «¿Siente dolor en las costillas o pecho cuando toma aire profundo?»"
+      },
+      {
+        "item": "dolor_cervical",
+        "nivel_1": "Revisa posibles molestias a lo largo de la columna.",
+        "nivel_2": "Pregunta si siente dolor o rigidez en el cuello o espalda.",
+        "nivel_3": "Pregunta: «¿Tiene dolor en el cuello, la nuca o a lo largo de la espalda?»"
+      },
+      {
+        "item": "sensibilidad_motora",
+        "nivel_1": "Comprueba el movimiento y tacto en brazos y piernas.",
+        "nivel_2": "Pregunta si puede mover bien los dedos y si siente las extremidades.",
+        "nivel_3": "Pregunta: «¿Puede mover los dedos de pies y manos sin sentir adormecimiento?»"
+      },
+      {
+        "item": "vacuna_tetanos",
+        "nivel_1": "Piensa en prevención de infecciones por raspaduras o heridas.",
+        "nivel_2": "Pregunta si tiene vacuna vigente para prevenir infecciones por heridas.",
+        "nivel_3": "Pregunta: «¿Cuándo fue la última vez que le aplicaron vacuna para el tétanos?»"
+      }
+    ],
+    "prevalencia": 2
   },
   {
     "id": "c_gea_01",
@@ -290,28 +1144,205 @@
       "tolerancia de líquidos": "ahorita le cuesta retener agua, la devuelve casi de inmediato"
     },
     "restricciones": {
-      "sexo": ["F", "M"],
+      "sexo": [
+        "F",
+        "M"
+      ],
       "edad_min": 18,
       "edad_max": 65,
-      "departamentos_tipicos": ["La Libertad", "San Salvador", "Sonsonate", "Ahuachapán", "Santa Ana", "Cuscatlán"],
-      "ocupaciones_tipicas": ["restaurante", "comercio", "venta", "panaderia", "hogar"]
+      "departamentos_tipicos": [
+        "La Libertad",
+        "San Salvador",
+        "Sonsonate",
+        "Ahuachapán",
+        "Santa Ana",
+        "Cuscatlán"
+      ],
+      "ocupaciones_tipicas": [
+        "restaurante",
+        "comercio",
+        "venta",
+        "panaderia",
+        "hogar"
+      ]
     },
     "diagnostico": "Gastroenteritis aguda",
-    "diagnostico_alias": ["diarrea aguda", "infeccion gastrointestinal", "gea", "gastroenteritis", "enteritis", "gastroenterocolitis"],
+    "diagnostico_alias": [
+      "diarrea aguda",
+      "infeccion gastrointestinal",
+      "gea",
+      "gastroenteritis",
+      "enteritis",
+      "gastroenterocolitis"
+    ],
     "lista_verificacion": [
-      { "id": "heces_frecuencia", "texto": "Frecuencia y características de las evacuaciones", "keywords": ["cuantas veces", "evacuaciones", "diarrea", "liquida", "heces", "cuantas deposiciones"] },
-      { "id": "sangre_moco", "texto": "Presencia de sangre o moco en heces (disentería)", "keywords": ["sangre", "moco", "roja", "sangrado", "heces con sangre"] },
-      { "id": "vomitos_tolerancia", "texto": "Frecuencia de vómitos y tolerancia a líquidos", "keywords": ["vomit", "tolera", "retiene", "devolver", "liquido", "tomar agua"] },
-      { "id": "signos_deshidratacion", "texto": "Signos de deshidratación (sed, resequedad de mucosas, diuresis)", "keywords": ["sed", "boca seca", "orina", "orinado", "cuanto ha orinado", "lagrimas", "orina oscura"] },
-      { "id": "origen_alimentos", "texto": "Consumo de alimentos sospechosos o agua no potable", "keywords": ["comio", "alimento", "calle", "agua", "chorro", "pupusa", "curtido", "comida"] },
-      { "id": "fiebre", "texto": "Presencia de fiebre o escalofríos", "keywords": ["fiebre", "calentura", "temperatura", "escalofrio"] },
-      { "id": "tratamiento_previo", "texto": "Uso de sales de rehidratación oral o antibióticos", "keywords": ["suero", "rehidratacion", "pastilla", "antibiotico", "medicina", "remedio", "sueroral"] }
+      {
+        "id": "heces_frecuencia",
+        "texto": "Frecuencia y características de las evacuaciones",
+        "keywords": [
+          "cuantas veces",
+          "evacuaciones",
+          "diarrea",
+          "liquida",
+          "heces",
+          "cuantas deposiciones"
+        ]
+      },
+      {
+        "id": "sangre_moco",
+        "texto": "Presencia de sangre o moco en heces (disentería)",
+        "keywords": [
+          "sangre",
+          "moco",
+          "roja",
+          "sangrado",
+          "heces con sangre"
+        ]
+      },
+      {
+        "id": "vomitos_tolerancia",
+        "texto": "Frecuencia de vómitos y tolerancia a líquidos",
+        "keywords": [
+          "vomit",
+          "tolera",
+          "retiene",
+          "devolver",
+          "liquido",
+          "tomar agua"
+        ]
+      },
+      {
+        "id": "signos_deshidratacion",
+        "texto": "Signos de deshidratación (sed, resequedad de mucosas, diuresis)",
+        "keywords": [
+          "sed",
+          "boca seca",
+          "orina",
+          "orinado",
+          "cuanto ha orinado",
+          "lagrimas",
+          "orina oscura"
+        ]
+      },
+      {
+        "id": "origen_alimentos",
+        "texto": "Consumo de alimentos sospechosos o agua no potable",
+        "keywords": [
+          "comio",
+          "alimento",
+          "calle",
+          "agua",
+          "chorro",
+          "pupusa",
+          "curtido",
+          "comida"
+        ]
+      },
+      {
+        "id": "fiebre",
+        "texto": "Presencia de fiebre o escalofríos",
+        "keywords": [
+          "fiebre",
+          "calentura",
+          "temperatura",
+          "escalofrio"
+        ]
+      },
+      {
+        "id": "tratamiento_previo",
+        "texto": "Uso de sales de rehidratación oral o antibióticos",
+        "keywords": [
+          "suero",
+          "rehidratacion",
+          "pastilla",
+          "antibiotico",
+          "medicina",
+          "remedio",
+          "sueroral"
+        ]
+      }
     ],
     "banderas_rojas": [
-      { "id": "deshidratacion_severa", "texto": "Signos de deshidratación grave o choque hipovolémico", "keywords": ["orina", "no ha orinado", "mareo", "desmayo", "confusion", "boca seca", "ojos hundidos"] },
-      { "id": "intolerancia_oral", "texto": "Intolerancia completa a la vía oral por vómitos incoercibles", "keywords": ["no tolera", "devuelve todo", "vomita todo", "vomito constante", "no retiene"] },
-      { "id": "sangrado_heces", "texto": "Sangre en heces (síndrome disentérico)", "keywords": ["sangre", "disenteria", "sangrado", "heces con sangre"] }
-    ]
+      {
+        "id": "deshidratacion_severa",
+        "texto": "Signos de deshidratación grave o choque hipovolémico",
+        "keywords": [
+          "orina",
+          "no ha orinado",
+          "mareo",
+          "desmayo",
+          "confusion",
+          "boca seca",
+          "ojos hundidos"
+        ]
+      },
+      {
+        "id": "intolerancia_oral",
+        "texto": "Intolerancia completa a la vía oral por vómitos incoercibles",
+        "keywords": [
+          "no tolera",
+          "devuelve todo",
+          "vomita todo",
+          "vomito constante",
+          "no retiene"
+        ]
+      },
+      {
+        "id": "sangrado_heces",
+        "texto": "Sangre en heces (síndrome disentérico)",
+        "keywords": [
+          "sangre",
+          "disenteria",
+          "sangrado",
+          "heces con sangre"
+        ]
+      }
+    ],
+    "pistas": [
+      {
+        "item": "heces_frecuencia",
+        "nivel_1": "Piensa en las deposiciones y su frecuencia.",
+        "nivel_2": "Pregunta cuántas veces ha ido al baño y cómo son las evacuaciones.",
+        "nivel_3": "Pregunta: «¿Cuántas veces ha ido al baño hoy y cómo es la consistencia?»"
+      },
+      {
+        "item": "sangre_moco",
+        "nivel_1": "Revisa signos de inflamación o sangrado en las deposiciones.",
+        "nivel_2": "Pregunta si ha visto mucosidad o sangre en las evacuaciones.",
+        "nivel_3": "Pregunta: «¿Ha notado presencia de moco o rastros de sangre al defecar?»"
+      },
+      {
+        "item": "vomitos_tolerancia",
+        "nivel_1": "Explora la capacidad del estómago para retener alimentos y líquidos.",
+        "nivel_2": "Pregunta si vomita con frecuencia y si tolera tomar agua.",
+        "nivel_3": "Pregunta: «¿Cuántas veces ha vomitado hoy y logra retener los líquidos?»"
+      },
+      {
+        "item": "signos_deshidratacion",
+        "nivel_1": "Evalúa la falta de hidratación en el organismo.",
+        "nivel_2": "Pregunta por sed constante, sequedad en la boca y color de orina.",
+        "nivel_3": "Pregunta: «¿Tiene la boca muy seca, mucha sed o ha orinado menos?»"
+      },
+      {
+        "item": "origen_alimentos",
+        "nivel_1": "Indaga el origen de los alimentos o bebidas consumidas.",
+        "nivel_2": "Pregunta qué comió antes de iniciar el malestar y si comió en la calle.",
+        "nivel_3": "Pregunta: «¿Comió en puestos de la calle o consumió agua sin hervir?»"
+      },
+      {
+        "item": "fiebre",
+        "nivel_1": "Averigua si ha sentido aumento en la temperatura corporal.",
+        "nivel_2": "Pregunta si ha tenido calentura o temblores de frío.",
+        "nivel_3": "Pregunta: «¿Ha tenido fiebre o escalofríos desde que empezaron los malestares?»"
+      },
+      {
+        "item": "tratamiento_previo",
+        "nivel_1": "Revisa si ha usado soluciones orales o medicamentos caseros.",
+        "nivel_2": "Pregunta si ha tomado sales de hidratación, pastillas o remedios.",
+        "nivel_3": "Pregunta: «¿Ha estado tomando suero oral o alguna medicina para el malestar?»"
+      }
+    ],
+    "prevalencia": 3
   },
   {
     "id": "c_nac_01",
@@ -344,28 +1375,198 @@
       "contactos": "en su casa nadie más está así con esa calentura y ahogo"
     },
     "restricciones": {
-      "sexo": ["F", "M"],
+      "sexo": [
+        "F",
+        "M"
+      ],
       "edad_min": 50,
-      "edad_max": 85,
-      "departamentos_tipicos": ["Santa Ana", "Chalatenango", "Cabañas", "San Salvador", "Morazán", "Cuscatlán"],
-      "ocupaciones_tipicas": ["mercado", "venta", "alimentos", "hogar", "cultiv"]
+      "edad_max": 95,
+      "departamentos_tipicos": [
+        "Santa Ana",
+        "Chalatenango",
+        "Cabañas",
+        "San Salvador",
+        "Morazán",
+        "Cuscatlán"
+      ],
+      "ocupaciones_tipicas": [
+        "mercado",
+        "venta",
+        "alimentos",
+        "hogar",
+        "cultiv"
+      ]
     },
     "diagnostico": "Neumonía adquirida en la comunidad",
-    "diagnostico_alias": ["neumonia", "nac", "pulmonia", "infeccion pulmonar"],
+    "diagnostico_alias": [
+      "neumonia",
+      "nac",
+      "pulmonia",
+      "infeccion pulmonar"
+    ],
     "lista_verificacion": [
-      { "id": "tos_expectoracion", "texto": "Características de la tos y de la expectoración", "keywords": ["tos", "flema", "expectoracion", "color", "amarilla", "verde"] },
-      { "id": "fiebre_escalofrios", "texto": "Duración y magnitud de la fiebre o escalofríos", "keywords": ["fiebre", "calentura", "escalofrio", "temperatura", "cuantos dias"] },
-      { "id": "dolor_pleuritico", "texto": "Dolor torácico tipo pleurítico en puntada de costado", "keywords": ["pecho", "costado", "espalda", "puntada", "al toser", "al respirar"] },
-      { "id": "dificultad_respiratoria", "texto": "Grado de dificultad respiratoria o disnea", "keywords": ["falta de aire", "respira", "ahogo", "dificultad para respirar", "pecho apretado"] },
-      { "id": "exposicion_humo", "texto": "Exposición a humo de biomasa (leña) o tabaco", "keywords": ["humo", "lena", "cocina", "fuma", "tabaco", "cigarro"] },
-      { "id": "antecedentes_vacunas", "texto": "Antecedentes de vacunación (influenza, neumococo)", "keywords": ["vacuna", "influenza", "neumococo", "inmuniz"] },
-      { "id": "medicacion_previa", "texto": "Uso de jarabes, antibióticos o analgésicos previos", "keywords": ["jarabe", "antibiotico", "acetaminofen", "medicina", "pastilla", "remedio"] }
+      {
+        "id": "tos_expectoracion",
+        "texto": "Características de la tos y de la expectoración",
+        "keywords": [
+          "tos",
+          "flema",
+          "expectoracion",
+          "color",
+          "amarilla",
+          "verde"
+        ]
+      },
+      {
+        "id": "fiebre_escalofrios",
+        "texto": "Duración y magnitud de la fiebre o escalofríos",
+        "keywords": [
+          "fiebre",
+          "calentura",
+          "escalofrio",
+          "temperatura",
+          "cuantos dias"
+        ]
+      },
+      {
+        "id": "dolor_pleuritico",
+        "texto": "Dolor torácico tipo pleurítico en puntada de costado",
+        "keywords": [
+          "pecho",
+          "costado",
+          "espalda",
+          "puntada",
+          "al toser",
+          "al respirar"
+        ]
+      },
+      {
+        "id": "dificultad_respiratoria",
+        "texto": "Grado de dificultad respiratoria o disnea",
+        "keywords": [
+          "falta de aire",
+          "respira",
+          "ahogo",
+          "dificultad para respirar",
+          "pecho apretado"
+        ]
+      },
+      {
+        "id": "exposicion_humo",
+        "texto": "Exposición a humo de biomasa (leña) o tabaco",
+        "keywords": [
+          "humo",
+          "lena",
+          "cocina",
+          "fuma",
+          "tabaco",
+          "cigarro"
+        ]
+      },
+      {
+        "id": "antecedentes_vacunas",
+        "texto": "Antecedentes de vacunación (influenza, neumococo)",
+        "keywords": [
+          "vacuna",
+          "influenza",
+          "neumococo",
+          "inmuniz"
+        ]
+      },
+      {
+        "id": "medicacion_previa",
+        "texto": "Uso de jarabes, antibióticos o analgésicos previos",
+        "keywords": [
+          "jarabe",
+          "antibiotico",
+          "acetaminofen",
+          "medicina",
+          "pastilla",
+          "remedio"
+        ]
+      }
     ],
     "banderas_rojas": [
-      { "id": "insuficiencia_respiratoria", "texto": "Signos de insuficiencia respiratoria aguda o cianosis", "keywords": ["falta de aire", "ahogo", "labios morados", "cianosis", "asfixia", "respirar rapido"] },
-      { "id": "compromiso_conciencia", "texto": "Confusión, desorientación o letargo (criterio CURB-65)", "keywords": ["confusion", "desorienta", "somnolien", "dormido", "despierto", "conciencia"] },
-      { "id": "hemoptisis", "texto": "Expectoración con sangre franca (hemoptisis)", "keywords": ["sangre", "escupe sangre", "tos con sangre", "hemoptisis"] }
-    ]
+      {
+        "id": "insuficiencia_respiratoria",
+        "texto": "Signos de insuficiencia respiratoria aguda o cianosis",
+        "keywords": [
+          "falta de aire",
+          "ahogo",
+          "labios morados",
+          "cianosis",
+          "asfixia",
+          "respirar rapido"
+        ]
+      },
+      {
+        "id": "compromiso_conciencia",
+        "texto": "Confusión, desorientación o letargo (criterio CURB-65)",
+        "keywords": [
+          "confusion",
+          "desorienta",
+          "somnolien",
+          "dormido",
+          "despierto",
+          "conciencia"
+        ]
+      },
+      {
+        "id": "hemoptisis",
+        "texto": "Expectoración con sangre franca (hemoptisis)",
+        "keywords": [
+          "sangre",
+          "escupe sangre",
+          "tos con sangre",
+          "hemoptisis"
+        ]
+      }
+    ],
+    "pistas": [
+      {
+        "item": "tos_expectoracion",
+        "nivel_1": "Explora las características de la tos que presenta.",
+        "nivel_2": "Pregunta si la tos saca flema y de qué color es.",
+        "nivel_3": "Pregunta: «¿Tiene tos con flema y de qué color la ha visto?»"
+      },
+      {
+        "item": "fiebre_escalofrios",
+        "nivel_1": "Revisa la presencia y duración de temperatura corporal elevada.",
+        "nivel_2": "Pregunta cuántos días lleva con calentura y si da escalofríos.",
+        "nivel_3": "Pregunta: «¿Desde hace cuántos días tiene fiebre y le dan temblores de frío?»"
+      },
+      {
+        "item": "dolor_pleuritico",
+        "nivel_1": "Indaga si hay dolor en la espalda o el costado al respirar.",
+        "nivel_2": "Pregunta si siente puntadas en las costillas al toser o tomar aire.",
+        "nivel_3": "Pregunta: «¿Le duele como puntada en el costado o espalda al toser?»"
+      },
+      {
+        "item": "dificultad_respiratoria",
+        "nivel_1": "Evalúa la sensación de falta de aire o cansancio al respirar.",
+        "nivel_2": "Pregunta si siente ahogo al dar unos pasos o estar en reposo.",
+        "nivel_3": "Pregunta: «¿Siente que le falta el aire o se cansa al caminar?»"
+      },
+      {
+        "item": "exposicion_humo",
+        "nivel_1": "Investiga la exposición a humo u otros contaminantes en el hogar.",
+        "nivel_2": "Pregunta si cocina con leña o si convive con fumadores.",
+        "nivel_3": "Pregunta: «¿Ha cocinado con leña dentro de casa o ha fumado cigarrillos?»"
+      },
+      {
+        "item": "antecedentes_vacunas",
+        "nivel_1": "Indaga sobre vacunas recibidas para proteger el sistema respiratorio.",
+        "nivel_2": "Pregunta si tiene vacunas recientes de la influenza o del pulmón.",
+        "nivel_3": "Pregunta: «¿Se ha puesto vacunas de influenza o del neumococo este año?»"
+      },
+      {
+        "item": "medicacion_previa",
+        "nivel_1": "Revisa jarabes o pastillas que haya probado antes de consultar.",
+        "nivel_2": "Pregunta si ha tomado jarabes, antibióticos o pastillas para el malestar.",
+        "nivel_3": "Pregunta: «¿Ha tomado algún jarabe o medicina para esa tos?»"
+      }
+    ],
+    "prevalencia": 2
   },
   {
     "id": "c_depresion_01",
@@ -399,26 +1600,192 @@
       "angustia y malestar corporal": "a veces le dan dolores de cabeza y pesadez en el cuello de tanta angustia"
     },
     "restricciones": {
-      "sexo": ["F", "M"],
+      "sexo": [
+        "F",
+        "M"
+      ],
       "edad_min": 35,
       "edad_max": 75,
-      "departamentos_tipicos": ["San Salvador", "Santa Ana", "San Miguel", "La Paz", "Cuscatlán", "Usulután"],
-      "ocupaciones_tipicas": ["hogar", "comercio", "venta", "alimentos", "costura"]
+      "departamentos_tipicos": [
+        "San Salvador",
+        "Santa Ana",
+        "San Miguel",
+        "La Paz",
+        "Cuscatlán",
+        "Usulután"
+      ],
+      "ocupaciones_tipicas": [
+        "hogar",
+        "comercio",
+        "venta",
+        "alimentos",
+        "costura"
+      ]
     },
     "diagnostico": "Episodio depresivo mayor",
-    "diagnostico_alias": ["depresion", "trastorno depresivo", "depresion mayor", "sindrome depresivo"],
+    "diagnostico_alias": [
+      "depresion",
+      "trastorno depresivo",
+      "depresion mayor",
+      "sindrome depresivo"
+    ],
     "lista_verificacion": [
-      { "id": "animo_tristeza", "texto": "Estado de ánimo y tristeza la mayor parte del día", "keywords": ["triste", "animo", "vacio", "llora", "llorar", "ganas de nada", "desanimo"] },
-      { "id": "anhedonia", "texto": "Pérdida de interés o placer en actividades habituales (anhedonia)", "keywords": ["placer", "interes", "disfruta", "gusta hacer", "actividades", "motivacion"] },
-      { "id": "alteracion_sueno", "texto": "Patrón de sueño e insomnio (inicial o terminal)", "keywords": ["duerme", "sueno", "insomnio", "despierta", "dormir"] },
-      { "id": "apetito_peso", "texto": "Cambios en el apetito o peso", "keywords": ["apetito", "hambre", "come", "comida", "peso", "libras"] },
-      { "id": "energia_fatiga", "texto": "Fatiga, cansancio o falta de energía", "keywords": ["energia", "cansa", "fatiga", "fuerza", "agotad"] },
-      { "id": "red_apoyo", "texto": "Red de apoyo familiar y eventos vitales estresantes (duelo)", "keywords": ["familia", "hija", "esposo", "duelo", "apoyo", "acompan", "sola", "vive sola"] },
-      { "id": "concentracion", "texto": "Dificultad de concentración o toma de decisiones", "keywords": ["concentra", "olvidos", "memoria", "mente", "atencion"] }
+      {
+        "id": "animo_tristeza",
+        "texto": "Estado de ánimo y tristeza la mayor parte del día",
+        "keywords": [
+          "triste",
+          "animo",
+          "vacio",
+          "llora",
+          "llorar",
+          "ganas de nada",
+          "desanimo"
+        ]
+      },
+      {
+        "id": "anhedonia",
+        "texto": "Pérdida de interés o placer en actividades habituales (anhedonia)",
+        "keywords": [
+          "placer",
+          "interes",
+          "disfruta",
+          "gusta hacer",
+          "actividades",
+          "motivacion"
+        ]
+      },
+      {
+        "id": "alteracion_sueno",
+        "texto": "Patrón de sueño e insomnio (inicial o terminal)",
+        "keywords": [
+          "duerme",
+          "sueno",
+          "insomnio",
+          "despierta",
+          "dormir"
+        ]
+      },
+      {
+        "id": "apetito_peso",
+        "texto": "Cambios en el apetito o peso",
+        "keywords": [
+          "apetito",
+          "hambre",
+          "come",
+          "comida",
+          "peso",
+          "libras"
+        ]
+      },
+      {
+        "id": "energia_fatiga",
+        "texto": "Fatiga, cansancio o falta de energía",
+        "keywords": [
+          "energia",
+          "cansa",
+          "fatiga",
+          "fuerza",
+          "agotad"
+        ]
+      },
+      {
+        "id": "red_apoyo",
+        "texto": "Red de apoyo familiar y eventos vitales estresantes (duelo)",
+        "keywords": [
+          "familia",
+          "hija",
+          "esposo",
+          "duelo",
+          "apoyo",
+          "acompan",
+          "sola",
+          "vive sola"
+        ]
+      },
+      {
+        "id": "concentracion",
+        "texto": "Dificultad de concentración o toma de decisiones",
+        "keywords": [
+          "concentra",
+          "olvidos",
+          "memoria",
+          "mente",
+          "atencion"
+        ]
+      }
     ],
     "banderas_rojas": [
-      { "id": "ideacion_suicida", "texto": "Ideación o intención de muerte o autolesión", "keywords": ["muerte", "morir", "hacerse dano", "quitarse la vida", "suicid", "no despertar", "dormirse"] },
-      { "id": "aislamiento_total", "texto": "Aislamiento social extremo o abandono de autocuidado básico", "keywords": ["encerrada", "no sale", "banarse", "no come", "abandono", "descuido"] }
-    ]
+      {
+        "id": "ideacion_suicida",
+        "texto": "Ideación o intención de muerte o autolesión",
+        "keywords": [
+          "muerte",
+          "morir",
+          "hacerse dano",
+          "quitarse la vida",
+          "suicid",
+          "no despertar",
+          "dormirse"
+        ]
+      },
+      {
+        "id": "aislamiento_total",
+        "texto": "Aislamiento social extremo o abandono de autocuidado básico",
+        "keywords": [
+          "encerrada",
+          "no sale",
+          "banarse",
+          "no come",
+          "abandono",
+          "descuido"
+        ]
+      }
+    ],
+    "pistas": [
+      {
+        "item": "animo_tristeza",
+        "nivel_1": "Explora cómo se ha sentido anímicamente en este tiempo.",
+        "nivel_2": "Pregunta por sentimientos de tristeza constante, llanto o vacío interior.",
+        "nivel_3": "Pregunta: «¿Se ha sentido triste, desanimado o con ganas de llorar seguido?»"
+      },
+      {
+        "item": "anhedonia",
+        "nivel_1": "Indaga sobre las actividades placenteras o que solía disfrutar.",
+        "nivel_2": "Pregunta si ha perdido el interés o gusto por sus pasatiempos habituales.",
+        "nivel_3": "Pregunta: «¿Ha dejado de disfrutar las cosas que antes le gustaba hacer?»"
+      },
+      {
+        "item": "alteracion_sueno",
+        "nivel_1": "Revisa cómo está descansando el paciente por las noches.",
+        "nivel_2": "Pregunta si le cuesta conciliar el sueño o se despierta en la madrugada.",
+        "nivel_3": "Pregunta: «¿Le cuesta quedarse dormido o se despierta a medianoche sin dormir?»"
+      },
+      {
+        "item": "apetito_peso",
+        "nivel_1": "Pregunta sobre el deseo de comer y cambios en la contextura.",
+        "nivel_2": "Pregunta si tiene menos ganas de comer o ha bajado de peso.",
+        "nivel_3": "Pregunta: «¿Ha perdido el apetito o ha sentido la ropa más floja?»"
+      },
+      {
+        "item": "energia_fatiga",
+        "nivel_1": "Evalúa el nivel de energía corporal y motivación diaria.",
+        "nivel_2": "Pregunta si siente el cuerpo pesado o cansancio sin causa física.",
+        "nivel_3": "Pregunta: «¿Siente agotamiento o que le cuesta hacer sus actividades básicas?»"
+      },
+      {
+        "item": "red_apoyo",
+        "nivel_1": "Explora la convivencia familiar y pérdidas recientes en su vida.",
+        "nivel_2": "Pregunta si vive acompañado y si ha vivido algún duelo familiar doloroso.",
+        "nivel_3": "Pregunta: «¿Cuenta con apoyo de familiares o ha tenido alguna pérdida difícil?»"
+      },
+      {
+        "item": "concentracion",
+        "nivel_1": "Indaga la capacidad de atención y memoria en el día a día.",
+        "nivel_2": "Pregunta si le cuesta concentrarse o tomar decisiones en sus tareas.",
+        "nivel_3": "Pregunta: «¿Ha notado olvidos frecuentes o dificultad para concentrarse en su día?»"
+      }
+    ],
+    "prevalencia": 2
   }
 ]

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { crearSesion, enviarMensaje, obtenerHealth, terminarConsulta } from './api.js'
+import { crearSesion, enviarMensaje, obtenerHealth, pedirPista, terminarConsulta } from './api.js'
 import Chat from './components/Chat.jsx'
 import PatientCard from './components/PatientCard.jsx'
 import Results from './components/Results.jsx'
@@ -15,6 +15,9 @@ export default function App() {
   const [error, setError] = useState('')
   const [diagnostico, setDiagnostico] = useState('')
   const [resultado, setResultado] = useState(null)
+  const [pista, setPista] = useState(null)
+  const [cargandoPista, setCargandoPista] = useState(false)
+  const [pistasUsadas, setPistasUsadas] = useState(0)
   const [healthInfo, setHealthInfo] = useState(null)
   const [healthWarning, setHealthWarning] = useState('')
   const sesionActual = useRef(null)
@@ -47,12 +50,28 @@ export default function App() {
       setVerPaciente(false)
       setDiagnostico('')
       setResultado(null)
+      setPista(null)
+      setPistasUsadas(0)
       setEnviando(false)
       setFase('chat')
     } catch (e) {
       setError(e.message)
     } finally {
       setCargando(false)
+    }
+  }
+
+  async function solicitarPista() {
+    if (!sesion || enviando) return
+    setCargandoPista(true)
+    try {
+      const res = await pedirPista(sesion.session_id)
+      setPista({ texto: res.pista, nivel: res.nivel, disponible: res.disponible })
+      setPistasUsadas(res.pistas_usadas)
+    } catch (e) {
+      setError(e.message)
+    } finally {
+      setCargandoPista(false)
     }
   }
 
@@ -134,7 +153,16 @@ export default function App() {
           <section className="panel main">
             {fase === 'chat' && (
               <>
-                <Chat mensajes={mensajes} enviando={enviando} onSend={enviar} nombre={sesion.paciente.nombre} />
+                <Chat
+                  mensajes={mensajes}
+                  enviando={enviando}
+                  onSend={enviar}
+                  nombre={sesion.paciente.nombre}
+                  pista={pista}
+                  onPedirPista={solicitarPista}
+                  onCerrarPista={() => setPista(null)}
+                  cargandoPista={cargandoPista}
+                />
                 <div className="actions">
                   <button className="btn" onClick={() => setFase('diagnostico')} disabled={enviando || mensajes.length === 0}>
                     Terminar y diagnosticar

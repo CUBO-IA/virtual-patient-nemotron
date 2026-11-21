@@ -5,7 +5,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 
-from . import assign, config, evaluate, llm, prompts, rag, sessions
+from . import assign, avatars, config, evaluate, llm, prompts, rag, sessions
 from .models import ChatIn, FinishIn
 
 app = FastAPI(title="Paciente Virtual")
@@ -53,7 +53,7 @@ async def crear_sesion():
             "ocupacion": persona["ocupacion"],
             "departamento": persona["departamento"],
             "municipio": persona["municipio"],
-            "avatar_url": f"https://api.dicebear.com/9.x/avataaars/svg?seed={quote(persona['id'] + persona['nombre'])}",
+            "avatar_url": avatars.avatar_url(persona),
         },
         "motivo_consulta": caso["motivo_consulta"],
     }
@@ -92,6 +92,70 @@ async def chat(session_id: str, body: ChatIn):
             s.unlock()
 
     return StreamingResponse(gen(), media_type="text/event-stream", headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
+
+
+@app.post("/api/sessions/{session_id}/pista")
+async def pedir_pista(session_id: str):
+    s = _get_session(session_id)
+    if s.finished:
+        raise HTTPException(409, "La consulta ya terminó.")
+    if s.busy:
+        raise HTTPException(409, "El paciente aún está respondiendo.")
+
+    pistas = s.caso.get("pistas", [])
+    if not pistas:
+        return {
+            "pista": "No hay pistas disponibles para este caso.",
+            "disponible": False,
+            "nivel": 0,
+            "pistas_usadas": s.pistas_usadas,
+        }
+
+    texto_usuario = evaluate.norm(" . ".join(m["content"] for m in s.mensajes if m["role"] == "user"))
+    items_preguntados = {
+        it["id"] for it in s.caso.get("lista_verificacion", [])
+        if evaluate._hit(it["keywords"], texto_usuario)
+    }
+
+    pendiente = None
+    for p in pistas:
+        if p["item"] not in items_preguntados:
+            pendiente = p
+            break
+
+    if not pendiente:
+        return {
+            "pista": "Ya preguntaste lo esencial. Revisa si falta algo más.",
+            "disponible": False,
+            "nivel": 0,
+            "pistas_usadas": s.pistas_usadas,
+        }
+
+    item_id = pendiente["item"]
+    nivel_actual = s.nivel_por_item.get(item_id, 0)
+    nuevo_nivel = min(nivel_actual + 1, 3)
+    s.nivel_por_item[item_id] = nuevo_nivel
+    s.pistas_usadas += 1
+
+    texto_pista = pendiente.get(f"nivel_{nuevo_nivel}", "")
+    return {
+        "pista": texto_pista,
+        "disponible": True,
+        "nivel": nuevo_nivel,
+        "item": item_id,
+        "pistas_usadas": s.pistas_usadas,
+    }
+
+
+@app.get("/api/glosario")
+async def obtener_glosario():
+    glosario_path = config.DATA_DIR / "glosario.json"
+    if glosario_path.exists():
+        try:
+            return json.loads(glosario_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {}
 
 
 @app.post("/api/sessions/{session_id}/finish")

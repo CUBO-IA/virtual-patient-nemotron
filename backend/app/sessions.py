@@ -15,6 +15,8 @@ class Session:
     finished: bool = False
     result: dict | None = None
     busy_at: float | None = None
+    pistas_usadas: int = 0
+    nivel_por_item: dict = field(default_factory=dict)  # {item_id: nivel (1..3)}
 
     @property
     def busy(self) -> bool:

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import GlossaryTip from './GlossaryTip.jsx'
 
 export default function PatientCard({ paciente, motivo, ver, onToggle }) {
   const [imgFalla, setImgFalla] = useState(false)
@@ -8,7 +9,9 @@ export default function PatientCard({ paciente, motivo, ver, onToggle }) {
     <aside className="panel card">
       <h2>Paciente</h2>
       <p className="motivo">
-        <span className="label">Motivo de consulta</span>
+        <span className="label">
+          Motivo de consulta <GlossaryTip term="motivo_de_consulta" />
+        </span>
         {motivo}
       </p>
 

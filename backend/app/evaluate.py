@@ -55,7 +55,9 @@ async def evaluar(session: Session, dx_estudiante: str) -> dict:
     correcto = _diagnostico_correcto(caso, dx_estudiante)
     frac_items = len(cumplidos) / max(len(caso["lista_verificacion"]), 1)
     frac_banderas = sum(b["cumplida"] for b in banderas) / max(len(banderas), 1)
-    puntaje = round(60 * frac_items + 30 * (1 if correcto else 0) + 10 * frac_banderas)
+    puntaje_base = round(60 * frac_items + 30 * (1 if correcto else 0) + 10 * frac_banderas)
+    descuento_pistas = round(session.pistas_usadas * config.PENALIZACION_PISTA)
+    puntaje = max(0, puntaje_base - descuento_pistas)
 
     citas = []
     if config.RAG_ENABLED:
@@ -80,6 +82,9 @@ async def evaluar(session: Session, dx_estudiante: str) -> dict:
         "diagnostico_real": caso["diagnostico"],
         "diagnostico_correcto": correcto,
         "puntaje": puntaje,
+        "puntaje_base": puntaje_base,
+        "pistas_usadas": session.pistas_usadas,
+        "descuento_pistas": descuento_pistas,
         "cumplidos": cumplidos,
         "faltantes": faltantes,
         "banderas": banderas,

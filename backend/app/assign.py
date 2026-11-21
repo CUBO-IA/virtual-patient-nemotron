@@ -1,3 +1,13 @@
+"""Asignación de caso clínico y persona según relacion-persona-enfermedad.md.
+
+Implementa 4 capas:
+1. Reglas duras: descarta incompatibilidades absolutas (edad, sexo).
+2. Prevalencia: ponderación epidemiológica base (1 a 3).
+3. Similitud semántica: afinidad entre el perfil de la persona
+   (ocupación, hábitos, área rural/urbana, departamento, edad) y la enfermedad.
+4. Sorteo ponderado: peso = prevalencia * (0.5 + similitud).
+"""
+
 import json
 import random
 from functools import lru_cache
@@ -24,29 +34,117 @@ def counts() -> tuple[int, int]:
 
 
 def _compatible(p: dict, caso: dict) -> bool:
+    """Capa 1: Reglas duras de compatibilidad biológica y etaria."""
     r = caso.get("restricciones", {})
-    if "sexo" in r and p["sexo"] not in r["sexo"]:
+    if "sexo" in r and p.get("sexo") not in r["sexo"]:
         return False
-    if p["edad"] < r.get("edad_min", 0) or p["edad"] > r.get("edad_max", 200):
+    edad = p.get("edad", 0)
+    if edad < r.get("edad_min", 0) or edad > r.get("edad_max", 200):
         return False
     return True
 
 
+def afinidad_semantica(persona: dict, caso: dict) -> float:
+    """Capa 3: Calcula similitud semántica y epidemiológica [0.0, 1.0]
+
+    entre el perfil sociodemográfico de la persona y los factores de riesgo de la enfermedad.
+    """
+    score = 0.0
+    r = caso.get("restricciones", {})
+
+    # 1. Afinidad ocupacional (hasta 0.35)
+    ocup_persona = (persona.get("ocupacion") or "").lower()
+    ocup_tipicas = [o.lower() for o in r.get("ocupaciones_tipicas", [])]
+    if ocup_tipicas:
+        if any(o in ocup_persona for o in ocup_tipicas):
+            score += 0.35
+        else:
+            # Palabras clave del entorno laboral en hábitos del caso
+            habitos_str = " ".join(caso.get("habitos", [])).lower()
+            tokens = [t for t in ocup_persona.split() if len(t) > 3 and t not in ("para", "otras", "actividades")]
+            if any(t in habitos_str for t in tokens):
+                score += 0.15
+    else:
+        score += 0.18  # caso general sin ocupación restrictiva
+
+    # 2. Afinidad geográfica / departamental (hasta 0.25)
+    deptos_tipicos = r.get("departamentos_tipicos", [])
+    depto_persona = persona.get("departamento")
+    if deptos_tipicos:
+        if depto_persona in deptos_tipicos:
+            score += 0.25
+    else:
+        score += 0.15
+
+    # 3. Afinidad de entorno (área rural / urbana y estilo de vida) (hasta 0.20)
+    area = (persona.get("area") or "").lower()
+    contexto = " ".join(caso.get("habitos", []) + list(caso.get("datos_si_pregunta", {}).values())).lower()
+    if area == "rural":
+        if any(k in contexto for k in ("zancudo", "campo", "fumiga", "leña", "pila", "barril", "chorro", "cultiv", "agric")):
+            score += 0.20
+        else:
+            score += 0.10
+    elif area == "urbano":
+        if any(k in contexto for k in ("moto", "estres", "calle", "mercado", "restaurante", "pupusa", "puesto", "gaseosa", "pan dulce")):
+            score += 0.20
+        else:
+            score += 0.10
+    else:
+        score += 0.10
+
+    # 4. Afinidad etaria dentro del rango permitido (hasta 0.20)
+    edad = persona.get("edad", 30)
+    cid = caso.get("id", "")
+    if cid in ("c_hta_01", "c_dm2_01", "c_nac_01") and edad >= 50:
+        score += 0.20
+    elif cid == "c_trauma_01" and edad <= 35:
+        score += 0.20
+    elif cid == "c_erc_01" and 30 <= edad <= 55:
+        score += 0.20
+    elif cid == "c_depresion_01" and edad >= 40:
+        score += 0.20
+    else:
+        score += 0.10
+
+    return min(max(score, 0.0), 1.0)
+
+
+def calcular_peso(persona: dict, caso: dict) -> float:
+    """Capa 4: Combina reglas duras, prevalencia y similitud semántica.
+
+    peso = prevalencia * (0.5 + similitud) si cumple reglas duras; 0 en caso contrario.
+    """
+    if not _compatible(persona, caso):
+        return 0.0
+    prevalencia = float(caso.get("prevalencia", 2))
+    sim = afinidad_semantica(persona, caso)
+    return prevalencia * (0.5 + sim)
+
+
 def sortear(caso_id: str | None = None) -> tuple[dict, dict]:
-    """Elige un caso al azar (o el indicado) y una persona compatible. Prefiere ocupaciones y zonas típicas del caso."""
+    """Sorteo de caso y persona compatible con alta coherencia semántica.
+
+    - Si se indica caso_id: filtra ese caso y sortea una persona compatible ponderada por su afinidad con el caso.
+    - Si caso_id es None: sortea una persona y le asigna la enfermedad más creíble según su perfil mediante sorteo ponderado en 4 capas.
+    """
     personas, casos = _load()
-    candidatos = [c for c in casos if c["id"] == caso_id] if caso_id else random.sample(casos, len(casos))
-    for caso in candidatos:
-        comp = [p for p in personas if _compatible(p, caso)]
-        if not comp:
-            continue
-        r = caso.get("restricciones", {})
-        ocup = [o.lower() for o in r.get("ocupaciones_tipicas", [])]
-        deptos = r.get("departamentos_tipicos", [])
-        pool = []
-        if ocup:
-            pool = [p for p in comp if any(o in (p["ocupacion"] or "").lower() for o in ocup)]
-        if not pool and deptos:
-            pool = [p for p in comp if p["departamento"] in deptos]
-        return caso, random.choice(pool or comp)
+
+    if caso_id:
+        caso = next((c for c in casos if c["id"] == caso_id), None)
+        if not caso:
+            raise RuntimeError(f"Caso con id '{caso_id}' no encontrado.")
+        compatibles = [p for p in personas if _compatible(p, caso)]
+        if not compatibles:
+            raise RuntimeError(f"No hay personas compatibles para el caso {caso_id}")
+        pesos = [0.5 + afinidad_semantica(p, caso) for p in compatibles]
+        persona_elegida = random.choices(compatibles, weights=pesos, k=1)[0]
+        return caso, persona_elegida
+
+    # Caso general: elegir persona y asignar enfermedad ponderada
+    for persona in random.sample(personas, len(personas)):
+        pesos = [calcular_peso(persona, c) for c in casos]
+        if sum(pesos) > 0:
+            caso_elegido = random.choices(casos, weights=pesos, k=1)[0]
+            return caso_elegido, persona
+
     raise RuntimeError("Ningún caso es compatible con las personas cargadas")
