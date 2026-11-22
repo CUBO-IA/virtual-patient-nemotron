@@ -103,3 +103,33 @@ def test_rag_health_usa_api_v2_de_chroma():
     with patch("app.config.RAG_ENABLED", True), patch("app.rag.httpx.AsyncClient", _Client):
         assert asyncio.run(rag.health()) is True
     assert urls and urls[0].endswith("/api/v2/heartbeat")
+
+
+def test_embeddings_van_a_cpu_para_no_expulsar_al_modelo_de_lenguaje(monkeypatch):
+    import asyncio
+    from unittest.mock import patch
+    from app import config, rag
+
+    capturado = {}
+
+    class Resp:
+        status_code = 200
+        def json(self): return {"embedding": [0.1, 0.2]}
+
+    class Cliente:
+        def __init__(self, *a, **k): pass
+        async def __aenter__(self): return self
+        async def __aexit__(self, *a): return False
+        async def post(self, url, json=None):
+            capturado.update(json)
+            return Resp()
+
+    monkeypatch.setattr(config, "EMBED_EN_CPU", True)
+    with patch("app.rag.httpx.AsyncClient", Cliente):
+        assert asyncio.run(rag.embed_query("hola")) == [0.1, 0.2]
+    assert capturado["options"] == {"num_gpu": 0} and capturado["keep_alive"] == "30m"
+    monkeypatch.setattr(config, "EMBED_EN_CPU", False)
+    capturado.clear()
+    with patch("app.rag.httpx.AsyncClient", Cliente):
+        asyncio.run(rag.embed_query("hola"))
+    assert "options" not in capturado

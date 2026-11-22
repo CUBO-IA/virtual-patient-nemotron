@@ -68,7 +68,7 @@ export default function PruebasPanel({ catalogo, estado, nivelId, onPedir, pidie
               type="search"
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
-              placeholder="Buscar prueba (p. ej. hemograma)…"
+              placeholder="Buscar prueba…"
             />
           </label>
 

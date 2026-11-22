@@ -6,6 +6,7 @@ si no hay fragmentos relevantes, se devuelve solo la nota escrita en el caso.
 import re
 
 from . import config, llm, prompts, rag, seguimiento
+from .texto import limpiar_texto_modelo
 from .sessions import Session
 
 TIPOS = ("prueba", "medicamento", "indicacion", "disposicion")
@@ -123,6 +124,7 @@ async def explicar(session: Session, caso: dict, tipo: str, item_id: str) -> dic
         except llm.LLMError:
             salida.update(fuentes=frags, origen="guia", modelo_no_disponible=True)  # se devuelven las citas literales
             return salida
+        texto = limpiar_texto_modelo(texto, max_chars=900)
         if "SIN_SUSTENTO" not in texto and texto:
             salida.update(explicacion=texto, fuentes=frags, origen="guia")
             return salida
@@ -138,6 +140,7 @@ async def explicar(session: Session, caso: dict, tipo: str, item_id: str) -> dic
     except llm.LLMError:
         salida["modelo_no_disponible"] = True
         return salida
+    texto = limpiar_texto_modelo(texto, max_chars=900)
     if texto:
         salida.update(explicacion=texto, origen="ia")
     return salida

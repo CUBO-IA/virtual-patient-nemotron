@@ -20,10 +20,10 @@ export const GLOSARIO = {
   empacho: "Indigestión o malestar gastrointestinal tras ingerir alimentos pesados o en exceso.",
   arrojar: "Vomitar o expulsar el contenido gástrico.",
   barriga: "Abdomen o estómago.",
-  zancudo: "Mosquito o zancudo vector de infecciones como dengue, zika o chikungunya.",
+  zancudo: "Mosquito: insecto que pica y vive cerca del agua y la vegetación.",
   suero: "Solución de rehidratación oral o electrolitos para reponer pérdidas de líquido.",
-  se_me_sube_la_presion: "Hipertensión arterial o sensación de alza en la presión sanguínea.",
-  azucar_alta: "Diabetes mellitus o elevación de los niveles de glucosa en sangre.",
+  se_me_sube_la_presion: "Expresión para decir que la presión de la sangre se le sube y lo nota con malestar.",
+  azucar_alta: "Expresión para decir que el azúcar (glucosa) de la sangre está por encima de lo normal.",
 
   // Vocabulario cotidiano salvadoreño
   cipote: "Niño, joven, muchacho o hijo.",

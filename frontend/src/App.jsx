@@ -18,6 +18,7 @@ import Disclaimer from './components/Disclaimer.jsx'
 import LevelSelect from './components/LevelSelect.jsx'
 import Progress from './components/Progress.jsx'
 import UrgenciasPanel from './components/UrgenciasPanel.jsx'
+import Intro from './intro/Intro.jsx'
 import PruebasPanel from './components/PruebasPanel.jsx'
 import PlanForm, { PLAN_VACIO, planParaEnviar, validarPlan } from './components/PlanForm.jsx'
 import {
@@ -27,7 +28,30 @@ import {
   setModoDemo,
 } from './progress.js'
 
+const CLAVE_INTRO = 'pv_intro_vista'
+
+/** La introducción se muestra al abrir la app (una vez por sesión del navegador). ?intro=1 la fuerza y ?intro=0 la omite. */
+function debeMostrarIntro() {
+  try {
+    const p = new URLSearchParams(window.location.search).get('intro')
+    if (p === '1') return true
+    if (p === '0') return false
+    return sessionStorage.getItem(CLAVE_INTRO) !== '1'
+  } catch {
+    return true
+  }
+}
+
 export default function App() {
+  const [intro, setIntro] = useState(debeMostrarIntro)
+  const cerrarIntro = () => {
+    try {
+      sessionStorage.setItem(CLAVE_INTRO, '1')
+    } catch {
+      /* sin almacenamiento: se mostrará de nuevo la próxima vez */
+    }
+    setIntro(false)
+  }
   const [sesion, setSesion] = useState(null)
   const [mensajes, setMensajes] = useState([])
   const [fase, setFase] = useState('inicio') // inicio | chat | diagnostico | resultados | progreso
@@ -257,6 +281,10 @@ export default function App() {
           if (donePayload.guia_cubierta) {
             setGuiaCubierta(donePayload.guia_cubierta)
           }
+          if (donePayload.texto_voz) {
+            // La voz pronuncia con la aspiración aunque en pantalla (nivel 1) el texto vaya con ortografía normal
+            setMensajes((m) => m.map((x, i) => (i === m.length - 1 ? { ...x, voz: donePayload.texto_voz } : x)))
+          }
         }
       )
     } catch (e) {
@@ -396,6 +424,7 @@ export default function App() {
 
   return (
     <div className="app">
+      {intro && <Intro onTerminar={cerrarIntro} />}
       <header className="topbar">
         <div className="brand">
           <div className="brand-icon">
@@ -421,6 +450,9 @@ export default function App() {
         </div>
 
         <div className="topbar-actions">
+          <button type="button" className="btn" onClick={() => setIntro(true)} title="Ver la introducción">
+            <i className="bi bi-film" /> Intro
+          </button>
           {fase !== 'inicio' && (
             <button
               type="button"
@@ -646,7 +678,7 @@ export default function App() {
                         value={diagnostico}
                         onChange={(e) => setDiagnostico(e.target.value)}
                         maxLength={500}
-                        placeholder="Ej. Dengue con signos de alarma…"
+                        placeholder="Escribe el diagnóstico que sospechas…"
                         autoFocus
                         required
                       />
@@ -663,7 +695,7 @@ export default function App() {
                             value={diferencial1}
                             onChange={(e) => setDiferencial1(e.target.value)}
                             maxLength={500}
-                            placeholder="Ej. Chikungunya…"
+                            placeholder="Primer diagnóstico diferencial…"
                             required
                           />
                         </div>
@@ -675,7 +707,7 @@ export default function App() {
                             value={diferencial2}
                             onChange={(e) => setDiferencial2(e.target.value)}
                             maxLength={500}
-                            placeholder="Ej. Leptospirosis…"
+                            placeholder="Segundo diagnóstico diferencial…"
                             required
                           />
                         </div>

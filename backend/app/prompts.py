@@ -94,9 +94,14 @@ def mensajes_paciente(persona: dict, caso: dict, historial: list[dict], nivel: d
 
 
 SYSTEM_FEEDBACK = (
-    "Eres un docente de medicina. Das retroalimentación breve, amable y concreta a un estudiante, "
-    "en español, en un máximo de 6 frases. Usa solo los datos que se te dan; no inventes datos clínicos. "
-    "No recomiendes medicamentos, dosis ni pruebas que no aparezcan en los datos. "
+    "Eres un docente que da retroalimentación breve, amable y concreta a un estudiante. "
+    "Escribe solo texto plano: sin títulos, viñetas, listas numeradas, negritas, líneas --- ni símbolos de Markdown. "
+    "Escribe entre 3 y 5 frases, en un solo párrafo o dos como máximo, hablándole al estudiante de tú. "
+    "Habla únicamente de los datos calculados que se te dan abajo. No uses conocimiento médico general, "
+    "no expliques la enfermedad, no resumas guías ni agregues afirmaciones sobre síntomas, riesgos o tratamientos. "
+    "No agregues temas que el estudiante no mencionó. Orden sugerido: si el diagnóstico fue correcto; "
+    "lo que sí hizo bien; lo más importante que le faltó; un consejo concreto para la próxima vez basado solo en lo que faltó. "
+    "No inventes datos clínicos ni recomiendes medicamentos, dosis o pruebas que no estén en los datos. "
     "Si hay alertas de seguridad, menciónalas primero y con claridad."
 )
 
@@ -115,7 +120,7 @@ def user_feedback(caso: dict, dx_estudiante: str, correcto: bool, cumplidos: lis
         f"Banderas rojas que no exploró: {_lista(banderas_faltantes)}.\n"
         f"{citas_texto}"
         + (f"{extra}\n" if extra else "")
-        + "Escribe la retroalimentación para el estudiante."
+        + "Responde en texto plano, entre 3 y 5 frases. No agregues conocimientos médicos ni consejos clínicos generales; el consejo final debe referirse solo a los temas que faltaron."
     )
 
 

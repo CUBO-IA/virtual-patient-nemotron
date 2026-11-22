@@ -171,3 +171,52 @@ def test_el_prompt_incluye_muletillas_con_uso_moderado_y_respuestas_de_2_a_4_fra
     assert "2 a 4 frases" in p and "sin inventar síntomas" in p
     assert "UN solo síntoma por respuesta" in p  # se dosifica la información
     assert "No repitas las palabras de la pregunta" in p
+
+
+# ---------------------------------------------------------------- «j» en pantalla solo desde el nivel 2
+
+def _sse_chat(client, sid, texto="¿Cuántas veces ha vomitado?"):
+    import json as _json
+    from unittest.mock import patch
+
+    async def falso(messages, temperature=0.7, num_predict=180):
+        for tok in ("Fueron ", "dos ", "veces."):
+            yield tok
+
+    tokens, done = [], None
+    with patch("app.llm.stream_chat", falso):
+        r = client.post(f"/api/sessions/{sid}/chat", json={"message": texto})
+    assert r.status_code == 200
+    for linea in r.text.splitlines():
+        if linea.startswith("data:"):
+            d = _json.loads(linea[5:])
+            if d.get("token"):
+                tokens.append(d["token"])
+            if d.get("done"):
+                done = d
+    return "".join(tokens), done
+
+
+def _sesion_oriente(nivel):
+    from fastapi.testclient import TestClient
+    from app import sessions
+    from app.main import app
+    client = TestClient(app)
+    sid = client.post("/api/sessions", json={"nivel": nivel}).json()["session_id"]
+    s = sessions.get(sid)
+    s.persona = {**s.persona, "departamento": "San Miguel"}
+    s.persona.pop("habla", None)  # aspiración «media» por ser del oriente
+    return client, sid
+
+
+def test_nivel_1_muestra_ortografia_normal_pero_la_voz_lleva_la_aspiracion():
+    client, sid = _sesion_oriente(1)
+    texto, done = _sse_chat(client, sid)
+    assert texto == "Fueron dos veces."
+    assert "doj" in done["texto_voz"] and done["texto_original"] == "Fueron dos veces."
+
+
+def test_nivel_2_conserva_la_aspiracion_en_pantalla():
+    client, sid = _sesion_oriente(2)
+    texto, done = _sse_chat(client, sid)
+    assert "doj" in texto and texto == done["texto_voz"]

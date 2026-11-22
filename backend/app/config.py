@@ -26,6 +26,11 @@ CHROMA_URL = os.getenv("CHROMA_URL", "http://localhost:8001").rstrip("/")
 RAG_ENABLED = os.getenv("RAG_ENABLED", "false").lower() in ("true", "1", "yes")
 # Distancia L2 máxima para considerar relevante un fragmento (medido con bge-m3: relevantes 480-640, ajenos > 700).
 RAG_MAX_DISTANCIA = float(os.getenv("RAG_MAX_DISTANCIA", "660"))
+# Los embeddings de las consultas corren en CPU: con 6 GB de VRAM, cargar bge-m3 en la GPU expulsaba a qwen2.5:7b y cada
+# respuesta posterior tenía que recargarlo (≈17 s por consulta en vez de ≈5 s). Pon EMBED_EN_CPU=false si tienes VRAM de sobra.
+EMBED_EN_CPU = os.getenv("EMBED_EN_CPU", "true").lower() in ("true", "1", "yes")
+# Al arrancar, carga los modelos en segundo plano para que la primera respuesta no tarde 10-20 s.
+CALENTAR_MODELOS = os.getenv("CALENTAR_MODELOS", "true").lower() in ("true", "1", "yes")
 # Candidatos más lejanos solo valen si contienen un término propio de la decisión (búsqueda híbrida).
 RAG_MAX_DISTANCIA_LEXICA = float(os.getenv("RAG_MAX_DISTANCIA_LEXICA", "780"))
 GUIAS_DIR = DATA_DIR / "guias"

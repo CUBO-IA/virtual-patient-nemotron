@@ -65,7 +65,7 @@ def _evaluar(caso_id: str, nivel: int, *, plan=None, pruebas=None, texto=None, d
     s.mensajes = [{"role": "user", "content": _texto_perfecto(caso) if texto is None else texto}]
     s.pruebas_pedidas = list(caso["pruebas"]["esenciales"]) if pruebas is None else list(pruebas)
     with patch("app.llm.chat_once", new_callable=AsyncMock) as m:
-        m.return_value = "Buen trabajo."
+        m.return_value = "Buen trabajo. Sigue explorando los demás temas."
         res = asyncio.run(evaluate.evaluar(s, caso["diagnostico"] if dx is None else dx, difs, plan))
     return s, res
 

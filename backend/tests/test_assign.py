@@ -34,3 +34,21 @@ def test_sortear_azar_sin_caso_id():
     restr = c["restricciones"]
     assert p["sexo"] in restr["sexo"]
     assert restr["edad_min"] <= p["edad"] <= restr["edad_max"]
+
+
+def test_sortear_evitar_casos_recientes_si_hay_alternativas():
+    casos = json.loads((DATA_DIR / "casos.json").read_text(encoding="utf-8"))
+    nivel = {"id": 1, "casos": {"dificultad_max": 1}}
+    elegibles = [c for c in casos if c.get("dificultad", 1) <= 1]
+    esperado = elegibles[-1]
+    recientes = [c["id"] for c in elegibles if c["id"] != esperado["id"]]
+    c, p = assign.sortear(nivel=nivel, casos_recientes=recientes)
+    assert c["id"] == esperado["id"]
+    assert assign._compatible(p, c)
+
+
+def test_sortear_repite_si_todos_los_casos_estan_en_la_lista_reciente():
+    nivel = {"id": 1, "casos": {"dificultad_max": 1}}
+    recientes = [c["id"] for c in json.loads((DATA_DIR / "casos.json").read_text(encoding="utf-8")) if c.get("dificultad", 1) <= 1]
+    c, p = assign.sortear(nivel=nivel, casos_recientes=recientes)
+    assert c["id"] in recientes and assign._compatible(p, c)

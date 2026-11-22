@@ -48,6 +48,7 @@ class Session:
     modo: str = "consulta"
     iniciada_en: float | None = None
     triaje: dict | None = None
+    creada_en: float = field(default_factory=time.time)
 
     @property
     def preguntas_usadas(self) -> int:
@@ -98,6 +99,7 @@ def guardar(s: Session) -> bool:
         "modo": s.modo,
         "iniciada_en": s.iniciada_en,
         "triaje": s.triaje,
+        "creada_en": s.creada_en,
         "guardado": time.time(),
     }
     tmp = ruta.with_name(f".{ruta.stem}.{uuid.uuid4().hex[:8]}.tmp")
@@ -158,6 +160,7 @@ def _cargar(session_id: str) -> Session | None:
             modo=modo,
             iniciada_en=d.get("iniciada_en"),
             triaje=d.get("triaje"),
+            creada_en=float(d.get("creada_en", d.get("guardado", time.time()))),
         )
     except (OSError, ValueError, KeyError, TypeError) as e:
         log.warning("Sesión %s ilegible, se descarta: %s", session_id, e)
@@ -250,3 +253,25 @@ def get(session_id: str) -> Session | None:
             _hacer_espacio()
             _store[s.id] = s
     return s
+
+
+def casos_recientes_por_nivel(nivel_id: int, limite: int = 2) -> list[str]:
+    """Ids de casos usados recientemente en ese nivel, contando sesiones activas y guardadas."""
+    recientes: dict[str, float] = {}
+    for s in _store.values():
+        if s.modo == "consulta" and s.nivel.get("id") == nivel_id:
+            recientes[s.caso.get("id", "")] = s.creada_en
+    try:
+        if DIR.exists():
+            for ruta in DIR.glob("*.json"):
+                try:
+                    d = json.loads(ruta.read_text(encoding="utf-8"))
+                    if d.get("modo", "consulta") == "consulta" and d.get("nivel", {}).get("id") == nivel_id:
+                        cid = d.get("caso_id")
+                        if cid:
+                            recientes[cid] = float(d.get("creada_en", d.get("guardado", 0)))
+                except (OSError, ValueError, TypeError):
+                    continue
+    except OSError:
+        pass
+    return [cid for cid, _ in sorted(recientes.items(), key=lambda item: item[1], reverse=True)[:limite]]

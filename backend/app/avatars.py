@@ -15,7 +15,13 @@ def avatar_url(persona: dict) -> str:
     pid = persona.get("id", "")
     seed = f"{pid}_{nombre}"
 
-    params: list[tuple[str, str]] = [("seed", seed)]
+    # Expresión serena y de paciente: DiceBear elige al azar y salían cejas enojadas, guiños y bocas raras.
+    params: list[tuple[str, str]] = [
+        ("seed", seed),
+        ("eyes", "default,squint"),
+        ("eyebrows", "defaultNatural,flatNatural,sadConcernedNatural"),
+        ("mouth", "default,concerned,serious"),
+    ]
 
     if sexo == "F":
         # Las pacientes femeninas nunca deben tener vello facial

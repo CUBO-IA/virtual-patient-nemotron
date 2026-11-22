@@ -5,6 +5,8 @@ Guía para que el paciente se vea "vivo" (respira, habla, siente dolor) y para q
 > Adaptada a este proyecto (React + Vite, FastAPI, voz de Edge TTS). Reemplaza a `animaciones-pacientes.md`, que asumía un proyecto distinto.
 >
 > **Decisión: se mantiene el avatar de DiceBear (el método actual).** No hay que crear imágenes. El pixel art por arquetipos queda como opción futura (§4).
+>
+> **Estado:** pasos 1 a 5 implementados. Ajustes posteriores tras probarlo: el avatar ya no tiembla ni rebota (se anima el anillo, §5), la expresión del avatar es fija y serena (§4) y la voz pronuncia con la «j» (§7).
 
 ---
 
@@ -12,9 +14,9 @@ Guía para que el paciente se vea "vivo" (respira, habla, siente dolor) y para q
 
 | Pieza | Hoy | Con esta guía |
 |---|---|---|
-| Imagen del paciente | Avatar de DiceBear (`avatar_url`), solo al activar «Ver paciente» | **Se mantiene.** Solo se anima con CSS (§5) |
+| Imagen del paciente | Avatar de DiceBear (`avatar_url`) con expresión serena fija, solo al activar «Ver paciente» | **Se mantiene.** Dentro de un círculo cuyo anillo se anima con CSS (§5) |
 | Voz del paciente | Edge TTS (`es-SV`) desde el servidor; `Chat.jsx` usa `new Audio(...)` con `onended` | Igual, pero la boca se mueve mientras suena |
-| Texto que lee la voz | El que se ve en pantalla, **con la «j» de la aspiración** | El texto original, sin «j» (§7) |
+| Texto que lee la voz | Siempre con la «j» de la aspiración (`texto_voz`); en pantalla la «j» solo desde el nivel 2 | Igual (§7) |
 | Estado del paciente | No existe | Un estado derivado en `App.jsx` (§3) |
 | Entrada del estudiante | Solo escribir | Escribir o hablar (§8) |
 
@@ -22,7 +24,7 @@ Decisiones que ya están tomadas:
 
 - **No se usa `speechSynthesis` del navegador.** La voz salvadoreña de Edge TTS es mejor y no cambia según el navegador.
 - **Se mantiene el avatar de DiceBear.** No hace falta preparar imágenes; el pixel art (6 arquetipos) es una opción futura (§4).
-- El **dolor se hace con CSS**, sin imagen extra (§5).
+- El **dolor se marca sin imagen extra** y sin movimiento brusco (§5).
 - Se descartan la hoja de sprites y el video con IA (§11).
 
 ---
@@ -31,14 +33,14 @@ Decisiones que ya están tomadas:
 
 | Paso | Qué | Esfuerzo | Imágenes nuevas |
 |---|---|---|---|
-| 1 | Movimiento con CSS por estado (respirar, pensar, hablar, dolor) | 30 min | No |
+| 1 | Animación del anillo por estado (pensar, hablar, escuchar) | 30 min | No |
 | 2 | (Opcional) Boca y ojos por parámetro de DiceBear | 30 min | No |
 | 3 | Boca sincronizada con el audio que ya existe | 1 h | No |
 | 4 | Entrada de voz del estudiante (micrófono) | 1-2 h | No |
 | 5 | Pulido de la interfaz (mensajes, «escribiendo…») | 1 h | No |
 | Extra | Parpadeo (`eyes=closed`), entrada del paciente | 1 h | No |
 
-**Con los pasos 1 y 2 ya se ve un paciente que habla y reacciona**, que es lo importante para la demo. Los pasos 3 y 4 se pueden hacer en cualquier orden.
+**Con el paso 1 ya se ve un paciente que reacciona** (el anillo late al hablar y se atenúa al pensar), que es lo importante para la demo. Los pasos 2 y 3 (mover la boca) son opcionales y se pueden hacer en cualquier orden con el 4.
 
 ---
 
@@ -48,14 +50,14 @@ El estado **no vive en `PatientCard`**, porque lo deciden el chat, el audio y el
 
 | Estado | Cuándo | Animación |
 |---|---|---|
-| `entrando` | Al iniciar la consulta (extra, §10) | Camina hacia el centro |
-| `reposo` | Esperando | Respira suave |
-| `escuchando` | El estudiante está dictando | Se inclina un poco hacia adelante |
-| `pensando` | Desde que se envía la pregunta hasta el primer token | Balanceo lento |
-| `hablando` | Llegan tokens **o** suena el audio | Boca alternando + rebote |
-| `despedida` | Pantalla de resultados | Un pequeño saludo |
+| `entrando` | Al iniciar la consulta | Aparece con un desvanecido |
+| `reposo` | Esperando | Quieto |
+| `escuchando` | El estudiante está dictando | El anillo se marca |
+| `pensando` | Desde que se envía la pregunta hasta el primer token | El anillo se atenúa y vuelve, despacio |
+| `hablando` | Llegan tokens **o** suena el audio | El anillo pulsa con suavidad |
+| `despedida` | Pantalla de resultados | Sin animación propia |
 
-La expresión (`dolor`) es independiente del estado y se combina con él (§5).
+La expresión (`dolor`) es independiente del estado; hoy solo sirve para interpretar el motivo de consulta y ya no cambia el avatar (§5).
 
 ```jsx
 // App.jsx
@@ -102,17 +104,24 @@ Cosas a tener en cuenta:
 - Para tener una cara de reposo consistente conviene fijar `mouth=default&eyes=default`; sin ellos, la semilla puede sacar ojos o bocas poco apropiados para un paciente. Eso cambia un poco el aspecto actual, por eso es opcional.
 - Cada variante es una petición a internet: se **precargan** con `new Image().src = …` al mostrar al paciente, para evitar parpadeos.
 
+### Expresión serena (ya aplicada)
+
+DiceBear elige ojos, cejas y boca al azar, y salían avatares con el ceño fruncido, guiños y bocas raras que desentonaban con un paciente que viene a consulta. `backend/app/avatars.py` fija esas tres partes a opciones calmadas (`eyes=default,squint`, `eyebrows=defaultNatural,flatNatural,sadConcernedNatural`, `mouth=default,concerned,serious`). Dentro de ese conjunto la semilla de cada paciente elige una variante, así que el rostro sigue siendo estable pero nunca enojado.
+
 ### Pixel art (opción futura)
 
 Si más adelante quieren un estilo pixel art, la idea sería **6 arquetipos** (hombre o mujer × joven, adulto, mayor; mismos cortes de edad que `avatars.py`) con `neutral`, `habla` y `parpadeo` en `frontend/public/pacientes/`, editando la boca y los ojos a mano en Piskel. DiceBear quedaría de respaldo. No es necesario para que la animación funcione.
 
 ---
 
-## 5. Paso 1: movimiento con CSS
+## 5. Paso 1: animación del anillo
 
-Regla para que no se pisen las animaciones:
+La primera versión movía la propia imagen (respirar, rebotar y temblar con el dolor). En la práctica resultaba molesto: toda la tarjeta parecía vibrar, el recorte cuadrado del contenedor cortaba el resplandor y se veía un recuadro raro alrededor del círculo. La versión actual:
 
-- Un elemento **no puede tener dos animaciones sobre `transform`**. Por eso el **dolor va en el contenedor** y el estado (respirar, hablar…) va en la imagen.
+- **El círculo lo pone el contenedor** (`.paciente-wrap`: borde, resplandor y recorte redondo). La imagen queda dentro, quieta, sin borde propio.
+- **Lo que se anima es el anillo**, de forma suave y con `box-shadow` u `opacity` (nunca `transform` sobre la imagen). Así no hay dos animaciones sobre el mismo elemento ni movimientos bruscos.
+- **El dolor ya no tiembla ni se tiñe de rojo.** Un borde rojo y un temblor continuo llamaban la atención sin aportar al aprendizaje; el motivo de consulta ya dice si algo duele.
+- El estado se escribe como clase en el contenedor (`paciente-wrap hablando`).
 
 ```jsx
 // frontend/src/components/PacienteAnimado.jsx
@@ -124,7 +133,7 @@ export default function PacienteAnimado({ paciente, estado, expresion }) {
   if (falla || !paciente?.avatar_url) return null
 
   return (
-    <div className={`paciente-wrap ${expresion === 'dolor' ? 'con-dolor' : ''}`}>
+    <div className={`paciente-wrap ${estado || 'reposo'} ${expresion === 'dolor' ? 'con-dolor' : ''}`}>
       <img
         src={paciente.avatar_url}
         alt={`Avatar de ${paciente.nombre}`}
@@ -138,32 +147,34 @@ export default function PacienteAnimado({ paciente, estado, expresion }) {
 
 ```css
 /* frontend/src/styles.css */
-.paciente-wrap { display: inline-block; }
-/* El tamaño y el círculo del avatar ya los da `.datos img` (120 px), no se redefinen aquí. */
+.paciente-wrap {
+  display: inline-block; width: 130px; height: 130px;
+  border-radius: 50%; overflow: hidden;
+  border: 2px solid var(--accent); background: var(--panel-card); box-shadow: var(--shadow-glow);
+  line-height: 0;
+}
+.datos .paciente-wrap img, .paciente-wrap .paciente {
+  display: block; width: 100%; height: 100%;
+  border: 0; border-radius: 0; background: transparent; box-shadow: none; filter: none;
+}
 
-/* Estados (en la imagen) */
-.paciente.reposo     { animation: respirar 4s ease-in-out infinite; }
-.paciente.pensando   { animation: pensar 1.6s ease-in-out infinite; }
-.paciente.hablando   { animation: rebotar .4s ease-in-out infinite alternate; }
-.paciente.escuchando { transform: scale(1.03) translateY(2px); }
-.paciente.despedida  { animation: saludar .6s ease-in-out 2; }
+.paciente-wrap.pensando   { animation: pv-anillo-suave 2.4s ease-in-out infinite; }
+.paciente-wrap.hablando   { animation: pv-anillo 1s ease-in-out infinite; }
+.paciente-wrap.escuchando { box-shadow: 0 0 0 4px var(--accent-subtle), var(--shadow-glow); }
+.paciente-wrap.entrando   { animation: pv-aparecer-suave .8s ease-out both; }
 
-/* Dolor (en el contenedor): temblor leve y un tono rojizo, sin imagen extra */
-.paciente-wrap.con-dolor { animation: temblar .6s ease-in-out infinite; }
-.paciente-wrap.con-dolor .paciente { filter: saturate(1.25) drop-shadow(0 0 5px rgb(200 60 50 / .55)); }
-
-@keyframes respirar { 0%,100% { transform: scale(1); } 50% { transform: scale(1.02); } }
-@keyframes pensar   { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-1.5deg); } }
-@keyframes rebotar  { from { transform: translateY(0); } to { transform: translateY(-3px); } }
-@keyframes temblar  { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-2px); } 75% { transform: translateX(2px); } }
-@keyframes saludar  { 0%,100% { transform: rotate(0); } 50% { transform: rotate(4deg); } }
+@keyframes pv-anillo { 0%,100% { box-shadow: 0 0 0 0 var(--accent-glow); } 50% { box-shadow: 0 0 0 7px transparent; } }
+@keyframes pv-anillo-suave { 0%,100% { opacity: 1; } 50% { opacity: .75; } }
+@keyframes pv-aparecer-suave { from { opacity: 0; } to { opacity: 1; } }
 ```
 
-En `PatientCard.jsx` se reemplaza el `<img src={paciente.avatar_url}>` por `<PacienteAnimado paciente={paciente} estado={estado} expresion={expresion} />` y se pasan `estado` y `expresion` como props desde `App.jsx`. El interruptor «Ver paciente» no cambia.
+Con `prefers-reduced-motion` todas las animaciones se desactivan (§11). En `PatientCard.jsx`, `<PacienteAnimado paciente={paciente} estado={estado} expresion={expresion} />` reemplaza al `<img>` original; el interruptor «Ver paciente» no cambia.
 
 ---
 
 ## 6. Pasos 2 y 3: boca y sincronía con la voz
+
+> **Estado: no aplicado.** El hook `useBoca` existe en `frontend/src/hooks/useBoca.js`, pero ningún componente lo usa: hoy el avatar no mueve la boca (el anillo ya comunica que el paciente habla, §5). Esta sección queda como referencia por si se retoma; si no, conviene borrar el hook.
 
 **Boca (paso 2).** Un hook alterna `neutral` y `habla` mientras el estado es `hablando`:
 
@@ -198,29 +209,32 @@ En `App.jsx`: `<Chat … onVozEstado={setAudioSonando} />`. Si la voz está sile
 
 ---
 
-## 7. Requisito previo: la voz debe leer el texto sin «j»
+## 7. Voz y aspiración de la «j» (decidido)
 
-Hoy el servidor guarda y manda a la voz el texto **después** de `aspirar()` («ejtoy», «Buenaj tardej»), y ese mismo texto vuelve al modelo en el historial. Hay que conservar el original:
+La aspiración regional de la «s» («dos veces» → «doj vecej») le da carácter a los pacientes del oriente, pero escrita dificulta la lectura de quien empieza. La decisión tomada después de probarlo:
+
+| Dónde | Qué se ve u oye |
+|---|---|
+| **Pantalla, nivel 1 (Básico)** | Ortografía normal: «dos veces» |
+| **Pantalla, niveles 2 y 3** | Con la aspiración, si el paciente es del oriente: «doj vecej» |
+| **Voz (TTS)**, en todos los niveles | Siempre con la aspiración |
+| **Historial que ve el modelo** | Siempre el texto original, sin «j», para no contaminar su contexto |
+
+Cómo está hecho (`backend/app/main.py`, dentro de `gen()` del chat):
 
 ```python
-# backend/app/main.py (dentro de gen() del chat), esquema
-crudo: list[str] = []
-async def tap(stream):
-    async for tok in stream:
-        crudo.append(tok)       # texto original del modelo
-        yield tok
-
-async for tok in habla.aspirar_stream(tap(llm.stream_chat(...)), nivel):
-    partial.append(tok)         # lo que se muestra (con «j» si corresponde)
-    yield _sse({"token": tok})
-
-# al terminar: done_payload["texto_original"] = "".join(crudo)
-# y en el historial del modelo: guardar "".join(crudo), no el aspirado
+mostrar_j = s.nivel.get("texto_aspirado", s.nivel.get("id") != 1)   # configurable por nivel
+flujo = habla.aspirar_stream(tap(tok_stream), nivel) if mostrar_j else tap(tok_stream)
+...
+done_payload = {
+    "done": True,
+    "texto_original": texto_limpio,                  # sin «j»
+    "texto_voz": habla.aspirar(texto_limpio, nivel), # con «j»: lo que lee la voz
+    ...
+}
 ```
 
-En el frontend cada mensaje guarda `content` (lo que se ve) y `voz` (`texto_original`), y `reproducirAudio` usa `voz`. Prueba sugerida: un paciente de San Miguel (aspiración `media`) cuyo `done` trae `texto_original` sin «j».
-
-> Alternativa más simple: dejar de escribir la «j» en pantalla y no hacer nada de lo anterior. Es la decisión pendiente sobre la aspiración.
+En el frontend (`App.jsx`) el evento `done` guarda `texto_voz` en el mensaje (`voz`) y `reproducirAudio` lo usa; si no viene, cae a `content`. Pruebas en `test_habla.py`: el nivel 1 muestra «Fueron dos veces.» con `texto_voz` aspirado, y el nivel 2 conserva la «j» en pantalla.
 
 ---
 
@@ -327,10 +341,12 @@ El campo de texto muestra `provisional` mientras `texto` esté vacío. Estilo m�
 
 ### Cosas que hay que saber
 
-- **Dónde funciona:** Chrome y Edge de escritorio. Firefox no lo trae. Funciona en `http://localhost` sin HTTPS. Es muy probable que **no funcione en el navegador integrado de la aplicación de escritorio de Claude** (no incluye las claves del servicio de voz): pruébalo en Chrome o Edge.
-- **Privacidad:** en Chrome el audio se procesa en los servidores de Google (en Edge, de Microsoft). Para una demo con pacientes ficticios no importa; indícalo en el README y que no digan datos personales reales.
-- **Idioma:** `es-SV` (El Salvador) existe en Chrome; si no, se usa `es-MX`. Las palabras clave de la evaluación ignoran tildes y mayúsculas, así que un dictado sin tildes puntúa igual.
-- **Exactitud:** los términos médicos son lo más propenso a errores. Por eso el texto se revisa antes de enviarlo.
+- **Dónde funciona:** Chrome y Edge de escritorio, en `http://localhost` (no hace falta HTTPS). Firefox no incluye `SpeechRecognition`: ahí el botón se oculta y se sigue escribiendo. En navegadores integrados dentro de otras aplicaciones suele fallar (no traen el servicio de voz del navegador): ante la duda, pruébalo en Chrome o Edge.
+- **Privacidad:** el reconocimiento no es local. Chrome envía el audio a los servidores de Google y Edge a los de Microsoft. Para pacientes ficticios no importa, pero hay que avisar al usuario que no dicte datos personales reales.
+- **Idioma:** el hook pide `es-SV`; si el navegador responde `language-not-supported`, reintenta solo con `es-MX`. La detección de la evaluación ignora tildes y mayúsculas, así que un dictado sin tildes puntúa igual.
+- **Errores que ve el usuario** (en español, sin códigos): permiso denegado («Permite el micrófono en el navegador para poder dictar.»), servicio no permitido, silencio («No se oyó nada. Inténtalo de nuevo.»), sin micrófono, y sin internet («El reconocimiento de voz necesita conexión a internet.»). Cualquier otro error muestra su código para poder reportarlo.
+- **Exactitud:** los términos médicos son lo más propenso a fallar («diclofenaco» → «dicloro neto»). Por eso el texto se revisa antes de enviarlo y nunca se envía solo.
+- **Limpieza:** al desmontar el componente el hook cancela el reconocimiento (`abort()`), de modo que el micrófono no queda abierto si el estudiante sale de la consulta.
 
 ---
 
@@ -416,19 +432,20 @@ Los hooks de boca y parpadeo ya comprueban `prefers-reduced-motion` y no alterna
 
 ## 13. Pruebas y criterio de terminado
 
-**Automáticas** (si se hace el §7): el `done` del chat trae `texto_original` sin «j» y el historial del modelo no contiene «j» de aspiración.
+**Automáticas** (ya existen en `backend/tests/test_habla.py`): en el nivel 1 el chat muestra ortografía normal y `texto_voz` trae la aspiración; en el nivel 2 la «j» se ve en pantalla; el historial del modelo no contiene «j» de aspiración.
 
 **Manuales:**
 
 - [ ] «Ver paciente» sigue mostrando el avatar de DiceBear de siempre (mismo tamaño y círculo).
 - [ ] Sin internet (avatar que no carga), la ficha se ve bien y no queda una imagen rota.
-- [ ] Estados: `reposo` al esperar, `pensando` hasta el primer token, `hablando` con la boca alternando mientras llegan tokens y suena el audio, `reposo` al terminar.
-- [ ] Con la voz silenciada, la boca sigue moviéndose mientras llegan los tokens.
-- [ ] Un motivo con «dolor» muestra el temblor y el tono rojizo; uno sin dolor, no.
-- [ ] Con «reducir movimiento» activado en el sistema, no hay animaciones ni cambio de boca.
+- [ ] Estados: `reposo` (quieto) al esperar, `pensando` (anillo que se atenúa) hasta el primer token, `hablando` (anillo que pulsa) mientras llegan tokens y suena el audio, `reposo` al terminar.
+- [ ] Con la voz silenciada, el anillo sigue pulsando mientras llegan los tokens.
+- [ ] La imagen del paciente no se mueve ni tiembla en ningún estado y no aparece ningún recuadro alrededor del círculo.
+- [ ] Los avatares nunca muestran cejas enojadas ni guiños.
+- [ ] Con «reducir movimiento» activado en el sistema, no hay animaciones.
 - [ ] 🎤: pide permiso, escribe el texto reconocido en el campo, **no** lo envía solo, y se desactiva mientras el paciente habla.
 - [ ] 🎤 sin permiso, sin micrófono, sin internet y en Firefox: mensaje claro o botón oculto, y se puede seguir escribiendo.
-- [ ] El audio del paciente lee el texto **sin «j»** (paciente de San Miguel).
+- [ ] En el nivel 1 el texto se ve con ortografía normal y el audio pronuncia con «j» (paciente de San Miguel); en el nivel 2 la «j» también se ve escrita.
 - [ ] `npm run build` compila y `pytest backend\tests -q` pasa.
 
 ---
@@ -439,7 +456,7 @@ Los hooks de boca y parpadeo ya comprueban `prefers-reduced-motion` y no alterna
 |---|---|
 | Pasos 1 + 2 (CSS y, opcional, boca por parámetro) | ~1 h |
 | Paso 3 (sincronía) | ~1 h |
-| §7 (voz sin «j») | ~30 min |
+| §7 (voz con «j», nivel 1 sin «j» en pantalla) | ~30 min |
 | Paso 4 (micrófono) | ~1-2 h |
 | Paso 5 (pulido) | ~1 h |
 | Extras | ~1 h |

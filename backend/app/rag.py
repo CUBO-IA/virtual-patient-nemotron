@@ -25,11 +25,11 @@ async def health() -> bool:
 async def embed_query(text: str) -> list[float] | None:
     """Genera vector de embedding para una consulta usando Ollama."""
     try:
-        async with httpx.AsyncClient(timeout=10.0) as client:
-            resp = await client.post(
-                f"{config.OLLAMA_URL}/api/embeddings",
-                json={"model": config.EMBED_MODEL, "prompt": text},
-            )
+        cuerpo: dict = {"model": config.EMBED_MODEL, "prompt": text, "keep_alive": "30m"}
+        if config.EMBED_EN_CPU:
+            cuerpo["options"] = {"num_gpu": 0}  # evita expulsar al modelo de lenguaje de la GPU
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            resp = await client.post(f"{config.OLLAMA_URL}/api/embeddings", json=cuerpo)
             if resp.status_code == 200:
                 return resp.json().get("embedding")
     except Exception as e:

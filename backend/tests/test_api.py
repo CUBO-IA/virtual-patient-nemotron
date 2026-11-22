@@ -67,3 +67,28 @@ def test_api_flujo_completo_y_errores():
     # 7. Error 409 si ya terminó y se intenta chatear
     chat_after_finish = client.post(f"/api/sessions/{sid}/chat", json={"message": "Una pregunta más"})
     assert chat_after_finish.status_code == 409
+
+
+def test_el_arranque_calienta_los_modelos_sin_bloquear(monkeypatch):
+    """El calentamiento corre en segundo plano y nunca rompe el arranque aunque Ollama no esté."""
+    import asyncio
+    from unittest.mock import AsyncMock, patch
+    from app import config, llm, main
+
+    monkeypatch.setattr(config, "CALENTAR_MODELOS", True)
+    monkeypatch.setattr(config, "RAG_ENABLED", True)
+
+    async def correr():
+        with patch("app.llm.calentar", new_callable=AsyncMock) as cal, patch("app.rag.embed_query", new_callable=AsyncMock) as emb:
+            await main._calentar_modelos()
+            await asyncio.gather(*list(main._tareas_de_fondo))
+        return cal.await_count, emb.await_count
+
+    assert asyncio.run(correr()) == (1, 1)
+
+    monkeypatch.setattr(config, "CALENTAR_MODELOS", False)
+    assert asyncio.run(main._calentar_modelos()) is None and not main._tareas_de_fondo
+
+    # Sin Ollama: no lanza
+    monkeypatch.setattr(config, "OLLAMA_URL", "http://127.0.0.1:9")
+    assert asyncio.run(llm.calentar()) is False

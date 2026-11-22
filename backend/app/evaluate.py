@@ -13,6 +13,7 @@ from functools import lru_cache
 
 from . import config, llm, prompts, rag, seguimiento
 from .sessions import Session
+from .texto import limpiar_texto_modelo
 
 PESOS_POR_DEFECTO = {"checklist": 60, "diagnostico": 30, "banderas": 10, "diferenciales": 0}
 COMPONENTES = ("checklist", "diagnostico", "banderas", "diferenciales", "pruebas", "plan")
@@ -145,6 +146,35 @@ def _texto_modulos_para_llm(pruebas: dict | None, plan: dict | None) -> str:
         lineas.append("Indicaciones esenciales que faltaron: " + ("; ".join(plan["indicaciones"]["faltantes"]) or "ninguna") + ".")
         lineas.append("Alertas de seguridad: " + ("; ".join(plan["alertas_seguridad"]) or "ninguna") + ".")
     return "\n".join(lineas)
+
+
+MAX_CHARS_CITA = 450
+
+
+async def _citas_relevantes(caso: dict, dx_estudiante: str) -> list[dict]:
+    """Fragmentos de guía para mostrar bajo la evaluación: solo los relevantes (umbral de distancia), sin
+    bibliografía y recortados. Los fragmentos crudos miden hasta ~2.800 caracteres de texto de PDF."""
+    from . import explicar  # import local: explicar usa rag/llm, no evaluate
+
+    crudas = await rag.consultar(
+        caso.get("guia_ref"), query=f"{caso['diagnostico']} {dx_estudiante}", top_k=3, max_distancia=config.RAG_MAX_DISTANCIA
+    )
+    citas = []
+    for c in crudas or []:
+        frag = (c.get("fragmento") or "").strip()
+        if not frag or explicar._BIBLIOGRAFIA.search(frag):
+            continue
+        frag = re.sub(r"\s+", " ", frag)
+        if len(frag) > MAX_CHARS_CITA:
+            corte = frag[:MAX_CHARS_CITA].rsplit(" ", 1)[0].rstrip(" ,;:-")
+            frag = corte + "…"
+        citas.append({"fuente": c.get("fuente", "Guía clínica"), "fragmento": frag})
+    return citas[:2]
+
+
+def _feedback_desviado(texto: str) -> bool:
+    listas = re.findall(r"(?m)^\s*(?:[-*+]\s+|\d+[.)]\s+)", texto or "")
+    return bool(re.search(r"(?m)^\s*#{1,6}\s", texto or "")) or len(texto or "") > 900 or len(listas) >= 3
 
 
 def _aciertos_diferenciales(caso: dict, dx_estudiante: str, diferenciales: list[str]) -> list[str]:
@@ -293,7 +323,7 @@ async def evaluar(
     citas = []
     if config.RAG_ENABLED:
         try:
-            citas = await rag.consultar(caso.get("guia_ref"), query=f"{caso['diagnostico']} {dx_estudiante}")
+            citas = await _citas_relevantes(caso, dx_estudiante)
         except Exception:
             citas = []
 
@@ -308,16 +338,24 @@ async def evaluar(
     ) if p)
     if session.mensajes:
         try:
-            narrativo = await llm.chat_once([
+            mensajes_feedback = [
                 {"role": "system", "content": prompts.SYSTEM_FEEDBACK},
                 {"role": "user", "content": prompts.user_feedback(
                     caso, dx_estudiante, correcto, cumplidos, faltantes, banderas_faltantes,
-                    citas=citas, extra=_texto_modulos_para_llm(pruebas_pub, plan_pub),
+                    citas=None, extra=_texto_modulos_para_llm(pruebas_pub, plan_pub),
                 )},
-            ])
+            ]
+            crudo = await llm.chat_once(mensajes_feedback, temperature=0.2, num_predict=220)
+            if _feedback_desviado(crudo):
+                crudo = await llm.chat_once(mensajes_feedback, temperature=0.0, num_predict=220)
+                desviado = _feedback_desviado(crudo)
+            else:
+                desviado = False
+            narrativo = "" if desviado else limpiar_texto_modelo(crudo)
             if narrativo:
                 # La alerta de seguridad nunca depende de que el modelo la mencione.
-                feedback = (_feedback_modulos(None, plan_pub) + " " + narrativo).strip() if alertas else narrativo
+                alerta = _feedback_modulos(None, plan_pub)
+                feedback = limpiar_texto_modelo((alerta + " " + narrativo).strip()) if alertas else narrativo
         except llm.LLMError:
             pass  # se conserva el feedback determinista
 

@@ -132,7 +132,7 @@ def calcular_peso(persona: dict, caso: dict) -> float:
     return prevalencia * (0.5 + sim)
 
 
-def sortear(caso_id: str | None = None, nivel: dict | None = None) -> tuple[dict, dict]:
+def sortear(caso_id: str | None = None, nivel: dict | None = None, casos_recientes: list[str] | None = None) -> tuple[dict, dict]:
     """Sorteo de caso y persona compatible con alta coherencia semántica y filtro por nivel.
 
     - Si se indica caso_id: valida dificultad contra el nivel y sortea una persona compatible.
@@ -166,6 +166,12 @@ def sortear(caso_id: str | None = None, nivel: dict | None = None) -> tuple[dict
         pesos = [0.5 + afinidad_semantica(p, caso) for p in compatibles]
         persona_elegida = random.choices(compatibles, weights=pesos, k=1)[0]
         return caso, persona_elegida
+
+    # Evita repetir los dos casos más recientes del mismo nivel cuando hay alternativas.
+    excluidos = set(casos_recientes or [])
+    diversos = [c for c in casos_candidatos if c.get("id") not in excluidos]
+    if diversos:
+        casos_candidatos = diversos
 
     # Ponderar casos elegibles por prevalencia y dificultad del nivel
     pesos_casos = []

@@ -52,3 +52,33 @@ def test_system_paciente_no_contiene_diagnostico_ni_alias():
             assert alias_norm not in prompt_norm, (
                 f"El alias '{alias}' de {caso['id']} aparece en system_paciente"
             )
+
+
+def test_glosario_y_placeholders_no_nombran_diagnosticos():
+    """El glosario (tooltips del chat) y los placeholders del formulario no deben regalar el diagnóstico."""
+    import json
+    import re
+    from pathlib import Path
+    from app.evaluate import norm
+
+    raiz = Path(__file__).resolve().parents[2]
+    casos = json.loads((raiz / "data" / "casos.json").read_text(encoding="utf-8"))
+    nombres = set()
+    for c in casos:
+        nombres.add(norm(c["diagnostico"]).strip())
+        nombres.update(norm(a).strip() for a in c.get("diagnostico_alias", []))
+    extra = {"dengue", "chikungunya", "zika", "leptospirosis", "hipertension arterial", "diabetes mellitus", "diabetes"}
+    nombres = {n for n in nombres | extra if len(n) >= 5}
+
+    textos = list(json.loads((raiz / "data" / "glosario.json").read_text(encoding="utf-8")).values())
+    jsx = (raiz / "frontend" / "src" / "components" / "GlossaryTip.jsx").read_text(encoding="utf-8")
+    textos += re.findall(r':\s*"([^"]+)"', jsx.split("export default")[0])
+    app = (raiz / "frontend" / "src" / "App.jsx").read_text(encoding="utf-8")
+    textos += re.findall(r'placeholder="([^"]+)"', app)
+    pruebas = (raiz / "frontend" / "src" / "components" / "PruebasPanel.jsx").read_text(encoding="utf-8")
+    textos += re.findall(r'placeholder="([^"]+)"', pruebas)
+
+    for t in textos:
+        n = f" {norm(t).strip()} "
+        for nombre in nombres:
+            assert f" {nombre} " not in n and f" {nombre}s " not in n, f"«{t}» nombra «{nombre}»"

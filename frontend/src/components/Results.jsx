@@ -306,7 +306,7 @@ export default function Results({
           <ul className="lista citas">
             {r.citas.map((c, i) => (
               <li key={i}>
-                <strong>{c.fuente}:</strong> {c.fragmento}
+                <strong>{c.fuente}:</strong> <span className="cita-texto">{c.fragmento}</span>
               </li>
             ))}
           </ul>

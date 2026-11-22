@@ -18,8 +18,11 @@ Simulador de entrevistas clínicas para estudiantes de medicina. El estudiante c
 | Voz | Voz salvadoreña (Lorena/Rodrigo) con tono y ritmo según la edad. |
 | Avatar | "Ver paciente" muestra un avatar coherente con sexo y edad. |
 | Pistas | Tres niveles de pista sin revelar el diagnóstico; cada una resta puntos. |
-| Glosario | Términos médicos con ayuda emergente (35 términos). |
-| Evaluación | Puntaje 0-100, diagnóstico real, qué preguntaste y qué faltó, señales de alarma y retroalimentación del modelo. |
+| Glosario | Términos coloquiales y de salud con ayuda emergente (35 entradas). |
+| Evaluación | Puntaje 0-100, diagnóstico real, qué preguntaste y qué faltó, señales de alarma y retroalimentación del modelo (texto plano, 3-5 frases). |
+| «¿Por qué?» | Junto a cada prueba, medicamento, indicación y disposición de la evaluación, el modelo explica el porqué de la decisión. Con guías cargadas cita fragmentos; sin ellas razona en general (siempre marcado como generado con IA y sin validar). |
+| Modo Urgencias | Práctica aparte: reconoce señales de alarma y elige prioridad (rojo/amarillo/verde) y acción contra el reloj. Solo en modo demostración. |
+| Introducción | Escena animada en pixel art con música y dos diapositivas al abrir la app (`?intro=0` la omite). |
 | Pruebas, plan y control | Módulos opcionales: pides pruebas (hemograma, radiografía…), indicas un plan de tratamiento y ves cómo evoluciona el paciente a los N días. **Solo se activan en casos validados por un profesional de la salud** (ver más abajo). |
 | RAG (opcional) | Con guías clínicas cargadas, la evaluación cita fragmentos de referencia. |
 
@@ -98,6 +101,9 @@ npm run dev
 | `NUM_CTX` | `2048` | Contexto. Con 6 GB de VRAM, 2048 mantiene el modelo casi entero en GPU. |
 | `RAG_ENABLED` | `false` | Activa las citas de guías clínicas. |
 | `EMBED_MODEL` | `bge-m3` | Modelo de embeddings (solo RAG). |
+| `EMBED_EN_CPU` | `true` | Los embeddings del RAG corren en CPU para no expulsar al modelo de lenguaje de una GPU de 6 GB (sin esto, cada consulta con RAG recarga el 7B: ≈17 s en vez de ≈5 s). |
+| `RAG_MAX_DISTANCIA` | `660` | Distancia máxima para considerar relevante un fragmento de guía (citas y «¿Por qué?»). |
+| `RAG_MAX_DISTANCIA_LEXICA` | `780` | Igual, pero para fragmentos que nombran la decisión (búsqueda híbrida del «¿Por qué?»). |
 | `CHROMA_URL` | `http://localhost:8001` | Dónde está Chroma (solo RAG). |
 | `PENALIZACION_PISTA` | `0.5` | Puntos que resta cada pista. |
 | `SESIONES_TTL_HORAS` | `24` | Cuántas horas se conserva en disco una consulta guardada. |
@@ -168,7 +174,7 @@ Con eso aparecen la pestaña «Pruebas» y el paso del plan, con el aviso visibl
 
 ## Modo Urgencias (borrador de demostración)
 
-El modo de práctica independiente propone reconocer señales de alarma y elegir prioridad y acción. Sus cuatro casos están en `data/urgencias.json` y todos permanecen pendientes de revisión clínica. Para habilitarlo en una demostración local, configura `SEGUIMIENTO_DEMO=true`; el aviso de contenido sin validar permanece visible. Valida su estructura con `python scripts/validate_urgencias.py`. No usar como orientación para emergencias reales.
+El modo de práctica independiente propone reconocer señales de alarma y elegir prioridad y acción. Sus cinco casos (rojo, amarillo y verde) están en `data/urgencias.json` y todos permanecen pendientes de revisión clínica. Para habilitarlo en una demostración local, configura `SEGUIMIENTO_DEMO=true`; el aviso de contenido sin validar permanece visible. Valida su estructura con `python scripts/validate_urgencias.py`. No usar como orientación para emergencias reales.
 
 ## Pruebas y validaciones
 
@@ -241,3 +247,7 @@ Otras formas de usarlo:
 - Personas: [Nemotron-Personas-El-Salvador](https://huggingface.co/datasets/nvidia/Nemotron-Personas-El-Salvador) de NVIDIA, desarrollado con la Agencia Nacional de IA de El Salvador (ANIA) y WideLabs, bajo licencia **CC BY 4.0**. Los datos son sintéticos y no identifican a personas reales.
 - Modelo de lenguaje: Qwen2.5 (vía Ollama). Voz: Microsoft Edge TTS. Avatares: DiceBear.
 - Este repositorio todavía no incluye un archivo `LICENSE`.
+
+## Introducción animada
+
+Al abrir la app se muestra una pequeña historia en pixel art (un estudiante de medicina, de noche, preocupado por sus prácticas, descubre Paciente Virtual) con música de fondo y dos diapositivas. Se ve una vez por sesión del navegador. `http://localhost:5173/?intro=1` la fuerza, `?intro=0` la omite y el botón **Intro** de la cabecera la repite. La música se genera en el navegador (no hay archivos de audio) y empieza solo después de pulsar «Comenzar con música».

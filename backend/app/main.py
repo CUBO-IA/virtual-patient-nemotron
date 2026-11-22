@@ -1,3 +1,4 @@
+import asyncio
 import json
 import random
 import time
@@ -11,6 +12,23 @@ from . import assign, avatars, config, evaluate, explicar, habla, llm, niveles, 
 from .models import ChatIn, ExplicarIn, FinishIn, PruebasRequestIn, SessionCreateIn, TriajeIn
 
 app = FastAPI(title="Paciente Virtual")
+_tareas_de_fondo: set = set()  # referencias para que el recolector no cancele las tareas
+
+
+@app.on_event("startup")
+async def _calentar_modelos():
+    """Carga el modelo de lenguaje (y el de embeddings si el RAG está activo) sin bloquear el arranque."""
+    if not config.CALENTAR_MODELOS:
+        return
+
+    async def calentar():
+        await llm.calentar()
+        if config.RAG_ENABLED:
+            await rag.embed_query("calentamiento")
+
+    t = asyncio.create_task(calentar())
+    _tareas_de_fondo.add(t)
+    t.add_done_callback(_tareas_de_fondo.discard)
 app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS, allow_methods=["*"], allow_headers=["*"])
 
 
@@ -110,7 +128,8 @@ async def crear_sesion(body: SessionCreateIn | None = None):
         raise HTTPException(503, f"Error cargando niveles: {e}")
 
     try:
-        caso, persona = assign.sortear(caso_id=caso_id, nivel=cfg_nivel)
+        recientes = sessions.casos_recientes_por_nivel(cfg_nivel["id"]) if caso_id is None else []
+        caso, persona = assign.sortear(caso_id=caso_id, nivel=cfg_nivel, casos_recientes=recientes)
     except ValueError as e:
         raise HTTPException(422, str(e))
     except (FileNotFoundError, RuntimeError) as e:
@@ -207,7 +226,11 @@ async def chat(session_id: str, body: ChatIn):
                     crudo.append(tok)
                     yield tok
 
-            async for tok in habla.aspirar_stream(tap(tok_stream), nivel):
+            # En pantalla la «j» de la aspiración solo se muestra desde el nivel 2 (en el 1 dificulta la lectura);
+            # la voz la pronuncia siempre: `texto_voz` lleva el texto aspirado.
+            mostrar_j = s.nivel.get("texto_aspirado", s.nivel.get("id") != 1)
+            flujo = habla.aspirar_stream(tap(tok_stream), nivel) if mostrar_j else tap(tok_stream)
+            async for tok in flujo:
                 partial.append(tok)
                 yield _sse({"token": tok})
 
@@ -215,6 +238,7 @@ async def chat(session_id: str, body: ChatIn):
             done_payload = {
                 "done": True,
                 "texto_original": texto_limpio,
+                "texto_voz": habla.aspirar(texto_limpio, nivel) if nivel != "ninguna" else texto_limpio,
                 "preguntas": {
                     "usadas": s.preguntas_usadas,
                     "max": s.nivel.get("max_preguntas"),

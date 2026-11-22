@@ -68,3 +68,13 @@ async def health() -> dict:
         return {"ollama": True, "modelo": config.LLM_MODEL, "modelo_disponible": base in names}
     except Exception:
         return {"ollama": False, "modelo": config.LLM_MODEL, "modelo_disponible": False}
+
+
+async def calentar() -> bool:
+    """Carga el modelo en memoria con una petición mínima. Nunca lanza: si Ollama no está, no pasa nada."""
+    try:
+        async with httpx.AsyncClient(timeout=httpx.Timeout(180.0, connect=3.0)) as client:
+            r = await client.post(f"{config.OLLAMA_URL}/api/chat", json=_payload([{"role": "user", "content": "hola"}], False, 0.0, 1))
+        return r.status_code == 200
+    except httpx.HTTPError:
+        return False

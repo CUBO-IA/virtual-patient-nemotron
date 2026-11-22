@@ -1,0 +1,314 @@
+/* Introducción: escena pixel art, destello y diapositivas.
+   --u es el 1 % del ancho del «cuadro» 16:9 que cabe en la capa de la introducción: los textos escalan con la escena. */
+.intro {
+  --morado: #8275e5;
+  container-type: size; /* las unidades cqw/cqh de la escena se miden contra esta capa, no contra la ventana */
+  --fondo: #0b0f24;
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: var(--fondo);
+  color: #f5f5fc;
+  overflow: hidden;
+  font-family: inherit;
+}
+
+/* ---------- Escena ---------- */
+.intro-escenario {
+  --u: min(1cqw, 1.7778cqh);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--u) * 100);
+  height: calc(var(--u) * 56.25);
+  transform: translate(-50%, -50%);
+  animation: intro-aparecer 1s ease-out both;
+}
+.intro-escena {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+
+.intro-globo {
+  position: absolute;
+  left: 62%;
+  top: 1.5%;
+  width: 35%;
+  margin: 0;
+  padding: calc(var(--u) * 1) calc(var(--u) * 1.4);
+  background: #f4f6ff;
+  color: #1a1a2e;
+  border: calc(var(--u) * 0.35) solid #1a1a2e;
+  border-radius: calc(var(--u) * 0.6);
+  box-shadow: calc(var(--u) * 0.5) calc(var(--u) * 0.5) 0 rgba(0, 0, 0, 0.45);
+  font-family: 'Courier New', ui-monospace, monospace;
+  font-weight: 700;
+  font-size: calc(var(--u) * 1.55);
+  line-height: 1.35;
+  min-height: calc(var(--u) * 4);
+}
+.intro-cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  margin-left: 2px;
+  background: #1a1a2e;
+  vertical-align: text-bottom;
+  animation: intro-parpadeo 0.9s steps(2) infinite;
+}
+.intro-subtitulos {
+  position: absolute;
+  left: 50%;
+  bottom: 4%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: calc(var(--u) * 0.6) calc(var(--u) * 1.6);
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: calc(var(--u) * 0.5);
+  color: #e9edf7;
+  font-size: calc(var(--u) * 1.7);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* Animaciones de la escena */
+.intro-estudiante { animation: intro-leer 3s steps(1) infinite; }
+.intro-gota { animation: intro-gota 2.4s ease-in infinite; }
+.intro-estrella { animation: intro-titilar 2.6s steps(1) infinite; }
+.intro-vapor { animation: intro-vapor 2.1s ease-out infinite; }
+.intro-punto { animation: intro-punto 1.8s steps(1) infinite; }
+.intro-brillo { animation: intro-brillo 1.2s ease-in-out infinite alternate; }
+.intro-tapa {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  transform: scaleY(0.1);
+}
+.intro-tapa.abierta { animation: intro-abrir 0.7s steps(6) forwards; }
+.intro-pantalla-on { animation: intro-aparecer 0.6s 0.5s both; }
+
+/* Destello: un punto de luz que nace en la pantalla de la computadora y cubre todo en blanco */
+.intro-flash {
+  position: absolute;
+  left: 86.25%;
+  top: 57.8%;
+  z-index: 5;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0);
+}
+.fase-destello .intro-flash { animation: intro-flash 1.9s cubic-bezier(0.5, 0, 0.8, 0.4) forwards; }
+
+/* ---------- Controles ---------- */
+.intro-controles {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+}
+.intro-icono {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background: rgba(10, 14, 36, 0.7);
+  color: #f5f5fc;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.intro-icono:hover { background: rgba(130, 117, 229, 0.35); }
+.intro-icono:focus-visible, .intro-boton:focus-visible, .intro-enlace:focus-visible, .intro-puntos button:focus-visible {
+  outline: 3px solid #ffd98a;
+  outline-offset: 2px;
+}
+
+/* ---------- Pantalla de inicio ---------- */
+.intro-bienvenida {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 24px;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 30%, #1d2350 0%, var(--fondo) 70%);
+}
+.intro-luna {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #f5efc4;
+  box-shadow: inset -16px 6px 0 0 #1a2050, 0 0 40px rgba(245, 239, 196, 0.35);
+}
+
+/* ---------- Diapositivas ---------- */
+.intro-diapositivas {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, #2a2766 0%, #151b35 55%, var(--fondo) 100%);
+}
+.intro-diapositivas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  background: #fff;
+  pointer-events: none;
+  animation: intro-desde-blanco 1.4s ease-out forwards;
+}
+.intro-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 64px 24px 88px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(14px);
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.intro-slide.activa { opacity: 1; transform: none; pointer-events: auto; }
+
+.intro-logo { position: relative; width: 72px; height: 72px; animation: intro-flotar 3s ease-in-out infinite; }
+.intro-logo span { position: absolute; background: var(--morado); box-shadow: 0 0 24px rgba(130, 117, 229, 0.7), 4px 4px 0 #3b3290; }
+.intro-logo span:first-child { left: 28px; top: 0; width: 16px; height: 72px; }
+.intro-logo span:last-child { left: 0; top: 28px; width: 72px; height: 16px; }
+
+.intro-etiqueta {
+  margin: 0;
+  color: #b9b2ff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.intro-titulo {
+  margin: 0;
+  font-size: clamp(2.6rem, 8vw, 5.4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-shadow: 4px 4px 0 #2b2a5a;
+}
+.intro-titulo.pequeno { font-size: clamp(2rem, 6vw, 3.6rem); }
+.intro-titulo em { font-style: normal; color: var(--morado); }
+.intro-lema { margin: 0; max-width: 34em; color: #d9d5ff; font-size: clamp(1rem, 2.2vw, 1.3rem); line-height: 1.5; }
+.intro-aviso { margin: 8px 0 0; max-width: 40em; color: rgba(217, 213, 255, 0.65); font-size: 0.85rem; }
+.intro-subtitulo { margin: 0; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; text-shadow: 3px 3px 0 #2b2a5a; }
+.intro-nota { margin: 0; max-width: 46em; color: rgba(217, 213, 255, 0.75); font-size: 0.85rem; line-height: 1.5; }
+
+.intro-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: min(900px, 100%);
+}
+.intro-tarjeta {
+  padding: 18px 20px;
+  border: 2px solid #344c8c;
+  border-radius: 8px;
+  background: rgba(30, 40, 80, 0.75);
+  box-shadow: 5px 5px 0 #070a1b;
+  text-align: left;
+}
+.intro-tarjeta i { color: var(--morado); font-size: 1.6rem; }
+.intro-tarjeta h3 { margin: 8px 0 6px; font-size: 1.1rem; }
+.intro-tarjeta p { margin: 0; color: #d9d5ff; font-size: 0.92rem; line-height: 1.5; }
+
+.intro-acciones { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.intro-boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--morado);
+  color: #fff;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: 0 4px 0 #4b3fb0;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.intro-boton:hover { transform: translateY(2px); box-shadow: 0 2px 0 #4b3fb0; }
+.intro-boton.secundario { background: transparent; border: 2px solid #5a5fa8; box-shadow: none; color: #d9d5ff; }
+.intro-enlace { border: 0; background: none; color: rgba(217, 213, 255, 0.7); font: inherit; text-decoration: underline; cursor: pointer; }
+
+.intro-puntos { position: absolute; bottom: 22px; left: 0; right: 0; display: flex; justify-content: center; gap: 10px; }
+.intro-puntos button { width: 14px; height: 14px; padding: 0; border: 2px solid #8a85d6; border-radius: 3px; background: transparent; cursor: pointer; }
+.intro-puntos button.activo { background: var(--morado); border-color: var(--morado); }
+
+/* ---------- Animaciones ---------- */
+@keyframes intro-abrir { from { transform: scaleY(0.1); } to { transform: scaleY(1); } }
+@keyframes intro-aparecer { from { opacity: 0; } to { opacity: 1; } }
+@keyframes intro-parpadeo { 50% { opacity: 0; } }
+@keyframes intro-leer { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(0.6px); } }
+@keyframes intro-gota { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translateY(7px); opacity: 0; } }
+@keyframes intro-titilar { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+@keyframes intro-vapor { 0% { transform: translateY(0); opacity: 0; } 30% { opacity: 0.8; } 100% { transform: translateY(-6px); opacity: 0; } }
+@keyframes intro-punto { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+@keyframes intro-brillo { from { opacity: 0.55; } to { opacity: 1; } }
+@keyframes intro-flash { 0% { transform: translate(-50%, -50%) scale(0); opacity: 1; } 55% { transform: translate(-50%, -50%) scale(40); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(400); opacity: 1; } }
+@keyframes intro-desde-blanco { 0% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes intro-flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+/* Pantallas estrechas (celular en vertical): la escena queda pequeña y centrada; el globo y los subtítulos se
+   colocan en las franjas libres de arriba y abajo, con letra legible. */
+@container (max-width: 600px) {
+  .intro-globo {
+    left: 0;
+    top: auto;
+    bottom: calc(100% + 16px);
+    width: 100%;
+    font-size: 15px;
+    padding: 10px 12px;
+    border-width: 3px;
+  }
+  .intro-subtitulos {
+    top: calc(100% + 16px);
+    bottom: auto;
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+}
+
+@media (max-height: 700px) {
+  .intro-slide { gap: 12px; padding-top: 56px; }
+  .intro-tarjeta { padding: 12px 16px; }
+  .intro-tarjeta h3 { margin: 4px 0; }
+}
+
+@media (max-width: 720px) {
+  .intro-tarjetas { grid-template-columns: 1fr; gap: 10px; }
+  .intro-slide { padding: 56px 16px 64px; gap: 12px; justify-content: flex-start; overflow-y: auto; }
+  .intro-tarjeta { padding: 12px 14px; }
+  .intro-tarjeta p { font-size: 0.85rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro *, .intro *::before { animation: none !important; transition: none !important; }
+  .intro-slide { transform: none; }
+}

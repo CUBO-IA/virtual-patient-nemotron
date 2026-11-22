@@ -77,9 +77,9 @@ def test_con_guia_el_modelo_recibe_solo_los_fragmentos(terminada, monkeypatch):
     _finish(terminada)
     frags = [{"fuente": "gastroenteritis.pdf", "fragmento": "Las SRO previenen la deshidratación."}]
     with patch("app.rag.consultar", new_callable=AsyncMock, return_value=frags) as consulta, \
-            patch("app.llm.chat_once", new_callable=AsyncMock, return_value="Se apoya en [1].") as llm:
+            patch("app.llm.chat_once", new_callable=AsyncMock, return_value="Esta decisión se apoya en la guía [1].") as llm:
         d = _pedir(terminada, "medicamento", "sales_rehidratacion").json()
-    assert d["origen"] == "guia" and d["explicacion"] == "Se apoya en [1]."
+    assert d["origen"] == "guia" and d["explicacion"] == "Esta decisión se apoya en la guía [1]."
     assert d["fuentes"][0]["fuente"] == "gastroenteritis.pdf"
     # se aplicó el umbral de relevancia y la guía del caso
     assert consulta.await_args.kwargs["max_distancia"] == config.RAG_MAX_DISTANCIA_LEXICA
@@ -102,7 +102,7 @@ def test_fragmentos_de_bibliografia_se_descartan(terminada, monkeypatch):
     _finish(terminada)
     frags = [{"fuente": "x.pdf", "fragmento": "Lecturas recomendadas 1. Políticas de tratamiento..."},
              {"fuente": "x.pdf", "fragmento": "Goicoechea M, et al. Aspirin. Available from: http://x"}]
-    with patch("app.rag.consultar", new_callable=AsyncMock, return_value=frags),             patch("app.llm.chat_once", new_callable=AsyncMock, return_value="General.") as llm:
+    with patch("app.rag.consultar", new_callable=AsyncMock, return_value=frags),             patch("app.llm.chat_once", new_callable=AsyncMock, return_value="Explicación general sobre esta decisión.") as llm:
         d = _pedir(terminada, "indicacion", "hidratacion").json()
     assert d["origen"] == "ia" and d["fuentes"] == []
     assert llm.await_count == 1  # solo la explicación general: nada que citar

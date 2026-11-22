@@ -179,6 +179,7 @@ Variables en `.env` (ver `.env.example`): `OLLAMA_URL, LLM_MODEL, EMBED_MODEL, C
 - Solo se guardan referencias (`caso_id`, `persona_id`) y el estado de la consulta; no se copia el contenido del caso. Guardar es de mejor esfuerzo: un fallo de escritura no rompe la petición.
 - **Todo cambio de una sesión debe llamar a `sessions.guardar(s)`** (hoy: crear, chat, pista, pruebas, finish). Si añades un endpoint que modifica la sesión, guárdala también.
 - Una pregunta sin respuesta (el reinicio interrumpió la petición) se descarta al restaurar.
+- El sorteo normal reduce repeticiones excluyendo los dos casos más recientes del nivel cuando hay alternativas compatibles; si no quedan alternativas, conserva el sorteo normal. Un `caso_id` solicitado explícitamente siempre se respeta.
 - Las pruebas usan una carpeta temporal (`conftest.py`); no escribas en `.sesiones/` desde los tests.
 - `iniciar.bat` no usa `--reload`; `iniciar-dev.bat` sí (solo `backend/`).
 
@@ -194,7 +195,7 @@ Variables en `.env` (ver `.env.example`): `OLLAMA_URL, LLM_MODEL, EMBED_MODEL, C
 ## 13b. Habla del paciente
 
 - Respuestas de 2-4 frases con reacción emocional breve; el primer mensaje es solo el motivo, en una frase. Cada persona tiene 3 **muletillas** estables (`habla.muletillas_para_persona`, semilla = id de la persona) que el prompt pide usar en menos de la mitad de las respuestas: sin esa instrucción el 7B las pegaba al final de todas. Cada muletilla lleva su uso entre paréntesis cuando se presta a mal uso («ni modo» = resignación ante algo inevitable). Dosificación: `system_paciente(..., turno)` (turno = respuestas previas del paciente, calculado en `mensajes_paciente`) separa el síntoma principal de «otros síntomas» (solo se confirman si preguntan por ellos) e indica **un único síntoma nuevo por turno** para las preguntas generales («¿algo más?»), empezando por los que el motivo no menciona. Una regla genérica de «poco a poco» no bastaba con el 7B. Medido en HTA: de 4+ síntomas por respuesta a 1-3; no es determinista. No uses esto con urgencias (allí los signos se muestran sin que los pidan). También exige **no repetir las palabras de la pregunta** (contestar directo). Son un borrador sin validar por hablantes nativos, igual que `data/habla_salvadorena.json`.
-- La voz (TTS) lee el texto **tal como se muestra**, con la «j» de la aspiración. El `done` del chat sigue trayendo `texto_original` (sin «j»), pero el frontend ya no lo usa para la voz; el historial del modelo guarda el texto sin «j».
+- **«j» de la aspiración:** en pantalla solo desde el nivel 2 (en el 1 dificulta la lectura; configurable con `texto_aspirado` en el nivel). La **voz** (TTS) siempre pronuncia con «j»: el `done` del chat trae `texto_voz` (aspirado) y el frontend lo guarda en `voz`. `texto_original` (sin «j») sigue en el `done`; el historial del modelo guarda el texto sin «j».
 - Si añades reglas al prompt, mantén `MAX_CHARS_PROMPT` en `test_prompt_habla.py` (peor caso ≈1320 tokens de 2048).
 
 ## 14. «¿Por qué?» (explicaciones)
@@ -207,6 +208,7 @@ Variables en `.env` (ver `.env.example`): `OLLAMA_URL, LLM_MODEL, EMBED_MODEL, C
 - La explicación general sale del conocimiento del 7B, **sin validar**: se muestra siempre como «generada con IA como apoyo educativo, sin validar por un profesional». Medido con el 7B: razona bien el mecanismo y el porqué, pero puede ser impreciso en matices clínicos (p. ej. afirmar que conviene no medicar al inicio, o cómo actúa el reposo); no la presentes como recomendación médica.
 - `/finish` añade ids opcionales (`pruebas.esenciales_faltantes_ids`, `plan.medicamentos_faltantes_ids`, `plan.indicaciones.faltantes_ids`) para pedir la explicación de lo que faltó.
 - Los PDFs de `data/guias/` no se suben a git; fuentes y enlaces en `data/guias/README.md`. No inventes contenido de guías.
+- **Rendimiento (6 GB de VRAM):** los embeddings de las consultas se piden con `num_gpu: 0` (`EMBED_EN_CPU=true`). Con `bge-m3` en la GPU, Ollama expulsaba a `qwen2.5:7b` y lo recargaba en la respuesta siguiente: cada par embedding+respuesta pasaba de ≈5 s a ≈17 s. No quites esa opción sin volver a medirlo (`ollama ps` debe mostrar ambos modelos cargados).
 - Interfaz: `frontend/src/components/PorQue.jsx` (botón «¿Por qué?» en `Results.jsx`; «Pensando…» mientras responde, ~6-9 s con el 7B).
 
 ## 15. Modo urgencias (borrador)
@@ -221,3 +223,16 @@ Variables en `.env` (ver `.env.example`): `OLLAMA_URL, LLM_MODEL, EMBED_MODEL, C
 - Interfaz: `frontend/src/components/UrgenciasPanel.jsx` (cronómetro, chat, semáforo, acción, resultado).
 - Aviso obligatorio en todas las pantallas: «Esto es una práctica con casos ficticios. En una emergencia real, llama a los servicios de emergencia de tu país.»
 - Estas decisiones clínicas son borradores generados y no deben presentarse como recomendación médica. La activación real requiere revisión profesional completa.
+
+## 16. Introducción (escena pixel art + diapositivas)
+
+- Código en `frontend/src/intro/`: `Intro.jsx` (línea de tiempo), `Escena.jsx` (SVG de 160×90 «píxeles»), `PixelArt.jsx` + `sprites.js` (sprites descritos como texto: un carácter = un píxel), `Diapositivas.jsx` (portada + contenido), `musica.js` (música sintetizada con Web Audio: **sin archivos de audio ni derechos de autor**) e `intro.css`.
+- Flujo: pantalla de inicio («Comenzar con música» / «Sin sonido» / «Saltar introducción», porque los navegadores no permiten sonar sin un clic) → escena nocturna (el estudiante lee, preocupado) → encuentra la app en su computadora → destello → dos diapositivas → la app.
+- Se muestra al abrir la app una vez por sesión del navegador (`sessionStorage.pv_intro_vista`). `?intro=1` la fuerza, `?intro=0` la omite y el botón «Intro» de la cabecera la repite. Con `prefers-reduced-motion` salta directo a las diapositivas, sin animación.
+- El silencio se recuerda en `localStorage.pv_intro_silencio`. Las dimensiones usan unidades de contenedor (`cqw/cqh`) para no depender de `vw`.
+- Las diapositivas solo afirman lo que es cierto (modelo local con Ollama, 8 casos ficticios, contenido clínico sin validar). **Si cambias el producto, revisa el texto de `Diapositivas.jsx`.** La voz de los pacientes usa un servicio en internet (edge-tts), así que no digas «todo funciona sin conexión».
+
+## 17. Retroalimentación generada
+
+- `backend/app/texto.py` limpia Markdown, limita la longitud y evita cortar a media frase; `evaluate.py` reintenta una salida desviada y cae al feedback determinista si persiste.
+- Las citas RAG siguen en la respuesta de `/finish`, pero no se incluyen en el prompt de retroalimentación: las guías se reservan para «¿Por qué?» para evitar que el feedback resuma capítulos en vez de describir el desempeño calculado.

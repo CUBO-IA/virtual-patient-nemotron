@@ -47,7 +47,7 @@ export default function PorQue({ sessionId, tipo, id }) {
           )}
           {estado === 'listo' && datos?.explicacion && (
             <>
-              <p>{datos.explicacion}</p>
+              <p className="porque-explicacion">{datos.explicacion}</p>
               {datos.fuentes.length > 0 && (
                 <details className="porque-fuentes">
                   <summary>Fuentes ({datos.fuentes.length})</summary>
