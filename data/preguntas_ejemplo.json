@@ -1,0 +1,1259 @@
+{
+  "version": 1,
+  "guia": {
+    "motivo": {
+      "desarrollo": [
+        "¿Qué le trae por aquí hoy?",
+        "Cuénteme, ¿cuál es el motivo de su consulta?",
+        "¿Qué molestia o problema tiene?",
+        "¿En qué le puedo colaborar el día de hoy?",
+        "¿Cómo se ha sentido últimamente y por qué viene?",
+        "Dígame qué problema de salud le preocupa hoy."
+      ],
+      "reserva": [
+        "Cuénteme, ¿qué le pasa en estos momentos?",
+        "¿Por qué decidió venir a pasar consulta médica?",
+        "¿Qué síntoma principal lo motivó a acudir a la unidad?"
+      ]
+    },
+    "inicio": {
+      "desarrollo": [
+        "¿Desde cuándo empezó este malestar?",
+        "¿Cuándo comenzó a sentirse mal?",
+        "¿Cuántos días lleva con estos síntomas?",
+        "¿Cómo fue que inició todo esto?",
+        "¿Hace cuánto tiempo le empezaron las molestias?",
+        "¿Desde qué fecha exacta nota el problema?"
+      ],
+      "reserva": [
+        "¿El problema comenzó de repente o fue poco a poco?",
+        "¿Qué día exacto le empezó la molestia?",
+        "¿Cuándo fue la primera vez que sintió este cuadro?"
+      ]
+    },
+    "intensidad": {
+      "desarrollo": [
+        "Del 1 al 10, ¿qué tan fuerte es el dolor?",
+        "¿Qué tan intensa siente la molestia?",
+        "¿Es un dolor muy fuerte, moderado o leve?",
+        "¿Cómo describiría el dolor, punzante o sordo?",
+        "¿Con qué frecuencia al día le dan los dolores?",
+        "¿La intensidad del dolor le impide hacer sus cosas?"
+      ],
+      "reserva": [
+        "En una escala de 1 a 10, ¿cuánto le duele?",
+        "¿El dolor es insoportable o tolerable?",
+        "¿Siente que la intensidad ha ido aumentando con las horas?"
+      ]
+    },
+    "factores": {
+      "desarrollo": [
+        "¿Hay algo que le mejore el dolor?",
+        "¿Qué cosas le alivian la molestia?",
+        "¿Con qué se le calma el malestar?",
+        "¿Hay algo que lo empeore o lo aumente?",
+        "¿Se le pasa cuando descansa en cama?"
+      ],
+      "reserva": [
+        "¿Ha notado si alguna postura le calma el malestar?",
+        "¿Empeora cuando camina o hace algún esfuerzo?",
+        "¿Con alguna comida o bebida siente alivio?"
+      ]
+    },
+    "asociados": {
+      "desarrollo": [
+        "¿Ha sentido algún otro síntoma además de esto?",
+        "¿Tiene alguna otra molestia asociada?",
+        "¿Ha tenido fiebre, náuseas o mareos?",
+        "¿Le acompaña alguna otra molestia en el cuerpo?",
+        "¿Se ha sentido mal de alguna otra manera?"
+      ],
+      "reserva": [
+        "¿Ha notado algo raro aparte del motivo principal?",
+        "¿Qué otros síntomas ha presentado en estos días?",
+        "¿Siente alguna otra cosa extraña o diferente?"
+      ]
+    },
+    "antecedentes": {
+      "desarrollo": [
+        "¿Padece de alguna enfermedad crónica como presión o azúcar?",
+        "¿Le han operado de algo alguna vez?",
+        "¿Es alérgico a algún medicamento o alimento?",
+        "¿Ha estado hospitalizado anteriormente?",
+        "¿Tiene algún antecedente médico importante?"
+      ],
+      "reserva": [
+        "¿Ha tenido cirugías previas en su vida?",
+        "¿Sufre de alguna enfermedad del corazón o riñones?",
+        "¿Alguna vez ha tenido reacciones alérgicas graves a fármacos?"
+      ]
+    },
+    "familiares": {
+      "desarrollo": [
+        "¿Alguien en su familia padece de azúcar o presión?",
+        "¿En su familia hay antecedentes de enfermedades graves?",
+        "¿Sus papás o hermanos sufren de alguna enfermedad?",
+        "¿Su mamá o papá han tenido problemas parecidos?",
+        "¿Hay antecedentes familiares de problemas de salud?"
+      ],
+      "reserva": [
+        "¿Algún familiar cercano ha fallecido joven por enfermedad?",
+        "¿En su hogar alguien más tiene este diagnóstico?",
+        "¿Sus abuelos padecían de alguna enfermedad crónica?"
+      ]
+    },
+    "medicinas": {
+      "desarrollo": [
+        "¿Está tomando algún medicamento actualmente?",
+        "¿Se ha tomado alguna pastilla o medicina para esto?",
+        "¿Qué fármacos o pastillas usa habitualmente?",
+        "¿Toma algo recetado o automedicado?",
+        "¿Ha tomado algún tratamiento recientemente?"
+      ],
+      "reserva": [
+        "¿Usa algún té, hierba o remedio casero para el mal?",
+        "¿Qué pastillas se compró en la farmacia para calmarse?",
+        "¿Está cumpliendo algún tratamiento con inyecciones?"
+      ]
+    },
+    "habitos": {
+      "desarrollo": [
+        "¿Usted fuma o toma bebidas alcohólicas?",
+        "¿A qué se dedica o en qué trabaja?",
+        "¿Cómo es su alimentación en el día a día?",
+        "¿Realiza actividad física o ejercicio regular?",
+        "¿Con quién vive en su casa?"
+      ],
+      "reserva": [
+        "¿Consume tabaco, cigarros o licor?",
+        "¿En su trabajo está expuesto a humo o esfuerzo físico?",
+        "¿Duerme bien por las noches y cuántas horas descansa?"
+      ]
+    }
+  },
+  "casos": {
+    "c_dengue_01": {
+      "fiebre_dur": {
+        "desarrollo": [
+          "¿Cuántos días lleva con fiebre?",
+          "¿Qué tan alta le ha subido la calentura?",
+          "¿Ha tenido calentura continua o por ratos?",
+          "¿Se ha medido la fiebre con termómetro?",
+          "¿Siente escalofríos con la calentura?"
+        ],
+        "reserva": [
+          "¿Desde cuándo tiene calentura en el cuerpo?",
+          "¿La fiebre le baja al tomar pastillas?",
+          "¿Ha tenido fiebre todos estos días seguidos?"
+        ]
+      },
+      "dolor_ojos": {
+        "desarrollo": [
+          "¿Le duele la cabeza?",
+          "¿Siente dolor detrás de los ojos?",
+          "¿Tiene pesadez o molestia retroocular?",
+          "¿Al mover los ojos hacia los lados le duele?",
+          "¿El dolor de cabeza es muy intenso en la frente?"
+        ],
+        "reserva": [
+          "¿Le molestan los ojos al mirar la luz?",
+          "¿Siente punzadas en la frente y en las cuencas de los ojos?",
+          "¿Tiene molestia en la parte posterior de los ojos?"
+        ]
+      },
+      "dolor_musc": {
+        "desarrollo": [
+          "¿Le duelen los músculos o el cuerpo?",
+          "¿Siente dolor en los huesos y articulaciones?",
+          "¿Tiene dolor en las coyunturas o articulaciones?",
+          "¿Siente el cuerpo cortado o adolorido?",
+          "¿Le cuesta moverse por dolor muscular generalizado?"
+        ],
+        "reserva": [
+          "¿Siente como si le hubieran golpeado los músculos?",
+          "¿Las articulaciones se le han inflamado o le duelen?",
+          "¿Le duelen las piernas y la espalda al caminar?"
+        ]
+      },
+      "contactos": {
+        "desarrollo": [
+          "¿Hay alguien más con fiebre en su casa?",
+          "¿Algún vecino de la colonia ha estado enfermo de dengue?",
+          "¿En su trabajo o comunidad hay personas con estos síntomas?",
+          "¿Ha tenido contacto con gente con calentura?",
+          "¿En su familia alguien más tiene estos dolores?"
+        ],
+        "reserva": [
+          "¿Conoce vecinos que hayan estado en el hospital por esto?",
+          "¿En su cantón o caserío hay varios enfermos?",
+          "¿Alguien cercano a usted se enfermó de calentura?"
+        ]
+      },
+      "zancudos": {
+        "desarrollo": [
+          "¿Hay muchos zancudos o mosquitos en su casa?",
+          "¿Tiene recipientes con agua estancada o pilas?",
+          "¿Ha visto criaderos de zancudos cerca?",
+          "¿En su comunidad hay proliferación de mosquitos?",
+          "¿Usa mosquitero o repelente contra picaduras?"
+        ],
+        "reserva": [
+          "¿Le pican seguido los zancudos por las tardes?",
+          "¿Hay llantas o botellas con agua acumulada en el patio?",
+          "¿Pasa fumigando el ministerio por su zona?"
+        ]
+      },
+      "viajes": {
+        "desarrollo": [
+          "¿Ha viajado fuera de su municipio recientemente?",
+          "¿Salió de paseo o de viaje en las últimas semanas?",
+          "¿Estuvo en alguna zona costera u oriental del país?",
+          "¿Ha visitado otros departamentos en estos días?",
+          "¿Hizo algún viaje al interior del país recientemente?"
+        ],
+        "reserva": [
+          "¿Fue de paseo al campo o a la playa hace poco?",
+          "¿Ha estado fuera de su casa por varios días?",
+          "¿Viajó a algún lugar con brote de zancudos?"
+        ]
+      },
+      "medicinas": {
+        "desarrollo": [
+          "¿Qué medicamentos ha estado tomando para el dolor?",
+          "¿Se ha tomado aspirina o ibuprofeno?",
+          "¿Ha tomado pastillas para bajar la fiebre?",
+          "¿Se inyectó o tomó algún antiinflamatorio?",
+          "¿Ha tomado solo acetaminofén o algo más?"
+        ],
+        "reserva": [
+          "¿Compró alguna pastilla en la tienda para la calentura?",
+          "¿Tomó diclofenaco o pastillas fuertes de farmacia?",
+          "¿Qué remedios ha usado para calmar los dolores?"
+        ]
+      },
+      "piel": {
+        "desarrollo": [
+          "¿Le han salido manchitas rojas o sarpullido en la piel?",
+          "¿Tiene ronchas o picazón en el cuerpo?",
+          "¿Ha notado erupciones o puntos rojos en los brazos?",
+          "¿Tiene brote en la piel o enrojecimiento?",
+          "¿Ha visto alguna lesión cutánea reciente?"
+        ],
+        "reserva": [
+          "¿Le pica la piel o se le ha enrojecido?",
+          "¿Ha notado pequeños puntos como pecas de sangre?",
+          "¿Se le ha puesto la piel como lija o irritada?"
+        ]
+      },
+      "sangrado": {
+        "desarrollo": [
+          "¿Le ha sangrado la nariz o las encías al lavarse?",
+          "¿Ha visto sangre en el cepillado o al sonarse?",
+          "¿Ha vomitado con sangre o restos oscuros?",
+          "¿Ha tenido sangrado por algún lado?",
+          "¿Ha notado moretones espontáneos o sangrado vaginal fuera de ciclo?"
+        ],
+        "reserva": [
+          "¿Le han salido moretes sin haberse golpeado?",
+          "¿Al escupir le sale sangre fresca?",
+          "¿Ha notado manchas de sangre en su ropa interior?"
+        ]
+      },
+      "dolor_abd": {
+        "desarrollo": [
+          "¿Tiene dolor fuerte en la barriga o estómago?",
+          "¿Siente dolor abdominal intenso y continuo?",
+          "¿Le duele mucho la boca del estómago?",
+          "¿El abdomen se le ha puesto duro o doloroso?",
+          "¿Tiene retortijones o dolor constante en el vientre?"
+        ],
+        "reserva": [
+          "¿Le duele la panza al presionarse?",
+          "¿El dolor de barriga no le deja ni pararse?",
+          "¿Siente dolor intenso debajo de las costillas?"
+        ]
+      },
+      "vomitos": {
+        "desarrollo": [
+          "¿Ha estado vomitando seguido?",
+          "¿Tiene vómitos constantes que no le paran?",
+          "¿Ha tenido vómitos persistentes hoy?",
+          "¿Cuántas veces ha vomitado en las últimas horas?",
+          "¿Devuelve todo lo que intenta tomar?"
+        ],
+        "reserva": [
+          "¿Pasa con ganas de vomitar y basca todo el tiempo?",
+          "¿Lleva varios vómitos seguidos sin tolerar nada?",
+          "¿El vómito le empezó desde anoche o hoy?"
+        ]
+      }
+    },
+    "c_erc_01": {
+      "orina": {
+        "desarrollo": [
+          "¿Ha notado cambios en el color o cantidad de su orina?",
+          "¿La orina le sale espumosa como con jabón?",
+          "¿Orina más oscuro o de color té cargado?",
+          "¿Ha disminuido la cantidad de orina que bota?",
+          "¿Nota espuma abundante que no se va en el inodoro?"
+        ],
+        "reserva": [
+          "¿Siente que orina menos veces en el día?",
+          "¿El chorro o volumen de orina ha cambiado?",
+          "¿Le sale orina turbia o con sedimento?"
+        ]
+      },
+      "hinchazon": {
+        "desarrollo": [
+          "¿Se le han hinchado los pies o los tobillos?",
+          "¿Ha amanecido con la cara hinchada o los párpados cargados?",
+          "¿Siente las piernas pesadas o hinchadas?",
+          "¿Los zapatos le aprietan por hinchazón?",
+          "¿Tiene hinchazón o retención de líquidos en las piernas?"
+        ],
+        "reserva": [
+          "¿Al apretarse las espinillas le queda el hoyito marcado?",
+          "¿Siente hinchazón en las manos o anillos apretados?",
+          "¿La hinchazón empeora en las tardes al estar parado?"
+        ]
+      },
+      "trabajo": {
+        "desarrollo": [
+          "¿A qué se dedica y en qué trabaja?",
+          "¿Trabaja en labores agrícolas o en el campo?",
+          "¿Realiza trabajo físico pesado bajo el sol?",
+          "¿Cuáles son las condiciones de su trabajo?",
+          "¿Trabaja como agricultor o jornalero?"
+        ],
+        "reserva": [
+          "¿Cuántas horas pasa trabajando bajo el sol?",
+          "¿Su empleo le exige gran esfuerzo físico?",
+          "¿En qué labora diariamente en el campo?"
+        ]
+      },
+      "agua_calor": {
+        "desarrollo": [
+          "¿Cuánta agua toma al día mientras trabaja?",
+          "¿Pasa muchas horas expuesto al calor sin tomar agua?",
+          "¿Sufre de deshidratación frecuente en sus jornadas?",
+          "¿Toma agua suficiente o solo café y refrescos?",
+          "¿Siente que aguanta mucha sed durante sus labores?"
+        ],
+        "reserva": [
+          "¿Lleva un pachón o botella de agua a la milpa?",
+          "¿Pasa sofocado por el calor sin hidratarse bien?",
+          "¿Cuánto líquido ingiere en un día de calor?"
+        ]
+      },
+      "agroquimicos": {
+        "desarrollo": [
+          "¿Aplica venenos, plaguicidas o agroquímicos en los cultivos?",
+          "¿Fumiga con pesticidas o fertilizantes químicos?",
+          "¿Usa equipo de protección al rociar veneno?",
+          "¿Ha estado en contacto directo con químicos agrícolas?",
+          "¿Ha tenido intoxicaciones con productos de fumigación?"
+        ],
+        "reserva": [
+          "¿Limpia malezas con herbicidas como paraquat o veneno?",
+          "¿Bomba de fumigar usa en su trabajo?",
+          "¿Respira el veneno cuando anda regando las matas?"
+        ]
+      },
+      "aine": {
+        "desarrollo": [
+          "¿Toma pastillas para el dolor frecuentemente?",
+          "¿Acostumbra tomar ibuprofeno, diclofenaco o calmantes?",
+          "¿Qué analgésicos o antiinflamatorios toma?",
+          "¿Se automedica pastillas para los dolores musculares?",
+          "¿Toma pastillas de tienda como calmantes o dorival seguido?"
+        ],
+        "reserva": [
+          "¿Toma diclofenaco a diario para el dolor de espalda?",
+          "¿Compra sobres de pastillas analgésicas en la tienda?",
+          "¿Lleva meses tomando calmantes para el cuerpo?"
+        ]
+      },
+      "familia": {
+        "desarrollo": [
+          "¿En su familia hay personas con problemas en los riñones?",
+          "¿Algún familiar ha estado en diálisis o hemodiálisis?",
+          "¿Sus padres o hermanos padecen de insuficiencia renal?",
+          "¿Hay antecedentes familiares de enfermedad renal?",
+          "¿Tiene parientes que hayan muerto de los riñones?"
+        ],
+        "reserva": [
+          "¿Algún pariente cercano va al hospital a dializarse?",
+          "¿En su cantón o familia hay varios enfermos de los riñones?",
+          "¿Alguien de su sangre ha sufrido de riñones dañados?"
+        ]
+      },
+      "presion": {
+        "desarrollo": [
+          "¿Se ha medido la presión arterial anteriormente?",
+          "¿Le han dicho alguna vez que padece de presión alta?",
+          "¿Sabe en cuánto anda normalmente su presión?",
+          "¿Le han diagnosticado hipertensión?",
+          "¿Tiene control regular de su tensión arterial?"
+        ],
+        "reserva": [
+          "¿Cuándo fue la última vez que le tomaron la presión?",
+          "¿Le han hallado la presión arriba de lo normal?",
+          "¿En la unidad de salud le chequearon la presión?"
+        ]
+      },
+      "diuresis": {
+        "desarrollo": [
+          "¿Ha dejado de orinar casi por completo?",
+          "¿Orina apenas unas gotitas en todo el día?",
+          "¿Nota que la cantidad de orina ha caído drásticamente?",
+          "¿Lleva horas o días sin orinar casi nada?",
+          "¿Siente que su cuerpo retiene todo el líquido y no orina?"
+        ],
+        "reserva": [
+          "¿Pasa todo el día y solo una vez orina un poquito?",
+          "¿Tiene retención urinaria severa o no hace pipí?",
+          "¿La orina es mínima a pesar de haber tomado agua?"
+        ]
+      }
+    },
+    "c_dm2_01": {
+      "sed": {
+        "desarrollo": [
+          "¿Tiene mucha sed a todas horas?",
+          "¿Siente que no se le quita la sequedad en la boca?",
+          "¿Pasa tomando agua con gran desesperación?",
+          "¿Siente ganas excesivas de tomar líquidos?",
+          "¿Tiene resequedad en la garganta y boca todo el día?"
+        ],
+        "reserva": [
+          "¿Pasa pegado al pichel de agua todo el día?",
+          "¿Tiene sed insaciable a pesar de tomar fresco?",
+          "¿Se despierta en la noche con la garganta seca a tomar agua?"
+        ]
+      },
+      "orina": {
+        "desarrollo": [
+          "¿Va a orinar con mucha frecuencia al baño?",
+          "¿Se levanta varias veces en la noche a orinar?",
+          "¿Ha notado que orina en gran cantidad?",
+          "¿A cada rato tiene ganas de hacer pipí?",
+          "¿Orina más de lo normal durante el día y la noche?"
+        ],
+        "reserva": [
+          "¿Cuántas veces se despierta por la noche para ir a orinar?",
+          "¿Siente que la vejiga se le llena demasiado rápido?",
+          "¿No aguanta las ganas de hacer pipí y va a cada momento?"
+        ]
+      },
+      "peso": {
+        "desarrollo": [
+          "¿Ha bajado de peso en este último tiempo?",
+          "¿Ha perdido peso sin estar haciendo dieta?",
+          "¿La ropa le queda más floja de lo habitual?",
+          "¿Siente que ha adelgazado rápidamente?",
+          "¿Ha notado una disminución de peso notoria?"
+        ],
+        "reserva": [
+          "¿Ha perdido libras de peso sin proponérselo?",
+          "¿Sus familiares le han dicho que se ve más delgado?",
+          "¿Siente que come bastante pero sigue perdiendo peso?"
+        ]
+      },
+      "vision": {
+        "desarrollo": [
+          "¿Ha notado cambios en su vista o visión borrosa?",
+          "¿Le cuesta enfocar o ve como nublado?",
+          "¿Ha sentido cansancio o dificultad para ver de lejos?",
+          "¿Siente la vista empañada o nublada?",
+          "¿Ha tenido problemas para leer o ver con claridad?"
+        ],
+        "reserva": [
+          "¿Siente que se le pone borrosa la mirada por momentos?",
+          "¿Ha necesitado cambiar de lentes recientemente?",
+          "¿Ve como si tuviera neblina en los ojos?"
+        ]
+      },
+      "familia": {
+        "desarrollo": [
+          "¿En su familia hay parientes con problemas de azúcar?",
+          "¿Sus padres o hermanos padecen de diabetes?",
+          "¿Tiene familiares cercanos que usen insulina o metformina?",
+          "¿Hay antecedentes de azúcar alta en su familia?",
+          "¿Alguien en su casa tiene problemas del azúcar?"
+        ],
+        "reserva": [
+          "¿Su mamá o papá tuvieron diabetes de adultos?",
+          "¿Hay tíos o hermanos que se controlen el azúcar?",
+          "¿En su familia materna o paterna abunda la diabetes?"
+        ]
+      },
+      "dieta": {
+        "desarrollo": [
+          "¿Cómo es su alimentación habitual?",
+          "¿Consume mucho pan dulce, tortillas o gaseosas?",
+          "¿Toma café con mucha azúcar o bebidas dulces?",
+          "¿Qué come normalmente en el desayuno y almuerzo?",
+          "¿Consume alimentos con alto contenido de carbohidratos o azúcar?"
+        ],
+        "reserva": [
+          "¿Toma sodas o jugos envasados todos los días?",
+          "¿Le gusta comer frituras y harinas con frecuencia?",
+          "¿Cómo cuida su alimentación en el hogar?"
+        ]
+      },
+      "actividad": {
+        "desarrollo": [
+          "¿Hace ejercicio o actividad física regularmente?",
+          "¿Pasa mucho tiempo sentado durante el día?",
+          "¿Sale a caminar o trotar durante la semana?",
+          "¿Realiza algún deporte o caminata?",
+          "¿Cómo califica su nivel de actividad diaria?"
+        ],
+        "reserva": [
+          "¿Hace alguna rutina de ejercicios físicos?",
+          "¿Su vida es más bien sedentaria o activa?",
+          "¿Camina al menos media hora al día?"
+        ]
+      },
+      "hormigueo": {
+        "desarrollo": [
+          "¿Siente hormigueo o adormecimiento en los pies?",
+          "¿Ha sentido ardor o quemazón en las plantas de los pies?",
+          "¿Siente como agujas o piquetes en los dedos de los pies?",
+          "¿Tiene calambres o pérdida de sensibilidad en las piernas?",
+          "¿Siente entumecidas las piernas o los pies?"
+        ],
+        "reserva": [
+          "¿Siente las plantas de los pies como acorchadas?",
+          "¿Le queman las plantas de los pies por la noche?",
+          "¿Ha perdido sensibilidad al pisar descalzo?"
+        ]
+      },
+      "heridas": {
+        "desarrollo": [
+          "¿Tiene alguna llaga o herida en los pies que no cicatrice?",
+          "¿Se ha lastimado los pies y le cuesta sanar?",
+          "¿Ha notado alguna ampolla o úlcera en los dedos o talón?",
+          "¿Tiene cortaduras o grietas en los pies infectadas?",
+          "¿Se revisa los pies a diario para ver si tiene heridas?"
+        ],
+        "reserva": [
+          "¿Tiene algún raspón en la piel que tarde semanas en cerrar?",
+          "¿Le ha salido pus o mal olor en algún dedo del pie?",
+          "¿Se ha fijado si tiene clavada alguna espina sin sentir dolor?"
+        ]
+      },
+      "hiperglucemia": {
+        "desarrollo": [
+          "¿Ha tenido vómitos o mareos intensos?",
+          "¿Siente confusión o dificultad para pensar claro?",
+          "¿Le han dicho si tiene un aliento con olor frutal o a manzana?",
+          "¿Ha tenido respiración rápida y profunda con náuseas?",
+          "¿Se ha sentido desorientado o con mucho decaimiento?"
+        ],
+        "reserva": [
+          "¿Ha sentido la boca con sabor raro como a frutas podridas?",
+          "¿Pasa con somnolencia extrema y ganas de desmayarse?",
+          "¿Se siente sumamente atarantado o con la mente nublada?"
+        ]
+      }
+    },
+    "c_hta_01": {
+      "cefalea_carac": {
+        "desarrollo": [
+          "¿En qué parte de la cabeza le duele más?",
+          "¿El dolor de cabeza es en la nuca o detrás del cuello?",
+          "¿Siente que la cabeza le late o pulsa con fuerza?",
+          "¿Cómo describiría el dolor de cabeza que tiene?",
+          "¿El dolor en la nuca comenzó de golpe o aumentó despacio?"
+        ],
+        "reserva": [
+          "¿Siente una pesadez intensa en la parte trasera de la cabeza?",
+          "¿El dolor se le pasa hacia la frente o las sienes?",
+          "¿Es un dolor palpitante que no le deja mover el cuello?"
+        ]
+      },
+      "tinnitus_vision": {
+        "desarrollo": [
+          "¿Siente zumbido o pitos en los oídos?",
+          "¿Ve chispitas, luces o manchas brillantes en la vista?",
+          "¿Tiene visión borrosa o ve como destellos luminosos?",
+          "¿Ha escuchado ruidos extraños o silbidos en los oídos?",
+          "¿Ha sentido mareo acompañado de pitos en los oídos?"
+        ],
+        "reserva": [
+          "¿Siente que le retumban o zumban los oídos?",
+          "¿Ve estrellitas luminosas al caminar?",
+          "¿Se le nubla la vista de repente cuando se agacha?"
+        ]
+      },
+      "adherencia": {
+        "desarrollo": [
+          "¿Toma pastillas para la presión todos los días?",
+          "¿Ha dejado de tomar sus medicamentos de la presión?",
+          "¿Se le olvidó tomarse su medicina para la tensión hoy?",
+          "¿Qué antihipertensivo toma y cuándo fue la última dosis?",
+          "¿Suspendió el enalapril o amlodipino recientemente?"
+        ],
+        "reserva": [
+          "¿Se le terminaron las pastillas de la presión en la casa?",
+          "¿Ha estado tomando la medicina de manera irregular?",
+          "¿Dejó el tratamiento porque ya se sentía bien?"
+        ]
+      },
+      "dolor_pecho": {
+        "desarrollo": [
+          "¿Ha sentido dolor o pesadez en el pecho?",
+          "¿Siente opresión en el medio del pecho?",
+          "¿Tiene alguna molestia o ardor en la zona del tórax?",
+          "¿Le duele el pecho cuando camina o sube gradas?",
+          "¿Siente que le aprieta el pecho?"
+        ],
+        "reserva": [
+          "¿Siente angustia o peso sobre el pecho?",
+          "¿El dolor en el pecho se acompaña de sudoración?",
+          "¿Ha tenido punzadas en el lado izquierdo del pecho?"
+        ]
+      },
+      "disnea": {
+        "desarrollo": [
+          "¿Siente dificultad para respirar o falta de aire?",
+          "¿Le cuesta agarrar aire al hacer algún esfuerzo?",
+          "¿Se fatiga o se ahoga cuando camina?",
+          "¿Tiene cansancio respiratorio al dar unos pasos?",
+          "¿Siente que le falta el oxígeno al estar acostado?"
+        ],
+        "reserva": [
+          "¿Se ahoga fácilmente al subir una pequeña cuesta?",
+          "¿Necesita poner varias almohadas para poder respirar de noche?",
+          "¿Siente que se sofoca sin haber corrido?"
+        ]
+      },
+      "habitos_sal": {
+        "desarrollo": [
+          "¿Consume mucha sal en sus comidas?",
+          "¿Toma café negro cargado o bebidas estimulantes?",
+          "¿Fuma cigarrillos o tabaco habitualmente?",
+          "¿Le pone sal extra al plato antes de probar la comida?",
+          "¿Come boquitas o frituras saladas frecuentemente?"
+        ],
+        "reserva": [
+          "¿Pasa tomando café todo el día?",
+          "¿Cuántos cigarros se fuma en un día normal?",
+          "¿Acostumbra usar cubitos de consomé con mucha sal?"
+        ]
+      },
+      "antecedentes_fam": {
+        "desarrollo": [
+          "¿Hay antecedentes de presión alta o infartos en su familia?",
+          "¿Alguien en su familia ha sufrido derrames cerebrales?",
+          "¿Sus padres o hermanos padecen de infartos o de la presión?",
+          "¿Tiene familiares que hayan padecido de problemas cardiovasculares?",
+          "¿Hay historia familiar de muerte súbita o del corazón?"
+        ],
+        "reserva": [
+          "¿Su mamá o papá tuvieron un derrame o parálisis?",
+          "¿En su familia varios parientes toman pastillas de la presión?",
+          "¿Algún hermano suyo ha tenido infartos o muerte repentina?"
+        ]
+      },
+      "dolor_toracico": {
+        "desarrollo": [
+          "¿El dolor se le pasa al brazo izquierdo o a la mandíbula?",
+          "¿Siente un dolor opresivo fuerte como una pata de elefante en el esternón?",
+          "¿Ese dolor torácico le hace sudar frío o le da náuseas?",
+          "¿Siente una opresión intensa y quemante en el tórax?",
+          "¿Tiene un dolor desgarrante en la espalda o el esternón?"
+        ],
+        "reserva": [
+          "¿La molestia torácica le aprieta como una faja?",
+          "¿Siente que le falta el aire por el dolor tan fuerte en el tórax?",
+          "¿El dolor torácico dura más de 20 minutos seguidos?"
+        ]
+      },
+      "deficit_neuro": {
+        "desarrollo": [
+          "¿Ha sentido pérdida de fuerza en un brazo o una pierna?",
+          "¿Se le ha torcido la boca o se le cae la saliva?",
+          "¿Ha tenido dificultad para hablar o pronunciar palabras?",
+          "¿Siente un lado de la cara o del cuerpo dormido o débil?",
+          "¿Ha notado torpeza o falta de movilidad en la mano?"
+        ],
+        "reserva": [
+          "¿Se le trabó la lengua al intentar hablar?",
+          "¿Se le cayó un objeto de la mano por no tener fuerza?",
+          "¿Siente la mitad del cuerpo adormecida o pesada?"
+        ]
+      },
+      "dificultad_respiratoria": {
+        "desarrollo": [
+          "¿Siente un ahogo repentino y no puede respirar acostado?",
+          "¿Se despierta ahogado teniendo que sentarse al borde de la cama?",
+          "¿Tiene una falta de aire severa que le impide hablar?",
+          "¿Siente que se está asfixiando por falta de aire aguda?",
+          "¿Escucha ruidos o silbidos húmedos en los pulmones al intentar respirar?"
+        ],
+        "reserva": [
+          "¿Tiene que pasar la noche sentado en una mecedora para respirar?",
+          "¿Siente que el aire no le llega a los pulmones?",
+          "¿Ha tosido flema con espuma rosada por el ahogo?"
+        ]
+      }
+    },
+    "c_trauma_01": {
+      "mecanismo_lesion": {
+        "desarrollo": [
+          "¿Cómo fue el accidente de tránsito?",
+          "¿Iba en motocicleta o en automóvil cuando chocó?",
+          "¿A qué velocidad iba y contra qué impactó?",
+          "¿Fue atropellado o derrapó en el pavimento?",
+          "¿Salió expulsado del vehículo durante el choque?"
+        ],
+        "reserva": [
+          "¿El impacto fue de frente o choque lateral?",
+          "¿Quién lo auxilió tras el choque?",
+          "¿El vehículo quedó volcado tras el accidente?"
+        ]
+      },
+      "uso_casco": {
+        "desarrollo": [
+          "¿Llevaba puesto el casco de protección?",
+          "¿El casco estaba bien abrochado o se le soltó?",
+          "¿El casco se quebró o golpeó contra el suelo?",
+          "¿Llevaba casco integral o tipo bacinica?",
+          "¿Usaba chaleco o protecciones en las rodillas?"
+        ],
+        "reserva": [
+          "¿Llevaba casco reglamentario en la cabeza?",
+          "¿El casco amortiguó el golpe contra el asfalto?",
+          "¿Se le zafó el casco al momento de caer?"
+        ]
+      },
+      "perdida_conciencia": {
+        "desarrollo": [
+          "¿Perdió el conocimiento en algún momento del accidente?",
+          "¿Se desmayó o quedó inconsciente tras el golpe?",
+          "¿Recuerda todo lo que pasó durante el choque?",
+          "¿Estuvo aturdido o sin responder por unos minutos?",
+          "¿Sufrió pérdida de la memoria o amnesia del evento?"
+        ],
+        "reserva": [
+          "¿Recuerda cuando cayó al suelo o se borró la película?",
+          "¿Los testigos dijeron que usted no reaccionaba?",
+          "¿Supo de inmediato dónde estaba al despertar?"
+        ]
+      },
+      "dolor_toracico": {
+        "desarrollo": [
+          "¿Le duele el pecho o las costillas al respirar?",
+          "¿Siente dolor al meter aire profundamente?",
+          "¿Recibió algún golpe directo en el tórax o con el manubrio?",
+          "¿Le duele la caja torácica cuando tose?",
+          "¿Tiene dolor en las costillas al presionarse?"
+        ],
+        "reserva": [
+          "¿Siente punzada en las costillas con cada respiración?",
+          "¿El golpe con el timón le pegó en el pecho?",
+          "¿Le duele el costado derecho o izquierdo al moverse?"
+        ]
+      },
+      "dolor_cervical": {
+        "desarrollo": [
+          "¿Le duele el cuello o la nuca tras el impacto?",
+          "¿Tiene dolor en la columna cervical al intentar moverla?",
+          "¿Siente el cuello rígido o tieso por el latigazo?",
+          "¿Le molesta la espalda alta o el cuello al tragar?",
+          "¿Hay dolor en las vértebras del cuello?"
+        ],
+        "reserva": [
+          "¿Siente como un tirón fuerte en la parte trasera del cuello?",
+          "¿Le duele el cuello al intentar girar la cabeza?",
+          "¿Tiene pesadez y dolor agudo en la nuca?"
+        ]
+      },
+      "sensibilidad_motora": {
+        "desarrollo": [
+          "¿Puede mover bien los dedos de las manos y de los pies?",
+          "¿Siente hormigueo o adormecimiento en brazos o piernas?",
+          "¿Siente bien cuando se toca las piernas o los muslos?",
+          "¿Tiene fuerza normal en las extremidades para apretar?",
+          "¿Nota alguna falta de sensibilidad en el cuerpo?"
+        ],
+        "reserva": [
+          "¿Puede levantar las piernas de la camilla sin problema?",
+          "¿Siente las manos débiles o con cosquilleo?",
+          "¿Tiene sensación de pesadez o parálisis en las piernas?"
+        ]
+      },
+      "vacuna_tetanos": {
+        "desarrollo": [
+          "¿Tiene la vacuna del tétanos puesta?",
+          "¿Se ha vacunado contra el tétanos en los últimos 5 años?",
+          "¿Tiene su esquema de vacuna antitetánica al día?",
+          "¿Le han puesto la vacuna antitetánica por heridas?",
+          "¿Cuándo fue la última vez que le aplicaron el refuerzo del tétanos?"
+        ],
+        "reserva": [
+          "¿Tiene carné con la inyección del tétanos?",
+          "¿Se vacunó de tétanos por raspones anteriores?",
+          "¿Ha recibido la antitoxina o vacuna de tétanos?"
+        ]
+      },
+      "trauma_craneal": {
+        "desarrollo": [
+          "¿Ha tenido vómitos en proyectil o mareos fuertes tras el golpe?",
+          "¿Le ha salido sangre o líquido transparente por la nariz o los oídos?",
+          "¿Se siente desorientado o con somnolencia anormal?",
+          "¿Tiene visión doble o pupilas de diferente tamaño?",
+          "¿Ha presentado convulsiones o ataques tras el accidente?"
+        ],
+        "reserva": [
+          "¿Siente un dolor de cabeza insoportable que va en aumento?",
+          "¿Le cuesta recordar su nombre o dónde vive?",
+          "¿Se le ponen los ojos negros o tiene moretones alrededor de los ojos?"
+        ]
+      },
+      "compromiso_respiratorio": {
+        "desarrollo": [
+          "¿Siente que se ahoga o le cuesta meter aire a los pulmones?",
+          "¿Escucha un silbido o quejido al respirar?",
+          "¿Se le hunden las costillas o la piel del cuello al respirar?",
+          "¿Tiene sensación de asfixia aguda por el golpe en el pecho?",
+          "¿Tiene dificultad respiratoria grave que le impide hablar?"
+        ],
+        "reserva": [
+          "¿Siente crujidos en el pecho como burbujas al tocarse?",
+          "¿Se le están poniendo las uñas o labios morados?",
+          "¿No aguanta dar dos palabras seguidas por falta de aire?"
+        ]
+      },
+      "hemorragia_activa": {
+        "desarrollo": [
+          "¿Tiene alguna herida abierta que esté sangrando profusamente?",
+          "¿El vendaje o la ropa están empapados de sangre fresca?",
+          "¿Hay un sangrado activo que no se detiene con la presión?",
+          "¿Siente mareo extremo, palidez o sudor frío por la sangre perdida?",
+          "¿Ve que la sangre brota a chorros de alguna lesión?"
+        ],
+        "reserva": [
+          "¿La sangre le sigue saliendo a pesar de apretarse la herida?",
+          "¿Siente que se desmaya por la cantidad de sangre perdida?",
+          "¿Tiene una herida grande abierta en la pierna o brazo?"
+        ]
+      }
+    },
+    "c_gea_01": {
+      "heces_frecuencia": {
+        "desarrollo": [
+          "¿Cuántas veces ha ido al baño hoy?",
+          "¿Cómo son sus heces, líquidas o pastosas?",
+          "¿Ha tenido cursera o diarrea líquida abundante?",
+          "¿Con qué frecuencia evacúa durante el día?",
+          "¿Ha estado suelto del estómago con evacuaciones frecuentes?",
+          "¿Cómo es la consistencia de la popó?"
+        ],
+        "reserva": [
+          "¿Va a cada rato al sanitario con dolor de panza?",
+          "¿Las evacuaciones son completamente líquidas?",
+          "¿Ha llenado la taza del baño varias veces en pocas horas?"
+        ]
+      },
+      "sangre_moco": {
+        "desarrollo": [
+          "¿Ha visto moco o mucosidad en las heces al evacuar?",
+          "¿Le ha salido flema gelatinosa al ir al baño?",
+          "¿Hay moco o flemas en las deposiciones?",
+          "¿Las heces tienen mucosidad pegajosa o aspecto mucoso?",
+          "¿Ha notado algo raro en las deposiciones, como moquito o flemas?"
+        ],
+        "reserva": [
+          "¿Al limpiarse con papel ha visto hilachas de moco?",
+          "¿La diarrea viene acompañada de flemas gelatinosas?",
+          "¿Ha evacuado con restos de mucosidad o aspecto mucoso?"
+        ]
+      },
+      "vomitos_tolerancia": {
+        "desarrollo": [
+          "¿Ha estado vomitando en estos días?",
+          "¿Cuántas veces ha arrojado o devuelto la comida?",
+          "¿Puede tomar líquidos sin vomitarlos?",
+          "¿Le cae mal todo lo que come y lo devuelve?",
+          "¿Aguanta tomar agua o la vomita de inmediato?"
+        ],
+        "reserva": [
+          "¿Tiene basca constante que no le deja probar bocado?",
+          "¿Ha arrojado hasta la saliva que traga?",
+          "¿Los vómitos son de color amarillo, verde o con comida?"
+        ]
+      },
+      "signos_deshidratacion": {
+        "desarrollo": [
+          "¿Tiene mucha sed que no se le calma?",
+          "¿Tiene la boca reseca o la lengua como lija?",
+          "¿Ha orinado poco o casi nada el día de hoy?",
+          "¿Cómo ha salido el color de su orina, oscura o concentrada?",
+          "¿Se siente mareado o con la cabeza ligera al pararse?"
+        ],
+        "reserva": [
+          "¿Siente los ojos hundidos o la piel sin elasticidad?",
+          "¿Llora y nota que no le salen lágrimas?",
+          "¿Siente el cuerpo deshidratado y sin saliva?"
+        ]
+      },
+      "origen_alimentos": {
+        "desarrollo": [
+          "¿Qué comió antes de que le empezara la diarrea?",
+          "¿Comió algo en la calle como pupusas, mariscos o mayonesa?",
+          "¿Toma agua de chorro sin hervir o agua tratada?",
+          "¿Sospecha de alguna comida que haya estado en mal estado?",
+          "¿Alguien más en su familia o amigos comió lo mismo y se enfermó?"
+        ],
+        "reserva": [
+          "¿Comió alimentos guardados fuera de la refrigeradora?",
+          "¿Compró comida rápida o frescos de la calle?",
+          "¿Qué fue lo último que almorzó o cenó antes del malestar?"
+        ]
+      },
+      "fiebre": {
+        "desarrollo": [
+          "¿Ha tenido fiebre o calentura?",
+          "¿Se ha sentido caliente al tacto en la frente?",
+          "¿Ha tenido escalofríos o temblores en el cuerpo?",
+          "¿Le ha dado calentura acompañada de sudoración?",
+          "¿Se tomó la temperatura con termómetro?"
+        ],
+        "reserva": [
+          "¿Siente la piel hirviendo por la calentura?",
+          "¿Ha tenido chuchos de frío y cuerpo cortado?",
+          "¿La fiebre le dura todo el día o solo en la noche?"
+        ]
+      },
+      "tratamiento_previo": {
+        "desarrollo": [
+          "¿Se ha tomado algún medicamento o remedio para esto?",
+          "¿Ha tomado suero oral o sales de rehidratación?",
+          "¿Se automedicó alguna pastilla para taparse la diarrea?",
+          "¿Tomó algún antibiótico de farmacia para la infección?",
+          "¿Ha tomado pastillas o agüitas de manzanilla para el estómago?"
+        ],
+        "reserva": [
+          "¿Se tomó un sobre de suero en la casa?",
+          "¿Compró loperamida o pastillas en la tienda de la esquina?",
+          "¿Ha tomado infusiones caseras o purgantes?"
+        ]
+      },
+      "deshidratacion_severa": {
+        "desarrollo": [
+          "¿Siente que se desmaya o no puede sostenerse de pie?",
+          "¿Lleva muchas horas sin orinar ni una sola gota?",
+          "¿Tiene los labios agrietados, ojos hundidos y confusión?",
+          "¿Siente el pulso muy rápido y la piel fría?",
+          "¿Ha perdido el sentido o se siente somnoliento?"
+        ],
+        "reserva": [
+          "¿Siente que se le va la fuerza completamente al pararse?",
+          "¿Tiene la lengua completamente seca y pegajosa?",
+          "¿No ha orinado en más de doce horas consecutivas?"
+        ]
+      },
+      "intolerancia_oral": {
+        "desarrollo": [
+          "¿No tolera ni medio sorbo de agua sin vomitarlo?",
+          "¿Devuelve todo absolutamente de manera inmediata?",
+          "¿Tiene vómitos incoercibles que no le dan tregua?",
+          "¿No retiene ningún líquido por la boca?",
+          "¿Vomita en seco cada vez que intenta tragar algo?"
+        ],
+        "reserva": [
+          "¿Ni una cucharadita de suero le pasa al estómago?",
+          "¿Pasa arqueándose y arrojando bilis continua?",
+          "¿Cada trago de agua le provoca vómito inmediato?"
+        ]
+      },
+      "sangrado_heces": {
+        "desarrollo": [
+          "¿Las evacuaciones son de pura sangre fresca y líquida?",
+          "¿Ha botado coágulos grandes de sangre por el ano?",
+          "¿Tiene abundante sangrado rojo al evacuar?",
+          "¿Las heces salen completamente rojas o con sangre viva?",
+          "¿Ha tenido hemorragia digestiva visible al ir al baño?"
+        ],
+        "reserva": [
+          "¿Al defecar el agua del inodoro se llena de sangre roja?",
+          "¿Ha expulsado mucosidad purulenta con sangre franca?",
+          "¿Siente que está evacuando más sangre que heces?"
+        ]
+      }
+    },
+    "c_nac_01": {
+      "tos_expectoracion": {
+        "desarrollo": [
+          "¿Tiene tos con flema o tos seca?",
+          "¿De qué color es la flema que está sacando?",
+          "¿La expectoración es verdosa, amarilla o con sangre?",
+          "¿Tiene tos constante que no le deja dormir?",
+          "¿Siente el pecho cargado de gargajo y flemas?"
+        ],
+        "reserva": [
+          "¿Saca flemas espesas y pegajosas al toser?",
+          "¿La tos le empezó hace varios días y va a más?",
+          "¿Siente que no puede arrancar las flemas del pecho?"
+        ]
+      },
+      "fiebre_escalofrios": {
+        "desarrollo": [
+          "¿Ha tenido fiebre alta y calentura?",
+          "¿Ha sentido escalofríos con temblores en los dientes?",
+          "¿Cuánto le ha marcado el termómetro en la temperatura?",
+          "¿Pasa sudando frío con calenturas intensas?",
+          "¿La fiebre le da todos los días con cuerpo cortado?"
+        ],
+        "reserva": [
+          "¿Tiene calentura que le quema la frente?",
+          "¿Siente escalofríos tan fuertes que necesita varias cobijas?",
+          "¿Le ha bajado la fiebre con paños de agua o sigue alta?"
+        ]
+      },
+      "dolor_pleuritico": {
+        "desarrollo": [
+          "¿Siente una puntada en el costado al meter aire profundo?",
+          "¿Le da una puntada aguda en el tórax al respirar hondo?",
+          "¿Tiene dolor como un puñal en la espalda o costillas al inhalar?",
+          "¿Le duele el tórax cada vez que mete aire a los pulmones?",
+          "¿Siente un dolor agudo tipo puntada en el costado al suspirar?"
+        ],
+        "reserva": [
+          "¿Le punza el costado derecho o izquierdo al inhalar profundo?",
+          "¿Tiene dolor en la paletilla o espalda al respirar hondo?",
+          "¿Le duele el costado como si tuviera una espina clavada?"
+        ]
+      },
+      "dificultad_respiratoria": {
+        "desarrollo": [
+          "¿Le cuesta respirar o siente que le falta el aire?",
+          "¿Se cansa o se fatiga al dar unos cuantos pasos?",
+          "¿Siente ahogo incluso cuando está descansando?",
+          "¿Tiene respiración rápida o agitada?",
+          "¿Siente que el aire no le entra suficiente a los pulmones?"
+        ],
+        "reserva": [
+          "¿Le silba el pecho o siente que se ahoga al hablar?",
+          "¿Tiene que detenerse a tomar aire al caminar un tramo corto?",
+          "¿Siente sofoco constante en el pecho?"
+        ]
+      },
+      "exposicion_humo": {
+        "desarrollo": [
+          "¿Cocina con leña o tiene poyo dentro de la casa?",
+          "¿Pasa mucho tiempo expuesta al humo de la cocina?",
+          "¿Fuma cigarrillos o fuman en su casa cerca de usted?",
+          "¿Ha estado expuesto a humo de quema de basura o maleza?",
+          "¿En su trabajo inhala polvos, vapores o humo de leña?"
+        ],
+        "reserva": [
+          "¿Respira humo de leña a diario al hacer tortillas?",
+          "¿Tiene chimenea o el humo de la leña se encierra en el cuarto?",
+          "¿Ha fumado tabaco durante muchos años?"
+        ]
+      },
+      "antecedentes_vacunas": {
+        "desarrollo": [
+          "¿Se ha puesto la vacuna contra el neumococo o la neumonía?",
+          "¿Se aplicó la vacuna de la influenza o de la gripe este año?",
+          "¿Tiene sus vacunas del adulto mayor al día?",
+          "¿Le han puesto vacunas para las defensas de los pulmones?",
+          "¿Tiene carné de vacunación contra neumococo e influenza?"
+        ],
+        "reserva": [
+          "¿Fue a la campaña de vacunación de la gripe en la unidad?",
+          "¿Se ha vacunado contra infecciones respiratorias en los últimos años?",
+          "¿Tiene vacunas respiratorias vigentes?"
+        ]
+      },
+      "medicacion_previa": {
+        "desarrollo": [
+          "¿Ha tomado jarabes, antibióticos o pastillas para la tos?",
+          "¿Se automedicó amoxicilina o algún medicamento para el pecho?",
+          "¿Ha tomado pastillas para bajar la fiebre o el dolor?",
+          "¿Qué medicinas ha estado tomando antes de venir a consulta?",
+          "¿Se puso alguna inyección para la gripe o la tos?"
+        ],
+        "reserva": [
+          "¿Le recetaron jarabe para la flema en la farmacia?",
+          "¿Compró cápsulas de antibiótico en la tienda?",
+          "¿Ha usado té de eucalipto o remedios caseros para la tos?"
+        ]
+      },
+      "insuficiencia_respiratoria": {
+        "desarrollo": [
+          "¿Se le han puesto los labios o las uñas de color azul o morado?",
+          "¿Siente que se asfixia y no puede pronunciar frases seguidas?",
+          "¿Tiene una falta de aire desesperante que no le calma?",
+          "¿Se le hunden las costillas o el cuello con cada respiración?",
+          "¿Siente que el pecho no le da para respirar y se está sofocando?"
+        ],
+        "reserva": [
+          "¿Tiene cianosis o coloración azulada en las puntas de los dedos?",
+          "¿Respira tan rápido que parece que estuviera jadeando?",
+          "¿Siente que le falta el oxígeno de forma crítica?"
+        ]
+      },
+      "compromiso_conciencia": {
+        "desarrollo": [
+          "¿Se siente confuso, desorientado o con la mente perdida?",
+          "¿Le cuesta saber en qué fecha estamos o en qué lugar se encuentra?",
+          "¿Pasa demasiado dormido y le cuesta despertarse?",
+          "¿Sus familiares lo han notado incoherente al hablar?",
+          "¿Ha tenido momentos de letargo o desvaríos por la fiebre?"
+        ],
+        "reserva": [
+          "¿Ha respondido cosas sin sentido cuando le preguntan?",
+          "¿Pasa como atolondrado y no reconoce a sus parientes?",
+          "¿Se queda dormido a mitad de una conversación?"
+        ]
+      },
+      "hemoptisis": {
+        "desarrollo": [
+          "¿Ha tosido flemas con sangre roja fresca?",
+          "¿Ha expulsado sangre viva en la tos?",
+          "¿Tiene expectoración hemoptoica con coágulos de sangre?",
+          "¿Ha manchado el pañuelo con abundante sangre al toser?",
+          "¿Le sale sangre franca del pecho al carraspear?"
+        ],
+        "reserva": [
+          "¿Al toser le sale pura sangre líquida por la boca?",
+          "¿Ha tenido sangrado pulmonar al esforzarse tosiendo?",
+          "¿La flema viene completamente roja de sangre fresca?"
+        ]
+      }
+    },
+    "c_depresion_01": {
+      "animo_tristeza": {
+        "desarrollo": [
+          "¿Cómo ha estado su estado de ánimo en estas semanas?",
+          "¿Se ha sentido triste, desanimado o decaído la mayor parte del día?",
+          "¿Siente ganas de llorar con frecuencia o llanto fácil?",
+          "¿Ha sentido una tristeza profunda que no se le quita?",
+          "¿Siente que la vida ha perdido su brillo o alegría?"
+        ],
+        "reserva": [
+          "¿Pasa llorando a solas en su cuarto?",
+          "¿Siente una pena o amargura constante en el pecho?",
+          "¿Se levanta desanimado todos los días sin ganas de nada?"
+        ]
+      },
+      "anhedonia": {
+        "desarrollo": [
+          "¿Ha perdido el interés o placer por las cosas que antes le gustaban?",
+          "¿Siente que ya nada le llama la atención ni le divierte?",
+          "¿Ha dejado de disfrutar sus pasatiempos o actividades?",
+          "¿Le cuesta encontrar alegría en su vida cotidiana?",
+          "¿Siente indiferencia ante las cosas que antes le apasionaban?"
+        ],
+        "reserva": [
+          "¿Ya no le dan ganas de escuchar música ni ver a sus amigos?",
+          "¿Siente que nada de lo que hace le causa satisfacción?",
+          "¿Ha dejado botadas sus aficiones por falta de motivación?"
+        ]
+      },
+      "alteracion_sueno": {
+        "desarrollo": [
+          "¿Cómo está durmiendo por las noches?",
+          "¿Tiene problemas de insomnio o le cuesta conciliar el sueño?",
+          "¿Se despierta en la madrugada y ya no puede volver a dormir?",
+          "¿Pasa con pesadillas o sueño interrumpido?",
+          "¿Siente que pasa durmiendo todo el día o no duerme nada?"
+        ],
+        "reserva": [
+          "¿Pasa dando vueltas en la cama durante horas sin poder dormir?",
+          "¿Se despierta a las 3 de la mañana con angustia?",
+          "¿Siente que el sueño no le es reparador y amanece cansado?"
+        ]
+      },
+      "apetito_peso": {
+        "desarrollo": [
+          "¿Cómo ha estado su apetito en estos días?",
+          "¿Ha perdido el hambre y come solo por obligación?",
+          "¿Ha bajado o subido de peso notablemente?",
+          "¿Tiene desgano para probar comida?",
+          "¿Ha notado que la ropa le queda holgada por falta de apetito?"
+        ],
+        "reserva": [
+          "¿Le cuesta terminarse un plato de comida por falta de hambre?",
+          "¿Siente que la comida le sabe insípida o le da asco?",
+          "¿Ha adelgazado porque se le quitó el apetito por completo?"
+        ]
+      },
+      "energia_fatiga": {
+        "desarrollo": [
+          "¿Cómo se siente de energía y fuerzas en el cuerpo?",
+          "¿Pasa cansado, fatigado o sin ganas de moverse todo el día?",
+          "¿Le cuesta trabajo hacer las tareas más sencillas por falta de energía?",
+          "¿Siente pesadez en el cuerpo y agotamiento continuo?",
+          "¿Se siente agotado desde que se levanta de la cama?"
+        ],
+        "reserva": [
+          "¿Siente como si llevara un gran peso encima de la espalda?",
+          "¿Hasta bañarse o peinarse le cuesta por el gran cansancio?",
+          "¿Pasa sin fuerzas físicas para levantarse de la silla?"
+        ]
+      },
+      "red_apoyo": {
+        "desarrollo": [
+          "¿Vive solo o cuenta con el apoyo de su familia o amigos?",
+          "¿Tiene personas de confianza con quienes hablar de sus problemas?",
+          "¿Ha tenido alguna pérdida de un ser querido o duelo reciente?",
+          "¿Ha sufrido algún problema grave familiar o económico últimamente?",
+          "¿Cómo es la relación con sus seres queridos en la casa?"
+        ],
+        "reserva": [
+          "¿Siente que tiene a alguien que le tienda la mano si lo necesita?",
+          "¿Ha pasado por alguna separación, divorcio o muerte familiar?",
+          "¿Cuenta con amigos cercanos para desahogarse?"
+        ]
+      },
+      "concentracion": {
+        "desarrollo": [
+          "¿Le cuesta concentrarse en su trabajo o lecturas?",
+          "¿Siente que se le olvidan las cosas con facilidad?",
+          "¿Le resulta difícil tomar decisiones en su vida diaria?",
+          "¿Siente la mente dispersa o con pensamientos lentos?",
+          "¿Se distrae muy fácilmente en cualquier actividad?"
+        ],
+        "reserva": [
+          "¿Tiene que leer varias veces una página porque no retiene?",
+          "¿Le cuesta decidirse hasta por cosas pequeñas de la casa?",
+          "¿Siente la mente nublada y que no coordina bien?"
+        ]
+      },
+      "ideacion_suicida": {
+        "desarrollo": [
+          "¿Ha tenido pensamientos de que la vida no vale la pena vivirla?",
+          "¿Ha pensado en hacerse daño o en quitarse la vida?",
+          "¿Ha tenido deseos de dormirse y no despertar jamás?",
+          "¿Ha pensado en suicidarse o en terminar con su sufrimiento?",
+          "¿Ha llegado a planear alguna forma de causarse la muerte?"
+        ],
+        "reserva": [
+          "¿Ha sentido que su familia estaría mejor si usted no estuviera?",
+          "¿Ha tenido impulsos o pensamientos de autolesionarse?",
+          "¿Ha buscado formas o métodos para acabar con su vida?"
+        ]
+      },
+      "aislamiento_total": {
+        "desarrollo": [
+          "¿Pasa encerrado en su habitación sin querer ver a nadie?",
+          "¿Se ha aislado por completo de su familia y amistades?",
+          "¿Ha dejado de bañarse, cambiarse de ropa o cuidarse a sí mismo?",
+          "¿Evita contestar llamadas o hablar con las personas?",
+          "¿Ha abandonado completamente sus actividades sociales y de aseo?"
+        ],
+        "reserva": [
+          "¿No sale de su cuarto para nada en todo el día?",
+          "¿Pasa días enteros en pijama sin asearse por desgano?",
+          "¿Ha cortado todo contacto con el mundo exterior?"
+        ]
+      }
+    }
+  }
+}

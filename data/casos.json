@@ -58,7 +58,14 @@
           "desde cuando",
           "cuantos dias",
           "hace cuanto",
-          "fiebre"
+          "fiebre",
+          "calentur",
+          "temperatura",
+          "escalofri",
+          "termometr",
+          "continua",
+          "baja la fiebre",
+          "subido la calentura"
         ]
       },
       {
@@ -67,7 +74,13 @@
         "keywords": [
           "ojos",
           "retroocular",
-          "dolor de cabeza"
+          "dolor de cabeza",
+          "cabeza",
+          "pesadez",
+          "mover los ojos",
+          "frente",
+          "cuencas",
+          "le duele la cabeza"
         ]
       },
       {
@@ -78,7 +91,13 @@
           "musculos",
           "dolor en el cuerpo",
           "articulaciones",
-          "cuerpo cortado"
+          "cuerpo cortado",
+          "adolorid",
+          "hueso",
+          "coyuntur",
+          "muscul",
+          "articulac",
+          "piernas y la espalda"
         ]
       },
       {
@@ -89,7 +108,14 @@
           "familiares",
           "alguien mas",
           "en su casa",
-          "contacto"
+          "contacto",
+          "trabajo o comunidad",
+          "vecin",
+          "alguien mas con calentura",
+          "canton",
+          "caserio",
+          "hospital",
+          "alguien cercano"
         ]
       },
       {
@@ -102,7 +128,13 @@
           "agua estancada",
           "barril",
           "pila",
-          "criadero"
+          "criadero",
+          "recipiente",
+          "estancad",
+          "llantas o botellas",
+          "fumig",
+          "mosquiter",
+          "pican"
         ]
       },
       {
@@ -111,7 +143,14 @@
         "keywords": [
           "viaj",
           "salio de",
-          "fuera de"
+          "fuera de",
+          "costera",
+          "oriental",
+          "departamento",
+          "interior",
+          "paseo al campo",
+          "playa",
+          "fuera de su"
         ]
       },
       {
@@ -125,7 +164,12 @@
           "acetaminofen",
           "ibuprofeno",
           "aspirina",
-          "dolex"
+          "dolex",
+          "inyect",
+          "antiinflamat",
+          "calmante",
+          "farmacia",
+          "bajar la fiebre"
         ]
       },
       {
@@ -136,7 +180,15 @@
           "sarpullido",
           "ronchas",
           "erupcion",
-          "piel"
+          "piel",
+          "lesion cutanea",
+          "erupci",
+          "roncha",
+          "picazon",
+          "enrojecim",
+          "pecas de sangre",
+          "brote",
+          "sarpullid"
         ]
       }
     ],
@@ -148,7 +200,14 @@
           "sangrado",
           "sangre",
           "encias",
-          "sangra"
+          "sangra",
+          "moret",
+          "escupir",
+          "lavarse",
+          "sonarse",
+          "cepillado",
+          "manchas de sangre",
+          "orina con sangre"
         ]
       },
       {
@@ -159,7 +218,13 @@
           "barriga",
           "estomago",
           "vientre",
-          "panza"
+          "panza",
+          "abdomen duro",
+          "boca del estomago",
+          "retortij",
+          "costillas",
+          "presionarse",
+          "doloroso"
         ]
       },
       {
@@ -168,7 +233,13 @@
         "keywords": [
           "vomit",
           "devuelve",
-          "devolver"
+          "devolver",
+          "constante",
+          "seguido",
+          "no le paran",
+          "intenta tomar",
+          "basca",
+          "ultimas horas"
         ]
       }
     ],
@@ -459,7 +530,15 @@
           "orina",
           "espuma",
           "espumosa",
-          "orinar"
+          "orinar",
+          "cambios en la orina",
+          "color",
+          "espum",
+          "jabon",
+          "te cargado",
+          "inodoro",
+          "chorro",
+          "turbia"
         ]
       },
       {
@@ -470,7 +549,15 @@
           "inflam",
           "edema",
           "pies",
-          "parpados"
+          "parpados",
+          "espinilla",
+          "tobillo",
+          "parpado",
+          "pesad",
+          "zapato",
+          "hoyito",
+          "retencion de liquidos",
+          "manos"
         ]
       },
       {
@@ -481,7 +568,14 @@
           "trabajo",
           "ocupacion",
           "a que se dedica",
-          "en que trabaja"
+          "en que trabaja",
+          "agricola",
+          "campo",
+          "condiciones",
+          "jornalero",
+          "horas pasa",
+          "esfuerzo fisico",
+          "labora diariamente"
         ]
       },
       {
@@ -491,7 +585,16 @@
           "agua",
           "sol",
           "calor",
-          "hidrata"
+          "hidrata",
+          "cuanta agua",
+          "toma agua",
+          "deshidratacion frecuente",
+          "jornada",
+          "sofocad",
+          "pachon",
+          "botella",
+          "milpa",
+          "cuanto liquido"
         ]
       },
       {
@@ -502,7 +605,15 @@
           "agroquimico",
           "pesticida",
           "quimicos",
-          "veneno"
+          "veneno",
+          "plaguicida",
+          "fertilizante",
+          "quimico",
+          "fumig",
+          "paraquat",
+          "herbicida",
+          "bomba de fumigar",
+          "regando"
         ]
       },
       {
@@ -515,7 +626,15 @@
           "analgesico",
           "pastillas",
           "medicamento",
-          "medicina"
+          "medicina",
+          "frecuentemente",
+          "calmante",
+          "analgesic",
+          "pastillas para el dolor",
+          "dolores musculares",
+          "dorival",
+          "voltaren",
+          "pastillas de la tienda"
         ]
       },
       {
@@ -527,7 +646,12 @@
           "padre",
           "tio",
           "heredit",
-          "en la familia"
+          "en la familia",
+          "dialisis",
+          "hemodialisis",
+          "pariente",
+          "muerto de los rinon",
+          "danado"
         ]
       },
       {
@@ -535,7 +659,14 @@
         "texto": "Medición previa de la presión arterial",
         "keywords": [
           "presion",
-          "hipertens"
+          "hipertens",
+          "tension arterial",
+          "tension",
+          "sabe en cuanto",
+          "hipertension",
+          "chequearon",
+          "unidad de salud",
+          "arriba de lo normal"
         ]
       }
     ],
@@ -548,7 +679,14 @@
           "ibuprofeno",
           "antiinflamatorio",
           "analgesico",
-          "pastillas para el dolor"
+          "pastillas para el dolor",
+          "frecuentemente",
+          "calmante",
+          "analgesic",
+          "dolores musculares",
+          "dorival",
+          "voltaren",
+          "pastillas de la tienda"
         ]
       },
       {
@@ -561,7 +699,20 @@
           "orinas menos",
           "cuanto orina",
           "veces orina",
-          "orinar de noche"
+          "orinar de noche",
+          "gotita",
+          "drasticamente",
+          "caido",
+          "cuerpo retiene",
+          "no hace pipi",
+          "anuria",
+          "dejo de orinar",
+          "sin orinar casi nada",
+          "casi nada",
+          "retencion severa",
+          "doce horas",
+          "un poquito",
+          "orina minima"
         ]
       }
     ],
@@ -861,7 +1012,17 @@
         "texto": "Sed excesiva",
         "keywords": [
           "sed",
-          "toma mucha agua"
+          "toma mucha agua",
+          "todas horas",
+          "no se le quita la sequedad",
+          "sequedad en la boca",
+          "desesperacion",
+          "ganas excesivas",
+          "garganta y boca",
+          "pichel",
+          "insaciable",
+          "tomar agua",
+          "resequedad en la garganta"
         ]
       },
       {
@@ -870,7 +1031,13 @@
         "keywords": [
           "orina",
           "orinar",
-          "ir al bano"
+          "ir al bano",
+          "frecuencia al bano",
+          "a cada rato",
+          "gran cantidad",
+          "pipi",
+          "no aguanta",
+          "vejiga"
         ]
       },
       {
@@ -880,7 +1047,13 @@
           "peso",
           "bajado",
           "adelgaz",
-          "libras"
+          "libras",
+          "bajado de peso",
+          "perdido peso",
+          "ropa",
+          "floja",
+          "disminucion",
+          "delgado"
         ]
       },
       {
@@ -890,7 +1063,16 @@
           "vision",
           "vista",
           "borros",
-          "ve mal"
+          "ve mal",
+          "dificultad para ver",
+          "enfocar",
+          "nublad",
+          "cansancio para ver",
+          "empanad",
+          "claridad",
+          "lentes",
+          "neblina",
+          "ver de lejos"
         ]
       },
       {
@@ -902,7 +1084,15 @@
           "papa",
           "madre",
           "padre",
-          "heredit"
+          "heredit",
+          "pariente",
+          "metformina",
+          "insulina",
+          "historia familiar",
+          "materna",
+          "paterna",
+          "abunda",
+          "azucar"
         ]
       },
       {
@@ -916,7 +1106,15 @@
           "gaseosa",
           "dieta",
           "alimentacion",
-          "azucar"
+          "azucar",
+          "pan dulce",
+          "tortilla",
+          "cafe con azucar",
+          "desayuno y almuerzo",
+          "carbohidrato",
+          "soda",
+          "fritura",
+          "harina"
         ]
       },
       {
@@ -926,7 +1124,15 @@
           "ejercicio",
           "actividad fisica",
           "deporte",
-          "camina"
+          "camina",
+          "actividad diaria",
+          "tiempo sentado",
+          "caminar",
+          "trotar",
+          "rutina",
+          "sedentaria",
+          "media hora",
+          "nivel de actividad"
         ]
       },
       {
@@ -936,7 +1142,16 @@
           "hormigueo",
           "adormec",
           "neuropatia",
-          "sensibilidad"
+          "sensibilidad",
+          "plantas de los pies",
+          "agujas",
+          "piquetes",
+          "calambre",
+          "sensibilidad en los pies",
+          "entumec",
+          "acorchad",
+          "queman",
+          "descalzo"
         ]
       }
     ],
@@ -949,7 +1164,16 @@
           "cicatriza",
           "sanar",
           "ulcera",
-          "llaga"
+          "llaga",
+          "pie",
+          "cicatric",
+          "talon",
+          "dedos",
+          "infecc",
+          "raspon",
+          "semanas en cerrar",
+          "pus",
+          "espina"
         ]
       },
       {
@@ -960,7 +1184,15 @@
           "confusion",
           "aliento",
           "somnolien",
-          "desmayo"
+          "desmayo",
+          "frutal",
+          "manzana",
+          "rapida y profunda",
+          "desorientad",
+          "frutas podridas",
+          "somnolencia extrema",
+          "atarantad",
+          "desmayarse"
         ]
       }
     ],
@@ -1245,6 +1477,15 @@
           "nuca",
           "late",
           "pulsatil",
+          "dolor de cabeza",
+          "en que parte",
+          "detras del cuello",
+          "pulsa",
+          "golpe",
+          "aumento despacio",
+          "trasera de la cabeza",
+          "en las sienes",
+          "mover el cuello",
           "dolor"
         ]
       },
@@ -1259,7 +1500,15 @@
           "vision",
           "vista",
           "borros",
-          "lucecitas"
+          "lucecitas",
+          "silbido",
+          "chispita",
+          "manchas brillantes",
+          "destello",
+          "ruidos extranos",
+          "retumban",
+          "estrellitas",
+          "agacha"
         ]
       },
       {
@@ -1273,7 +1522,14 @@
           "tomando",
           "dejo de tomar",
           "suspension",
-          "tratamiento"
+          "tratamiento",
+          "todos los dias",
+          "se le olvido",
+          "dosis",
+          "terminaron las pastillas",
+          "irregular",
+          "porque ya se sentia",
+          "medicamento para la presion"
         ]
       },
       {
@@ -1283,7 +1539,14 @@
           "pecho",
           "opresion",
           "corazon",
-          "pesadez"
+          "pesadez",
+          "pesadez en el pecho",
+          "opresion en el medio",
+          "zona del torax",
+          "sube gradas",
+          "aprieta el pecho",
+          "angustia",
+          "izquierdo del pecho"
         ]
       },
       {
@@ -1294,7 +1557,15 @@
           "respira",
           "ahogo",
           "fatiga",
-          "cansa al caminar"
+          "cansa al caminar",
+          "agarrar aire",
+          "se fatiga",
+          "se ahoga al caminar",
+          "pocos pasos",
+          "oxigeno al estar acostado",
+          "cuesta",
+          "almohadas",
+          "sofoca"
         ]
       },
       {
@@ -1306,7 +1577,15 @@
           "cigarro",
           "tabaco",
           "fuma",
-          "dieta"
+          "dieta",
+          "comidas",
+          "cargado",
+          "estimulante",
+          "plato antes de probar",
+          "boquita",
+          "fritura salada",
+          "dia normal",
+          "consome"
         ]
       },
       {
@@ -1319,7 +1598,13 @@
           "mama",
           "derrame",
           "infarto",
-          "en su familia"
+          "en su familia",
+          "muerte subita",
+          "cardiovascular",
+          "infartos en su familia",
+          "hermano suyo",
+          "alta en su familia",
+          "alguien en su familia"
         ]
       }
     ],
@@ -1328,11 +1613,22 @@
         "id": "dolor_toracico",
         "texto": "Dolor torácico opresivo sugestivo de síndrome coronario",
         "keywords": [
-          "pecho",
+          "opresion en el pecho",
           "torax",
           "opresion en el pecho",
           "irradia",
-          "corazon"
+          "ataque al corazon",
+          "pata de elefante",
+          "brazo izquierdo",
+          "mandibula",
+          "sudar frio",
+          "quemante",
+          "desgarrante",
+          "faja",
+          "veinte minutos",
+          "opresion intensa",
+          "esternon",
+          "dura mas de 20 minutos"
         ]
       },
       {
@@ -1345,7 +1641,17 @@
           "brazo",
           "cara torcida",
           "paralisis",
-          "debilidad"
+          "debilidad",
+          "fuerza en un brazo",
+          "pierna",
+          "se le cae la saliva",
+          "pronunciar palabras",
+          "dormido o debil",
+          "torpeza",
+          "se le trabo",
+          "lengua",
+          "cayo un objeto",
+          "mitad del cuerpo"
         ]
       },
       {
@@ -1356,7 +1662,16 @@
           "asfixia",
           "ahogo",
           "pulmon",
-          "respirar"
+          "respirar",
+          "repentino",
+          "plano",
+          "sentarse al borde",
+          "asfixiando",
+          "quejido",
+          "silbidos humedos",
+          "mecedora",
+          "espuma rosada",
+          "aire a los pulmones"
         ]
       }
     ],
@@ -1611,7 +1926,17 @@
           "como cayo",
           "como choco",
           "mecanismo",
-          "impacto"
+          "impacto",
+          "accidente",
+          "motocicleta",
+          "automovil",
+          "atropellad",
+          "derrapo",
+          "pavimento",
+          "expulsado",
+          "de frente",
+          "choque lateral",
+          "volcado"
         ]
       },
       {
@@ -1622,7 +1947,16 @@
           "proteccion",
           "chaleco",
           "guantes",
-          "llevaba puesto"
+          "llevaba puesto",
+          "abrochado",
+          "solto",
+          "quebro",
+          "integral",
+          "tipo bacinica",
+          "rodilla",
+          "reglamentario",
+          "amortiguo",
+          "zafo"
         ]
       },
       {
@@ -1634,7 +1968,17 @@
           "conciencia",
           "desmayo",
           "recuerda lo que paso",
-          "aturdido"
+          "aturdido",
+          "conocimiento",
+          "inconsciente",
+          "tras el golpe",
+          "memoria",
+          "amnesia",
+          "borro la pelicula",
+          "reaccionaba",
+          "despertar",
+          "recuerda todo",
+          "paso durante el choque"
         ]
       },
       {
@@ -1645,7 +1989,14 @@
           "costilla",
           "respirar",
           "aire",
-          "tomar aire"
+          "tomar aire",
+          "costillas al respirar",
+          "meter aire",
+          "directo en el torax",
+          "manubrio",
+          "caja toracica",
+          "timon",
+          "costado derecho"
         ]
       },
       {
@@ -1655,19 +2006,37 @@
           "cuello",
           "columna",
           "espalda",
-          "nuca"
+          "nuca",
+          "columna cervical",
+          "latigazo",
+          "espalda alta",
+          "tragar",
+          "vertebras",
+          "tiron",
+          "girar la cabeza"
         ]
       },
       {
         "id": "sensibilidad_motora",
         "texto": "Movilidad y sensibilidad en extremidades",
         "keywords": [
-          "mover",
-          "siente",
+          "mover los dedos",
+          "siente las piernas",
           "fuerza",
           "dedos",
           "adormec",
-          "extremidades"
+          "extremidades",
+          "dedos de las manos",
+          "hormigueo",
+          "muslos",
+          "apretar",
+          "camilla",
+          "cosquilleo",
+          "falta de sensibilidad",
+          "entumecimiento",
+          "fuerza normal",
+          "paralisis en las piernas",
+          "mover"
         ]
       },
       {
@@ -1677,7 +2046,16 @@
           "tetano",
           "vacuna",
           "herida",
-          "raspon"
+          "raspon",
+          "ultimos 5 anos",
+          "esquema",
+          "al dia",
+          "abiertas",
+          "refuerzo",
+          "carne",
+          "inyeccion del tetanos",
+          "raspones anteriores",
+          "antitoxina"
         ]
       }
     ],
@@ -1692,7 +2070,18 @@
           "despierto",
           "somnolien",
           "amnesia",
-          "golpe en la cabeza"
+          "golpe en la cabeza",
+          "proyectil",
+          "liquido transparente",
+          "pupilas",
+          "convulsiones",
+          "ataques",
+          "insoportable",
+          "donde vive",
+          "ojos negros",
+          "moretones alrededor",
+          "desorientado o con somnolencia",
+          "somnolencia anormal"
         ]
       },
       {
@@ -1704,7 +2093,14 @@
           "costilla",
           "ahogo",
           "aire",
-          "pecho"
+          "pecho",
+          "asfixia por el golpe",
+          "hunden las costillas",
+          "cuello al respirar",
+          "dos palabras seguidas",
+          "crujidos",
+          "burbujas",
+          "labios morados"
         ]
       },
       {
@@ -1715,7 +2111,19 @@
           "mucha sangre",
           "hemorragia",
           "palido",
-          "sudor frio"
+          "sudor frio",
+          "abierta que este sangrando",
+          "vendaje",
+          "empapado",
+          "sangre fresca",
+          "chorro",
+          "palidez",
+          "se desmaya por la sangre",
+          "pierna o brazo",
+          "sangrado activo",
+          "no se detiene",
+          "sigue saliendo",
+          "sangre perdida"
         ]
       }
     ],
@@ -1961,12 +2369,29 @@
         "id": "heces_frecuencia",
         "texto": "Frecuencia y características de las evacuaciones",
         "keywords": [
-          "cuantas veces",
           "evacuaciones",
           "diarrea",
-          "liquida",
           "heces",
-          "cuantas deposiciones"
+          "cuantas deposiciones",
+          "cursera",
+          "evacu",
+          "suelto del estomago",
+          "popo",
+          "sanitario",
+          "taza del bano",
+          "consistencia",
+          "ido al bano",
+          "va al bano",
+          "veces al bano",
+          "heces liquidas",
+          "evacuaciones liquidas",
+          "deposicion liquida",
+          "cuantas veces ha ido",
+          "cuantas veces evacu",
+          "cuantas veces ha hecho",
+          "cuantas veces ha tenido",
+          "ir seguido al bano",
+          "ir mucho al bano"
         ]
       },
       {
@@ -1977,7 +2402,14 @@
           "moco",
           "roja",
           "sangrado",
-          "heces con sangre"
+          "heces con sangre",
+          "moquito",
+          "coagulo",
+          "gelatinosa",
+          "papel",
+          "hilachas",
+          "mucosidad",
+          "flema"
         ]
       },
       {
@@ -1988,8 +2420,17 @@
           "tolera",
           "retiene",
           "devolver",
-          "liquido",
-          "tomar agua"
+          "tolerar liquidos",
+          "tomar agua",
+          "arroj",
+          "le cae mal",
+          "aguanta",
+          "nausea",
+          "basca",
+          "saliva que traga",
+          "amarillo",
+          "verde",
+          "bocado"
         ]
       },
       {
@@ -2002,7 +2443,16 @@
           "orinado",
           "cuanto ha orinado",
           "lagrimas",
-          "orina oscura"
+          "orina oscura",
+          "reseca",
+          "mareo",
+          "mareado",
+          "orin",
+          "lengua como lija",
+          "concentrada",
+          "cabeza ligera",
+          "ojos hundidos",
+          "sin saliva"
         ]
       },
       {
@@ -2012,11 +2462,22 @@
           "comio",
           "alimento",
           "calle",
-          "agua",
+          "agua de chorro",
           "chorro",
           "pupusa",
           "curtido",
-          "comida"
+          "comida",
+          "mal estado",
+          "almorz",
+          "cen",
+          "desayun",
+          "que comio",
+          "marisco",
+          "mayonesa",
+          "hervir",
+          "guardados",
+          "refrigeradora",
+          "frescos"
         ]
       },
       {
@@ -2026,7 +2487,14 @@
           "fiebre",
           "calentura",
           "temperatura",
-          "escalofrio"
+          "escalofrio",
+          "caliente",
+          "escalofri",
+          "termometro",
+          "tacto en la frente",
+          "sudoracion",
+          "hirviendo",
+          "chuchos de frio"
         ]
       },
       {
@@ -2039,7 +2507,17 @@
           "antibiotico",
           "medicina",
           "remedio",
-          "sueroral"
+          "sueroral",
+          "se ha tomado algo",
+          "automedic",
+          "toma algo",
+          "se tomo algo",
+          "sales de rehidratacion",
+          "taparse",
+          "farmacia",
+          "manzanilla",
+          "sobre de suero",
+          "purgante"
         ]
       }
     ],
@@ -2054,7 +2532,17 @@
           "desmayo",
           "confusion",
           "boca seca",
-          "ojos hundidos"
+          "ojos hundidos",
+          "no puede sostenerse",
+          "horas sin orinar",
+          "agrietados",
+          "pulso muy rapido",
+          "piel fria",
+          "fuerza completamente",
+          "lengua completamente seca",
+          "doce horas",
+          "perdido el sentido",
+          "somnoliento"
         ]
       },
       {
@@ -2065,7 +2553,13 @@
           "devuelve todo",
           "vomita todo",
           "vomito constante",
-          "no retiene"
+          "no retiene",
+          "ni medio sorbo",
+          "incoercibles",
+          "en seco",
+          "cucharadita de suero",
+          "arqueandose",
+          "cada trago"
         ]
       },
       {
@@ -2075,7 +2569,14 @@
           "sangre",
           "disenteria",
           "sangrado",
-          "heces con sangre"
+          "heces con sangre",
+          "pura sangre fresca",
+          "coagulos grandes",
+          "ano",
+          "rojo brillante",
+          "hemorragia digestiva",
+          "sangre viva",
+          "sangrado rojo"
         ]
       }
     ],
@@ -2315,9 +2816,18 @@
           "tos",
           "flema",
           "expectoracion",
-          "color",
           "amarilla",
-          "verde"
+          "verde",
+          "expectoraci",
+          "gargajo",
+          "pecho cargado",
+          "espesas",
+          "pegajosas",
+          "arrancar las flemas",
+          "color de la flema",
+          "color del esputo",
+          "dormir por la tos",
+          "no deja dormir"
         ]
       },
       {
@@ -2328,19 +2838,33 @@
           "calentura",
           "escalofrio",
           "temperatura",
-          "cuantos dias"
+          "cuantos dias",
+          "calentura fuerte",
+          "temblores en los dientes",
+          "sudando frio",
+          "paños de agua",
+          "quema la frente",
+          "cobijas"
         ]
       },
       {
         "id": "dolor_pleuritico",
         "texto": "Dolor torácico tipo pleurítico en puntada de costado",
         "keywords": [
-          "pecho",
+          "dolor en el pecho al respirar",
           "costado",
           "espalda",
           "puntada",
           "al toser",
-          "al respirar"
+          "al respirar",
+          "costado al meter aire",
+          "punal",
+          "meter aire",
+          "paletilla",
+          "espina clavada",
+          "suspirar",
+          "inhalar",
+          "duele el torax"
         ]
       },
       {
@@ -2351,7 +2875,15 @@
           "respira",
           "ahogo",
           "dificultad para respirar",
-          "pecho apretado"
+          "pecho apretado",
+          "fatiga al dar",
+          "descansando",
+          "agitada",
+          "silba el pecho",
+          "tramo corto",
+          "sofoco constante",
+          "aire no le entra",
+          "no entra suficiente aire"
         ]
       },
       {
@@ -2363,7 +2895,15 @@
           "cocina",
           "fuma",
           "tabaco",
-          "cigarro"
+          "cigarro",
+          "cocina con leña",
+          "poyo",
+          "quema de basura",
+          "maleza",
+          "vapores",
+          "chimenea",
+          "cuarto",
+          "hacer tortillas"
         ]
       },
       {
@@ -2373,7 +2913,12 @@
           "vacuna",
           "influenza",
           "neumococo",
-          "inmuniz"
+          "inmuniz",
+          "gripe este ano",
+          "defensas de los pulmones",
+          "campaña de vacunacion",
+          "vigentes",
+          "carne de vacunacion"
         ]
       },
       {
@@ -2385,7 +2930,12 @@
           "acetaminofen",
           "medicina",
           "pastilla",
-          "remedio"
+          "remedio",
+          "jarabes",
+          "capsulas de antibiotico",
+          "eucalipto",
+          "remedios caseros para la tos",
+          "automedico amoxicilina"
         ]
       }
     ],
@@ -2399,7 +2949,13 @@
           "labios morados",
           "cianosis",
           "asfixia",
-          "respirar rapido"
+          "respirar rapido",
+          "azul o morado",
+          "desesperante que no le calma",
+          "hunden las costillas",
+          "jadeando",
+          "oxigeno de forma critica",
+          "sofocando"
         ]
       },
       {
@@ -2411,7 +2967,16 @@
           "somnolien",
           "dormido",
           "despierto",
-          "conciencia"
+          "conciencia",
+          "confuso",
+          "desorientado",
+          "mente perdida",
+          "fecha estamos",
+          "demasiado dormido",
+          "incoherente",
+          "desvarios",
+          "atolondrado",
+          "sin sentido"
         ]
       },
       {
@@ -2421,7 +2986,14 @@
           "sangre",
           "escupe sangre",
           "tos con sangre",
-          "hemoptisis"
+          "hemoptisis",
+          "flemas con sangre",
+          "sangre viva en la tos",
+          "hemoptoica",
+          "panuelo",
+          "franca del pecho",
+          "sangrado pulmonar",
+          "pura sangre liquida"
         ]
       }
     ],
@@ -2701,7 +3273,15 @@
           "llora",
           "llorar",
           "ganas de nada",
-          "desanimo"
+          "desanimo",
+          "desanimado",
+          "decaido",
+          "ganas de llorar",
+          "tristeza profunda",
+          "llanto facil",
+          "brillo o alegria",
+          "llorando a solas",
+          "pena o amargura"
         ]
       },
       {
@@ -2713,7 +3293,17 @@
           "disfruta",
           "gusta hacer",
           "actividades",
-          "motivacion"
+          "motivacion",
+          "interes o placer",
+          "nada le llama la atencion",
+          "divierte",
+          "pasatiempos",
+          "indiferencia",
+          "aficiones",
+          "satisfaccion",
+          "escuchar musica",
+          "vida cotidiana",
+          "alegria"
         ]
       },
       {
@@ -2724,7 +3314,14 @@
           "sueno",
           "insomnio",
           "despierta",
-          "dormir"
+          "dormir",
+          "durmiendo",
+          "madrugada",
+          "pesadillas",
+          "interrumpido",
+          "dando vueltas",
+          "3 de la manana",
+          "reparador"
         ]
       },
       {
@@ -2736,7 +3333,14 @@
           "come",
           "comida",
           "peso",
-          "libras"
+          "libras",
+          "obligacion",
+          "bajado o subido",
+          "desgano para probar",
+          "holgada",
+          "plato de comida",
+          "insipida",
+          "asco"
         ]
       },
       {
@@ -2747,7 +3351,14 @@
           "cansa",
           "fatiga",
           "fuerza",
-          "agotad"
+          "agotad",
+          "fuerzas en el cuerpo",
+          "agotado",
+          "tareas mas sencillas",
+          "pesadez en el cuerpo",
+          "peso encima",
+          "banarse o peinarse",
+          "silla"
         ]
       },
       {
@@ -2761,7 +3372,17 @@
           "apoyo",
           "acompan",
           "sola",
-          "vive sola"
+          "vive sola",
+          "solo",
+          "amigos",
+          "confianza",
+          "perdida de un ser querido",
+          "separacion",
+          "divorcio",
+          "tienda la mano",
+          "desahogarse",
+          "seres queridos",
+          "en la casa"
         ]
       },
       {
@@ -2772,7 +3393,16 @@
           "olvidos",
           "memoria",
           "mente",
-          "atencion"
+          "atencion",
+          "concentrarse",
+          "olvidan las cosas",
+          "decisiones",
+          "dispersa",
+          "distrae",
+          "leer varias veces",
+          "mente nublada",
+          "coordina",
+          "decidir"
         ]
       }
     ],
@@ -2787,7 +3417,15 @@
           "quitarse la vida",
           "suicid",
           "no despertar",
-          "dormirse"
+          "dormirse",
+          "no vale la pena",
+          "dormirse y no despertar",
+          "suicidarse",
+          "terminar con su sufrimiento",
+          "planear alguna forma",
+          "estaria mejor",
+          "autolesionarse",
+          "acabar con su vida"
         ]
       },
       {
@@ -2799,7 +3437,15 @@
           "banarse",
           "no come",
           "abandono",
-          "descuido"
+          "descuido",
+          "encerrado en su habitacion",
+          "aislado por completo",
+          "dejado de banarse",
+          "cambiarse de ropa",
+          "evita contestar",
+          "aseo",
+          "pijama sin asearse",
+          "mundo exterior"
         ]
       }
     ],

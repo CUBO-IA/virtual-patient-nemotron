@@ -6,7 +6,14 @@ async function apiError(r) {
   } catch {
     /* sin cuerpo JSON */
   }
-  return new Error(detalle)
+  const err = new Error(detalle)
+  err.status = r.status // el código HTTP, para decidir sin depender del texto del mensaje
+  return err
+}
+
+/** 404 «Sesión no encontrada»: el servidor ya no conoce la consulta (se borró o caducó). */
+export function esSesionPerdida(e) {
+  return e?.status === 404 && /sesi[oó]n/i.test(e.message || '')
 }
 
 export async function obtenerHealth() {

@@ -88,8 +88,12 @@ if not errorlevel 1 (
 )
 
 REM 7. Levantar Backend
-echo [INFO] Levantando Backend en :8000...
-start "Paciente Virtual - Backend" cmd /k "cd /d "%~dp0" && .venv\Scripts\python.exe -m uvicorn app.main:app --app-dir backend --port 8000 --reload"
+REM Sin --reload por defecto: reiniciar el servidor por cada cambio de codigo interrumpe las consultas en curso.
+REM Para programar con recarga automatica usa iniciar-dev.bat (recarga solo al cambiar backend\).
+set "RELOAD="
+if /i "%~1"=="dev" set "RELOAD=--reload --reload-dir backend"
+echo [INFO] Levantando Backend en :8000 %RELOAD%...
+start "Paciente Virtual - Backend" cmd /k "cd /d "%~dp0" && .venv\Scripts\python.exe -m uvicorn app.main:app --app-dir backend --port 8000 %RELOAD%"
 
 REM 8. Levantar Frontend
 echo [INFO] Levantando Frontend en :5173...

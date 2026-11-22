@@ -1,14 +1,82 @@
 {
   "version": 1,
   "items": [
-    { "id": "motivo",      "texto": "Motivo de consulta",                    "keywords": ["que le trae", "que le pasa", "motivo", "como se siente", "que siente"] },
-    { "id": "inicio",      "texto": "Inicio y evolución («¿desde cuándo?»)", "keywords": ["desde cuando", "cuando empezo", "cuanto tiempo", "hace cuanto", "cuantos dias"] },
-    { "id": "intensidad",  "texto": "Intensidad y características",          "keywords": ["intensidad", "de 1 a 10", "que tan fuerte", "como es el dolor", "como se siente el"] },
-    { "id": "factores",    "texto": "Qué lo mejora o empeora",               "keywords": ["mejora", "empeora", "alivia", "calma", "se pone peor"] },
-    { "id": "asociados",   "texto": "Otros síntomas asociados",              "keywords": ["otro sintoma", "algo mas", "tambien siente", "acompan"] },
-    { "id": "antecedentes","texto": "Antecedentes personales",               "keywords": ["enfermedad", "antecedente", "operaci", "hospital", "alergi"] },
-    { "id": "familiares",  "texto": "Antecedentes familiares",               "keywords": ["familiar", "mama", "papa", "madre", "padre", "heredit"] },
-    { "id": "medicinas",   "texto": "Medicamentos que toma",                 "keywords": ["medicina", "medicamento", "pastilla", "tomando", "tratamiento"] },
-    { "id": "habitos",     "texto": "Hábitos y entorno",                     "keywords": ["fuma", "alcohol", "come", "ejercicio", "trabaja", "vive"] }
+    {
+      "id": "motivo",
+      "texto": "Motivo de consulta",
+      "keywords": [
+        "que le trae", "que le pasa", "motivo", "como se siente", "que siente",
+        "cual es el problema", "en que le puedo", "como se ha sentido", "que molestia",
+        "que tiene", "por que viene", "preocupa", "pasar consulta", "le trae por aqui"
+      ]
+    },
+    {
+      "id": "inicio",
+      "texto": "Inicio y evolución («¿desde cuándo?»)",
+      "keywords": [
+        "desde cuando", "cuando empezo", "cuanto tiempo", "hace cuanto", "cuantos dias",
+        "como fue que empezo", "empez", "cuando comenzo", "comenz", "inici", "fecha",
+        "primera vez", "de repente"
+      ]
+    },
+    {
+      "id": "intensidad",
+      "texto": "Intensidad y características",
+      "keywords": [
+        "intensidad", "de 1 a 10", "del 1 al 10", "1 al 10", "que tan fuerte", "como es el dolor",
+        "como se siente el", "muy fuerte", "intens", "cuantas veces al dia", "con que frecuencia",
+        "punzante", "sordo", "escala", "insoportable", "tolerable"
+      ]
+    },
+    {
+      "id": "factores",
+      "texto": "Qué lo mejora o empeora",
+      "keywords": [
+        "mejora", "empeora", "alivia", "calma", "se pone peor",
+        "mejor", "alivi", "empeor", "se le pasa", "descans", "postura", "reposo", "esfuerzo"
+      ]
+    },
+    {
+      "id": "asociados",
+      "texto": "Otros síntomas asociados",
+      "keywords": [
+        "otro sintoma", "algo mas", "tambien siente", "acompan",
+        "otra molestia", "otra cosa", "de otra manera", "alguna otra", "algo raro", "extrano",
+        "fiebre o nauseas", "junto con eso", "adicional"
+      ]
+    },
+    {
+      "id": "antecedentes",
+      "texto": "Antecedentes personales",
+      "keywords": [
+        "enfermedad", "antecedente", "operaci", "hospital", "alergi",
+        "cronic", "operad", "alergic", "hospitaliz", "padece", "cirugia", "reaccion"
+      ]
+    },
+    {
+      "id": "familiares",
+      "texto": "Antecedentes familiares",
+      "keywords": [
+        "familiar", "mama", "papa", "madre", "padre", "heredit",
+        "famili", "hermano", "papas", "abuel", "pariente", "en su hogar", "en su casa"
+      ]
+    },
+    {
+      "id": "medicinas",
+      "texto": "Medicamentos que toma",
+      "keywords": [
+        "medicina", "medicamento", "pastilla", "tomando", "tratamiento",
+        "toma algo", "se ha tomado", "se tomo", "remedio", "farmaco", "automedic", "hierba", "inyeccion"
+      ]
+    },
+    {
+      "id": "habitos",
+      "texto": "Hábitos y entorno",
+      "keywords": [
+        "fuma", "alcohol", "come", "ejercicio", "trabaja", "vive",
+        "se dedica", "alimentacion", "trabaj", "actividad fisica", "duerme", "descansa",
+        "tabaco", "cigarro", "licor"
+      ]
+    }
   ]
 }

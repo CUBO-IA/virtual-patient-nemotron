@@ -68,6 +68,8 @@ ollama pull qwen2.5:7b
 6. Si `RAG_ENABLED=true` en `.env`, levanta Chroma con Docker.
 7. Abre el backend, el frontend y el navegador en <http://localhost:5173>.
 
+El backend arranca **sin recarga automática**, para que un cambio de código no reinicie el servidor en medio de una consulta. Si vas a programar, usa `iniciar-dev.bat`: recarga el backend al cambiar archivos de `backend\`. Aun así, las sesiones se guardan en disco (ver más abajo) y sobreviven a la recarga.
+
 > Las 150 personas ya vienen en el repositorio (`data/personas.json`); no hace falta descargar el dataset.
 
 ## Ejecución manual
@@ -98,6 +100,9 @@ npm run dev
 | `EMBED_MODEL` | `bge-m3` | Modelo de embeddings (solo RAG). |
 | `CHROMA_URL` | `http://localhost:8001` | Dónde está Chroma (solo RAG). |
 | `PENALIZACION_PISTA` | `0.5` | Puntos que resta cada pista. |
+| `SESIONES_TTL_HORAS` | `24` | Cuántas horas se conserva en disco una consulta guardada. |
+| `MAX_SESIONES_DISCO` | `500` | Máximo de consultas guardadas; al pasarse se borran las más antiguas. |
+| `SESIONES_DIR` | `.sesiones` | Carpeta donde se guardan (no se sube al repositorio). |
 | `SEGUIMIENTO_DEMO` | `false` | Activa pruebas, plan y control aunque el caso **no** esté validado. Solo para demostraciones: la interfaz muestra «Contenido sin validar clínicamente». |
 | `CORS_ORIGINS` | `http://localhost:5173` | Orígenes permitidos por el backend. |
 
@@ -217,6 +222,7 @@ Otras formas de usarlo:
 | `docker compose` falla con «cannot find the file specified» | Docker Desktop está apagado: ábrelo y espera a que diga «Running». |
 | `"rag": false` con RAG activado | Verifica `docker ps`, que `RAG_ENABLED=true` y que Chroma responda en <http://localhost:8001/api/v2/heartbeat>. |
 | Puerto 8000 o 5173 ocupado | Cierra la ventana anterior del backend o frontend. |
+| «Sesión no encontrada» a mitad de una consulta | El servidor ya no tiene esa consulta. Antes pasaba cada vez que se reiniciaba (p. ej. `--reload` al editar código); ahora las consultas se guardan en `.sesiones\` y se recuperan solas. Solo ocurre si la consulta tiene más de 24 h, se borró la carpeta o la sesión se creó antes de esta mejora. La app avisa y vuelve al selector sin perder tu progreso. |
 | El RAG no devuelve citas | Falta ejecutar `scripts\ingest_guias.py` o no hay documentos en `data/guias/`. |
 
 ## Limitaciones conocidas

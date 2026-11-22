@@ -172,3 +172,20 @@ Variables en `.env` (ver `.env.example`): `OLLAMA_URL, LLM_MODEL, EMBED_MODEL, C
 - El modelo no genera resultados de pruebas, medicamentos, dosis ni evolución: todo sale de `data/casos.json`, `data/catalogo_pruebas.json` y `data/formulario.json`. El modelo solo redacta la retroalimentación sobre listas ya calculadas.
 - `niveles.json` tiene `pesos` (con módulos) y `pesos_sin_modulos` (clásicos). Los dos deben sumar 100.
 - Endpoints nuevos: `GET /api/catalogo/pruebas`, `GET /api/catalogo/formulario`, `GET|POST /api/sessions/{id}/pruebas`; `POST /api/sessions/{id}/finish` acepta `plan`. Nada de `pertinencia`, `plan_esperado` ni `evolucion` sale al cliente antes de `/finish`.
+
+## 12. Sesiones en disco
+
+- Las sesiones viven en memoria **y** se guardan en `.sesiones/<id>.json` (`backend/app/sessions.py`), de modo que sobreviven a un reinicio del servidor. `sessions.get()` recupera del disco las que no están en memoria.
+- Solo se guardan referencias (`caso_id`, `persona_id`) y el estado de la consulta; no se copia el contenido del caso. Guardar es de mejor esfuerzo: un fallo de escritura no rompe la petición.
+- **Todo cambio de una sesión debe llamar a `sessions.guardar(s)`** (hoy: crear, chat, pista, pruebas, finish). Si añades un endpoint que modifica la sesión, guárdala también.
+- Una pregunta sin respuesta (el reinicio interrumpió la petición) se descarta al restaurar.
+- Las pruebas usan una carpeta temporal (`conftest.py`); no escribas en `.sesiones/` desde los tests.
+- `iniciar.bat` no usa `--reload`; `iniciar-dev.bat` sí (solo `backend/`).
+
+
+## 13. Detección de preguntas
+
+- `evaluate._hit(keywords, texto_normalizado)` es la **única** lógica de detección (guía de anamnesis, evaluación final y pistas). Compara por inicio de palabra, por raíz (sufijos, raíz ≥ 4 letras) y con contracciones `del→de`, `al→a`; claves de varias palabras deben coincidir consecutivas.
+- `data/preguntas_ejemplo.json` es el banco de preguntas realistas (guía y los 8 casos), con `desarrollo` (para ajustar claves) y `reserva` (solo para medir, no copiar a las claves).
+- Medir: `.\.venv\Scripts\python.exe scripts\medir_deteccion.py`. Umbrales (también en `backend/tests/test_deteccion.py`): desarrollo ≥ 95 %, reserva ≥ 80 %, cruces falsos ≤ 5 % por entidad.
+- Al añadir o recortar claves: no incluir el diagnóstico ni sus alias, no usar palabras genéricas sueltas (`dolor`, `pecho`, `agua`…) si suben los cruces, y anotar en `CLAVES_RECORTADAS` (del test) las que se quiten.

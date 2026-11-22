@@ -9,6 +9,7 @@ plan de tratamiento. Todo es determinista: el modelo solo redacta la retroalimen
 """
 import re
 import unicodedata
+from functools import lru_cache
 
 from . import config, llm, prompts, rag, seguimiento
 from .sessions import Session
@@ -24,8 +25,54 @@ def norm(text: str) -> str:
     return f" {text.strip()} "
 
 
+SUFIJOS = [
+    "amientos", "imientos", "amiento", "imiento", "aciones", "iciones", "acion", "icion",
+    "ando", "iendo", "ados", "idos", "adas", "idas", "ado", "ido", "ada", "ida",
+    "ar", "er", "ir", "es", "as", "os", "an", "en", "a", "e", "o", "s"
+]
+EQUIV = {"del": "de", "al": "a"}
+
+
+@lru_cache(maxsize=8192)
+def _raiz(w: str) -> str:
+    if len(w) <= 4:
+        return w
+    for s in SUFIJOS:
+        if w.endswith(s) and len(w) - len(s) >= 4:
+            return w[: -len(s)]
+    return w
+
+
+@lru_cache(maxsize=65536)
+def _tok_coincide(k: str, t: str) -> bool:
+    if k == t or t.startswith(k):  # comportamiento actual
+        return True
+    if len(k) <= 4 or len(t) <= 4:
+        return False
+    rk, rt = _raiz(k), _raiz(t)
+    return (
+        len(rk) >= 4
+        and len(rt) >= 4
+        and abs(len(rk) - len(rt)) <= 4
+        and (rk.startswith(rt) or rt.startswith(rk))
+    )
+
+
+@lru_cache(maxsize=4096)
+def _clave_tokens(k: str) -> tuple[str, ...]:
+    return tuple(EQUIV.get(p, p) for p in norm(k).split())
+
+
 def _hit(keywords: list[str], texto: str) -> bool:
-    return any(norm(k).rstrip() in texto for k in keywords)
+    palabras = [EQUIV.get(p, p) for p in texto.split()]
+    for k in keywords:
+        clave = _clave_tokens(k)
+        if clave and any(
+            all(_tok_coincide(clave[j], palabras[i + j]) for j in range(len(clave)))
+            for i in range(len(palabras) - len(clave) + 1)
+        ):
+            return True
+    return False
 
 
 def _alias_principales_efectivos(caso: dict, texto_norm: str) -> list[str]:

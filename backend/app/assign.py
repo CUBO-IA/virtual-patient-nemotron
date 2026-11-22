@@ -28,6 +28,17 @@ def _load():
     return personas, casos
 
 
+def obtener_caso(caso_id: str) -> dict | None:
+    """Caso por id (para restaurar una sesión guardada en disco)."""
+    _, casos = _load()
+    return next((c for c in casos if c.get("id") == caso_id), None)
+
+
+def obtener_persona(persona_id: str) -> dict | None:
+    personas, _ = _load()
+    return next((p for p in personas if p.get("id") == persona_id), None)
+
+
 def counts() -> tuple[int, int]:
     personas, casos = _load()
     return len(personas), len(casos)

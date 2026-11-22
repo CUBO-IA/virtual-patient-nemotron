@@ -37,3 +37,6 @@ chroma-data/
 *.log
 
 NIVELES.md
+
+# Sesiones guardadas en disco (se regeneran)
+.sesiones/

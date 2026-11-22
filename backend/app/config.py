@@ -36,5 +36,10 @@ MAX_HISTORY = 16
 # «Contenido sin validar clínicamente». Por defecto está apagado.
 SEGUIMIENTO_DEMO = os.getenv("SEGUIMIENTO_DEMO", "false").lower() in ("true", "1", "yes")
 
+# Las sesiones se guardan en disco para que sobrevivan a un reinicio del servidor (p. ej. uvicorn --reload).
+SESIONES_DIR = Path(os.getenv("SESIONES_DIR", str(ROOT / ".sesiones")))
+SESIONES_TTL_HORAS = float(os.getenv("SESIONES_TTL_HORAS", "24"))  # las más viejas se borran
+MAX_SESIONES_DISCO = int(os.getenv("MAX_SESIONES_DISCO", "500"))
+
 # Penalización en puntaje por cada pista usada (configurable por .env)
 PENALIZACION_PISTA = float(os.getenv("PENALIZACION_PISTA", "0.5"))

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import {
   crearSesion,
+  esSesionPerdida,
   enviarMensaje,
   obtenerCatalogoPruebas,
   obtenerFormulario,
@@ -196,8 +197,8 @@ export default function App() {
       setPista({ texto: res.pista, nivel: res.nivel, disponible: res.disponible })
       setPistasUsadas(res.pistas_usadas)
     } catch (e) {
-      if (e.message.includes('404')) {
-        setError('La consulta se perdió porque el servidor se reinició. Tu progreso anterior sigue guardado.')
+      if (esSesionPerdida(e)) {
+        setError('La consulta ya no está disponible en el servidor (se reinició o caducó). Tu progreso anterior sigue guardado.')
         setFase('inicio')
         setSesion(null)
       } else {
@@ -222,7 +223,15 @@ export default function App() {
         return { ...res, resultados: [...nuevos, ...resto] }
       })
     } catch (e) {
-      if (sesionActual.current === id) setError(e.message)
+      if (sesionActual.current === id) {
+        if (esSesionPerdida(e)) {
+          setError('La consulta ya no está disponible en el servidor (se reinició o caducó). Tu progreso anterior sigue guardado.')
+          setFase('inicio')
+          setSesion(null)
+        } else {
+          setError(e.message)
+        }
+      }
     } finally {
       setPidiendoPruebas(false)
     }
@@ -258,8 +267,8 @@ export default function App() {
       )
     } catch (e) {
       if (sesionActual.current === id) {
-        if (e.message.includes('404')) {
-          setError('La consulta se perdió porque el servidor se reinició. Tu progreso anterior sigue guardado.')
+        if (esSesionPerdida(e)) {
+          setError('La consulta ya no está disponible en el servidor (se reinició o caducó). Tu progreso anterior sigue guardado.')
           setFase('inicio')
           setSesion(null)
         } else {
@@ -359,8 +368,8 @@ export default function App() {
 
       setFase('resultados')
     } catch (err) {
-      if (err.message.includes('404')) {
-        setError('La consulta se perdió porque el servidor se reinició. Tu progreso anterior sigue guardado.')
+      if (esSesionPerdida(err)) {
+        setError('La consulta ya no está disponible en el servidor (se reinició o caducó). Tu progreso anterior sigue guardado.')
         setFase('inicio')
         setSesion(null)
       } else {

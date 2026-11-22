@@ -134,9 +134,11 @@ async def ver_pruebas(session_id: str):
 async def pedir_pruebas(session_id: str, body: PruebasRequestIn):
     s = _get_session(session_id)
     try:
-        return seguimiento.solicitar_pruebas(s, body.ids)
+        resultado = seguimiento.solicitar_pruebas(s, body.ids)
     except seguimiento.SeguimientoError as e:
         raise HTTPException(e.status, e.mensaje)
+    sessions.guardar(s)
+    return resultado
 
 
 @app.post("/api/sessions/{session_id}/chat")
@@ -157,6 +159,7 @@ async def chat(session_id: str, body: ChatIn):
     s.lock()
     s.mensajes.append({"role": "user", "content": texto})
     n_antes = len(s.mensajes)
+    sessions.guardar(s)
 
     async def gen():
         partial: list[str] = []
@@ -201,6 +204,7 @@ async def chat(session_id: str, body: ChatIn):
             elif len(s.mensajes) == n_antes:
                 s.mensajes.pop()  # sin respuesta: se quita la pregunta para no dejar el historial inconsistente
             s.unlock()
+            sessions.guardar(s)
 
     return StreamingResponse(gen(), media_type="text/event-stream", headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
@@ -264,6 +268,7 @@ async def pedir_pista(session_id: str):
     nuevo_nivel = min(nivel_actual + 1, 3)
     s.nivel_por_item[item_id] = nuevo_nivel
     s.pistas_usadas += 1
+    sessions.guardar(s)
 
     texto_pista = pendiente.get(f"nivel_{nuevo_nivel}", "")
     return {
@@ -357,4 +362,5 @@ async def terminar(session_id: str, body: FinishIn):
         s.finished = True
     finally:
         s.unlock()
+    sessions.guardar(s)
     return s.result
