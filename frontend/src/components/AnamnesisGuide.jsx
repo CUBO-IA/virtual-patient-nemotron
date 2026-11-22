@@ -11,7 +11,7 @@ export default function AnamnesisGuide({ items = [], cubiertos = [] }) {
     <aside className="anamnesis-guide" aria-label="Guía de anamnesis">
       <div className="anamnesis-header">
         <div className="anamnesis-title">
-          📋 <strong>Guía de anamnesis</strong>
+          <i className="bi bi-clipboard2-pulse" /> <strong>Guía de anamnesis</strong>
         </div>
         <span className="anamnesis-badge">
           {completados} / {total} temas
@@ -26,7 +26,7 @@ export default function AnamnesisGuide({ items = [], cubiertos = [] }) {
           return (
             <li key={it.id} className={`anamnesis-item ${hecho ? 'cubierto' : ''}`}>
               <span className="anamnesis-check" aria-hidden="true">
-                {hecho ? '✓' : '○'}
+                {hecho ? <i className="bi bi-check-circle-fill" /> : <i className="bi bi-circle" />}
               </span>
               <span className="anamnesis-texto">{it.texto}</span>
             </li>

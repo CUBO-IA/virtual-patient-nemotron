@@ -70,7 +70,7 @@ export default function Progress({ onVolver, niveles = [] }) {
     <div className="progress-screen panel">
       <div className="progress-header">
         <div>
-          <h2>Mi progreso de aprendizaje</h2>
+          <h2>Mi progreso de <span className="title-accent">aprendizaje</span></h2>
           <p className="progress-subtitle">
             Seguimiento de tu evolución en razonamiento clínico y dominio de casos.
           </p>
@@ -82,7 +82,7 @@ export default function Progress({ onVolver, niveles = [] }) {
 
       {mensaje && (
         <div className="info-banner" role="status">
-          ✓ {mensaje}
+          <i className="bi bi-check-circle-fill" /> {mensaje}
         </div>
       )}
 
@@ -112,7 +112,7 @@ export default function Progress({ onVolver, niveles = [] }) {
 
       {/* Mapa de enfermedades */}
       <section className="enfermedades-section">
-        <h3>🗺️ Mapa de enfermedades ({vistasLista.length} / {TOTAL_CASOS_CATALOGO} descubiertas)</h3>
+        <h3><i className="bi bi-map" /> Mapa de enfermedades ({vistasLista.length} / {TOTAL_CASOS_CATALOGO} descubiertas)</h3>
         <p className="enfermedades-desc">
           Enfermedades a las que te has enfrentado en consulta. Obtén 80 o más puntos para considerarla dominada:
         </p>
@@ -122,7 +122,17 @@ export default function Progress({ onVolver, niveles = [] }) {
             return (
               <div key={enf.caso_id} className={`enfermedad-card ${dominada ? 'dominada' : ''}`}>
                 <div className="enfermedad-top">
-                  <span className="enf-status">{dominada ? '🌟 Dominada' : '🩺 En práctica'}</span>
+                  <span className="enf-status">
+                    {dominada ? (
+                      <>
+                        <i className="bi bi-star-fill" /> Dominada
+                      </>
+                    ) : (
+                      <>
+                        <i className="bi bi-heart-pulse" /> En práctica
+                      </>
+                    )}
+                  </span>
                   <span className="enf-score">{enf.mejorPuntaje} pts</span>
                 </div>
                 <div className="enfermedad-nombre">{enf.nombre}</div>
@@ -132,7 +142,9 @@ export default function Progress({ onVolver, niveles = [] }) {
           })}
           {Array.from({ length: noVistasCount }).map((_, idx) => (
             <div key={`novista-${idx}`} className="enfermedad-card misterio">
-              <div className="misterio-icon">❓</div>
+              <div className="misterio-icon">
+                <i className="bi bi-question-circle" />
+              </div>
               <div className="misterio-title">Caso por descubrir</div>
               <div className="misterio-desc">Sigue practicando para encontrarlo</div>
             </div>
@@ -171,7 +183,15 @@ export default function Progress({ onVolver, niveles = [] }) {
                     <td><strong>{item.diagnostico_real || item.caso_id}</strong></td>
                     <td>
                       <span className={`badge-acierto ${item.diagnostico_correcto ? 'ok' : 'fallo'}`}>
-                        {item.diagnostico_correcto ? '✓ Acertado' : '✗ Incorrecto'}
+                        {item.diagnostico_correcto ? (
+                          <>
+                            <i className="bi bi-check-lg" /> Acertado
+                          </>
+                        ) : (
+                          <>
+                            <i className="bi bi-x-lg" /> Incorrecto
+                          </>
+                        )}
                       </span>
                     </td>
                     <td><strong>{item.puntaje}</strong> pts</td>
@@ -188,11 +208,11 @@ export default function Progress({ onVolver, niveles = [] }) {
       {/* Acciones de respaldo */}
       <div className="progress-actions">
         <button type="button" className="btn" onClick={exportarProgresoArchivo}>
-          💾 Exportar progreso (JSON)
+          <i className="bi bi-download" /> Exportar progreso (JSON)
         </button>
 
         <button type="button" className="btn" onClick={() => fileInputRef.current?.click()}>
-          📂 Importar progreso
+          <i className="bi bi-upload" /> Importar progreso
         </button>
         <input
           type="file"
@@ -203,7 +223,7 @@ export default function Progress({ onVolver, niveles = [] }) {
         />
 
         <button type="button" className="btn danger" onClick={manejarBorrar}>
-          🗑️ Reiniciar mi progreso
+          <i className="bi bi-trash3" /> Reiniciar mi progreso
         </button>
       </div>
     </div>

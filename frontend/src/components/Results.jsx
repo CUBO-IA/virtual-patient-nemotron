@@ -16,14 +16,14 @@ export default function Results({
     <div className="results">
       {desbloqueoNuevo && (
         <div className="achievement-banner" role="status">
-          🎉 <strong>¡Felicitaciones!</strong> {desbloqueoNuevo}
+          <i className="bi bi-trophy-fill" /> <strong>¡Felicitaciones!</strong> {desbloqueoNuevo}
         </div>
       )}
 
       {/* Alerta de seguridad clínica: va primero porque es lo más importante (SEGUIMIENTO.md §6.4) */}
       {r.alertas_seguridad?.length > 0 && (
         <div className="seguridad-banner" role="alert">
-          <strong>⚠ Alerta de seguridad clínica</strong>
+          <strong><i className="bi bi-exclamation-triangle-fill" /> Alerta de seguridad clínica</strong>
           <ul>
             {r.alertas_seguridad.map((a) => (
               <li key={a}>{a}</li>
@@ -43,7 +43,15 @@ export default function Results({
           <span className="num">{r.puntaje}</span>
           <span className="de">/ 100</span>
           <span className={`aprobado-badge ${aprobado ? 'aprobado' : 'a-mejorar'}`}>
-            {aprobado ? '✓ Aprobado' : '⚠ A mejorar'}
+            {aprobado ? (
+              <>
+                <i className="bi bi-check-circle-fill" /> Aprobado
+              </>
+            ) : (
+              <>
+                <i className="bi bi-exclamation-triangle-fill" /> A mejorar
+              </>
+            )}
           </span>
         </div>
 
@@ -114,7 +122,12 @@ export default function Results({
       <p className={`dx ${r.diagnostico_correcto ? 'ok' : 'mal'}`}>
         <strong>Diagnóstico real:</strong> {r.diagnostico_real}
         <br />
-        <strong>Tu diagnóstico:</strong> {diagnosticoEstudiante} {r.diagnostico_correcto ? '✓' : '✗'}
+        <strong>Tu diagnóstico:</strong> {diagnosticoEstudiante}{' '}
+        {r.diagnostico_correcto ? (
+          <i className="bi bi-check-circle-fill" style={{ color: 'var(--ok)' }} />
+        ) : (
+          <i className="bi bi-x-circle-fill" style={{ color: 'var(--mal)' }} />
+        )}
       </p>
 
       {/* Diagnósticos diferenciales en Nivel Avanzado (§6.2) */}
@@ -155,7 +168,7 @@ export default function Results({
         <ul className="lista">
           {r.banderas.map((b) => (
             <li key={b.id} className={b.cumplida ? 'ok' : 'mal'}>
-              {b.cumplida ? '✓' : '✗'} {b.texto}
+              {b.cumplida ? <i className="bi bi-check-lg" /> : <i className="bi bi-x-lg" />} {b.texto}
             </li>
           ))}
         </ul>
@@ -171,7 +184,8 @@ export default function Results({
             <ul className="lista">
               {r.pruebas.solicitadas.map((p) => (
                 <li key={p.id} className={p.pertinencia === 'innecesaria' ? 'mal' : 'ok'}>
-                  {p.pertinencia === 'innecesaria' ? '✗' : '✓'} {p.nombre}{' '}
+                  {p.pertinencia === 'innecesaria' ? <i className="bi bi-x-lg" /> : <i className="bi bi-check-lg" />}{' '}
+                  {p.nombre}{' '}
                   <span className="chip">
                     {p.pertinencia === 'esencial' ? 'Esencial' : p.pertinencia === 'util' ? 'Útil' : 'Sin indicación'}
                   </span>
@@ -194,8 +208,14 @@ export default function Results({
           <ul className="lista">
             {r.plan.medicamentos.map((m) => (
               <li key={m.id} className={m.veredicto === 'adecuado' ? 'ok' : m.veredicto === 'aceptable' ? '' : 'mal'}>
-                {m.veredicto === 'adecuado' ? '✓' : m.veredicto === 'aceptable' ? '≈' : '✗'} {m.nombre}{' '}
-                <span className="chip">{m.veredicto}</span>
+                {m.veredicto === 'adecuado' ? (
+                  <i className="bi bi-check-lg" />
+                ) : m.veredicto === 'aceptable' ? (
+                  <i className="bi bi-dash-lg" />
+                ) : (
+                  <i className="bi bi-x-lg" />
+                )}{' '}
+                {m.nombre} <span className="chip">{m.veredicto}</span>
                 {m.nota && <span className="nota-inline"> — {m.nota}</span>}
               </li>
             ))}
@@ -224,11 +244,19 @@ export default function Results({
           <p className="control-etiqueta">
             Evolución:{' '}
             <strong>
-              {r.seguimiento.evolucion === 'mejora'
-                ? '✓ Mejora'
-                : r.seguimiento.evolucion === 'parcial'
-                  ? '≈ Mejora parcial'
-                  : '✗ Empeora'}
+              {r.seguimiento.evolucion === 'mejora' ? (
+                <>
+                  <i className="bi bi-arrow-up-circle-fill" /> Mejora
+                </>
+              ) : r.seguimiento.evolucion === 'parcial' ? (
+                <>
+                  <i className="bi bi-dash-circle-fill" /> Mejora parcial
+                </>
+              ) : (
+                <>
+                  <i className="bi bi-arrow-down-circle-fill" /> Empeora
+                </>
+              )}
             </strong>
           </p>
           <blockquote className="control-relato">«{r.seguimiento.relato}»</blockquote>
@@ -258,13 +286,13 @@ export default function Results({
 
       <div className="results-actions-footer">
         <button type="button" className="btn primary" onClick={onNuevoMismoNivel}>
-          🔄 Practicar otro paciente ({r.nivel?.nombre || 'mismo nivel'})
+          <i className="bi bi-arrow-clockwise" /> Practicar otro paciente ({r.nivel?.nombre || 'mismo nivel'})
         </button>
         <button type="button" className="btn" onClick={onCambiarNivel}>
-          🎚️ Cambiar de nivel
+          <i className="bi bi-sliders" /> Cambiar de nivel
         </button>
         <button type="button" className="btn" onClick={onVerProgreso}>
-          📊 Ver mi progreso
+          <i className="bi bi-bar-chart-line" /> Ver mi progreso
         </button>
       </div>
     </div>
