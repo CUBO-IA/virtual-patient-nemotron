@@ -4,9 +4,9 @@ Guía para que el paciente se vea "vivo" (respira, habla, siente dolor) y para q
 
 > Adaptada a este proyecto (React + Vite, FastAPI, voz de Edge TTS). Reemplaza a `animaciones-pacientes.md`, que asumía un proyecto distinto.
 >
-> **Decisión: se mantiene el avatar de DiceBear (el método actual).** No hay que crear imágenes. El pixel art por arquetipos queda como opción futura (§4).
+> **Decisión actual: personajes ilustrados con capas** (10 pacientes según sexo y edad, §5). DiceBear dejó de mostrarse; el backend aún envía `avatar_url` y se conserva como dato, pero la interfaz no lo usa.
 >
-> **Estado:** pasos 1 a 5 implementados. Ajustes posteriores tras probarlo: el avatar ya no tiembla ni rebota (se anima el anillo, §5), la expresión del avatar es fija y serena (§4) y la voz pronuncia con la «j» (§7).
+> **Estado:** los pasos 1 a 5 están implementados con el sistema de personajes ilustrados: parpadeo, boca sincronizada con el audio real (Web Audio), estados con movimiento muy leve y respaldo sin internet. La «j» se ve en pantalla solo desde el nivel 2 y la voz siempre pronuncia con ella (§7).
 
 ---
 
@@ -14,7 +14,7 @@ Guía para que el paciente se vea "vivo" (respira, habla, siente dolor) y para q
 
 | Pieza | Hoy | Con esta guía |
 |---|---|---|
-| Imagen del paciente | Avatar de DiceBear (`avatar_url`) con expresión serena fija, solo al activar «Ver paciente» | **Se mantiene.** Dentro de un círculo cuyo anillo se anima con CSS (§5) |
+| Imagen del paciente | Personaje ilustrado en capas (base, ojos y boca), elegido por sexo y edad, solo al activar «Ver paciente» | Parpadea, mueve la boca con la voz y tiene gesto de molestia (§5) |
 | Voz del paciente | Edge TTS (`es-SV`) desde el servidor; `Chat.jsx` usa `new Audio(...)` con `onended` | Igual, pero la boca se mueve mientras suena |
 | Texto que lee la voz | Siempre con la «j» de la aspiración (`texto_voz`); en pantalla la «j» solo desde el nivel 2 | Igual (§7) |
 | Estado del paciente | No existe | Un estado derivado en `App.jsx` (§3) |
@@ -104,6 +104,8 @@ Cosas a tener en cuenta:
 - Para tener una cara de reposo consistente conviene fijar `mouth=default&eyes=default`; sin ellos, la semilla puede sacar ojos o bocas poco apropiados para un paciente. Eso cambia un poco el aspecto actual, por eso es opcional.
 - Cada variante es una petición a internet: se **precargan** con `new Image().src = …` al mostrar al paciente, para evitar parpadeos.
 
+> **Nota:** esta sección describe el avatar anterior (DiceBear). Ya no se muestra; se deja como referencia y como posible respaldo.
+
 ### Expresión serena (ya aplicada)
 
 DiceBear elige ojos, cejas y boca al azar, y salían avatares con el ceño fruncido, guiños y bocas raras que desentonaban con un paciente que viene a consulta. `backend/app/avatars.py` fija esas tres partes a opciones calmadas (`eyes=default,squint`, `eyebrows=defaultNatural,flatNatural,sadConcernedNatural`, `mouth=default,concerned,serious`). Dentro de ese conjunto la semilla de cada paciente elige una variante, así que el rostro sigue siendo estable pero nunca enojado.
@@ -114,67 +116,34 @@ Si más adelante quieren un estilo pixel art, la idea sería **6 arquetipos** (h
 
 ---
 
-## 5. Paso 1: animación del anillo
+## 5. Personajes ilustrados en capas (sistema actual)
 
-La primera versión movía la propia imagen (respirar, rebotar y temblar con el dolor). En la práctica resultaba molesto: toda la tarjeta parecía vibrar, el recorte cuadrado del contenedor cortaba el resplandor y se veía un recuadro raro alrededor del círculo. La versión actual:
+Cada paciente se dibuja con **3 imágenes apiladas** dentro de un recuadro de 140 px (`.paciente-stage`): `base.png` (cuerpo y cara), `ojos*.png` y `boca*.png`. Código: `frontend/src/components/PacienteAnimado.jsx`.
 
-- **El círculo lo pone el contenedor** (`.paciente-wrap`: borde, resplandor y recorte redondo). La imagen queda dentro, quieta, sin borde propio.
-- **Lo que se anima es el anillo**, de forma suave y con `box-shadow` u `opacity` (nunca `transform` sobre la imagen). Así no hay dos animaciones sobre el mismo elemento ni movimientos bruscos.
-- **El dolor ya no tiembla ni se tiñe de rojo.** Un borde rojo y un temblor continuo llamaban la atención sin aportar al aprendizaje; el motivo de consulta ya dice si algo duele.
-- El estado se escribe como clase en el contenedor (`paciente-wrap hablando`).
+**Qué personaje se elige** (`getPatientId`): hay 10, 5 mujeres y 5 hombres, por sexo y edad (menos de 25, 25 a 59 y 60 o más; en cada grupo medio y mayor hay dos y se desempata con un hash estable del nombre). Con 150 personas y 10 dibujos, varios pacientes comparten ilustración; es una decisión consciente.
 
-```jsx
-// frontend/src/components/PacienteAnimado.jsx
-import { useEffect, useState } from 'react'
+| Capa | Variantes |
+|---|---|
+| Ojos | `ojos`, `ojos_cerrados` (parpadeo cada 3 a 6 s) y `ojos_dolor` (si el motivo menciona dolor) |
+| Boca | `boca_cerrada`, `boca_entreabierta`, `boca_abierta`, `boca_o` y `boca_dolor` |
 
-export default function PacienteAnimado({ paciente, estado, expresion }) {
-  const [falla, setFalla] = useState(false)
-  useEffect(() => setFalla(false), [paciente.avatar_url])
-  if (falla || !paciente?.avatar_url) return null
+**Sincronía con la voz.** `Chat.jsx` avisa con los eventos `pv-audio-play` y `pv-audio-stop` y guarda el audio en `window.__pvCurrentAudio`. El componente conecta ese audio a un `AnalyserNode` de Web Audio y, cada ~90 ms, elige la forma de la boca según el volumen medio del espectro (menos de 12 = cerrada, menos de 40 = entreabierta, más de 40 alterna abierta y «o»). Si no puede analizar el audio, usa una cadencia fija mientras el estado es `hablando`. Medido con la voz real del servidor, las sílabas dan un volumen medio de ~50 y las pausas de ~3, así que los umbrales funcionan.
 
-  return (
-    <div className={`paciente-wrap ${estado || 'reposo'} ${expresion === 'dolor' ? 'con-dolor' : ''}`}>
-      <img
-        src={paciente.avatar_url}
-        alt={`Avatar de ${paciente.nombre}`}
-        className={`paciente ${estado || 'reposo'}`}
-        onError={() => setFalla(true)}
-      />
-    </div>
-  )
-}
-```
+**Reglas de movimiento (importante).** Todo es muy leve y se aplica a las **capas**, no al marco: respirar (±1,5 px), pensar (±1,2°), hablar (cabeza ±1°). El marco nunca se mueve y ya no hay temblor ni resplandor rojo con el dolor: esa expresión la dan las capas de ojos y boca. Si agregas movimientos, no los pongas sobre `.paciente-stage` (la tarjeta «temblaba»).
 
-```css
-/* frontend/src/styles.css */
-.paciente-wrap {
-  display: inline-block; width: 130px; height: 130px;
-  border-radius: 50%; overflow: hidden;
-  border: 2px solid var(--accent); background: var(--panel-card); box-shadow: var(--shadow-glow);
-  line-height: 0;
-}
-.datos .paciente-wrap img, .paciente-wrap .paciente {
-  display: block; width: 100%; height: 100%;
-  border: 0; border-radius: 0; background: transparent; box-shadow: none; filter: none;
-}
+**Respaldos.** Si falla una capa, se usa la imagen consolidada `/pacientes/paciente_NN[_dolor].png`; si falla también, un círculo con las iniciales. Las 9 imágenes del personaje se **precargan** al mostrarlo: sin eso, la boca parpadea en blanco la primera vez que cambia de forma.
 
-.paciente-wrap.pensando   { animation: pv-anillo-suave 2.4s ease-in-out infinite; }
-.paciente-wrap.hablando   { animation: pv-anillo 1s ease-in-out infinite; }
-.paciente-wrap.escuchando { box-shadow: 0 0 0 4px var(--accent-subtle), var(--shadow-glow); }
-.paciente-wrap.entrando   { animation: pv-aparecer-suave .8s ease-out both; }
+**Archivos** (`frontend/public/pacientes/`): `capas/paciente_NN/*.png` (9 por personaje) y `paciente_NN.png` / `paciente_NN_dolor.png` (consolidadas). Pesan ~27 MB; las consolidadas son ~850 KB cada una y solo son respaldo, así que redimensionarlas o pasarlas a WebP las aligeraría.
 
-@keyframes pv-anillo { 0%,100% { box-shadow: 0 0 0 0 var(--accent-glow); } 50% { box-shadow: 0 0 0 7px transparent; } }
-@keyframes pv-anillo-suave { 0%,100% { opacity: 1; } 50% { opacity: .75; } }
-@keyframes pv-aparecer-suave { from { opacity: 0; } to { opacity: 1; } }
-```
+**Scripts** (`scripts/build_patient_illustrations.py`, `fix_patient_mouths.py`, `process_desktop_images.py`): sirvieron para preparar las imágenes; usan rutas del equipo de quien las hizo y no pueden ejecutarse tal cual en otra máquina.
 
-Con `prefers-reduced-motion` todas las animaciones se desactivan (§11). En `PatientCard.jsx`, `<PacienteAnimado paciente={paciente} estado={estado} expresion={expresion} />` reemplaza al `<img>` original; el interruptor «Ver paciente» no cambia.
+Con `prefers-reduced-motion` las animaciones CSS se desactivan (§11).
 
 ---
 
 ## 6. Pasos 2 y 3: boca y sincronía con la voz
 
-> **Estado: no aplicado.** El hook `useBoca` existe en `frontend/src/hooks/useBoca.js`, pero ningún componente lo usa: hoy el avatar no mueve la boca (el anillo ya comunica que el paciente habla, §5). Esta sección queda como referencia por si se retoma; si no, conviene borrar el hook.
+> **Estado: aplicado de otra forma.** La boca ya se mueve, pero con la sincronía por Web Audio descrita en §5, no con el hook `useBoca` (que sigue en `frontend/src/hooks/useBoca.js` sin usarse y puede borrarse). Esta sección queda como referencia.
 
 **Boca (paso 2).** Un hook alterna `neutral` y `habla` mientras el estado es `hablando`:
 

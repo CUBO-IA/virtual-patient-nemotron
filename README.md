@@ -16,7 +16,7 @@ Simulador de entrevistas clínicas para estudiantes de medicina. El estudiante c
 | Paciente coherente | Cada caso se asigna a una persona compatible (sexo, edad, zona y ocupación típicas). Habla en español salvadoreño, trata de usted al doctor y no revela el diagnóstico. |
 | Chat en streaming | El paciente responde en 2-4 frases con algo de emoción y muletillas propias (distintas en cada paciente), y cuenta los síntomas poco a poco, solo si se le pregunta. La voz lee el texto tal como se ve, con la «j» de la aspiración en los pacientes del oriente. |
 | Voz | Voz salvadoreña (Lorena/Rodrigo) con tono y ritmo según la edad. |
-| Avatar | "Ver paciente" muestra un avatar coherente con sexo y edad. |
+| Personaje | «Ver paciente» muestra una ilustración (10 personajes según sexo y edad) que parpadea y mueve la boca con la voz. |
 | Pistas | Tres niveles de pista sin revelar el diagnóstico; cada una resta puntos. |
 | Glosario | Términos coloquiales y de salud con ayuda emergente (35 entradas). |
 | Evaluación | Puntaje 0-100, diagnóstico real, qué preguntaste y qué faltó, señales de alarma y retroalimentación del modelo (texto plano, 3-5 frases). |

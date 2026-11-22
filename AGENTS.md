@@ -236,3 +236,9 @@ Variables en `.env` (ver `.env.example`): `OLLAMA_URL, LLM_MODEL, EMBED_MODEL, C
 
 - `backend/app/texto.py` limpia Markdown, limita la longitud y evita cortar a media frase; `evaluate.py` reintenta una salida desviada y cae al feedback determinista si persiste.
 - Las citas RAG siguen en la respuesta de `/finish`, pero no se incluyen en el prompt de retroalimentación: las guías se reservan para «¿Por qué?» para evitar que el feedback resuma capítulos en vez de describir el desempeño calculado.
+
+## 18. Personajes ilustrados
+
+- `PacienteAnimado.jsx` dibuja al paciente en 3 capas (base, ojos, boca) tomadas de `frontend/public/pacientes/capas/paciente_NN/`, con parpadeo y boca sincronizada con el audio (Web Audio `AnalyserNode`; `Chat.jsx` emite `pv-audio-play` / `pv-audio-stop` y guarda `window.__pvCurrentAudio`). Hay 10 personajes, elegidos por sexo y edad. Detalle en `ANIMACIONES.md` §5.
+- **Movimiento solo en las capas, nunca en el marco** (`.paciente-stage`) y sin temblor ni resplandor rojo con el dolor. Precarga las 9 imágenes de cada personaje. Respaldos: imagen consolidada y luego iniciales.
+- No dupliques las imágenes en otras carpetas (ya se quitaron ~44 MB de copias idénticas) ni subas archivos de trabajo (`scratch/` está en `.gitignore`). `avatar_url` (DiceBear) sigue en la API pero la interfaz ya no lo usa.
