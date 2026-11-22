@@ -37,10 +37,11 @@ async def embed_query(text: str) -> list[float] | None:
     return None
 
 
-async def consultar(guia_ref: str | None, query: str, top_k: int = 3) -> list[dict]:
+async def consultar(guia_ref: str | None, query: str, top_k: int = 3, max_distancia: float | None = None) -> list[dict]:
     """Consulta fragmentos relevantes de guías clínicas en Chroma.
 
     Devuelve lista de [{"fuente": str, "fragmento": str}].
+    Con `max_distancia` descarta fragmentos poco relevantes (puede devolver []).
     Degrada elegantemente a [] en caso de fallo o si RAG no está activo.
     """
     if not config.RAG_ENABLED or not guia_ref:
@@ -71,14 +72,17 @@ async def consultar(guia_ref: str | None, query: str, top_k: int = 3) -> list[di
 
         docs = results.get("documents", [[]])[0]
         metas = results.get("metadatas", [[]])[0]
+        dists = results.get("distances", [[]])[0] or [0.0] * len(docs)
 
         citas = []
-        for d, m in zip(docs, metas):
+        for d, m, dist in zip(docs, metas, dists):
+            if max_distancia is not None and dist > max_distancia:
+                continue
             if d:
-                citas.append({
-                    "fuente": m.get("fuente", "Guía clínica"),
-                    "fragmento": d.strip(),
-                })
+                cita = {"fuente": m.get("fuente", "Guía clínica"), "fragmento": d.strip()}
+                if max_distancia is not None:
+                    cita["distancia"] = round(float(dist), 1)
+                citas.append(cita)
         return citas
     except Exception as e:
         logger.warning(f"Error en consulta RAG a Chroma: {e}")

@@ -24,6 +24,10 @@ LLM_MODEL = os.getenv("LLM_MODEL", "qwen2.5:7b")
 EMBED_MODEL = os.getenv("EMBED_MODEL", "bge-m3")
 CHROMA_URL = os.getenv("CHROMA_URL", "http://localhost:8001").rstrip("/")
 RAG_ENABLED = os.getenv("RAG_ENABLED", "false").lower() in ("true", "1", "yes")
+# Distancia L2 máxima para considerar relevante un fragmento (medido con bge-m3: relevantes 480-640, ajenos > 700).
+RAG_MAX_DISTANCIA = float(os.getenv("RAG_MAX_DISTANCIA", "660"))
+# Candidatos más lejanos solo valen si contienen un término propio de la decisión (búsqueda híbrida).
+RAG_MAX_DISTANCIA_LEXICA = float(os.getenv("RAG_MAX_DISTANCIA_LEXICA", "780"))
 GUIAS_DIR = DATA_DIR / "guias"
 NUM_CTX = int(os.getenv("NUM_CTX", "2048"))
 CORS_ORIGINS = [o.strip() for o in os.getenv("CORS_ORIGINS", "http://localhost:5173").split(",") if o.strip()]

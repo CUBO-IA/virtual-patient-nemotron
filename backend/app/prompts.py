@@ -78,3 +78,23 @@ def user_feedback(caso: dict, dx_estudiante: str, correcto: bool, cumplidos: lis
         + (f"{extra}\n" if extra else "")
         + "Escribe la retroalimentación para el estudiante."
     )
+
+
+SYSTEM_EXPLICAR = (
+    "Eres un docente de medicina que explica a un estudiante, en español y en un máximo de 4 frases, "
+    "por qué una decisión clínica fue adecuada o no. Usa EXCLUSIVAMENTE los fragmentos de guías numerados que se te dan "
+    "y cita el número entre corchetes, por ejemplo [1]. No inventes datos, dosis ni recomendaciones que no estén en los fragmentos. "
+    "La valoración del sistema NO es una fuente: no la cites ni la repitas; solo indica qué decisión se evalúa. "
+    "Solo afirma lo que un fragmento diga de forma explícita sobre esta decisión (el medicamento, la prueba o la indicación concreta). "
+    "Si los fragmentos no hablan de esta decisión, responde exactamente: SIN_SUSTENTO"
+)
+
+
+def user_explicar(diagnostico: str, titulo: str, veredicto: str | None, nota: str | None, fragmentos: list[str]) -> str:
+    partes = [f"Diagnóstico del caso: {diagnostico}", f"Decisión a explicar: {titulo}"]
+    if veredicto:
+        partes.append(f"Valoración del sistema: {veredicto}")
+    partes.append("Fragmentos de guías:")
+    partes += [f"[{i}] {f}" for i, f in enumerate(fragmentos, 1)]
+    partes.append("Explica en qué se apoya esta decisión según los fragmentos.")
+    return "\n".join(partes)

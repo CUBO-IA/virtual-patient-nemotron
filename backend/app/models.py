@@ -29,6 +29,11 @@ class PlanTratamientoIn(BaseModel):
     control_dias: int | None = Field(default=None, ge=1, le=14)
 
 
+class ExplicarIn(BaseModel):
+    tipo: str = Field(min_length=1, max_length=20)
+    id: str = Field(min_length=1, max_length=80)
+
+
 class FinishIn(BaseModel):
     diagnostico_estudiante: str = Field(min_length=1, max_length=500)
     diferenciales: list[str] | None = None

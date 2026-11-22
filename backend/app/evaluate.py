@@ -299,7 +299,7 @@ async def evaluar(
 
     pruebas_pub = None
     if pruebas_aplica and pruebas_eval:
-        pruebas_pub = {k: pruebas_eval[k] for k in ("solicitadas", "esenciales_faltantes", "innecesarias", "costo_total")}
+        pruebas_pub = {k: pruebas_eval[k] for k in ("solicitadas", "esenciales_faltantes", "esenciales_faltantes_ids", "innecesarias", "costo_total")}
     plan_pub = {k: v for k, v in plan_eval.items() if k not in ("factor", "_variables")} if plan_eval else None
 
     feedback = " ".join(p for p in (

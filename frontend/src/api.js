@@ -128,3 +128,14 @@ export async function obtenerGlosario() {
 export function urlAudioPaciente(sessionId, texto) {
   return `/api/sessions/${encodeURIComponent(sessionId)}/tts?texto=${encodeURIComponent(texto)}`
 }
+
+// «¿Por qué?»: explicación de una decisión (solo tras terminar la consulta)
+export async function explicarDecision(sessionId, tipo, id) {
+  const r = await fetch(`/api/sessions/${sessionId}/explicar`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ tipo, id }),
+  })
+  if (!r.ok) throw await apiError(r)
+  return r.json()
+}

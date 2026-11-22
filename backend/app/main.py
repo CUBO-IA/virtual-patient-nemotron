@@ -5,8 +5,8 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response, StreamingResponse
 
-from . import assign, avatars, config, evaluate, habla, llm, niveles, prompts, rag, seguimiento, sessions, tts_service
-from .models import ChatIn, FinishIn, PruebasRequestIn, SessionCreateIn
+from . import assign, avatars, config, evaluate, explicar, habla, llm, niveles, prompts, rag, seguimiento, sessions, tts_service
+from .models import ChatIn, ExplicarIn, FinishIn, PruebasRequestIn, SessionCreateIn
 
 app = FastAPI(title="Paciente Virtual")
 app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS, allow_methods=["*"], allow_headers=["*"])
@@ -323,6 +323,20 @@ async def sintetizar_audio_get(session_id: str, texto: str = ""):
 @app.post("/api/sessions/{session_id}/tts")
 async def sintetizar_audio(session_id: str, body: dict):
     return await _audio_paciente(session_id, body.get("texto", ""))
+
+
+@app.post("/api/sessions/{session_id}/explicar")
+async def explicar_decision(session_id: str, body: ExplicarIn):
+    """«¿Por qué?» de una decisión (prueba, medicamento, indicación, disposición). Solo tras /finish."""
+    s = _get_session(session_id)
+    if not s.finished:
+        raise HTTPException(409, "Las explicaciones están disponibles al terminar la consulta.")
+    if body.tipo not in explicar.TIPOS:
+        raise HTTPException(422, "Tipo de decisión no válido.")
+    res = await explicar.explicar(s, s.caso, body.tipo, body.id)
+    if res is None:
+        raise HTTPException(404, "No encontré esa decisión.")
+    return res
 
 
 @app.post("/api/sessions/{session_id}/finish")

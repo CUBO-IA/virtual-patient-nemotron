@@ -1,7 +1,9 @@
 import React from 'react'
+import PorQue from './PorQue.jsx'
 
 export default function Results({
   r,
+  sessionId,
   diagnosticoEstudiante,
   diferencialesEstudiante = [],
   desbloqueoNuevo = null,
@@ -189,14 +191,23 @@ export default function Results({
                   <span className="chip">
                     {p.pertinencia === 'esencial' ? 'Esencial' : p.pertinencia === 'util' ? 'Útil' : 'Sin indicación'}
                   </span>
+                  <PorQue sessionId={sessionId} tipo="prueba" id={p.id} />
                 </li>
               ))}
             </ul>
           )}
           {r.pruebas.esenciales_faltantes.length > 0 && (
-            <p className="mal-texto">
-              <strong>Esenciales que no pediste:</strong> {r.pruebas.esenciales_faltantes.join('; ')}.
-            </p>
+            <div className="mal-texto">
+              <strong>Esenciales que no pediste:</strong>
+              <ul className="lista">
+                {r.pruebas.esenciales_faltantes.map((n, i) => (
+                  <li key={n}>
+                    {n}
+                    <PorQue sessionId={sessionId} tipo="prueba" id={r.pruebas.esenciales_faltantes_ids?.[i]} />
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </section>
       )}
@@ -217,22 +228,40 @@ export default function Results({
                 )}{' '}
                 {m.nombre} <span className="chip">{m.veredicto}</span>
                 {m.nota && <span className="nota-inline"> — {m.nota}</span>}
+                <PorQue sessionId={sessionId} tipo="medicamento" id={m.id} />
               </li>
             ))}
           </ul>
           {r.plan.medicamentos_faltantes.length > 0 && (
-            <p className="mal-texto">
-              <strong>Faltó:</strong> {r.plan.medicamentos_faltantes.join('; ')}.
-            </p>
+            <div className="mal-texto">
+              <strong>Faltó:</strong>
+              <ul className="lista">
+                {r.plan.medicamentos_faltantes.map((n, i) => (
+                  <li key={n}>
+                    {n}
+                    <PorQue sessionId={sessionId} tipo="medicamento" id={r.plan.medicamentos_faltantes_ids?.[i]} />
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
           <p>
             <strong>Disposición:</strong> {r.plan.disposicion.texto}{' '}
             <span className={`chip veredicto-${r.plan.disposicion.veredicto}`}>{r.plan.disposicion.veredicto}</span>
+            <PorQue sessionId={sessionId} tipo="disposicion" id={r.plan.disposicion.elegida} />
           </p>
           {r.plan.indicaciones.faltantes.length > 0 && (
-            <p className="mal-texto">
-              <strong>Indicaciones esenciales que faltaron:</strong> {r.plan.indicaciones.faltantes.join('; ')}.
-            </p>
+            <div className="mal-texto">
+              <strong>Indicaciones esenciales que faltaron:</strong>
+              <ul className="lista">
+                {r.plan.indicaciones.faltantes.map((n, i) => (
+                  <li key={n}>
+                    {n}
+                    <PorQue sessionId={sessionId} tipo="indicacion" id={r.plan.indicaciones.faltantes_ids?.[i]} />
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </section>
       )}

@@ -704,6 +704,7 @@ export default function App() {
             {fase === 'resultados' && resultado && (
               <Results
                 r={resultado}
+                sessionId={sesion?.session_id}
                 diagnosticoEstudiante={diagnostico}
                 diferencialesEstudiante={diferencial1 && diferencial2 ? [diferencial1, diferencial2] : []}
                 desbloqueoNuevo={desbloqueoNuevo}

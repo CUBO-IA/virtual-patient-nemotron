@@ -311,6 +311,7 @@ def evaluar_pruebas(caso: dict, pedidas: list[str]) -> dict:
     return {
         "solicitadas": solicitadas,
         "esenciales_faltantes": faltantes,
+        "esenciales_faltantes_ids": [e for e in esenciales if e not in pedidas],
         "innecesarias": innecesarias,
         "costo_total": sum(s["costo"] for s in solicitadas),
         "factor": factor,
@@ -437,10 +438,12 @@ def evaluar_plan(caso: dict, plan: dict, mensajes_estudiante: list[str]) -> dict
     return {
         "medicamentos": medicamentos,
         "medicamentos_faltantes": faltantes_med,
+        "medicamentos_faltantes_ids": [i for i in adecuados if i not in elegidos],
         "disposicion": {"elegida": elegida, "texto": disp_cat.get("texto", elegida), "veredicto": veredicto_disp},
         "indicaciones": {
             "cumplidas": [_texto_ind(i) for i in cumplidas],
             "faltantes": [_texto_ind(i) for i in faltantes_ind],
+            "faltantes_ids": list(faltantes_ind),
         },
         "alertas_seguridad": alertas,
         "factor": 0.5 * frac_med + 0.3 * frac_disp + 0.2 * frac_ind,

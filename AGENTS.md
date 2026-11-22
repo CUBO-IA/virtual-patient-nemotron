@@ -189,3 +189,13 @@ Variables en `.env` (ver `.env.example`): `OLLAMA_URL, LLM_MODEL, EMBED_MODEL, C
 - `data/preguntas_ejemplo.json` es el banco de preguntas realistas (guía y los 8 casos), con `desarrollo` (para ajustar claves) y `reserva` (solo para medir, no copiar a las claves).
 - Medir: `.\.venv\Scripts\python.exe scripts\medir_deteccion.py`. Umbrales (también en `backend/tests/test_deteccion.py`): desarrollo ≥ 95 %, reserva ≥ 80 %, cruces falsos ≤ 5 % por entidad.
 - Al añadir o recortar claves: no incluir el diagnóstico ni sus alias, no usar palabras genéricas sueltas (`dolor`, `pecho`, `agua`…) si suben los cruces, y anotar en `CLAVES_RECORTADAS` (del test) las que se quiten.
+
+
+## 14. «¿Por qué?» (explicaciones con guías)
+
+- `POST /api/sessions/{id}/explicar` con `{tipo: "prueba"|"medicamento"|"indicacion"|"disposicion", id}`. Solo tras `/finish` (409 antes). Devuelve `{tipo, id, titulo, valoracion, nota, explicacion, fuentes[{fuente,fragmento}], origen: "guia"|"caso"}`.
+- Lógica en `backend/app/explicar.py`. El modelo redacta **solo** a partir de fragmentos recuperados (`rag.consultar(..., max_distancia=RAG_MAX_DISTANCIA)`); si no hay fragmentos relevantes o el modelo responde `SIN_SUSTENTO`, se devuelve únicamente la `nota` escrita en el caso (`origen: "caso"`). Se descartan fragmentos de bibliografía. La búsqueda es híbrida: primero los fragmentos que contienen términos propios de la decisión (hasta `RAG_MAX_DISTANCIA_LEXICA`, 780) y luego los semánticamente cercanos (≤ `RAG_MAX_DISTANCIA`); el prompt no incluye la nota del caso para que el modelo no la presente como cita. Con `RAG_ENABLED=false` siempre es `origen: "caso"`.
+- `RAG_MAX_DISTANCIA` (por defecto 660, distancia L2 de Chroma con `bge-m3`): relevantes ~480-640, ajenos >700. Si cambias el modelo de embeddings, vuelve a medirla.
+- `/finish` añade ids opcionales (`pruebas.esenciales_faltantes_ids`, `plan.medicamentos_faltantes_ids`, `plan.indicaciones.faltantes_ids`) para poder pedir la explicación de lo que faltó.
+- Los PDFs de `data/guias/` no se suben a git; fuentes y enlaces en `data/guias/README.md`. No inventes contenido de guías. La explicación se muestra como generada con IA y sin validar clínicamente.
+- Interfaz: `frontend/src/components/PorQue.jsx` (botón «¿Por qué?» en `Results.jsx`).
