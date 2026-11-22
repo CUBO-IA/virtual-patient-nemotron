@@ -2478,3 +2478,105 @@ form.entrada input:focus { box-shadow: none; }
   }
 }
 
+/* Cronómetro ilustrado: estilos confinados a la sección Modo Urgencias. */
+#modo-urgencias {
+  --color-cronometro: #8275E5;
+}
+
+#modo-urgencias.fase-2 {
+  --color-cronometro: color-mix(in srgb, #8275E5 calc((1 - var(--urgencias-fase2-progreso)) * 100%), #FFC93C calc(var(--urgencias-fase2-progreso) * 100%));
+}
+
+#modo-urgencias.fase-3 {
+  --color-cronometro: #FF8A3D;
+}
+
+#modo-urgencias.fase-4 {
+  --color-cronometro: #fca5a5;
+}
+
+#modo-urgencias .urgencias-cabecera {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 128px;
+  grid-template-areas: "aviso reloj" "revision reloj" "estado reloj";
+  align-items: center;
+  gap: 0.35rem 0.8rem;
+  margin: 0.5rem 0 0.75rem;
+}
+
+#modo-urgencias .urgencias-aviso { grid-area: aviso; margin: 0; }
+#modo-urgencias .revision-aviso { grid-area: revision; margin: 0; }
+#modo-urgencias .urgencias-indicador { grid-area: estado; margin: 0; }
+
+#modo-urgencias .urgencias-reloj {
+  grid-area: reloj;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: end;
+  gap: 0.15rem;
+  width: 128px;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-cronometro);
+  font-size: inherit;
+  line-height: 1;
+  animation: none;
+}
+
+#modo-urgencias .urgencias-reloj-rojo {
+  background: transparent;
+  color: var(--color-cronometro);
+  animation: none;
+}
+
+#modo-urgencias .urgencias-cronometro-svg {
+  display: block;
+  width: 124px;
+  height: 124px;
+  overflow: visible;
+}
+
+#modo-urgencias .urgencias-cronometro-svg [fill="var(--color-cronometro)"],
+#modo-urgencias .urgencias-cronometro-svg [stroke="var(--color-cronometro)"] {
+  transition: fill 2.5s ease, stroke 2.5s ease;
+}
+
+#modo-urgencias .urgencias-cronometro-tiempo {
+  fill: var(--color-cronometro);
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  transition: fill 2.5s ease;
+}
+
+#modo-urgencias .urgencias-contador {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+}
+
+@media (max-width: 540px) {
+  #modo-urgencias .urgencias-cabecera {
+    grid-template-columns: minmax(0, 1fr) 98px;
+    gap: 0.35rem 0.45rem;
+  }
+
+  #modo-urgencias .urgencias-reloj { width: 98px; }
+  #modo-urgencias .urgencias-cronometro-svg { width: 96px; height: 96px; }
+  #modo-urgencias .urgencias-cronometro-tiempo { font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #modo-urgencias .urgencias-cronometro-svg [fill="var(--color-cronometro)"],
+  #modo-urgencias .urgencias-cronometro-svg [stroke="var(--color-cronometro)"],
+  #modo-urgencias .urgencias-cronometro-tiempo {
+    transition: none;
+  }
+}
+

@@ -18,7 +18,7 @@ const ACCIONES = [
 ]
 
 const etiqueta = (lista, id) => lista.find((x) => x.id === id)?.texto ?? id
-const formatoTiempo = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
+const formatoTiempo = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`
 
 /** Modo Urgencias: cronómetro, chat limitado, semáforo, acción y resultado del triaje. */
 export default function UrgenciasPanel({
@@ -79,39 +79,65 @@ export default function UrgenciasPanel({
       className={`urgencias fase-${faseUrgencias}`}
       style={{ '--urgencias-fase2-progreso': progresoPrecaucion }}
     >
-      <p className="urgencias-aviso" role="note">
-        <i className="bi bi-info-circle" /> {AVISO}
-      </p>
-      <p className="revision-aviso sin-validar" role="note">
-        Contenido de urgencias sin validar clínicamente. Solo demostración.
-      </p>
+      <div className="urgencias-cabecera">
+        <p className="urgencias-aviso" role="note">
+          <i className="bi bi-info-circle" /> {AVISO}
+        </p>
+        <p className="revision-aviso sin-validar" role="note">
+          Contenido de urgencias sin validar clínicamente. Solo demostración.
+        </p>
 
-      <div
-        className={`urgencias-reloj ${restante <= 30 ? 'urgencias-reloj-rojo' : ''}`}
-        role="timer"
-        aria-live={restante <= 30 ? 'assertive' : 'off'}
-      >
-        <i className="bi bi-stopwatch" /> {formatoTiempo(restante)}
-        <span className="urgencias-contador">
-          {usadas} de {sesion.max_preguntas} preguntas
-        </span>
-      </div>
-
-      {faseUrgencias < 4 && (
-        <div className={`urgencias-indicador fase-${faseUrgencias}`} role="status" aria-live="polite">
-          <i
-            className={`bi ${faseUrgencias === 1 ? 'bi-heart-pulse' : faseUrgencias === 2 ? 'bi-exclamation-triangle' : 'bi-exclamation-triangle-fill'}`}
-            aria-hidden="true"
-          />
-          <span>
-            {faseUrgencias === 1
-              ? 'Paciente estable'
-              : faseUrgencias === 2
-                ? 'Atención: prioriza la evaluación del paciente'
-                : 'La atención requiere mayor rapidez'}
+        <div
+          className={`urgencias-reloj ${restante <= 30 ? 'urgencias-reloj-rojo' : ''}`}
+          role="timer"
+          aria-label={`Tiempo restante ${formatoTiempo(restante)}`}
+          aria-live={restante <= 30 ? 'assertive' : 'off'}
+        >
+          <svg className="urgencias-cronometro-svg" viewBox="0 0 128 128" aria-hidden="true" focusable="false">
+            <defs>
+              <filter id="urgencias-sombra-cuerpo" x="-30%" y="-30%" width="160%" height="170%">
+                <feDropShadow dx="0" dy="2" stdDeviation="2" floodColor="#151B35" floodOpacity="0.45" />
+              </filter>
+              <filter id="urgencias-sombra-cara" x="-20%" y="-20%" width="150%" height="160%">
+                <feDropShadow dx="3" dy="4" stdDeviation="2.5" floodColor="#151B35" floodOpacity="0.2" />
+              </filter>
+              <filter id="urgencias-sombra-interna" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="3" />
+              </filter>
+            </defs>
+            <rect x="56" y="7" width="16" height="24" rx="5" fill="#344C8C" />
+            <path d="M60 12v10 M64 12v10 M68 12v10" stroke="var(--color-cronometro)" strokeWidth="2" strokeLinecap="round" />
+            <g transform="rotate(38 101 26)">
+              <rect x="89" y="20" width="25" height="12" rx="5" fill="var(--color-cronometro)" />
+              <rect x="93" y="22.5" width="17" height="2" rx="1" fill="#F5F5FC" opacity="0.65" />
+            </g>
+            <circle cx="64" cy="69" r="47" fill="#344C8C" filter="url(#urgencias-sombra-cuerpo)" />
+            <circle cx="64" cy="67" r="38" fill="#D9D5FF" filter="url(#urgencias-sombra-cara)" />
+            <ellipse cx="78" cy="81" rx="20" ry="11" fill="#151B35" opacity="0.08" filter="url(#urgencias-sombra-interna)" />
+            <path d="M64 34v7 M96 67h-7 M64 100v-7 M32 67h7" stroke="var(--color-cronometro)" strokeWidth="3" strokeLinecap="round" />
+            <text className="urgencias-cronometro-tiempo" x="64" y="73" textAnchor="middle">{formatoTiempo(restante)}</text>
+          </svg>
+          <span className="urgencias-contador">
+            {usadas} de {sesion.max_preguntas} preguntas
           </span>
         </div>
-      )}
+
+        {faseUrgencias < 4 && (
+          <div className={`urgencias-indicador fase-${faseUrgencias}`} role="status" aria-live="polite">
+            <i
+              className={`bi ${faseUrgencias === 1 ? 'bi-heart-pulse' : faseUrgencias === 2 ? 'bi-exclamation-triangle' : 'bi-exclamation-triangle-fill'}`}
+              aria-hidden="true"
+            />
+            <span>
+              {faseUrgencias === 1
+                ? 'Paciente estable'
+                : faseUrgencias === 2
+                  ? 'Atención: prioriza la evaluación del paciente'
+                  : 'La atención requiere mayor rapidez'}
+            </span>
+          </div>
+        )}
+      </div>
 
       {sesion.acompanante?.relacion && (
         <p className="urgencias-acompanante">
