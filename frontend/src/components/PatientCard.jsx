@@ -31,6 +31,12 @@ export default function PatientCard({ paciente, motivo, ver, onToggle, estado, e
         {perfilVisible ? 'Ocultar datos personales' : 'Ver datos personales'}
       </button>
 
+      {ver && (
+        <div className="datos">
+          <PacienteAnimado paciente={paciente} estado={estado} expresion={expresion} />
+        </div>
+      )}
+
       {perfilVisible && (
         <div className="perfil-paciente" id="perfil-sociodemografico">
           <dl>
@@ -42,12 +48,6 @@ export default function PatientCard({ paciente, motivo, ver, onToggle, estado, e
             {etiquetaHogar(paciente.hogar) && <><dt>Hogar</dt><dd>{etiquetaHogar(paciente.hogar)}</dd></>}
             <dt>Procedencia</dt><dd>{paciente.municipio}, {paciente.departamento}</dd>
           </dl>
-        </div>
-      )}
-
-      {ver && (
-        <div className="datos">
-          <PacienteAnimado paciente={paciente} estado={estado} expresion={expresion} />
         </div>
       )}
     </aside>
