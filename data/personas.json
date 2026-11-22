@@ -23,7 +23,14 @@
       ]
     },
     "uuid": "f9fd1aba-0e45-47f5-9f64-3da401bdfb0c",
-    "hogar": "pareja"
+    "hogar": "pareja",
+    "perfil": {
+      "vive_con": "su esposo",
+      "dieta": "pupusas, tamales, sopa de gallina, quesadilla",
+      "actividad_fisica": "fútbol, partidos improvisados, caminar, montar bicicleta",
+      "trabajo": "venta al por menor de alimentos, bebidas y tabaco"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_002",
@@ -49,7 +56,14 @@
       ]
     },
     "uuid": "598e59ff-d1fa-468c-a844-cc507145f4dc",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su mamá, su papá, sus abuelos y dos primos adolescentes",
+      "dieta": "pupusas, tamales, camarones al ajillo, pescado a la plancha, arroz con coco, torta de chicharrón",
+      "actividad_fisica": "fútbol, voleibol de playa, pedaleo, correr",
+      "trabajo": "panadería"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_003",
@@ -75,7 +89,14 @@
       ]
     },
     "uuid": "99d423d3-3454-43a4-8180-0a16643c4670",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "pareja, chiquitos, madre, abuelo",
+      "dieta": null,
+      "actividad_fisica": "montar en bicicleta, recorrer senderos, salir a correr, tiro con arco",
+      "trabajo": "cultivar hortalizas, melones, raíces y tubérculos"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_004",
@@ -101,7 +122,14 @@
       ]
     },
     "uuid": "c273529c-9991-44a0-bd37-9f7ac8324356",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "En la casa de sus padres",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "Instala antenas, configura enrutadores y puntos de acceso, realiza pruebas de señal"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_005",
@@ -127,7 +155,14 @@
       ]
     },
     "uuid": "147abb2c-46d1-468d-8fd0-e8bd41f29190",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": "Caminata ligera, paseo en bicicleta, ver partidos de fútbol",
+      "trabajo": "Empleadora de personal doméstico, ayudante de limpieza, gestión de compra de insumos, organización del hogar"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_006",
@@ -153,7 +188,14 @@
       ]
     },
     "uuid": "8160a41a-3716-4f16-9dc6-64d08fdefaa2",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su esposa y los dos hijos",
+      "dieta": "gastronomía salvadoreña, pupusas de loroco y chicharrón, sopa de pata, pollo, yuca frita con curtido",
+      "actividad_fisica": "baloncesto, futsal, correr por los senderos del Parque Cuscatlán",
+      "trabajo": null
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_007",
@@ -179,7 +221,14 @@
       ]
     },
     "uuid": "2169d328-6dff-4bd2-829c-73a4470de240",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su mamá, su tía Lidia, los abuelos y varios primos",
+      "dieta": "pupusas de queso, tamales de elote, chivo en verde, sopa de pata, yuca frita",
+      "actividad_fisica": "partidos de fútbol, bicicleta de montaña, correr por los caminos",
+      "trabajo": "taller de elaboración de productos alimenticios"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_008",
@@ -205,7 +254,14 @@
       ]
     },
     "uuid": "2d0a3a89-38a5-44cb-b164-0968aa0be7bf",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": "sus dos hijos adultos",
+      "dieta": "pupusas, tamales, caldos, frijoles, chicharrones, curtidos, café",
+      "actividad_fisica": "caminatas, tai chi, aeróbicos suaves",
+      "trabajo": "vendedora en el mercado de San Salvador Centro"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_009",
@@ -231,7 +287,14 @@
       ]
     },
     "uuid": "f42424b7-f510-4841-a57e-a66dae5f3b5f",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "En la casa de Eladio, con su esposa y sus hijos.",
+      "dieta": "Pupusas de loroco, curtido, sopa de gallina, fritanga, tamales de elote, empanada de pollo.",
+      "actividad_fisica": "Caminar, jugar fútbol 7, nadar.",
+      "trabajo": "Coordina equipos en construcción, controla inventario, revisa detalles."
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_010",
@@ -257,7 +320,14 @@
       ]
     },
     "uuid": "2c6d9ef3-d49e-438f-8d3e-08b448ab4ed3",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": null
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_011",
@@ -283,7 +353,14 @@
       ]
     },
     "uuid": "0843093d-cfc6-4a88-ac0e-353d09fdb8ba",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": "abuela",
+      "dieta": "pupusas de queso, tamales de elote, sopa de gallina, quesadilla de maíz, pan de yema",
+      "actividad_fisica": "fútbol, futsal, baloncesto, ciclismo de montaña, correr",
+      "trabajo": "explotación mixta de cultivos y ganado"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_012",
@@ -309,7 +386,14 @@
       ]
     },
     "uuid": "b7360a26-d2cf-4331-ba56-ce1d4ea3bdf1",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su esposa y sus dos hijos",
+      "dieta": "pan de yuca, café, quesadilla, sopa de pata, guiso de frijol, pupusas, tamales, aguamiel",
+      "actividad_fisica": "juega fútbol, recorre senderos en bicicleta",
+      "trabajo": "jornalero, finca vecina, parcela propia, venta directa en mercados"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_013",
@@ -335,7 +419,14 @@
       ]
     },
     "uuid": "1fabf398-63d2-4a10-b059-d049366ff48c",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": "caminatas suaves, clases de estiramiento",
+      "trabajo": "operadora y supervisora en centros de llamadas"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_014",
@@ -361,7 +452,14 @@
       ]
     },
     "uuid": "0cdd074e-5254-4614-b3f3-780bcf3bee82",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su esposo, sus dos hijos ya adultos y varios primos",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "empleada en un puesto de restaurantes y comida ambulante"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_015",
@@ -387,7 +485,14 @@
       ]
     },
     "uuid": "6a295e0f-fd5e-43ab-9055-3607b022f8e0",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus niños",
+      "dieta": null,
+      "actividad_fisica": "jugar fútbol, montar bicicleta",
+      "trabajo": "docente de segundo ciclo en el Colegio Público de Santa Ana Oeste"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_016",
@@ -413,7 +518,14 @@
       ]
     },
     "uuid": "1b84651a-4020-4438-9f1d-825e96c597aa",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "abuela, padres, hermano, prima",
+      "dieta": "pupusas, atole, tamales, empanadas, yuca frita, plátanos maduros, casamiento, sopa de gallina",
+      "actividad_fisica": "fútbol, bailar reggaetón",
+      "trabajo": null
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_017",
@@ -439,7 +551,14 @@
       ]
     },
     "uuid": "b0350026-f363-4470-b471-72107a8ab5a1",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus hijos",
+      "dieta": "comida casera, pupusas, tamales, sopa de gallina, café de la zona",
+      "actividad_fisica": "fútbol, bicicleta, caminar, básquet",
+      "trabajo": "auxiliar de limpieza, recepción, coordinación de turnos y citas médicas"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_018",
@@ -465,7 +584,14 @@
       ]
     },
     "uuid": "aef63c9f-53eb-462d-ad04-a1d761b67b71",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su madre, su hermana menor y sus abuelos",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "auxiliar de instalación y mantenimiento en telecomunicaciones"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_019",
@@ -491,7 +617,14 @@
       ]
     },
     "uuid": "5420114a-de2b-4326-91d4-8412746b4509",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": "María, sus hijos y su mamá (domingos)",
+      "dieta": null,
+      "actividad_fisica": "Caminar por el parque, dar una vuelta en bicicleta",
+      "trabajo": "Colabora en el puesto de tacos de su tío, reponer insumos, organizar inventario"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_020",
@@ -517,7 +650,14 @@
       ]
     },
     "uuid": "e105bbfa-4dd7-4cb7-8d73-d7e2217558af",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus hijos",
+      "dieta": "pupusas, sopa de frijol, tamales, café, yuca, quesadillas",
+      "actividad_fisica": "fútbol de barrio, correr por los senderos",
+      "trabajo": "pupusería ambulante"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_021",
@@ -543,7 +683,14 @@
       ]
     },
     "uuid": "f2db9428-a534-4f0d-93d7-50ed8ac8c755",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus hijos",
+      "dieta": "pupusas de queso, pupusas de loroco, sopa de gallina, tamales de elote, chicharrón, chicha fresca",
+      "actividad_fisica": null,
+      "trabajo": "asistente de instalación y operaria de campo en telecomunicaciones inalámbricas"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_022",
@@ -569,7 +716,14 @@
       ]
     },
     "uuid": "c73ef341-3f0b-4274-bd2c-801885c2ae8d",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su hija, los nietos y la hermana mayor",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "propietaria de un cachimbo de pupusas y frituras"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_023",
@@ -595,7 +749,14 @@
       ]
     },
     "uuid": "739a50d7-0984-4a1f-b2cc-4397f0faaf45",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su pareja, sus dos hijos y la tía",
+      "dieta": null,
+      "actividad_fisica": "fútbol de barrio, bicicleta, partidos de baloncesto",
+      "trabajo": "Oficina de Registro y Control de la Municipalidad de Ahuachapán Norte"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_024",
@@ -621,7 +782,14 @@
       ]
     },
     "uuid": "b15f9a5f-5970-46ea-8d90-3a60ee61046f",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "En la casa de Norma, con su abuela, madre y hermano mayor.",
+      "dieta": null,
+      "actividad_fisica": "Caminatas por los campos, ocasionalmente con bicicleta.",
+      "trabajo": "Asistente administrativa en una universidad privada."
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_025",
@@ -647,7 +815,14 @@
       ]
     },
     "uuid": "5557ca47-8897-420e-b71a-1cdaf8b0320d",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "maestra en una escuela privada del centro de La Paz"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_026",
@@ -673,7 +848,14 @@
       ]
     },
     "uuid": "dc584392-e544-494f-997d-c8caddc41d15",
-    "hogar": "pareja"
+    "hogar": "pareja",
+    "perfil": {
+      "vive_con": "su pareja",
+      "dieta": "típico salvadoreño con sabores de Ahuachapán",
+      "actividad_fisica": "correr, levantar pesas, hacer circuitos de fuerza",
+      "trabajo": "cajero auxiliar en la sucursal de la Banca Central"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_027",
@@ -699,7 +881,14 @@
       ]
     },
     "uuid": "38390323-ba48-48e7-a2ec-0c433ee1a3ec",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y los niños",
+      "dieta": "comida salvadoreña, pupusas de loroco, tamales de elote, sopa de gallina, yuca frita, quesadilla salvadoreña",
+      "actividad_fisica": "fútbol, voleibol, entrenamiento de 5 km, caminar entre cafetales",
+      "trabajo": null
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_028",
@@ -725,7 +914,14 @@
       ]
     },
     "uuid": "1cc97aad-645c-4a14-bf31-cb839d070b74",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "sus padres, su abuela, su tío y dos primos menores",
+      "dieta": "comida casera, pupusas, tamales, sopa de gallina, plátanos maduros fritos",
+      "actividad_fisica": "correr, jugar futsal",
+      "trabajo": "Actividades de los hogares como empleador de personal doméstico"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_029",
@@ -751,7 +947,14 @@
       ]
     },
     "uuid": "57455928-0c35-44ae-b1f8-51f1ab588e2f",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus tres hijos",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "gestión de personal doméstico"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_030",
@@ -777,7 +980,14 @@
       ]
     },
     "uuid": "ad4153a6-a0d9-41a4-b3cc-059a9ace83bd",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "Elaboración de productos de panadería"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_031",
@@ -803,7 +1013,14 @@
       ]
     },
     "uuid": "163b37c8-e4a2-41f8-a2d5-52f9300a0be5",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su padre, su madre, la abuela y dos primos",
+      "dieta": "pupusas, ceviche, pescado frito, mariscada, tamales, sopa de mariscos, pollo, patacones, atole",
+      "actividad_fisica": null,
+      "trabajo": "fabricante de muebles"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_032",
@@ -829,7 +1046,14 @@
       ]
     },
     "uuid": "51bf805d-0e4d-462e-b378-eba7c9ef2773",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "sus papás",
+      "dieta": null,
+      "actividad_fisica": "correr por el parque, jugar fútbol, arreglar motocicleta, ver partidos de fútbol",
+      "trabajo": "gestiona finca familiar, compró terreno propio, perfecciona técnicas agrícolas, negocia con distribuidores"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_033",
@@ -855,7 +1079,14 @@
       ]
     },
     "uuid": "daa9c7ef-88d8-4712-bcac-47ee3f413cf0",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su mamá, la abuela, su padre y dos hermanos menores",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "peón en obra de construcción, capataz, dueño de empresa de levantamiento de estructuras residenciales"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_034",
@@ -881,7 +1112,14 @@
       ]
     },
     "uuid": "e7998290-5d1f-4a16-87c0-797e3f056bdd",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": "Caminatas, baloncesto, estiramientos, ejercicios de respiración",
+      "trabajo": "Puesto de comida ambulante"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_035",
@@ -907,7 +1145,14 @@
       ]
     },
     "uuid": "9e76c2dd-2632-4d1f-b78f-ad12742c7963",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "pareja, abuela, niños, hermana mayor",
+      "dieta": null,
+      "actividad_fisica": "fútbol, futsal, básquet, correr, levantar pesas",
+      "trabajo": "finca familiar de cereales, legumbres y semillas oleaginosas"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_036",
@@ -933,7 +1178,14 @@
       ]
     },
     "uuid": "32643dd2-bc0c-466d-b342-c79bbaec5729",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": "correr por senderos, montar bicicleta, jugar fútbol",
+      "trabajo": "dueño de comercio especializado en alimentos"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_037",
@@ -959,7 +1211,14 @@
       ]
     },
     "uuid": "915dafcd-9858-4612-9e82-565258410b72",
-    "hogar": "unipersonal"
+    "hogar": "unipersonal",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": "jugar fútbol callejero, montar bicicleta, jugar baloncesto",
+      "trabajo": "vendedor en una pulpería, dueño de un comercio de alimentos, bebidas y tabaco"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_038",
@@ -985,7 +1244,14 @@
       ]
     },
     "uuid": "3e3f4879-4b01-4f79-8e11-f0b8b060ad29",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su pareja, sus dos hijos adultos y una tía",
+      "dieta": "pescado a la plancha, yuca frita, salsa de ají, mariscos, ceviche, pupusas, tamales",
+      "actividad_fisica": "recorre el parque, pide en bicicleta, monta tabla de surf",
+      "trabajo": "empleada privada en el cultivo de caña de azúcar"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_039",
@@ -1011,7 +1277,14 @@
       ]
     },
     "uuid": "18a28deb-a694-4950-9971-f058bc7dc9af",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": null,
+      "dieta": "Cocina salvadoreña con tradición, pupusas, yuca, tamales, sopa de frijol.",
+      "actividad_fisica": "Juega fútbol, anda en bicicleta, participa en voleibol.",
+      "trabajo": "Auxiliar administrativa en la oficina municipal de La Paz Oeste."
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_040",
@@ -1037,7 +1310,14 @@
       ]
     },
     "uuid": "e3f8b79f-fd16-46e9-8ce6-616ddd588fc6",
-    "hogar": "pareja"
+    "hogar": "pareja",
+    "perfil": {
+      "vive_con": "su compañero",
+      "dieta": "cocina salvadoreña, pescado, camarón, arroz, pupusas, tamales, sopa de mariscos, ceviche",
+      "actividad_fisica": "caminata, bicicleta, voleibol de playa",
+      "trabajo": "peluquería, maquillaje, depilación, asesoría de estilo"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_041",
@@ -1063,7 +1343,14 @@
       ]
     },
     "uuid": "8dbe4b62-979f-4440-a0a0-5e2a2c22fb98",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su pareja, sus hijos y la madre de su pareja",
+      "dieta": null,
+      "actividad_fisica": "correr 8 kilómetros, ejercicios de calistenia, montar bicicleta",
+      "trabajo": "diseño, ilustración, maquetación"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_042",
@@ -1089,7 +1376,14 @@
       ]
     },
     "uuid": "9b8b0781-2a3a-4394-a213-9d6f65d9a8d8",
-    "hogar": "unipersonal"
+    "hogar": "unipersonal",
+    "perfil": {
+      "vive_con": "sola en su casa de La Paz Centro",
+      "dieta": "desayuno con café, pan, queso, yuca frita, pupusas, sopa de gallina, tamal, atole, chicharrón",
+      "actividad_fisica": "caminata matutina, aeróbicos los martes, jugar al futbolín los fines de semana",
+      "trabajo": "empleadora de personal doméstico"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_043",
@@ -1115,7 +1409,14 @@
       ]
     },
     "uuid": "cacbd749-dc44-46b1-9dc8-fbd39634e98f",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus dos niños",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "coordinador de eventos y presupuestos en una asociación comunitaria"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_044",
@@ -1141,7 +1442,14 @@
       ]
     },
     "uuid": "6010b5eb-144c-48a6-8f3b-de7295576a6f",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su pareja, sus dos niños y varios parientes",
+      "dieta": "pupusas de loroco, chicharrón, yucas fritas, tamales de elote, sopa de gallina con fideos, yuca",
+      "actividad_fisica": null,
+      "trabajo": "cultivo de cereales, legumbres y semillas oleaginosas"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_045",
@@ -1167,7 +1475,14 @@
       ]
     },
     "uuid": "07087664-b0fe-40f9-bce8-50897e2e578f",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": "fútbol, bicicleta, baloncesto",
+      "trabajo": "emprendimiento de actividades de esparcimiento y recreativas"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_046",
@@ -1193,7 +1508,14 @@
       ]
     },
     "uuid": "18a40386-5fe1-45bf-9e54-255410fba233",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": null
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_047",
@@ -1219,7 +1541,14 @@
       ]
     },
     "uuid": "938aee63-8596-4ee8-9a4d-bd482b0daeda",
-    "hogar": "pareja"
+    "hogar": "pareja",
+    "perfil": {
+      "vive_con": "comparte el techo con su compañero, un hombre mayor",
+      "dieta": "pupusas de queso y chicharrón, yuca frita, sopa de gallina, empanadas de plátano, quesadilla salvadoreña",
+      "actividad_fisica": null,
+      "trabajo": "costurera, abrió su propio taller de costura"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_048",
@@ -1245,7 +1574,14 @@
       ]
     },
     "uuid": "d5d6f8a0-d7ef-4c78-a34b-981c3cfed4fc",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su mamá, su abuela, su tío y dos primitos",
+      "dieta": "cocina salvadoreña con un toque urbano, pupusas, tamales, sopa de pata, plátano frito, ceviche",
+      "actividad_fisica": "correr, jugar futsal, asistir a partidos de fútbol, clases de yoga",
+      "trabajo": "encargado de inspección de calidad en una planta de productos domésticos"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_049",
@@ -1271,7 +1607,14 @@
       ]
     },
     "uuid": "cbf3b8b7-5d9c-42d8-8d2e-d6eb083dc8a7",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": "Jugar futsal, surfear, voleibol de playa, correr y remo.",
+      "trabajo": "Asistente de cocina y cajera principal en el puesto 'El Sazón'."
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_050",
@@ -1297,7 +1640,14 @@
       ]
     },
     "uuid": "0c41f21b-d84f-4f32-8613-eafcf6707918",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus hijos",
+      "dieta": "cocina tradicional salvadoreña con matices urbanos",
+      "actividad_fisica": "jugar al fútbol de salón, ciclismo, caminar",
+      "trabajo": "dirige un taller de elaboración de productos lácteos"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_051",
@@ -1323,7 +1673,14 @@
       ]
     },
     "uuid": "0f4d0d1c-460a-4acd-a795-75e70a92b5ad",
-    "hogar": "unipersonal"
+    "hogar": "unipersonal",
+    "perfil": {
+      "vive_con": null,
+      "dieta": "ceviche, pescado a la plancha, sopa de mariscos, pupusas, yuca frita, arroz con camarones, nacatamales",
+      "actividad_fisica": "fútbol, bicicleta, surf, caminatas",
+      "trabajo": "gestión doméstica, coordinación de cuidadores, cocineras y limpiadoras"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_052",
@@ -1349,7 +1706,14 @@
       ]
     },
     "uuid": "18a418c6-4443-4e32-a562-28c9a5cf8c1a",
-    "hogar": "pareja"
+    "hogar": "pareja",
+    "perfil": {
+      "vive_con": "su esposo",
+      "dieta": null,
+      "actividad_fisica": "caminar por el Parque Miraflores, hacer estiramientos, clases de tai chi",
+      "trabajo": "panadería del barrio"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_053",
@@ -1375,7 +1739,14 @@
       ]
     },
     "uuid": "40085f75-4f1e-4405-bb20-0d695c10862a",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su hijo José, su nuera Marta y los tres nietos",
+      "dieta": null,
+      "actividad_fisica": "caminata ligera, ejercicios de silla",
+      "trabajo": "gestión de personal doméstico, organización de servicios del hogar"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_054",
@@ -1401,7 +1772,14 @@
       ]
     },
     "uuid": "a75aeba4-09ab-4ee1-bde6-70ce8d0953d7",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su mamá, su papá, su abuela, su tío y su hermana menor",
+      "dieta": null,
+      "actividad_fisica": "fútbol, montar bici, básquetbol, trote ligero",
+      "trabajo": "encargado de turno en una empresa de confección de ropa"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_055",
@@ -1427,7 +1805,14 @@
       ]
     },
     "uuid": "c02c6a1a-26b8-4b1f-96ab-7603960ef7c3",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su madre, ya mayor, su hijo, su hija y su hermano mayor",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "propietaria de una tienda de alimentos, bebidas y tabaco"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_056",
@@ -1453,7 +1838,14 @@
       ]
     },
     "uuid": "1c300afe-69e4-4541-a5d6-ea9aacc518db",
-    "hogar": "pareja"
+    "hogar": "pareja",
+    "perfil": {
+      "vive_con": "compañera",
+      "dieta": "pupusas, sopa de pata, tamales, yuca frita, enchiladas salvadoreñas",
+      "actividad_fisica": "corre, juega fútsal, camina",
+      "trabajo": "cultivo de hortalizas, melones, raíces y tubérculos"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_057",
@@ -1479,7 +1871,14 @@
       ]
     },
     "uuid": "aae4fd7f-6b69-4fda-a026-529183730325",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": "su hermana, dos hijos",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "panadería"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_058",
@@ -1505,7 +1904,14 @@
       ]
     },
     "uuid": "9f9e9460-4201-42d5-bab3-f409c2ef00b1",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su compañera y sus hijos",
+      "dieta": "pupusas, café, tamal, sopa, pan con pollo",
+      "actividad_fisica": "camina diez minutos, juega pelota",
+      "trabajo": "cultivo de cereales, legumbres y semillas"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_059",
@@ -1531,7 +1937,14 @@
       ]
     },
     "uuid": "f55574b8-2101-43ad-953d-df9f6ec23e93",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su pareja, sus hijos y cuñados",
+      "dieta": null,
+      "actividad_fisica": "caminar alrededor del Parque Central, practicar ejercicios de bajo impacto",
+      "trabajo": "trabajadora del sector comercio"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_060",
@@ -1557,7 +1970,14 @@
       ]
     },
     "uuid": "91e6a8ec-0235-409d-b942-11fc7716e10c",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su abuela, sus padres",
+      "dieta": null,
+      "actividad_fisica": "fútbol, correr, montar en bicicleta de montaña",
+      "trabajo": null
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_061",
@@ -1583,7 +2003,14 @@
       ]
     },
     "uuid": "b56fb353-6fc4-4444-9605-b92e05b5f372",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su compañera y sus tres hijos",
+      "dieta": "camarones al ajillo, pupusas de revuelta, pescado frito, tamales de yuca, sopa de mariscos",
+      "actividad_fisica": "fútbol, caminar por el parque, montar bicicleta",
+      "trabajo": "atención al público, gestión de expedientes en la municipalidad"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_062",
@@ -1609,7 +2036,14 @@
       ]
     },
     "uuid": "24e4cae4-a7e8-499d-84d8-2da7ac37a5d8",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su esposo y sus dos niños",
+      "dieta": "arroz, frijoles, pescado, tamales, ceviche, sopa de mariscos, tamales de elote, ensalada de mango",
+      "actividad_fisica": "correr por los senderos, pedalear su bicicleta, lanzar tiros al arco",
+      "trabajo": "asistente en una pequeña empresa de otros servicios"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_063",
@@ -1635,7 +2069,14 @@
       ]
     },
     "uuid": "6ed4e10f-8201-44b6-8cc3-2076b494626d",
-    "hogar": "unipersonal"
+    "hogar": "unipersonal",
+    "perfil": {
+      "vive_con": "vive solo en la casa que heredó de su familia",
+      "dieta": null,
+      "actividad_fisica": "partidos de fútbol, caminar, montar bicicleta, caminatas al atardecer",
+      "trabajo": "dirige un pequeño negocio agrícola que emplea a varios jornaleros"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_064",
@@ -1661,7 +2102,14 @@
       ]
     },
     "uuid": "6619e7ac-9736-46a0-835e-c4a32b014890",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "compañera, tres hijos, tía Carmen",
+      "dieta": null,
+      "actividad_fisica": "caminar por la avenida principal, jugar fútbol informal, pedalear en bicicleta",
+      "trabajo": "venta de partes, piezas y accesorios para vehículos automotores"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_065",
@@ -1687,7 +2135,14 @@
       ]
     },
     "uuid": "049d03d6-d4ba-4f36-8484-fd6540eb70b2",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "sus padres y su hermana menor",
+      "dieta": null,
+      "actividad_fisica": "fútbol, surfear en El Tunco, ciclovía",
+      "trabajo": "sector agrícola, finca familiar, supervisar rotación de cultivos, selección de semillas, gestión de riegos"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_066",
@@ -1713,7 +2168,14 @@
       ]
     },
     "uuid": "8bfe4e0c-522d-4234-84c4-5914b9838c50",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "sus padres, su abuela y su hermana mayor",
+      "dieta": null,
+      "actividad_fisica": "entrenar al pie del gol, recorrer el parque, pedalear en bicicleta",
+      "trabajo": null
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_067",
@@ -1739,7 +2201,14 @@
       ]
     },
     "uuid": "d7ab331c-7c4c-48cd-89ff-e676e1354188",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus tres hijos",
+      "dieta": "pupusas de revuelta, quesadilla salvadoreña, arroz con pollo, yuca frita, tamales de elote, plátanos fritos",
+      "actividad_fisica": "camina cinco cuadras, se sube a su bicicleta, visita la piscina municipal",
+      "trabajo": "trabajando en el sector de restaurantes y comida ambulante"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_068",
@@ -1765,7 +2234,14 @@
       ]
     },
     "uuid": "0fe7b6f5-4224-4cd6-9d97-7aca8af72f5a",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su madre, su hermana y la abuela",
+      "dieta": "pisto, pupusas, fritanga, mariscada, ceviche, sopa de gallina, tamal de elote",
+      "actividad_fisica": "fútbol 5, baloncesto, pedalear",
+      "trabajo": "supervisor de obra en construcción"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_069",
@@ -1791,7 +2267,14 @@
       ]
     },
     "uuid": "5a308cfb-b091-4709-86db-da71b4d44b80",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su mamá, su abuela, su abuelo y dos primos menores",
+      "dieta": null,
+      "actividad_fisica": "correr alrededor del Parque Central, asistir al gimnasio",
+      "trabajo": "asistente en una pequeña agencia de publicidad"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_070",
@@ -1817,7 +2300,14 @@
       ]
     },
     "uuid": "802638aa-a5b5-418f-8af2-b9f64d7e2fdd",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus dos hijos",
+      "dieta": "combinación de lo tradicional salvadoreño con sabores propios de Santa Ana",
+      "actividad_fisica": "correr alrededor del Parque Central, paseos en bicicleta, clases de yoga",
+      "trabajo": "peluquería y tratamientos de belleza"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_071",
@@ -1843,7 +2333,14 @@
       ]
     },
     "uuid": "8bffe7dc-f264-4cf3-b88f-06d4c0e4a531",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su esposo y sus hijos",
+      "dieta": null,
+      "actividad_fisica": "camina diez cuadras alrededor del parque central, juega fútbol informal los domingos",
+      "trabajo": "operaria y supervisora en un taller de ensamblaje, fundó su propio taller"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_072",
@@ -1869,7 +2366,14 @@
       ]
     },
     "uuid": "99d3b9fe-9515-4da3-97d6-2b2f5247ba5e",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus hijos",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "lavado y limpieza, incluida la limpieza en seco, de ropa y piel"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_073",
@@ -1895,7 +2399,14 @@
       ]
     },
     "uuid": "a20023e6-c47d-4e56-b983-5c181794ea5b",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "pareja, dos hijos, la madre de su cuñado",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": null
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_074",
@@ -1921,7 +2432,14 @@
       ]
     },
     "uuid": "54be71a6-2f48-4993-a3f9-b737531c3fa8",
-    "hogar": "unipersonal"
+    "hogar": "unipersonal",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": "fútbol sala, ciclovía, senderismo, partidos de fútbol",
+      "trabajo": "comercio minorista de alimentos, bebidas y tabaco"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_075",
@@ -1947,7 +2465,14 @@
       ]
     },
     "uuid": "c73f2d87-3302-4578-a2b5-c7b88a7f9d09",
-    "hogar": "unipersonal"
+    "hogar": "unipersonal",
+    "perfil": {
+      "vive_con": null,
+      "dieta": "pupusas de loroco, pupuserías, antojitos, café, yuca frita, sopa de gallina, tamales, pescado frito",
+      "actividad_fisica": "correr, futsal, baloncesto, ver partidos de fútbol",
+      "trabajo": null
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_076",
@@ -1973,7 +2498,14 @@
       ]
     },
     "uuid": "586ae38e-418b-4851-a9d2-f565df709ac5",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "María, de veintiocho años, sigue bajo el techo de sus padres",
+      "dieta": null,
+      "actividad_fisica": "caminar o a pedalear por los campos, entrenar fútbol de barrio",
+      "trabajo": "trabajando en el sector de restaurantes y comida ambulante en San Miguel Centro"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_077",
@@ -1999,7 +2531,14 @@
       ]
     },
     "uuid": "aef7696a-ec6f-4e19-95e9-331fa0e3a8d2",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "sus padres",
+      "dieta": null,
+      "actividad_fisica": "fútbol de cinco contra cinco, surf, correr, montar bicicleta",
+      "trabajo": "gestiona personal doméstico, cocina, cuidado de niños, contabilidad"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_078",
@@ -2025,7 +2564,14 @@
       ]
     },
     "uuid": "3e3f49ef-ba11-4906-ad57-bfc574ce0c4c",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "madre, abuela, dos hermanos, hijos de hermana",
+      "dieta": "pisto, pupusas, tamales, yuca frita, camarones al ajillo, enchiladas, sopa de gallina",
+      "actividad_fisica": "correr, jugar fútbol, pedalear",
+      "trabajo": "gestión gastronómica, supervisar cocina, inventarios, diseñar menús, revisar procesos, capacitar al personal, asegurar normas sanitarias"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_079",
@@ -2051,7 +2597,14 @@
       ]
     },
     "uuid": "3c7a9c7f-5934-48a2-ac04-3fceda33271c",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su esposo y los niños",
+      "dieta": "quesadillas, pupusas, tamales, sopa de gallina",
+      "actividad_fisica": "caminar, aeróbicos",
+      "trabajo": "empleada doméstica"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_080",
@@ -2077,7 +2630,14 @@
       ]
     },
     "uuid": "c0c979d2-f7de-46e9-a018-ded487944fb7",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "compañera de vida, tres hijos, varios nietos, tía",
+      "dieta": null,
+      "actividad_fisica": "camina alrededor del Parque Central, ciclismo recreativo, ver partidos de fútbol",
+      "trabajo": "empleadora de personal doméstico"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_081",
@@ -2103,7 +2663,14 @@
       ]
     },
     "uuid": "f8450ab8-b7d9-4947-a11b-9be3cf9d68dd",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus hijos",
+      "dieta": "café de olla, pupusa de queso, tamales de elote, caldo de gallina, guiso de carne",
+      "actividad_fisica": "fútbol, voleibol, caminar con su perro",
+      "trabajo": "auxiliar administrativa en la oficina municipal"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_082",
@@ -2129,7 +2696,14 @@
       ]
     },
     "uuid": "a5925b3f-9c98-4794-b35b-827bde890ad0",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": "dos hijos adultos",
+      "dieta": "sabores caseros, caldo de gallina, pupusas, tamales, atole de maíz",
+      "actividad_fisica": "caminatas, paseos en bicicleta, estiramientos, ejercicios de fuerza",
+      "trabajo": "empleada en restaurantes y comida ambulante"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_083",
@@ -2155,7 +2729,14 @@
       ]
     },
     "uuid": "b735f64a-590d-4ece-9b1b-7da711f0f737",
-    "hogar": "unipersonal"
+    "hogar": "unipersonal",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "cajera, asistente de operaciones, coordina a un par de compañeros en servicios financieros"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_084",
@@ -2181,7 +2762,14 @@
       ]
     },
     "uuid": "c562619f-24b2-4f46-9185-dd024a168a17",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su esposa, hijos adultos, nietos",
+      "dieta": "casaera, pupusa de queso, tamal de elote, sopa de gallina, yuca frita, pescado de bagre",
+      "actividad_fisica": "caminata de una hora, partidos de fútbol, breve sesión de estiramiento",
+      "trabajo": "tienda familiar de alimentos, bebidas y tabaco"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_085",
@@ -2207,7 +2795,14 @@
       ]
     },
     "uuid": "2c6e7662-e146-4c9a-a989-2da3ee5a9357",
-    "hogar": "pareja"
+    "hogar": "pareja",
+    "perfil": {
+      "vive_con": "su esposo",
+      "dieta": null,
+      "actividad_fisica": "caminata matutina, fútbol, voleibol, baloncesto",
+      "trabajo": "panadería, encargada de producción"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_086",
@@ -2233,7 +2828,14 @@
       ]
     },
     "uuid": "2570f2b8-3f95-4f36-8e07-7b661e02702b",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": null,
+      "dieta": "Pupusas, tamales, yuca frita, tostadas, café, pan de yema, buñuelos",
+      "actividad_fisica": null,
+      "trabajo": "Abrió un pequeño puesto de comercio en San Salvador Este"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_087",
@@ -2259,7 +2861,14 @@
       ]
     },
     "uuid": "b7d0be63-94dd-457f-804e-cc6caa74dbfa",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su esposa, sus hijos y la madre de su cuñado",
+      "dieta": "combinación de la cocina nacional con sabores de su tierra",
+      "actividad_fisica": "fútbol, caminatas, baloncesto, carreras de 5 kilómetros",
+      "trabajo": "supervisor de equipos en construcción de edificios"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_088",
@@ -2285,7 +2894,14 @@
       ]
     },
     "uuid": "55586095-9fc8-40e9-9e11-aeb1f5d9db5e",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y los niños",
+      "dieta": "platos tradicionales del campo sanmiguelense",
+      "actividad_fisica": "fútbol, pedaleo",
+      "trabajo": "trabajador familiar no remunerado en la finca"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_089",
@@ -2311,7 +2927,14 @@
       ]
     },
     "uuid": "a0dfc081-e56c-4a81-a7c9-9df3b19256ca",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su marido y sus hijos",
+      "dieta": "cocina casera, pupusas, sopa de frijoles, tamales, atol de maíz",
+      "actividad_fisica": "caminar por senderos, subir en bicicleta",
+      "trabajo": "limpiando, planchando, manteniendo el orden de los hogares"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_090",
@@ -2337,7 +2960,14 @@
       ]
     },
     "uuid": "dfe918f9-05c6-45f1-b973-4b049a5c08e3",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "empleadora de personal doméstico"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_091",
@@ -2363,7 +2993,14 @@
       ]
     },
     "uuid": "8f9d02ee-546c-4571-9fba-4abd67c5c8f2",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "En la casa de José, ubicada en Chalatenango Sur.",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "Taller de carpintería, ofrece piezas de diseño tradicional."
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_092",
@@ -2389,7 +3026,14 @@
       ]
     },
     "uuid": "1f1ceef6-50d9-4b8a-a2ef-828f34799717",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "puesto de comida ambulante, sirviendo pupusas y tacos, dirigiendo su propio puesto"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_093",
@@ -2415,7 +3059,14 @@
       ]
     },
     "uuid": "d2f0f999-38c9-4382-b029-a69e949e5ce9",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": null
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_094",
@@ -2441,7 +3092,14 @@
       ]
     },
     "uuid": "6abf2880-09e9-4566-9f2c-311a7762e91e",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus dos hijos",
+      "dieta": null,
+      "actividad_fisica": "fútbol de barrio, ciclismo, caminatas, tiros libres de baloncesto",
+      "trabajo": "coordina materiales en construcción, supervisa edificios, controla calidad del hormigón"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_095",
@@ -2467,7 +3125,14 @@
       ]
     },
     "uuid": "3edd6dc8-5411-4365-ab07-575d81c59051",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su pareja, sus dos hijos y varios familiares",
+      "dieta": null,
+      "actividad_fisica": "caminatas matutinas por los cerros, jugar fútbol, paseos en bicicleta",
+      "trabajo": null
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_096",
@@ -2493,7 +3158,14 @@
       ]
     },
     "uuid": "1fa951d2-0ef3-44e7-ba48-3133c43abd2a",
-    "hogar": "pareja"
+    "hogar": "pareja",
+    "perfil": {
+      "vive_con": "su esposo, Don Carlos",
+      "dieta": null,
+      "actividad_fisica": "caminar, pedalear",
+      "trabajo": "comercio ambulante de alimentos"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_097",
@@ -2519,7 +3191,14 @@
       ]
     },
     "uuid": "180c1b94-9389-4707-88ee-97d649396b95",
-    "hogar": "pareja"
+    "hogar": "pareja",
+    "perfil": {
+      "vive_con": "su esposa",
+      "dieta": null,
+      "actividad_fisica": "correr, pedaleo, jugar fútbol sala, gimnasio",
+      "trabajo": "chofer en empresa de transporte urbano"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_098",
@@ -2545,7 +3224,14 @@
       ]
     },
     "uuid": "84e3eca9-2f18-4771-89d6-ab34d9c410be",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "mamá, papá, hermana menor, abuela",
+      "dieta": null,
+      "actividad_fisica": "correr, futsal, pedalear, crossfit",
+      "trabajo": "cultivo de cereales, legumbres y semillas oleaginosas"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_099",
@@ -2571,7 +3257,14 @@
       ]
     },
     "uuid": "d5395445-508f-4f51-930f-4985ab3ad469",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "comparte la vivienda con su compañero, sus dos hijos y su madre",
+      "dieta": null,
+      "actividad_fisica": "caminar por el parque, voleibol, ejercicios de estiramiento",
+      "trabajo": "venta al por menor de productos farmacéuticos, médicos, cosméticos y artículos de tocador"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_100",
@@ -2597,7 +3290,14 @@
       ]
     },
     "uuid": "397175f2-ab0e-477b-ba1e-ee0086c733c6",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su hijo, su nuera y tres nietos",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "vende alimentos, bebidas y tabaco en el mercado"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_101",
@@ -2623,7 +3323,14 @@
       ]
     },
     "uuid": "760d8cbf-f9aa-40c2-a656-0df5073d0b8e",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus hijos",
+      "dieta": null,
+      "actividad_fisica": "caminata de varios kilómetros, bicicleta de montaña, ver fútbol, tiro con arco",
+      "trabajo": "mantenimiento y reparación de vehículos automotores"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_102",
@@ -2649,7 +3356,14 @@
       ]
     },
     "uuid": "4863adbd-021c-4560-8036-0249437214cd",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "mamá, papá, abuela, dos primitos",
+      "dieta": "pupusas, tamales, yuca frita, empanadas, sopa de camarón",
+      "actividad_fisica": "ver partidos de fútbol, jugar fútbol callejero, correr, montar en bicicleta",
+      "trabajo": "tiendita de alimentos, bebidas y tabaco"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_103",
@@ -2675,7 +3389,14 @@
       ]
     },
     "uuid": "58fe28a3-55b5-4a95-a727-335c0b576253",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": "En la casa de Irma, en La Libertad Costa",
+      "dieta": null,
+      "actividad_fisica": "camina por el Malecón, corre, juega fútbol, voleibol, prueba surf, hace yoga",
+      "trabajo": "asistente de venta en ferretería, supervisora, capacita a empleados"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_104",
@@ -2701,7 +3422,14 @@
       ]
     },
     "uuid": "c7dfbdf4-987d-4d80-80eb-c54d0a50d912",
-    "hogar": "unipersonal"
+    "hogar": "unipersonal",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "vendedor al por menor en el Mercado Central"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_105",
@@ -2727,7 +3455,14 @@
       ]
     },
     "uuid": "64f93da4-c626-4bbb-b52e-e56622c98f53",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": "sus niños",
+      "dieta": null,
+      "actividad_fisica": "pedalea por los senderos del campo, jugar un tiro libre con amigos",
+      "trabajo": "mecánico de planta en un taller de repuestos"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_106",
@@ -2753,7 +3488,14 @@
       ]
     },
     "uuid": "ecefb150-3002-4069-9851-06c817309212",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": "su mamá, dos hermanos menores",
+      "dieta": null,
+      "actividad_fisica": "fútbol, correr alrededor del Parque Central",
+      "trabajo": "Oficina de Servicios al Ciudadano de la Municipalidad de Sonsonate"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_107",
@@ -2779,7 +3521,14 @@
       ]
     },
     "uuid": "6866ad76-3a2a-4826-9d1a-766eab5ad69a",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "sus padres, la abuela, los tíos y varios primos",
+      "dieta": null,
+      "actividad_fisica": "fútbol, bicicleta de montaña, trotes matutinos",
+      "trabajo": "taller de mantenimiento y reparación de vehículos"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_108",
@@ -2805,7 +3554,14 @@
       ]
     },
     "uuid": "8fa04ecb-4a7f-410b-85ed-8b2fc1d649af",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su compañera, sus tres hijos y varios nietos y primos",
+      "dieta": "cocina tradicional salvadoreña, pupusas, tamales, sopa de gallina, chicharrón con yuca, cocada de piña",
+      "actividad_fisica": "caminar por el parque central, ver partidos de fútbol",
+      "trabajo": "comerciante independiente, tienda de abarrotes"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_109",
@@ -2831,7 +3587,14 @@
       ]
     },
     "uuid": "94a6e0c3-5863-4cbc-99bd-92cc069decaa",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "padres",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "puesto de comida ambulante en el mercado"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_110",
@@ -2857,7 +3620,14 @@
       ]
     },
     "uuid": "55ff5d5e-84e5-4dc9-961a-b4718d3f626a",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus dos hijos",
+      "dieta": "pupusas de flor de calabaza, chicharrón, tamalitos de elote, guiso de frijoles negros con chorizo",
+      "actividad_fisica": "caminatas, clases de aeróbicos, voleibol amistoso",
+      "trabajo": "en una tiendita, coordinación de turnos, capacitación de nuevos ayudantes"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_111",
@@ -2883,7 +3653,14 @@
       ]
     },
     "uuid": "ab7d18b9-99a5-4dc6-a540-575451bdcfea",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus hijos",
+      "dieta": null,
+      "actividad_fisica": "caminar por el malecón, dar una vuelta en bicicleta, jugar fútbol informal",
+      "trabajo": "operadora en centros de llamadas"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_112",
@@ -2909,7 +3686,14 @@
       ]
     },
     "uuid": "c9114d75-7e6a-4aeb-878a-f1c3d8009d08",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su esposo, los tres hijos y la tía de su madre",
+      "dieta": "mezcla lo tradicional y lo nuevo, pupusas, sopa de pata, tamales, café oscuro",
+      "actividad_fisica": null,
+      "trabajo": "tiendita de alimentos y bebidas"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_113",
@@ -2935,7 +3719,14 @@
       ]
     },
     "uuid": "8745b561-c03d-4b19-97ea-18a6c5630221",
-    "hogar": "pareja"
+    "hogar": "pareja",
+    "perfil": {
+      "vive_con": "Claudia",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "transporte urbano y suburbano de pasajeros en microbús"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_114",
@@ -2961,7 +3752,14 @@
       ]
     },
     "uuid": "9affd409-a2f0-4c55-befc-a6dce2451351",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": "caminar alrededor de su finca, caminata grupal, subir a la bici",
+      "trabajo": "comida ambulante, amasar masa, freír empanadas, servir pupusas"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_115",
@@ -2987,7 +3785,14 @@
       ]
     },
     "uuid": "5ac06cb1-f58d-480a-b3c2-e18c4ddb5d68",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "mamá, papá, abuela, tío, hermano",
+      "dieta": null,
+      "actividad_fisica": "trotar por el Parque Cuscatlán",
+      "trabajo": "taller de confección especializado en camisetas, blusas y pantalones de algodón"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_116",
@@ -3013,7 +3818,14 @@
       ]
     },
     "uuid": "2d0b1b10-2a49-4e60-a978-ccacdde1634a",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su madre, dos hijos y tres nietos",
+      "dieta": "comida tradicional de San Salvador, pupusas, sopa de gallina, tamal",
+      "actividad_fisica": "ver partidos de fútbol, jugar balón, caminar, montar bicicleta",
+      "trabajo": null
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_117",
@@ -3039,7 +3851,14 @@
       ]
     },
     "uuid": "81f48772-0ad7-4045-89ac-ad9ad0de341d",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y los tres niños pequeños",
+      "dieta": null,
+      "actividad_fisica": "juega fútbol, corre por los cerros, monta bicicleta de montaña",
+      "trabajo": "comercio de productos farmacéuticos y cosméticos"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_118",
@@ -3065,7 +3884,14 @@
       ]
     },
     "uuid": "2723884c-6f30-47e0-8ec6-3884c7e4c03d",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus dos niños",
+      "dieta": null,
+      "actividad_fisica": "jugar fútbol, correr por los senderos, voleibol",
+      "trabajo": "asistente de cocina y cajera, supervisora en un puesto de tacos"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_119",
@@ -3091,7 +3917,14 @@
       ]
     },
     "uuid": "4007ef54-6ffa-4804-aa5f-ed6da48e36ab",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus dos niños",
+      "dieta": "pupusas, ceviche, sopa de mariscos, café de la plantación, tamal, empanada",
+      "actividad_fisica": "fútbol, bicicleta, surf, correr",
+      "trabajo": "asistente técnico y encargado de diagnóstico de motores y alineación de chasis"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_120",
@@ -3117,7 +3950,14 @@
       ]
     },
     "uuid": "bdd4c380-5688-435c-9289-9f1cee2333f8",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su mamá, su papá, su abuelo, su tía y su primo",
+      "dieta": null,
+      "actividad_fisica": "fútbol, voleibol de arena, correr, andar en bicicleta",
+      "trabajo": "gestiona el puesto de venta en el mercado municipal"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_121",
@@ -3143,7 +3983,14 @@
       ]
     },
     "uuid": "e07b1e72-77b1-4871-bfbb-c71123971c7e",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su esposa y sus tres hijos",
+      "dieta": null,
+      "actividad_fisica": "organizar partidos de fútbol, montar en bicicleta, practicar baloncesto",
+      "trabajo": "chofer y asistente de logística, fundó su propia empresa de transporte terrestre"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_122",
@@ -3169,7 +4016,14 @@
       ]
     },
     "uuid": "db388bdb-b1f7-46fb-990e-4c0b6d87c31b",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "pareja y dos hijos",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "fabricación de productos metálicos para uso estructural"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_123",
@@ -3195,7 +4049,14 @@
       ]
     },
     "uuid": "dbc9ccfc-6b0c-47aa-9ba2-04f1d547cfb2",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": "sus dos hijos pequeños, y de vez en cuando, con su madre",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "auxiliar de archivo, coordinadora de procesos administrativos"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_124",
@@ -3221,7 +4082,14 @@
       ]
     },
     "uuid": "fb40a23e-3a3b-4ba3-b345-e98664dad945",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": "sus tres hijos",
+      "dieta": null,
+      "actividad_fisica": "camina al amanecer, monta en bicicleta, participa en torneos de voleibol",
+      "trabajo": "abrió su propia empresa mayorista de alimentos, bebidas y tabaco"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_125",
@@ -3247,7 +4115,14 @@
       ]
     },
     "uuid": "67da5882-24f4-4ae0-b817-7b953c71579e",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus dos hijos pequeños",
+      "dieta": null,
+      "actividad_fisica": "jugar fútbol, hacer caminatas, pedalear en bicicleta de montaña",
+      "trabajo": "conductor de furgoneta en servicio de transporte de carga"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_126",
@@ -3273,7 +4148,14 @@
       ]
     },
     "uuid": "d13f4de5-ab06-4a90-a49f-4f9557c05ad0",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": "caminatas matutinas, montar bicicleta, ver partidos de fútbol",
+      "trabajo": "empleada pública en una escuela de preescolar y primaria"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_127",
@@ -3299,7 +4181,14 @@
       ]
     },
     "uuid": "d006d7fb-3114-43de-895f-773a80da0e9f",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": "su esposo y los hijos",
+      "dieta": null,
+      "actividad_fisica": "caminar por el Parque Tecnológico, clases de aeróbicos",
+      "trabajo": "vendedora de pupusas, empleada en una cantina"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_128",
@@ -3325,7 +4214,14 @@
       ]
     },
     "uuid": "7d2bb304-3fd2-4141-ba7f-8313249c91e6",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": null,
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "tienda familiar de La Libertad Oeste, venta al por menor de alimentos, bebidas y tabaco"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_129",
@@ -3351,7 +4247,14 @@
       ]
     },
     "uuid": "74d80542-288b-4675-9cda-0ee03734b5c7",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "compañera y los hijos",
+      "dieta": "pupusas, sopa de gallina, tamales, pescado frito, pan con pollo",
+      "actividad_fisica": "caminatas, pedaleo, clases de gimnasia",
+      "trabajo": "cultivo de cereales, legumbres y semillas oleaginosas"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_130",
@@ -3377,7 +4280,14 @@
       ]
     },
     "uuid": "32f89872-4431-40aa-b40d-517cee59f42c",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus dos niños",
+      "dieta": "pupusas, tamales, guiso de carne de cerdo, sopa de gallina",
+      "actividad_fisica": "fútbol de salón, caminar por los senderos, voleibol",
+      "trabajo": "panadería"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_131",
@@ -3403,7 +4313,14 @@
       ]
     },
     "uuid": "11aed819-6f0c-4205-84bd-1de5387bdd54",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su esposa, hijos y varios familiares",
+      "dieta": null,
+      "actividad_fisica": "caminar por el parque, jugar fútbol de salón, pedalear por la ciclovía",
+      "trabajo": "transporte terrestre, empresa de logística"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_132",
@@ -3429,7 +4346,14 @@
       ]
     },
     "uuid": "c5616e67-54f8-4edb-aad3-91d2fb4749d4",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "madre, hermano mayor, abuela, sobrina",
+      "dieta": null,
+      "actividad_fisica": "correr, pedalear, nadar",
+      "trabajo": "peluquería, tratamientos de belleza"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_133",
@@ -3455,7 +4379,14 @@
       ]
     },
     "uuid": "a7fb8261-b0c8-4254-979e-76fc46336272",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su pareja, los niños y varios familiares, entre ellos su madre",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "trabajando en la parroquia de La Paz Este, encargado de la oficina administrativa"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_134",
@@ -3481,7 +4412,14 @@
       ]
     },
     "uuid": "5abf7a6d-8a89-4660-9fd9-4cb251223780",
-    "hogar": "unipersonal"
+    "hogar": "unipersonal",
+    "perfil": {
+      "vive_con": "Reinaldo vive solo en un apartamento del centro de Santa Ana.",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": null
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_135",
@@ -3507,7 +4445,14 @@
       ]
     },
     "uuid": "05302b59-a624-467a-af2e-5478ae2cfc08",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y sus hijos",
+      "dieta": "pupusas, sopa de gallina, tamales, yuca frita, café con pastelitos",
+      "actividad_fisica": null,
+      "trabajo": "chofer auxiliar en una empresa de mudanzas, propietario de un negocio de transporte terrestre"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_136",
@@ -3533,7 +4478,14 @@
       ]
     },
     "uuid": "77d3d1a3-45a9-4a22-97ed-0f7b759c0c60",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su esposa, sus hijos y algunos familiares",
+      "dieta": null,
+      "actividad_fisica": "jugar fútbol, subirse a la bicicleta, jugar baloncesto",
+      "trabajo": "cultivo de maíz, frijol y girasol"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_137",
@@ -3559,7 +4511,14 @@
       ]
     },
     "uuid": "6abf1017-c45d-40e9-93e3-33faf01883d6",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su pareja y los hijos",
+      "dieta": "gastrosfera de San Salvador, pupusas, tamales, empanadas",
+      "actividad_fisica": "fútbol sala, pedaleo, clases de baile",
+      "trabajo": "docente de enseñanza secundaria"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_138",
@@ -3585,7 +4544,14 @@
       ]
     },
     "uuid": "e6f55e11-1a64-49c0-a739-1899e27247f2",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su madre, su papá y su abuela",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "cultivo de cafetos, preparar el suelo, sembrar, podar, reconocer el momento de la cosecha"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_139",
@@ -3611,7 +4577,14 @@
       ]
     },
     "uuid": "b878c38b-58ca-4ade-925c-60f9b9435e91",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": "sus dos hijos",
+      "dieta": "cocina tradición sonsonateña con sabores urbanos",
+      "actividad_fisica": "caminar despacio, subirse a bicicleta",
+      "trabajo": "conductor de transporte urbano y suburbano"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_140",
@@ -3637,7 +4610,14 @@
       ]
     },
     "uuid": "5db3dd49-b864-4e71-95e8-aa7cb3b65073",
-    "hogar": "pareja"
+    "hogar": "pareja",
+    "perfil": {
+      "vive_con": "su esposa",
+      "dieta": "sabores del litoral y la ciudad de La Libertad",
+      "actividad_fisica": "fútbol, pedaleo, natación, caminatas nocturnas",
+      "trabajo": "actividades de restaurantes y comida ambulante"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_141",
@@ -3663,7 +4643,14 @@
       ]
     },
     "uuid": "95d53898-1fa6-4732-a231-55af0e93f06e",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su esposa y sus dos hijos",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "chofer principal y coordinador de vehículos en una compañía de transporte de carga"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_142",
@@ -3689,7 +4676,14 @@
       ]
     },
     "uuid": "9de50f63-d485-4fed-9d6f-d14d25e68c59",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "En casa de sus padres, que cocina y repara la lavadora.",
+      "dieta": null,
+      "actividad_fisica": "Jugar fútbol, disparar triples, montar en bicicleta.",
+      "trabajo": null
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_143",
@@ -3715,7 +4709,14 @@
       ]
     },
     "uuid": "d26b5e84-b21c-4c02-aebf-4efc0db9d6f3",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": "sus dos hijos",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "en una empresa privada del sector de otras actividades especializadas de construcción"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_144",
@@ -3741,7 +4742,14 @@
       ]
     },
     "uuid": "b56ee7c8-353f-464a-b686-82e9fa9b5678",
-    "hogar": "extendido"
+    "hogar": "extendido",
+    "perfil": {
+      "vive_con": "su madre, abuela y sus dos hijos",
+      "dieta": null,
+      "actividad_fisica": "caminar alrededor del Parque Libertad, jugar fútbol, practicar ciclismo",
+      "trabajo": "propietario de un puesto de alimentos en el mercado de Santa Ana Norte"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_145",
@@ -3767,7 +4775,14 @@
       ]
     },
     "uuid": "c9b242a4-6c78-47e3-a24f-5cb2ea45226d",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": "sus dos hijos",
+      "dieta": "cocina salvadoreña con toque urbano",
+      "actividad_fisica": "correr por el Parque Libertad, pedalea en la ciclovía",
+      "trabajo": "vende pupusas y yuca frita en un puesto ambulante"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_146",
@@ -3793,7 +4808,14 @@
       ]
     },
     "uuid": "070898fd-cf70-4a7f-8dc1-81791acc90c6",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su madre, su abuela y su hermano mayor",
+      "dieta": null,
+      "actividad_fisica": "camina por senderos, lleva bicicleta, natación en laguna, voleibol de playa",
+      "trabajo": "cuida finca familiar, cultiva maíz, frijol y girasol, aplica fertilizantes orgánicos, controla plagas"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_147",
@@ -3819,7 +4841,14 @@
       ]
     },
     "uuid": "02d0cd4f-20d9-4450-bbfa-dceee8be4451",
-    "hogar": "nuclear"
+    "hogar": "nuclear",
+    "perfil": {
+      "vive_con": "su esposa y sus niños",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "venta al por menor en comercios no especializados"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_148",
@@ -3845,7 +4874,14 @@
       ]
     },
     "uuid": "756d288b-1654-4ab1-bef9-867def7fe26e",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": "sus hijos",
+      "dieta": "pescado frito, mariscos, tamales, pupusas",
+      "actividad_fisica": "caminar, jugar al fútbol, tejer",
+      "trabajo": "panadería"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_149",
@@ -3871,7 +4907,14 @@
       ]
     },
     "uuid": "bd413f6e-8da1-42f9-aeec-95d98fb28a79",
-    "hogar": "pareja"
+    "hogar": "pareja",
+    "perfil": {
+      "vive_con": "su esposo",
+      "dieta": null,
+      "actividad_fisica": null,
+      "trabajo": "panadería"
+    },
+    "perfil_version": 1
   },
   {
     "id": "p_150",
@@ -3897,6 +4940,13 @@
       ]
     },
     "uuid": "f4b91302-d61e-4760-83d2-f27ec29469e9",
-    "hogar": "monoparental"
+    "hogar": "monoparental",
+    "perfil": {
+      "vive_con": "sus dos hijos pequeños, su mamá de la vecindad",
+      "dieta": "gastronomía de La Libertad, camarones, ceviche, pescado a la plancha, pupusas, torta de plátano",
+      "actividad_fisica": "fútbol, surf, voleibol, básquet",
+      "trabajo": "mayorista de enseres domésticos"
+    },
+    "perfil_version": 1
   }
 ]

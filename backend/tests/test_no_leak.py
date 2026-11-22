@@ -5,7 +5,7 @@ from pathlib import Path
 from fastapi.testclient import TestClient
 
 from app.main import app
-from app.prompts import system_paciente
+from app.prompts import mensajes_paciente, system_paciente
 from app.evaluate import norm
 from app import config
 
@@ -23,6 +23,7 @@ def test_api_sessions_no_contiene_campos_ocultos():
         for field in HIDDEN_FIELDS:
             assert field not in data, f"Campo oculto '{field}' expuesto en POST /api/sessions"
             assert field not in data.get("paciente", {}), f"Campo oculto '{field}' expuesto en paciente"
+        assert "perfil" not in data["paciente"], "El perfil social no se devuelve al cliente"
         assert {"estado_civil", "nivel_educativo", "hogar"} <= set(data["paciente"])
 
 
@@ -65,6 +66,22 @@ def test_system_paciente_no_contiene_diagnostico_ni_alias():
             assert alias_norm not in prompt_norm, (
                 f"El alias '{alias}' de {caso['id']} aparece en system_paciente"
             )
+
+
+def test_mensajes_paciente_con_perfil_no_contienen_diagnostico_ni_alias():
+    casos = json.loads((DATA_DIR / "casos.json").read_text(encoding="utf-8"))
+    personas = json.loads((DATA_DIR / "personas.json").read_text(encoding="utf-8"))
+    for caso in casos:
+        persona = next(
+            p for p in personas
+            if p["sexo"] in caso["restricciones"]["sexo"]
+            and caso["restricciones"]["edad_min"] <= p["edad"] <= caso["restricciones"]["edad_max"]
+        )
+        mensajes = mensajes_paciente(persona, caso, [{"role": "user", "content": "¿A qué se dedica?"}])
+        contenido = norm(" ".join(m["content"] for m in mensajes))
+        assert norm(caso["diagnostico"]) not in contenido
+        for alias in caso.get("diagnostico_alias", []):
+            assert norm(alias) not in contenido
 
 
 def test_glosario_y_placeholders_no_nombran_diagnosticos():

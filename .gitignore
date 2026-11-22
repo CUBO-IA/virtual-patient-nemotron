@@ -44,6 +44,9 @@ NIVELES.md
 # Guías clínicas descargadas (se bajan por separado; ver data/guias/README.md)
 data/guias/*.pdf
 data/guias_fuente/
+data/personas_fuente.json
 
 # Archivos de trabajo (recortes e inspecciones de imágenes)
 scratch/
+docs/explicacion-tecnica.pdf
+PERFIL_SOCIAL_REVISION.md

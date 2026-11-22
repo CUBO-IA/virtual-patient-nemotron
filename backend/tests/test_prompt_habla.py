@@ -92,3 +92,106 @@ def test_tamano_del_prompt_cabe_en_el_contexto():
     for caso in _casos():
         largo = max(len(prompts.system_paciente(peor, caso, cfg, turno=t)) for t in (0, 1, 2))
         assert largo <= MAX_CHARS_PROMPT, f"{caso['id']}: {largo} caracteres (máx. {MAX_CHARS_PROMPT})"
+        for pregunta in ("¿Con quién vive?", "¿Qué come normalmente?", "¿Hace ejercicio?", "¿A qué se dedica?"):
+            mensajes = prompts.mensajes_paciente(peor, caso, [{"role": "user", "content": pregunta}], nivel=cfg)
+            total = sum(len(m["content"]) for m in mensajes if m["role"] == "system")
+            assert total <= MAX_CHARS_PROMPT, f"{caso['id']} / {pregunta}: {total} caracteres"
+
+
+def test_prompt_incluye_perfil_y_prohibe_deducir_detalles_laborales():
+    persona = next(p for p in json.loads((DATA / "personas.json").read_text(encoding="utf-8")) if p["id"] == "p_102")
+    caso = _casos()[0]
+    prompt = prompts.system_paciente(persona, caso)
+    assert "trabajo: tiendita de alimentos, bebidas y tabaco" in prompt
+    assert "Solo si preguntan; manda el caso" in prompt
+    assert "No inventes otros datos" in prompt
+    assert len(prompts._bloque_perfil_social(persona, caso)) <= 350
+
+
+def test_el_caso_que_define_trabajo_prevalece_sobre_perfil():
+    persona = next(p for p in json.loads((DATA / "personas.json").read_text(encoding="utf-8")) if p["id"] == "p_102")
+    caso = next(c for c in _casos() if c["id"] == "c_trauma_01")
+    mensajes = prompts.mensajes_paciente(persona, caso, [
+        {"role": "assistant", "content": "Vengo por el choque en moto de hoy."},
+        {"role": "user", "content": "¿Cuál es su rutina?"},
+    ])
+    prompt = mensajes[0]["content"]
+    assert "trabajo: tiendita de alimentos, bebidas y tabaco" not in prompt
+    assert len(mensajes) == 4
+    assert "maneja moto todos los días para repartir pedidos" in prompt
+    assert "usa solo este dato del caso" in mensajes[-2]["content"]
+    assert "maneja moto todos los días para repartir pedidos" in mensajes[-2]["content"]
+    assert len(prompt) <= MAX_CHARS_PROMPT
+
+
+def test_perfil_se_limita_a_la_pregunta_actual():
+    persona = next(p for p in json.loads((DATA / "personas.json").read_text(encoding="utf-8")) if p["id"] == "p_102")
+    caso = next(c for c in _casos() if c["id"] == "c_trauma_01")
+    historial = lambda pregunta: [{"role": "user", "content": pregunta}]
+    mensajes_rutina = prompts.mensajes_paciente(persona, caso, historial("¿Cuál es su rutina?"))
+    pregunta_social = mensajes_rutina[0]["content"]
+    assert "trabajo: tiendita de alimentos, bebidas y tabaco" not in pregunta_social
+    assert "actividad:" not in pregunta_social and "come:" not in pregunta_social
+    assert "usa solo este dato del caso" in mensajes_rutina[-2]["content"]
+
+    mensajes_hogar = prompts.mensajes_paciente(persona, caso, historial("¿Con quién vive?"))
+    pregunta_hogar = mensajes_hogar[0]["content"]
+    assert "casa: mamá, papá, abuela, dos primitos" in pregunta_hogar
+    assert "solo estos datos" in mensajes_hogar[-2]["content"]
+
+    mensajes_trabajo = prompts.mensajes_paciente(persona, caso, historial("¿A qué se dedica?"))
+    pregunta_trabajo = mensajes_trabajo[0]["content"]
+    assert "trabajo: tiendita de alimentos, bebidas y tabaco" not in pregunta_trabajo
+    assert "usa solo este dato del caso" in mensajes_trabajo[-2]["content"]
+
+    pregunta_clinica = prompts.mensajes_paciente(persona, caso, historial("¿Puede levantar el brazo?"))[0]["content"]
+    assert "trabajo: tiendita de alimentos, bebidas y tabaco" not in pregunta_clinica
+    assert "Pregunta sobre rutina" not in pregunta_clinica
+
+
+def test_si_falta_perfil_laboral_se_usa_solo_la_rama_general():
+    persona = next(p for p in json.loads((DATA / "personas.json").read_text(encoding="utf-8")) if p["id"] == "p_027")
+    caso = next(c for c in _casos() if c["id"] == "c_dengue_01")
+    mensajes = prompts.mensajes_paciente(persona, caso, [{"role": "user", "content": "¿A qué se dedica?"}])
+    assert persona["perfil"]["trabajo"] is None
+    assert "cafetería" not in mensajes[0]["content"].lower()
+    assert "Responde exactamente" in mensajes[-2]["content"]
+    assert "Mi ocupación es Otras actividades de servicios financieros" in mensajes[-2]["content"]
+    assert persona["ocupacion"] in mensajes[-2]["content"]
+
+
+def test_caso_con_un_dato_de_dieta_no_permita_inventar_comidas():
+    persona = next(p for p in json.loads((DATA / "personas.json").read_text(encoding="utf-8")) if p["id"] == "p_029")
+    caso = next(c for c in _casos() if c["id"] == "c_trauma_01")
+    mensajes = prompts.mensajes_paciente(persona, caso, [{"role": "user", "content": "¿Qué come normalmente?"}])
+    assert "come:" not in mensajes[0]["content"]
+    assert "no había consumido bebidas alcohólicas antes del choque" in mensajes[-2]["content"]
+    assert "No inventes más detalles" in mensajes[-2]["content"]
+
+
+def test_perfil_omite_temas_que_el_caso_ya_cubre():
+    persona = next(p for p in json.loads((DATA / "personas.json").read_text(encoding="utf-8")) if p["id"] == "p_102")
+    caso = {"habitos": ["toma refrescos todos los días"], "antecedentes": [], "datos_si_pregunta": {}}
+    bloque = prompts._bloque_perfil_social(persona, caso)
+    assert "comida:" not in bloque
+    assert "casa:" in bloque and "actividad:" in bloque and "trabajo:" in bloque
+
+
+def test_perfil_no_aparece_si_no_hay_datos_o_en_urgencias():
+    persona = next(p for p in json.loads((DATA / "personas.json").read_text(encoding="utf-8")) if p["id"] == "p_102")
+    caso = _casos()[0]
+    sin_perfil = {**persona, "perfil": None}
+    perfil_vacio = {**persona, "perfil": {k: None for k in ("vive_con", "dieta", "actividad_fisica", "trabajo")}}
+    assert prompts._bloque_perfil_social(sin_perfil, caso) == ""
+    assert prompts._bloque_perfil_social(perfil_vacio, caso) == ""
+
+    urgencia = json.loads((DATA / "urgencias.json").read_text(encoding="utf-8"))[0]
+    prompt = prompts.system_paciente(persona, urgencia)
+    assert "Estás en urgencias" in prompt
+    assert "Solo si preguntan; manda el caso" not in prompt
+
+
+def test_perfil_no_se_impone_si_caso_define_el_hogar():
+    persona = next(p for p in json.loads((DATA / "personas.json").read_text(encoding="utf-8")) if p["id"] == "p_102")
+    caso = {"habitos": ["Vive con su familia extendida"], "antecedentes": [], "datos_si_pregunta": {}}
+    assert "casa:" not in prompts._bloque_perfil_social(persona, caso)

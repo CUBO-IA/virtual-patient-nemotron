@@ -13,7 +13,7 @@ Simulador de entrevistas clínicas para estudiantes de medicina. El estudiante c
 | Función | Detalle |
 |---|---|
 | 8 casos clínicos | Dengue, enfermedad renal crónica, diabetes tipo 2, crisis hipertensiva, trauma por accidente de tránsito, gastroenteritis, neumonía y depresión. |
-| Paciente coherente | Cada caso se asigna a una persona compatible (sexo, edad, zona y ocupación típicas). Habla en español salvadoreño, trata de usted al doctor y no revela el diagnóstico. |
+| Paciente coherente | Cada caso se asigna a una persona compatible (sexo, edad, zona y ocupación típicas). El perfil social de la persona ayuda a responder sobre su hogar, alimentación, actividad y trabajo cuando se lo preguntan y el caso no define esos temas. Habla en español salvadoreño, trata de usted al doctor y no revela el diagnóstico. |
 | Chat en streaming | El paciente responde en 2-4 frases con algo de emoción y muletillas propias (distintas en cada paciente), y cuenta los síntomas poco a poco, solo si se le pregunta. La voz lee el texto tal como se ve, con la «j» de la aspiración en los pacientes del oriente. |
 | Voz | Voz salvadoreña (Lorena/Rodrigo) con tono y ritmo según la edad. |
 | Personaje | «Ver paciente» muestra una ilustración (10 personajes según sexo y edad) que parpadea y mueve la boca con la voz. |
@@ -74,6 +74,16 @@ ollama pull qwen2.5:7b
 El backend arranca **sin recarga automática**, para que un cambio de código no reinicie el servidor en medio de una consulta. Si vas a programar, usa `iniciar-dev.bat`: recarga el backend al cambiar archivos de `backend\`. Aun así, las sesiones se guardan en disco (ver más abajo) y sobreviven a la recarga.
 
 > Las 150 personas ya vienen en el repositorio (`data/personas.json`); no hace falta descargar el dataset.
+
+Cada persona incluye un perfil social breve extraído de los textos fuente del dataset. En modo consulta, el prompt comparte solo el dato social que corresponde a la pregunta actual y solo cuando el caso no cubre ese tema; en preguntas clínicas y urgencias no lo añade. No se envía en la respuesta de creación de sesión. Para regenerar los perfiles desde el dataset (requiere acceso a Hugging Face y Ollama con `qwen2.5:7b`):
+
+```powershell
+.\.venv\Scripts\python.exe scripts\build_personas.py 150
+.\.venv\Scripts\python.exe scripts\extraer_fuente_personas.py
+.\.venv\Scripts\python.exe scripts\generar_perfiles.py
+```
+
+`data/personas_fuente.json` es un archivo local ignorado por git; no se necesita para ejecutar una copia del proyecto porque `data/personas.json` ya incluye los perfiles.
 
 ## Ejecución manual
 
@@ -194,11 +204,11 @@ Las pruebas incluyen que ni la API ni el prompt del paciente expongan el diagnó
 ├─ docker-compose.yml           Chroma (opcional), versión fijada
 ├─ .env.example                 configuración de ejemplo
 ├─ data/
-│  ├─ personas.json             150 adultos del dataset
+│  ├─ personas.json             150 adultos del dataset con perfil social
 │  ├─ casos.json                8 casos clínicos ficticios
 │  ├─ glosario.json             términos médicos
 │  └─ guias/                    guías clínicas para el RAG
-├─ scripts/                     build_personas · validate_casos · ingest_guias
+├─ scripts/                     build_personas · extraer_fuente_personas · generar_perfiles · validate_casos · ingest_guias
 ├─ backend/app/                 FastAPI: sesiones, prompts, evaluación, voz, RAG
 ├─ backend/tests/               pytest
 └─ frontend/src/                React: chat, ficha del paciente, resultados

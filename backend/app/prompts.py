@@ -1,5 +1,7 @@
 """Prompts. El del paciente NUNCA recibe el diagnóstico ni la lista de verificación."""
 
+import re
+
 from . import config, habla
 
 
@@ -7,7 +9,182 @@ def _lista(items: list[str]) -> str:
     return "; ".join(items) if items else "ninguno"
 
 
-def system_paciente(persona: dict, caso: dict, nivel: dict | None = None, turno: int = 0) -> str:
+_TEMAS_PERFIL = {
+    "vive_con": ("hogar", "vive con", "viven con", "vive solo", "vive sola", "viviendo solo", "viviendo sola", "vivienda", "convive"),
+    "dieta": ("comida", "aliment", "dieta", "comer", "come", "bebida", "refresco", "cafe", "pupusa", "alcohol"),
+    "actividad_fisica": ("ejercicio", "actividad", "camina", "caminar", "corre", "correr", "deporte", "futbol", "bicicleta"),
+    "trabajo": ("trabajo", "trabaja", "trabajar", "ocupacion", "empleo", "empleado", "negocio", "oficio", "repart", "pedido", "entreg", "transporte"),
+}
+_TEMAS_PREGUNTA = {
+    "vive_con": ("con quien vive", "vive con", "convive", "hogar", "familia"),
+    "dieta": ("comida", "aliment", "dieta", "comer", "come", "bebida", "refresco"),
+    "actividad_fisica": ("ejercicio", "actividad", "camina", "caminar", "corre", "correr", "deporte", "futbol", "bicicleta"),
+    "trabajo": ("trabajo", "trabaja", "trabajar", "ocupacion", "empleo", "dedica", "oficio", "negocio"),
+}
+_ETIQUETAS_PERFIL = {
+    "vive_con": "casa",
+    "dieta": "come",
+    "actividad_fisica": "actividad",
+    "trabajo": "trabajo",
+}
+_MAX_CARACTERES_PERFIL = 350
+
+
+def _texto_cubre_tema(texto: str, claves: tuple[str, ...]) -> bool:
+    normalizado = habla._norm(texto)
+    return any(re.search(rf"\b{re.escape(clave)}\w*\b", normalizado) for clave in claves)
+
+
+def _texto_social_caso(caso: dict) -> str:
+    datos = []
+    for campo in ("habitos", "antecedentes", "datos_si_pregunta"):
+        valor = caso.get(campo, [])
+        if isinstance(valor, dict):
+            datos.extend(str(parte) for item in valor.items() for parte in item)
+        elif isinstance(valor, (list, tuple)):
+            datos.extend(str(parte) for parte in valor)
+        else:
+            datos.append(str(valor))
+    return " ".join(datos)
+
+
+def _campo_cubierto_por_caso(caso: dict, campo: str) -> bool:
+    return _texto_cubre_tema(_texto_social_caso(caso), _TEMAS_PERFIL[campo])
+
+
+def _fragmentos_tema_caso(caso: dict, campo: str) -> list[str]:
+    fragmentos = []
+    for campo_caso in ("habitos", "antecedentes", "datos_si_pregunta"):
+        valor = caso.get(campo_caso, [])
+        if isinstance(valor, dict):
+            candidatos = [f"{tema}: {respuesta}" for tema, respuesta in valor.items()]
+        elif isinstance(valor, (list, tuple)):
+            candidatos = [str(item) for item in valor]
+        else:
+            candidatos = [str(valor)]
+        fragmentos.extend(item for item in candidatos if item and _texto_cubre_tema(item, _TEMAS_PERFIL[campo]))
+    return fragmentos
+
+
+def _campos_perfil_preguntados(pregunta: str) -> tuple[str, ...]:
+    campos = tuple(campo for campo, claves in _TEMAS_PREGUNTA.items() if _texto_cubre_tema(pregunta, claves))
+    if _texto_cubre_tema(pregunta, ("rutina",)):
+        if _texto_cubre_tema(pregunta, ("ejercicio", "actividad", "deporte", "caminar", "futbol")):
+            return ("actividad_fisica",)
+        return ("trabajo",)
+    return campos
+
+
+def _frase_laboral(valor: str) -> str:
+    """Convierte los resúmenes laborales más comunes en una frase breve y natural."""
+    texto = valor.strip().rstrip(".")
+    bajo = texto.lower()
+    if bajo.startswith("tiendita de "):
+        return f"Tengo una {texto}."
+    if bajo.startswith("tienda ") or bajo.startswith("tienda de "):
+        return f"Trabajo en una {texto}."
+    if bajo.startswith("taller de "):
+        return f"Trabajo en un {texto}."
+    if bajo.startswith("oficina de "):
+        return f"Trabajo en la {texto}."
+    if bajo.startswith("gestión de "):
+        return f"Me ocupo de la {texto}."
+    if bajo.startswith("venta al "):
+        return f"Me dedico a la {texto}."
+    if bajo.startswith(("empleadora de ", "propietaria de ", "encargado de ", "encargada de ")):
+        return f"Soy {texto}."
+    if bajo.startswith(("asistente de ", "auxiliar de ", "docente de ", "supervisor de ", "supervisora de ", "conductor de ", "conductora de ", "operadora de ", "peón en ", "jornalero en ")):
+        return f"Trabajo como {texto}."
+    if bajo.startswith("cultivo de "):
+        return f"Me dedico al {texto}."
+    if bajo.startswith("actividades de "):
+        return f"Me dedico a {texto}."
+    if bajo.startswith("trabajando en "):
+        lugar = texto[len("trabajando en "):].rstrip(".")
+        return f"Trabajo en {lugar}."
+    if bajo.startswith("panadería"):
+        return "Trabajo en una panadería."
+    return f"Mi trabajo es {texto}."
+
+
+def _instruccion_perfil_social(pregunta: str | None, persona: dict, caso: dict) -> str:
+    if not pregunta:
+        return ""
+    campos = _campos_perfil_preguntados(pregunta)
+    if not campos:
+        return ""
+    perfil = persona.get("perfil")
+    campos_perfil = tuple(
+        campo for campo in campos
+        if isinstance(perfil, dict) and perfil.get(campo) and not _campo_cubierto_por_caso(caso, campo)
+    )
+    if not campos_perfil:
+        cubiertos = tuple(campo for campo in campos if _campo_cubierto_por_caso(caso, campo))
+        if cubiertos:
+            tema = cubiertos[0]
+            fragmentos = _fragmentos_tema_caso(caso, tema)
+            if fragmentos:
+                return f"Para { _ETIQUETAS_PERFIL[tema] }, usa solo este dato del caso: «{'; '.join(fragmentos)}». No inventes más detalles."
+            return f"El caso ya define {_ETIQUETAS_PERFIL[tema]}; responde solo con lo que aparece ahí y no inventes otros datos."
+        if "trabajo" in campos and persona.get("ocupacion"):
+            return f"Responde exactamente: «Mi ocupación es {persona['ocupacion']}. No le sabría decir más de mi trabajo, doctor»."
+        temas = ", ".join(_ETIQUETAS_PERFIL[campo] for campo in campos)
+        return f"No hay datos de {temas} en este caso ni en tu perfil; di que no lo sabes y no inventes."
+    campos = campos_perfil
+    if "trabajo" in campos:
+        frase = _frase_laboral(str(perfil["trabajo"]))
+        segundo = "mi rutina" if _texto_cubre_tema(pregunta, ("rutina",)) else "mi trabajo"
+        return (
+            f"Responde exactamente con estas dos frases: «{frase} "
+            f"No le sabría decir más de {segundo}, doctor». No agregues detalles ausentes ni síntomas."
+        )
+    etiquetas = ", ".join(_ETIQUETAS_PERFIL[campo] for campo in campos)
+    valores = "; ".join(str(perfil[campo]) for campo in campos if perfil.get(campo))
+    return f"Responde la pregunta social sobre {etiquetas} usando solo estos datos: «{valores}». No completes información ausente ni repitas síntomas."
+
+
+def _bloque_perfil_social(persona: dict, caso: dict, pregunta: str | None = None) -> str:
+    """Incluye datos sociales solo si el caso no cubre ya ese tema."""
+    perfil = persona.get("perfil")
+    if not isinstance(perfil, dict):
+        return ""
+
+    texto_caso = _texto_social_caso(caso)
+    campos_preguntados = _campos_perfil_preguntados(pregunta) if pregunta else ()
+    if pregunta and not campos_preguntados:
+        return ""
+    partes = {}
+    for campo, etiqueta in _ETIQUETAS_PERFIL.items():
+        if campos_preguntados and campo not in campos_preguntados:
+            continue
+        valor = perfil.get(campo)
+        if not isinstance(valor, str) or not valor.strip():
+            continue
+        if _texto_cubre_tema(texto_caso, _TEMAS_PERFIL[campo]):
+            continue
+        partes[campo] = f"{etiqueta}: {valor.strip()}"
+
+    if not partes:
+        return ""
+    prefijo = "Solo si preguntan; manda el caso: "
+    sufijo = " No inventes otros datos."
+    prioridad = ("vive_con", "trabajo", "dieta", "actividad_fisica")
+    incluidas = []
+    for campo in prioridad:
+        if campo not in partes:
+            continue
+        prueba = [*incluidas, partes[campo]]
+        if len(prefijo + "; ".join(prueba) + sufijo) <= _MAX_CARACTERES_PERFIL:
+            incluidas = prueba
+    if not incluidas:
+        return ""
+    # El orden de lectura sigue siendo hogar, alimentación, actividad y trabajo.
+    orden = ("vive_con", "dieta", "actividad_fisica", "trabajo")
+    seleccionadas = [partes[campo] for campo in orden if campo in partes and partes[campo] in incluidas]
+    return prefijo + "; ".join(seleccionadas) + sufijo
+
+
+def system_paciente(persona: dict, caso: dict, nivel: dict | None = None, turno: int = 0, pregunta_actual: str | None = None) -> str:
     sexo = "mujer" if persona["sexo"] == "F" else "hombre"
     datos = "\n".join(f"- Si te preguntan por {tema}: {resp}" for tema, resp in caso["datos_si_pregunta"].items())
     expresiones = habla.expresiones_para_caso(caso)
@@ -53,6 +230,7 @@ def system_paciente(persona: dict, caso: dict, nivel: dict | None = None, turno:
 
     urg = caso.get("urgencia")
     bloque_urgencias = ""
+    bloque_perfil = "" if urg else _bloque_perfil_social(persona, caso, pregunta_actual)
     if urg:
         nombres = [b["texto"] for b in caso.get("banderas_rojas", []) if b["id"] in urg.get("signos_activos", [])]
         acomp = urg.get("acompanante", {})
@@ -64,7 +242,8 @@ def system_paciente(persona: dict, caso: dict, nivel: dict | None = None, turno:
             "Nunca digas qué enfermedad crees tener ni qué tan grave es.")
 
     return f"""Eres {persona['nombre']}, {sexo} de {persona['edad']} años de {persona['municipio']}, {persona['departamento']}, El Salvador.
-Trabajas en: {persona['ocupacion']}. Nivel educativo: {persona['nivel_educativo']}.
+Tu rama de actividad es: {persona['ocupacion']}. Nivel educativo: {persona['nivel_educativo']}.
+{bloque_perfil}
 Tu forma de hablar: {persona['estilo']}.
 Estás en consulta con un doctor (un estudiante de medicina) porque: {caso['motivo_consulta']}.
 {lo_que_sientes}
@@ -90,7 +269,15 @@ Solo cuentas estos datos si el doctor te pregunta directamente por ellos:
 
 def mensajes_paciente(persona: dict, caso: dict, historial: list[dict], nivel: dict | None = None) -> list[dict]:
     turno = sum(1 for m in historial if m.get("role") == "assistant")  # respuestas que ya dio el paciente
-    return [{"role": "system", "content": system_paciente(persona, caso, nivel, turno)}] + historial[-config.MAX_HISTORY:]
+    pregunta = next((m.get("content") for m in reversed(historial) if m.get("role") == "user"), None)
+    mensajes = [{"role": "system", "content": system_paciente(persona, caso, nivel, turno, pregunta)}] + historial[-config.MAX_HISTORY:]
+    instruccion = "" if caso.get("urgencia") else _instruccion_perfil_social(pregunta, persona, caso)
+    if instruccion and mensajes and mensajes[-1].get("role") == "user":
+        # La instrucción queda junto a la pregunta actual para que el 7B la aplique a este turno.
+        largo_system = sum(len(m["content"]) for m in mensajes if m["role"] == "system")
+        if largo_system + len(instruccion) <= 4800:
+            mensajes.insert(len(mensajes) - 1, {"role": "system", "content": instruccion})
+    return mensajes
 
 
 SYSTEM_FEEDBACK = (
