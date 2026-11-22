@@ -35,3 +35,5 @@ desktop.ini
 # Docker / Chroma data local si no usa volumen nombrado
 chroma-data/
 *.log
+
+NIVELES.md

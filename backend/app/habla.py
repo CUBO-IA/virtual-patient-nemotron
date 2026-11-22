@@ -10,8 +10,13 @@ Implementa:
 3. Aspiración en streaming SSE mediante búfer de palabras seguras.
 """
 
+import json
 import re
+import unicodedata
+from functools import lru_cache
 from typing import AsyncGenerator
+
+from . import config
 
 DEPARTAMENTOS_ORIENTE = {"San Miguel", "Usulután", "La Unión", "Morazán"}
 
@@ -79,6 +84,60 @@ def obtener_habla(persona: dict) -> dict:
     if isinstance(habla, dict) and "aspiracion" in habla:
         return habla
     return configurar_habla(persona)
+
+
+@lru_cache(maxsize=1)
+def _glosario_coloquial() -> dict:
+    """Glosario coloquial (data/habla_salvadorena.json). Si falta o es inválido, devuelve {}."""
+    try:
+        return json.loads((config.DATA_DIR / "habla_salvadorena.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def _norm(texto: str) -> str:
+    texto = unicodedata.normalize("NFD", texto.lower())
+    texto = "".join(c for c in texto if unicodedata.category(c) != "Mn")
+    return " " + re.sub(r"[^a-z0-9]+", " ", texto).strip() + " "
+
+
+def _coincide(clave: str, texto_norm: str) -> bool:
+    """Inicio de palabra; palabra completa si la clave termina en $."""
+    if clave.endswith("$"):
+        return _norm(clave[:-1]) in texto_norm
+    return _norm(clave).rstrip() in texto_norm
+
+
+def expresiones_para_caso(caso: dict, max_items: int = 3) -> list[str]:
+    """Expresiones salvadoreñas de salud que encajan con los síntomas de ESTE caso.
+
+    Solo devuelve las marcadas regional:true y de confianza alta en el glosario, y solo de
+    las entradas cuyos términos aparecen en el texto del caso. Así el paciente no recibe una
+    lista fija de palabras que forzar (ruco, cipote, pisto…) sin relación con lo que le pasa.
+    """
+    glosario = _glosario_coloquial()
+    if not glosario:
+        return []
+    partes = [caso.get("motivo_consulta", "")]
+    for campo in ("sintomas", "antecedentes", "habitos"):
+        partes.extend(caso.get(campo, []))
+    partes.extend(caso.get("datos_si_pregunta", {}).values())
+    texto = _norm(" . ".join(partes))
+
+    salida: list[str] = []
+    for entrada in glosario.get("terminos", []):
+        regionales = [c["texto"] for c in entrada.get("coloquial", [])
+                      if c.get("regional") and c.get("confianza") == "alta"]
+        if not regionales:
+            continue
+        claves = list(entrada.get("disparadores", [])) + list(entrada.get("evitar", [])) \
+            + [c["texto"] for c in entrada.get("coloquial", [])]
+        if any(_coincide(k, texto) for k in claves):
+            r = regionales[0]  # una por síntoma
+            # evita redundancias («arrojar» y «ganas de arrojar»)
+            if not any(r in s or s in r for s in salida):
+                salida.append(r)
+    return salida[:max_items]
 
 
 def nivel_aspiracion(persona: dict) -> str:

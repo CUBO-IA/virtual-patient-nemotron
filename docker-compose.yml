@@ -1,6 +1,9 @@
 services:
   chroma:
-    image: chromadb/chroma:latest
+    # Versión fijada (igual a la del cliente chromadb-client de requirements.txt) para que
+    # el repo sea reproducible; "latest" puede cambiar de API sin avisar.
+    image: chromadb/chroma:1.5.9
+    container_name: paciente-virtual-chroma
     ports:
       - "8001:8000"
     volumes:
@@ -8,6 +11,7 @@ services:
     environment:
       - IS_PERSISTENT=TRUE
       - ANONYMIZED_TELEMETRY=FALSE
+    restart: unless-stopped
 
 volumes:
   chroma-data:

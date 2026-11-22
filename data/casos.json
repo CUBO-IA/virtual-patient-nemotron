@@ -222,7 +222,30 @@
         "nivel_3": "Pregunta: «¿Le han salido manchitas rojas o sarpullido en la piel?»"
       }
     ],
-    "prevalencia": 3
+    "prevalencia": 3,
+    "dificultad": 1,
+    "diferenciales": [
+      {
+        "nombre": "Chikungunya",
+        "alias": [
+          "chikungunya",
+          "chikunguya",
+          "chik"
+        ]
+      },
+      {
+        "nombre": "Zika",
+        "alias": [
+          "zika"
+        ]
+      },
+      {
+        "nombre": "Leptospirosis",
+        "alias": [
+          "leptospirosis"
+        ]
+      }
+    ]
   },
   {
     "id": "c_erc_01",
@@ -448,7 +471,32 @@
         "nivel_3": "Pregunta: «¿Le han tomado la presión arterial antes o sabe si la tiene?»"
       }
     ],
-    "prevalencia": 1
+    "prevalencia": 1,
+    "dificultad": 3,
+    "diferenciales": [
+      {
+        "nombre": "Insuficiencia cardíaca",
+        "alias": [
+          "insuficiencia cardiaca",
+          "falla cardiaca",
+          "icc"
+        ]
+      },
+      {
+        "nombre": "Cirrosis hepática",
+        "alias": [
+          "cirrosis",
+          "cirrosis hepatica"
+        ]
+      },
+      {
+        "nombre": "Síndrome nefrótico",
+        "alias": [
+          "sindrome nefrotico",
+          "nefrotico"
+        ]
+      }
+    ]
   },
   {
     "id": "c_dm2_01",
@@ -655,7 +703,29 @@
         "nivel_3": "Pregunta: «¿Siente hormigueo, pinchazos o falta de sensibilidad en los pies?»"
       }
     ],
-    "prevalencia": 2
+    "prevalencia": 2,
+    "dificultad": 1,
+    "diferenciales": [
+      {
+        "nombre": "Diabetes insípida",
+        "alias": [
+          "diabetes insipida"
+        ]
+      },
+      {
+        "nombre": "Hipertiroidismo",
+        "alias": [
+          "hipertiroidismo"
+        ]
+      },
+      {
+        "nombre": "Enfermedad celíaca",
+        "alias": [
+          "enfermedad celiaca",
+          "celiaca"
+        ]
+      }
+    ]
   },
   {
     "id": "c_hta_01",
@@ -886,7 +956,31 @@
         "nivel_3": "Pregunta: «¿Alguien en su familia sufrió de infartos o derrames en la cabeza?»"
       }
     ],
-    "prevalencia": 3
+    "prevalencia": 3,
+    "dificultad": 2,
+    "diferenciales": [
+      {
+        "nombre": "Cefalea tensional",
+        "alias": [
+          "cefalea tensional"
+        ]
+      },
+      {
+        "nombre": "Migraña",
+        "alias": [
+          "migrana",
+          "jaqueca"
+        ]
+      },
+      {
+        "nombre": "Accidente cerebrovascular",
+        "alias": [
+          "accidente cerebrovascular",
+          "acv",
+          "ictus"
+        ]
+      }
+    ]
   },
   {
     "id": "c_trauma_01",
@@ -1111,7 +1205,31 @@
         "nivel_3": "Pregunta: «¿Cuándo fue la última vez que le aplicaron vacuna para el tétanos?»"
       }
     ],
-    "prevalencia": 2
+    "prevalencia": 2,
+    "dificultad": 2,
+    "diferenciales": [
+      {
+        "nombre": "Neumotórax a tensión",
+        "alias": [
+          "neumotorax",
+          "neumotorax a tension"
+        ]
+      },
+      {
+        "nombre": "Taponamiento cardíaco",
+        "alias": [
+          "taponamiento cardiaco",
+          "taponamiento"
+        ]
+      },
+      {
+        "nombre": "Shock hipovolémico",
+        "alias": [
+          "shock hipovolemico",
+          "choque hipovolemico"
+        ]
+      }
+    ]
   },
   {
     "id": "c_gea_01",
@@ -1342,7 +1460,30 @@
         "nivel_3": "Pregunta: «¿Ha estado tomando suero oral o alguna medicina para el malestar?»"
       }
     ],
-    "prevalencia": 3
+    "prevalencia": 3,
+    "dificultad": 1,
+    "diferenciales": [
+      {
+        "nombre": "Intoxicación alimentaria",
+        "alias": [
+          "intoxicacion alimentaria"
+        ]
+      },
+      {
+        "nombre": "Apendicitis aguda",
+        "alias": [
+          "apendicitis",
+          "apendicitis aguda"
+        ]
+      },
+      {
+        "nombre": "Fiebre tifoidea",
+        "alias": [
+          "fiebre tifoidea",
+          "tifoidea"
+        ]
+      }
+    ]
   },
   {
     "id": "c_nac_01",
@@ -1566,7 +1707,33 @@
         "nivel_3": "Pregunta: «¿Ha tomado algún jarabe o medicina para esa tos?»"
       }
     ],
-    "prevalencia": 2
+    "prevalencia": 2,
+    "dificultad": 2,
+    "diferenciales": [
+      {
+        "nombre": "Bronquitis aguda",
+        "alias": [
+          "bronquitis",
+          "bronquitis aguda"
+        ]
+      },
+      {
+        "nombre": "Tuberculosis pulmonar",
+        "alias": [
+          "tuberculosis",
+          "tb pulmonar",
+          "tisis"
+        ]
+      },
+      {
+        "nombre": "COVID-19",
+        "alias": [
+          "covid",
+          "covid 19",
+          "coronavirus"
+        ]
+      }
+    ]
   },
   {
     "id": "c_depresion_01",
@@ -1786,6 +1953,30 @@
         "nivel_3": "Pregunta: «¿Ha notado olvidos frecuentes o dificultad para concentrarse en su día?»"
       }
     ],
-    "prevalencia": 2
+    "prevalencia": 2,
+    "dificultad": 3,
+    "diferenciales": [
+      {
+        "nombre": "Trastorno de ansiedad generalizada",
+        "alias": [
+          "trastorno de ansiedad",
+          "ansiedad generalizada",
+          "tag"
+        ]
+      },
+      {
+        "nombre": "Hipotiroidismo",
+        "alias": [
+          "hipotiroidismo"
+        ]
+      },
+      {
+        "nombre": "Trastorno de adaptación",
+        "alias": [
+          "trastorno de adaptacion",
+          "reaccion de adaptacion"
+        ]
+      }
+    ]
   }
 ]

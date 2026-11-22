@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "items": [
+    { "id": "motivo",      "texto": "Motivo de consulta",                    "keywords": ["que le trae", "que le pasa", "motivo", "como se siente", "que siente"] },
+    { "id": "inicio",      "texto": "Inicio y evolución («¿desde cuándo?»)", "keywords": ["desde cuando", "cuando empezo", "cuanto tiempo", "hace cuanto", "cuantos dias"] },
+    { "id": "intensidad",  "texto": "Intensidad y características",          "keywords": ["intensidad", "de 1 a 10", "que tan fuerte", "como es el dolor", "como se siente el"] },
+    { "id": "factores",    "texto": "Qué lo mejora o empeora",               "keywords": ["mejora", "empeora", "alivia", "calma", "se pone peor"] },
+    { "id": "asociados",   "texto": "Otros síntomas asociados",              "keywords": ["otro sintoma", "algo mas", "tambien siente", "acompan"] },
+    { "id": "antecedentes","texto": "Antecedentes personales",               "keywords": ["enfermedad", "antecedente", "operaci", "hospital", "alergi"] },
+    { "id": "familiares",  "texto": "Antecedentes familiares",               "keywords": ["familiar", "mama", "papa", "madre", "padre", "heredit"] },
+    { "id": "medicinas",   "texto": "Medicamentos que toma",                 "keywords": ["medicina", "medicamento", "pastilla", "tomando", "tratamiento"] },
+    { "id": "habitos",     "texto": "Hábitos y entorno",                     "keywords": ["fuma", "alcohol", "come", "ejercicio", "trabaja", "vive"] }
+  ]
+}

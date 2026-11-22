@@ -15,14 +15,24 @@ export async function obtenerHealth() {
   return r.json()
 }
 
-export async function crearSesion() {
-  const r = await fetch('/api/sessions', { method: 'POST' })
+export async function obtenerNiveles() {
+  const r = await fetch('/api/niveles')
   if (!r.ok) throw await apiError(r)
   return r.json()
 }
 
-// Envía un mensaje y llama onToken(texto) por cada fragmento (SSE sobre fetch).
-export async function enviarMensaje(sessionId, message, onToken) {
+export async function crearSesion(opciones = {}) {
+  const r = await fetch('/api/sessions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(opciones),
+  })
+  if (!r.ok) throw await apiError(r)
+  return r.json()
+}
+
+// Envía un mensaje y llama onToken(texto) por cada fragmento, y onDone(payload) al terminar (SSE sobre fetch).
+export async function enviarMensaje(sessionId, message, onToken, onDone) {
   const r = await fetch(`/api/sessions/${sessionId}/chat`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -50,15 +60,20 @@ export async function enviarMensaje(sessionId, message, onToken) {
       const payload = JSON.parse(datos)
       if (nombre === 'error') throw new Error(payload.error)
       if (payload.token) onToken(payload.token)
+      if (payload.done && onDone) onDone(payload)
     }
   }
 }
 
-export async function terminarConsulta(sessionId, diagnostico) {
+export async function terminarConsulta(sessionId, diagnostico, diferenciales = null) {
+  const body = { diagnostico_estudiante: diagnostico }
+  if (diferenciales) {
+    body.diferenciales = diferenciales
+  }
   const r = await fetch(`/api/sessions/${sessionId}/finish`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ diagnostico_estudiante: diagnostico }),
+    body: JSON.stringify(body),
   })
   if (!r.ok) throw await apiError(r)
   return r.json()

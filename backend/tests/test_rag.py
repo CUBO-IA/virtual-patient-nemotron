@@ -77,3 +77,29 @@ def test_finish_con_chroma_caido_degrada_sin_citas_y_sin_error():
         assert res["citas"] == []
         assert res["diagnostico_correcto"] is True
         assert res["puntaje"] > 0
+
+
+def test_rag_health_usa_api_v2_de_chroma():
+    """Chroma 1.x responde 410 en /api/v1; el health debe consultar /api/v2."""
+    urls = []
+
+    class _Resp:
+        status_code = 200
+
+    class _Client:
+        def __init__(self, *a, **k):
+            pass
+
+        async def __aenter__(self):
+            return self
+
+        async def __aexit__(self, *a):
+            return False
+
+        async def get(self, url):
+            urls.append(url)
+            return _Resp()
+
+    with patch("app.config.RAG_ENABLED", True), patch("app.rag.httpx.AsyncClient", _Client):
+        assert asyncio.run(rag.health()) is True
+    assert urls and urls[0].endswith("/api/v2/heartbeat")

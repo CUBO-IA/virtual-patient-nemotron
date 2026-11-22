@@ -9,6 +9,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CASOS_PATH = ROOT / "data" / "casos.json"
 PERSONAS_PATH = ROOT / "data" / "personas.json"
+NIVELES_PATH = ROOT / "data" / "niveles.json"
+GUIA_PATH = ROOT / "data" / "anamnesis_guia.json"
 
 REQUIRED_FIELDS = [
     "id",
@@ -22,6 +24,7 @@ REQUIRED_FIELDS = [
     "diagnostico_alias",
     "lista_verificacion",
     "banderas_rojas",
+    "dificultad",
 ]
 
 ID_PATTERN = re.compile(r"^c_[a-z0-9]+_\d{2}$")
@@ -223,10 +226,104 @@ def validate() -> list[str]:
                         f"{prefix}: el término diagnóstico '{name}' aparece en '{campo_nombre}': \"{texto}\"."
                     )
 
-        # 8. Campo opcional guia_ref
+        # 8. Validación de dificultad y diferenciales (NIVELES.md)
+        dif = caso.get("dificultad")
+        if dif is not None:
+            if not isinstance(dif, int) or dif not in (1, 2, 3):
+                errors.append(f"{prefix}: 'dificultad' debe ser un entero entre 1 y 3 (obtenido: {dif}).")
+
+        diferenciales = caso.get("diferenciales")
+        if dif == 3 and not diferenciales:
+            errors.append(f"{prefix}: casos con dificultad 3 deben incluir 'diferenciales'.")
+
+        if diferenciales is not None:
+            if not isinstance(diferenciales, list):
+                errors.append(f"{prefix}: 'diferenciales' debe ser una lista.")
+            else:
+                for d_idx, d in enumerate(diferenciales):
+                    if not isinstance(d, dict) or "nombre" not in d or "alias" not in d:
+                        errors.append(f"{prefix}: diferencial {d_idx} inválido (requiere 'nombre' y 'alias').")
+                        continue
+                    d_nom = d.get("nombre", "")
+                    d_aliases = d.get("alias", [])
+                    if not isinstance(d_nom, str) or not d_nom.strip():
+                        errors.append(f"{prefix}: diferencial {d_idx} 'nombre' debe ser no vacío.")
+                    if not isinstance(d_aliases, list):
+                        errors.append(f"{prefix}: diferencial {d_idx} 'alias' debe ser lista.")
+                    else:
+                        d_all = [d_nom] + [a for a in d_aliases if isinstance(a, str) and a.strip()]
+                        for n_dif in d_all:
+                            for campo_nombre, texto in campos_a_verificar:
+                                if contains_whole_phrase(n_dif, texto):
+                                    errors.append(
+                                        f"{prefix}: el diferencial '{n_dif}' aparece en '{campo_nombre}': \"{texto}\"."
+                                    )
+
+        # 9. Campo opcional guia_ref
         if "guia_ref" in caso:
             if not isinstance(caso["guia_ref"], str) or not caso["guia_ref"].strip():
                 errors.append(f"{prefix}: 'guia_ref' debe ser una cadena no vacía.")
+
+    # 10. Validación de balance por niveles (§11.2)
+    casos_n1 = [c for c in casos if isinstance(c, dict) and c.get("dificultad", 99) <= 1]
+    casos_n2 = [c for c in casos if isinstance(c, dict) and c.get("dificultad", 99) <= 2]
+    casos_n3 = [c for c in casos if isinstance(c, dict) and c.get("dificultad", 99) <= 3]
+    if len(casos_n1) < 3:
+        errors.append(f"Nivel 1 debe tener al menos 3 casos elegibles (obtenidos: {len(casos_n1)}).")
+    if len(casos_n2) < 3:
+        errors.append(f"Nivel 2 debe tener al menos 3 casos elegibles (obtenidos: {len(casos_n2)}).")
+    if len(casos_n3) < 3:
+        errors.append(f"Nivel 3 debe tener al menos 3 casos elegibles (obtenidos: {len(casos_n3)}).")
+
+    # 11. Validación de data/niveles.json si existe
+    if NIVELES_PATH.exists():
+        try:
+            niveles_data = json.loads(NIVELES_PATH.read_text(encoding="utf-8"))
+            niveles_list = niveles_data.get("niveles", [])
+            ids_vistos = set()
+            for n in niveles_list:
+                nid = n.get("id")
+                ids_vistos.add(nid)
+                pesos = n.get("pesos", {})
+                if sum(pesos.values()) != 100:
+                    errors.append(f"Nivel {nid}: los pesos no suman 100 (suma: {sum(pesos.values())}).")
+                dif_req = n.get("diferenciales_requeridos", 0)
+                dif_peso = pesos.get("diferenciales", 0)
+                if dif_req > 0 and dif_peso <= 0:
+                    errors.append(f"Nivel {nid}: requiere diferenciales pero su peso es 0.")
+                if not n.get("pistas", {}).get("permitidas", True) and n.get("pistas", {}).get("max") != 0:
+                    errors.append(f"Nivel {nid}: pistas no permitidas debe tener max=0.")
+                if n.get("actitud_paciente") not in ("colaborador", "normal", "reservado"):
+                    errors.append(f"Nivel {nid}: actitud_paciente '{n.get('actitud_paciente')}' inválida.")
+
+            if ids_vistos != {1, 2, 3}:
+                errors.append(f"niveles.json debe contener exactamente los niveles 1, 2 y 3 (obtenidos: {ids_vistos}).")
+            if niveles_data.get("nivel_por_defecto") not in ids_vistos:
+                errors.append("nivel_por_defecto en niveles.json no corresponde a un nivel existente.")
+        except Exception as e:
+            errors.append(f"Error al validar niveles.json: {e}")
+
+    # 12. Validación de no-fuga en data/anamnesis_guia.json si existe
+    if GUIA_PATH.exists():
+        try:
+            guia_data = json.loads(GUIA_PATH.read_text(encoding="utf-8"))
+            todos_nombres_clinicos = []
+            for c in casos:
+                if isinstance(c, dict):
+                    todos_nombres_clinicos.append(c.get("diagnostico", ""))
+                    todos_nombres_clinicos.extend(c.get("diagnostico_alias", []))
+                    for d in c.get("diferenciales", []):
+                        todos_nombres_clinicos.append(d.get("nombre", ""))
+                        todos_nombres_clinicos.extend(d.get("alias", []))
+
+            for it in guia_data.get("items", []):
+                t_item = it.get("texto", "")
+                kws = it.get("keywords", [])
+                for clin in todos_nombres_clinicos:
+                    if clin and (contains_whole_phrase(clin, t_item) or any(contains_whole_phrase(clin, kw) for kw in kws)):
+                        errors.append(f"anamnesis_guia.json: término clínico '{clin}' aparece en ítem '{it.get('id')}'.")
+        except Exception as e:
+            errors.append(f"Error al validar anamnesis_guia.json: {e}")
 
     return errors
 

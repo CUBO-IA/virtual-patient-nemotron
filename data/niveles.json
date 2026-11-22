@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "nivel_por_defecto": 2,
+  "niveles": [
+    {
+      "id": 1,
+      "nombre": "Básico",
+      "lema": "Guiado",
+      "descripcion": "Con guía de anamnesis y pistas gratis. Ideal para empezar.",
+      "casos": { "dificultad_max": 1, "peso_dificultad_igual": 2 },
+      "guia_anamnesis": true,
+      "pistas": { "permitidas": true, "penalizacion": 0, "max": null },
+      "max_preguntas": null,
+      "actitud_paciente": "colaborador",
+      "diferenciales_requeridos": 0,
+      "pesos": { "checklist": 60, "diagnostico": 30, "banderas": 10, "diferenciales": 0 }
+    },
+    {
+      "id": 2,
+      "nombre": "Intermedio",
+      "lema": "Autónomo",
+      "descripcion": "Sin guía. Las pistas restan puntos y tienes 25 preguntas.",
+      "casos": { "dificultad_max": 2, "peso_dificultad_igual": 2 },
+      "guia_anamnesis": false,
+      "pistas": { "permitidas": true, "penalizacion": 0.5, "max": null },
+      "max_preguntas": 25,
+      "actitud_paciente": "normal",
+      "diferenciales_requeridos": 0,
+      "pesos": { "checklist": 60, "diagnostico": 30, "banderas": 10, "diferenciales": 0 }
+    },
+    {
+      "id": 3,
+      "nombre": "Avanzado",
+      "lema": "Consulta real",
+      "descripcion": "Sin pistas, 15 preguntas, paciente reservado y diagnóstico diferencial.",
+      "casos": { "dificultad_max": 3, "peso_dificultad_igual": 2 },
+      "guia_anamnesis": false,
+      "pistas": { "permitidas": false, "penalizacion": 0, "max": 0 },
+      "max_preguntas": 15,
+      "actitud_paciente": "reservado",
+      "diferenciales_requeridos": 2,
+      "pesos": { "checklist": 45, "diagnostico": 25, "banderas": 20, "diferenciales": 10 }
+    }
+  ],
+  "desbloqueo": { "ventana": 3, "promedio_minimo": 70, "diagnosticos_correctos_minimos": 2 },
+  "aprobado_desde": 70
+}

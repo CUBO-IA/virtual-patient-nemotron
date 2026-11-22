@@ -5,8 +5,8 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response, StreamingResponse
 
-from . import assign, avatars, config, evaluate, habla, llm, prompts, rag, sessions, tts_service
-from .models import ChatIn, FinishIn
+from . import assign, avatars, config, evaluate, habla, llm, niveles, prompts, rag, sessions, tts_service
+from .models import ChatIn, FinishIn, SessionCreateIn
 
 app = FastAPI(title="Paciente Virtual")
 app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS, allow_methods=["*"], allow_headers=["*"])
@@ -34,17 +34,42 @@ async def health():
     except FileNotFoundError as e:
         info.update(datos=False, error=str(e))
     info["rag"] = await rag.health()
-    info["ok"] = info["ollama"] and info["modelo_disponible"] and info["datos"]
+    info["niveles"] = niveles.health()
+    info["ok"] = info["ollama"] and info["modelo_disponible"] and info["datos"] and info["niveles"]
     return info
 
 
-@app.post("/api/sessions")
-async def crear_sesion():
+@app.get("/api/niveles")
+async def obtener_niveles():
     try:
-        caso, persona = assign.sortear()
+        return niveles.cargar_niveles()
+    except Exception as e:
+        raise HTTPException(503, f"No se pudo cargar la configuración de niveles: {e}")
+
+
+@app.post("/api/sessions")
+async def crear_sesion(body: SessionCreateIn | None = None):
+    nivel_id = body.nivel if body else None
+    caso_id = body.caso_id if body else None
+
+    if nivel_id is not None and nivel_id not in (1, 2, 3):
+        raise HTTPException(422, "Nivel debe ser 1, 2 o 3.")
+
+    try:
+        cfg_nivel = niveles.obtener_nivel(nivel_id)
+    except Exception as e:
+        raise HTTPException(503, f"Error cargando niveles: {e}")
+
+    try:
+        caso, persona = assign.sortear(caso_id=caso_id, nivel=cfg_nivel)
+    except ValueError as e:
+        raise HTTPException(422, str(e))
     except (FileNotFoundError, RuntimeError) as e:
         raise HTTPException(503, str(e))
-    s = sessions.create(caso, persona)
+
+    s = sessions.create(caso, persona, nivel=cfg_nivel)
+
+    guia = niveles.guia_publica() if cfg_nivel.get("guia_anamnesis") else None
     return {
         "session_id": s.id,
         "paciente": {
@@ -58,6 +83,14 @@ async def crear_sesion():
             "habla": habla.obtener_habla(persona),
         },
         "motivo_consulta": caso["motivo_consulta"],
+        "nivel": {
+            "id": cfg_nivel["id"],
+            "nombre": cfg_nivel["nombre"],
+            "max_preguntas": cfg_nivel.get("max_preguntas"),
+            "pistas": cfg_nivel.get("pistas"),
+            "guia_anamnesis": guia,
+            "diferenciales_requeridos": cfg_nivel.get("diferenciales_requeridos", 0),
+        },
     }
 
 
@@ -68,6 +101,10 @@ async def chat(session_id: str, body: ChatIn):
         raise HTTPException(409, "La consulta ya terminó. Pulsa «Nuevo paciente».")
     if s.busy:
         raise HTTPException(409, "El paciente aún está respondiendo.")
+    max_preguntas = s.nivel.get("max_preguntas")
+    if max_preguntas is not None and s.preguntas_usadas >= max_preguntas:
+        raise HTTPException(409, "Alcanzaste el límite de preguntas de este nivel. Pulsa «Terminar y diagnosticar».")
+
     texto = body.message.strip()
     if not texto:
         raise HTTPException(422, "Mensaje vacío.")
@@ -80,11 +117,23 @@ async def chat(session_id: str, body: ChatIn):
         partial: list[str] = []
         nivel = habla.nivel_aspiracion(s.persona)
         try:
-            tok_stream = llm.stream_chat(prompts.mensajes_paciente(s.persona, s.caso, s.mensajes))
+            tok_stream = llm.stream_chat(prompts.mensajes_paciente(s.persona, s.caso, s.mensajes, nivel=s.nivel))
             async for tok in habla.aspirar_stream(tok_stream, nivel):
                 partial.append(tok)
                 yield _sse({"token": tok})
-            yield _sse({"done": True})
+
+            done_payload = {
+                "done": True,
+                "preguntas": {
+                    "usadas": s.preguntas_usadas,
+                    "max": s.nivel.get("max_preguntas"),
+                },
+            }
+            if s.nivel.get("guia_anamnesis"):
+                msg_usuarios = [m["content"] for m in s.mensajes if m["role"] == "user"]
+                done_payload["guia_cubierta"] = niveles.calcular_guia_cubierta(msg_usuarios)
+
+            yield _sse(done_payload)
         except llm.LLMError as e:
             yield _sse({"error": str(e)}, event="error")
         finally:
@@ -106,6 +155,21 @@ async def pedir_pista(session_id: str):
     if s.busy:
         raise HTTPException(409, "El paciente aún está respondiendo.")
 
+    pistas_cfg = s.nivel.get("pistas", {})
+    if not pistas_cfg.get("permitidas", True):
+        raise HTTPException(403, "Este nivel no permite pistas.")
+
+    penalizacion = pistas_cfg.get("penalizacion", 0.5)
+    max_pistas = pistas_cfg.get("max")
+    if max_pistas is not None and s.pistas_usadas >= max_pistas:
+        return {
+            "pista": "Alcanzaste el número máximo de pistas para este nivel.",
+            "disponible": False,
+            "nivel": 0,
+            "pistas_usadas": s.pistas_usadas,
+            "penalizacion": penalizacion,
+        }
+
     pistas = s.caso.get("pistas", [])
     if not pistas:
         return {
@@ -113,6 +177,7 @@ async def pedir_pista(session_id: str):
             "disponible": False,
             "nivel": 0,
             "pistas_usadas": s.pistas_usadas,
+            "penalizacion": penalizacion,
         }
 
     texto_usuario = evaluate.norm(" . ".join(m["content"] for m in s.mensajes if m["role"] == "user"))
@@ -133,6 +198,7 @@ async def pedir_pista(session_id: str):
             "disponible": False,
             "nivel": 0,
             "pistas_usadas": s.pistas_usadas,
+            "penalizacion": penalizacion,
         }
 
     item_id = pendiente["item"]
@@ -148,6 +214,7 @@ async def pedir_pista(session_id: str):
         "nivel": nuevo_nivel,
         "item": item_id,
         "pistas_usadas": s.pistas_usadas,
+        "penalizacion": penalizacion,
     }
 
 
@@ -202,9 +269,25 @@ async def terminar(session_id: str, body: FinishIn):
         return s.result
     if s.busy:
         raise HTTPException(409, "El paciente aún está respondiendo.")
+
+    req_diferenciales = s.nivel.get("diferenciales_requeridos", 0)
+    difs = body.diferenciales or []
+    if req_diferenciales > 0:
+        if len(difs) != req_diferenciales:
+            raise HTTPException(422, f"Debes ingresar exactamente {req_diferenciales} diagnósticos diferenciales.")
+        difs_limpios = [d.strip() for d in difs if d and d.strip()]
+        if len(difs_limpios) != req_diferenciales:
+            raise HTTPException(422, "Los diagnósticos diferenciales no pueden estar vacíos.")
+        if len(set(d.lower() for d in difs_limpios)) != req_diferenciales:
+            raise HTTPException(422, "Los diagnósticos diferenciales no pueden repetirse.")
+
+        dx_ppal_norm = evaluate.norm(body.diagnostico_estudiante)
+        if any(evaluate.norm(d) == dx_ppal_norm for d in difs_limpios):
+            raise HTTPException(422, "Un diagnóstico diferencial no puede ser idéntico al diagnóstico principal.")
+
     s.lock()
     try:
-        s.result = await evaluate.evaluar(s, body.diagnostico_estudiante.strip())
+        s.result = await evaluate.evaluar(s, body.diagnostico_estudiante.strip(), body.diferenciales)
         s.finished = True
     finally:
         s.unlock()

@@ -1,0 +1,828 @@
+{
+  "version": 1,
+  "estado": "borrador_pendiente_validacion",
+  "validado_por": null,
+  "nota": "Propuesta inicial redactada sin hablantes nativos. Nada esta validado: un salvadoreno debe confirmar los terminos y descartar los que no se usan. 'confianza' es la estimacion de quien redacto, no una validacion. Provisionalmente, el prompt usa solo los marcados regional:true con confianza alta.",
+  "leyenda": {
+    "evitar": "Palabras de registro medico que el paciente no diria. La auditoria las marca como error si aparecen en lo que el paciente dice o en los textos de donde copia. Los terminos terminados en $ se comparan como palabra completa; el resto, como inicio de palabra.",
+    "coloquial": "Alternativas que si diria un paciente. 'confianza': alta | media | baja.",
+    "uso": "Cada entrada sirve para (1) corregir los casos, (2) dar al prompt solo las expresiones del caso en curso y (3) reconocer lo que diga el estudiante en las palabras clave.",
+    "regional": "regional: true marca expresiones propias del habla salvadoreña de salud. Las de confianza alta se ofrecen al paciente en el prompt, solo las del caso en curso (provisional hasta que un hablante las valide).",
+    "disparadores": "Palabras (inicio de palabra, sin tildes) que, si aparecen en el texto del caso, hacen relevante esa entrada, ademas de los terminos 'evitar' y 'coloquial'."
+  },
+  "terminos": [
+    {
+      "id": "diarrea",
+      "categoria": "digestivo",
+      "evitar": [
+        "deposicion",
+        "evacuacion",
+        "diarrea aguda",
+        "diarreic"
+      ],
+      "coloquial": [
+        {
+          "texto": "diarrea",
+          "confianza": "alta"
+        },
+        {
+          "texto": "cursera",
+          "confianza": "alta",
+          "regional": true
+        },
+        {
+          "texto": "ir al baño a cada rato",
+          "confianza": "alta"
+        },
+        {
+          "texto": "soltura de estómago",
+          "confianza": "media"
+        },
+        {
+          "texto": "chorrera",
+          "confianza": "baja"
+        }
+      ],
+      "disparadores": [
+        "diarrea",
+        "cursera",
+        "suelto"
+      ]
+    },
+    {
+      "id": "heces",
+      "categoria": "digestivo",
+      "evitar": [
+        "heces",
+        "excremento",
+        "materia fecal",
+        "melena"
+      ],
+      "coloquial": [
+        {
+          "texto": "ir al baño",
+          "confianza": "alta"
+        },
+        {
+          "texto": "lo que sale al hacer del baño",
+          "confianza": "media"
+        },
+        {
+          "texto": "las heces negras",
+          "confianza": "media"
+        },
+        {
+          "texto": "caca",
+          "confianza": "media"
+        }
+      ]
+    },
+    {
+      "id": "fiebre",
+      "categoria": "general",
+      "evitar": [
+        "pirexia",
+        "febricula",
+        "hipertermia",
+        "cuadro febril"
+      ],
+      "coloquial": [
+        {
+          "texto": "calentura",
+          "confianza": "alta",
+          "regional": true
+        },
+        {
+          "texto": "fiebre",
+          "confianza": "alta"
+        },
+        {
+          "texto": "temperatura",
+          "confianza": "alta"
+        },
+        {
+          "texto": "el cuerpo caliente",
+          "confianza": "alta"
+        }
+      ],
+      "disparadores": [
+        "fiebre",
+        "calentura",
+        "temperatura"
+      ]
+    },
+    {
+      "id": "vomito",
+      "categoria": "digestivo",
+      "evitar": [
+        "emesis",
+        "vomitos en proyectil",
+        "hematemesis"
+      ],
+      "coloquial": [
+        {
+          "texto": "arrojar",
+          "confianza": "alta",
+          "regional": true
+        },
+        {
+          "texto": "vomitar",
+          "confianza": "alta"
+        },
+        {
+          "texto": "devolver lo que como",
+          "confianza": "media"
+        },
+        {
+          "texto": "vomité sangre",
+          "confianza": "alta"
+        }
+      ],
+      "disparadores": [
+        "vomit",
+        "arroj"
+      ]
+    },
+    {
+      "id": "nauseas",
+      "categoria": "digestivo",
+      "evitar": [
+        "nauseas persistentes",
+        "nauseoso"
+      ],
+      "coloquial": [
+        {
+          "texto": "ganas de arrojar",
+          "confianza": "alta",
+          "regional": true
+        },
+        {
+          "texto": "asco",
+          "confianza": "media"
+        },
+        {
+          "texto": "basca",
+          "confianza": "baja"
+        },
+        {
+          "texto": "el estómago revuelto",
+          "confianza": "media"
+        }
+      ],
+      "disparadores": [
+        "nausea",
+        "asco"
+      ]
+    },
+    {
+      "id": "dolor_cabeza",
+      "categoria": "neurologico",
+      "evitar": [
+        "cefalea",
+        "cefalalgia",
+        "retroocular",
+        "dolor retroorbitario"
+      ],
+      "coloquial": [
+        {
+          "texto": "dolor de cabeza",
+          "confianza": "alta"
+        },
+        {
+          "texto": "me duele la cabeza",
+          "confianza": "alta"
+        },
+        {
+          "texto": "dolor detrás de los ojos",
+          "confianza": "alta"
+        },
+        {
+          "texto": "me estalla la cabeza",
+          "confianza": "media"
+        }
+      ]
+    },
+    {
+      "id": "dolor_abdominal",
+      "categoria": "digestivo",
+      "evitar": [
+        "dolor abdominal",
+        "abdomen",
+        "epigastr",
+        "hipogastr",
+        "colico abdominal"
+      ],
+      "coloquial": [
+        {
+          "texto": "dolor de barriga",
+          "confianza": "alta",
+          "regional": true
+        },
+        {
+          "texto": "dolor de panza",
+          "confianza": "alta",
+          "regional": true
+        },
+        {
+          "texto": "dolor de estómago",
+          "confianza": "alta"
+        },
+        {
+          "texto": "retorcijones",
+          "confianza": "media"
+        }
+      ],
+      "disparadores": [
+        "barriga",
+        "panza",
+        "colico",
+        "estomago"
+      ]
+    },
+    {
+      "id": "dolor_cuerpo",
+      "categoria": "general",
+      "evitar": [
+        "mialgia",
+        "artralgia",
+        "malestar general",
+        "dolor osteomuscular"
+      ],
+      "coloquial": [
+        {
+          "texto": "cuerpo cortado",
+          "confianza": "alta",
+          "regional": true
+        },
+        {
+          "texto": "dolor de huesos",
+          "confianza": "alta"
+        },
+        {
+          "texto": "dolor de cuerpo",
+          "confianza": "alta"
+        },
+        {
+          "texto": "el cuerpo molido",
+          "confianza": "media"
+        }
+      ],
+      "disparadores": [
+        "huesos",
+        "musculo",
+        "cuerpo cortado",
+        "dolor de cuerpo"
+      ]
+    },
+    {
+      "id": "cansancio",
+      "categoria": "general",
+      "evitar": [
+        "astenia",
+        "adinamia",
+        "hiporexia",
+        "inapetencia",
+        "anorexia"
+      ],
+      "coloquial": [
+        {
+          "texto": "cansancio",
+          "confianza": "alta"
+        },
+        {
+          "texto": "sin fuerzas",
+          "confianza": "alta"
+        },
+        {
+          "texto": "flojera",
+          "confianza": "media"
+        },
+        {
+          "texto": "el cuerpo flojo",
+          "confianza": "media"
+        },
+        {
+          "texto": "sin ganas de comer",
+          "confianza": "alta"
+        }
+      ]
+    },
+    {
+      "id": "falta_aire",
+      "categoria": "respiratorio",
+      "evitar": [
+        "disnea",
+        "dificultad respiratoria",
+        "ortopnea",
+        "taquipnea"
+      ],
+      "coloquial": [
+        {
+          "texto": "me falta el aire",
+          "confianza": "alta"
+        },
+        {
+          "texto": "me ahogo",
+          "confianza": "alta"
+        },
+        {
+          "texto": "me cuesta respirar",
+          "confianza": "alta"
+        },
+        {
+          "texto": "ando agitado",
+          "confianza": "media"
+        }
+      ]
+    },
+    {
+      "id": "tos_flema",
+      "categoria": "respiratorio",
+      "evitar": [
+        "expectoracion",
+        "esputo",
+        "tos productiva",
+        "hemoptisis"
+      ],
+      "coloquial": [
+        {
+          "texto": "tos con flema",
+          "confianza": "alta"
+        },
+        {
+          "texto": "flema",
+          "confianza": "alta"
+        },
+        {
+          "texto": "tos con sangre",
+          "confianza": "alta"
+        },
+        {
+          "texto": "catarro",
+          "confianza": "media"
+        }
+      ]
+    },
+    {
+      "id": "dolor_pecho",
+      "categoria": "cardiovascular",
+      "evitar": [
+        "dolor toracico",
+        "precordial",
+        "opresion toracica",
+        "angor"
+      ],
+      "coloquial": [
+        {
+          "texto": "dolor en el pecho",
+          "confianza": "alta"
+        },
+        {
+          "texto": "el pecho apretado",
+          "confianza": "alta"
+        },
+        {
+          "texto": "como un peso en el pecho",
+          "confianza": "media"
+        }
+      ]
+    },
+    {
+      "id": "palpitaciones",
+      "categoria": "cardiovascular",
+      "evitar": [
+        "taquicardia",
+        "arritmia"
+      ],
+      "coloquial": [
+        {
+          "texto": "el corazón me late rápido",
+          "confianza": "alta"
+        },
+        {
+          "texto": "me late fuerte el corazón",
+          "confianza": "alta"
+        },
+        {
+          "texto": "siento el corazón acelerado",
+          "confianza": "alta"
+        }
+      ]
+    },
+    {
+      "id": "mareo",
+      "categoria": "neurologico",
+      "evitar": [
+        "vertigo",
+        "lipotimia",
+        "sincope",
+        "presincope"
+      ],
+      "coloquial": [
+        {
+          "texto": "mareo",
+          "confianza": "alta"
+        },
+        {
+          "texto": "me da vueltas la cabeza",
+          "confianza": "alta"
+        },
+        {
+          "texto": "casi me desmayo",
+          "confianza": "alta"
+        },
+        {
+          "texto": "se me va la vista",
+          "confianza": "media"
+        }
+      ]
+    },
+    {
+      "id": "orina",
+      "categoria": "urinario",
+      "evitar": [
+        "poliuria",
+        "disuria",
+        "hematuria",
+        "oliguria",
+        "nicturia",
+        "diuresis"
+      ],
+      "coloquial": [
+        {
+          "texto": "orino mucho",
+          "confianza": "alta"
+        },
+        {
+          "texto": "orino a cada rato",
+          "confianza": "alta"
+        },
+        {
+          "texto": "me arde al orinar",
+          "confianza": "alta"
+        },
+        {
+          "texto": "orino con sangre",
+          "confianza": "alta"
+        },
+        {
+          "texto": "orino poquito",
+          "confianza": "alta"
+        },
+        {
+          "texto": "me levanto de noche a orinar",
+          "confianza": "alta"
+        }
+      ]
+    },
+    {
+      "id": "sed",
+      "categoria": "metabolico",
+      "evitar": [
+        "polidipsia",
+        "xerostomia",
+        "polifagia"
+      ],
+      "coloquial": [
+        {
+          "texto": "mucha sed",
+          "confianza": "alta"
+        },
+        {
+          "texto": "la boca reseca",
+          "confianza": "alta"
+        },
+        {
+          "texto": "me da mucha hambre",
+          "confianza": "alta"
+        }
+      ]
+    },
+    {
+      "id": "hinchazon",
+      "categoria": "general",
+      "evitar": [
+        "edema",
+        "anasarca",
+        "tumefaccion"
+      ],
+      "coloquial": [
+        {
+          "texto": "hinchazón",
+          "confianza": "alta"
+        },
+        {
+          "texto": "los pies hinchados",
+          "confianza": "alta"
+        },
+        {
+          "texto": "amanezco con los párpados hinchados",
+          "confianza": "alta"
+        }
+      ]
+    },
+    {
+      "id": "piel",
+      "categoria": "piel",
+      "evitar": [
+        "prurito",
+        "pruriginos",
+        "cianosis",
+        "ictericia",
+        "exantema",
+        "eritema"
+      ],
+      "coloquial": [
+        {
+          "texto": "comezón",
+          "confianza": "alta"
+        },
+        {
+          "texto": "picazón",
+          "confianza": "alta"
+        },
+        {
+          "texto": "manchitas rojas",
+          "confianza": "alta"
+        },
+        {
+          "texto": "los ojos y la piel amarillos",
+          "confianza": "alta"
+        },
+        {
+          "texto": "los labios morados",
+          "confianza": "alta"
+        }
+      ]
+    },
+    {
+      "id": "sangrado",
+      "categoria": "general",
+      "evitar": [
+        "epistaxis",
+        "gingivorragia",
+        "sangrado activo",
+        "hematoma"
+      ],
+      "coloquial": [
+        {
+          "texto": "me sangró la nariz",
+          "confianza": "alta"
+        },
+        {
+          "texto": "me sangran las encías",
+          "confianza": "alta"
+        },
+        {
+          "texto": "moretón",
+          "confianza": "alta"
+        },
+        {
+          "texto": "morete",
+          "confianza": "baja"
+        }
+      ]
+    },
+    {
+      "id": "sueno",
+      "categoria": "salud_mental",
+      "evitar": [
+        "insomnio",
+        "hipersomnia",
+        "alteracion del sueño"
+      ],
+      "coloquial": [
+        {
+          "texto": "no puedo dormir",
+          "confianza": "alta"
+        },
+        {
+          "texto": "duermo mal",
+          "confianza": "alta"
+        },
+        {
+          "texto": "me desvelo",
+          "confianza": "alta",
+          "regional": true
+        },
+        {
+          "texto": "duermo todo el día",
+          "confianza": "alta"
+        }
+      ],
+      "disparadores": [
+        "dormir",
+        "sueno",
+        "desvel",
+        "insomnio"
+      ]
+    },
+    {
+      "id": "animo",
+      "categoria": "salud_mental",
+      "evitar": [
+        "anhedonia",
+        "abulia",
+        "apatia",
+        "labilidad",
+        "estado de animo deprimido",
+        "ideacion"
+      ],
+      "coloquial": [
+        {
+          "texto": "no tengo ganas de nada",
+          "confianza": "alta"
+        },
+        {
+          "texto": "ando bien triste",
+          "confianza": "alta"
+        },
+        {
+          "texto": "ando decaído",
+          "confianza": "media"
+        },
+        {
+          "texto": "se me quitaron las ganas",
+          "confianza": "alta"
+        },
+        {
+          "texto": "ando de los nervios",
+          "confianza": "media"
+        }
+      ]
+    },
+    {
+      "id": "golpe",
+      "categoria": "trauma",
+      "evitar": [
+        "traumatismo",
+        "politraumatismo",
+        "contusion",
+        "equimosis",
+        "excoriacion"
+      ],
+      "coloquial": [
+        {
+          "texto": "golpe",
+          "confianza": "alta"
+        },
+        {
+          "texto": "me caí de la moto",
+          "confianza": "alta"
+        },
+        {
+          "texto": "me estrellé",
+          "confianza": "media"
+        },
+        {
+          "texto": "raspones",
+          "confianza": "alta"
+        }
+      ]
+    },
+    {
+      "id": "medicinas",
+      "categoria": "tratamiento",
+      "evitar": [
+        "automedicacion",
+        "antipiretico",
+        "analgesico",
+        "antiinflamatorio",
+        "antihipertensivo",
+        "hipoglucemiante"
+      ],
+      "coloquial": [
+        {
+          "texto": "pastillas",
+          "confianza": "alta"
+        },
+        {
+          "texto": "medicina",
+          "confianza": "alta"
+        },
+        {
+          "texto": "remedio",
+          "confianza": "alta"
+        },
+        {
+          "texto": "me tomé unas pastillas por mi cuenta",
+          "confianza": "alta"
+        },
+        {
+          "texto": "las pastillas para la presión",
+          "confianza": "alta"
+        },
+        {
+          "texto": "las pastillas para el azúcar",
+          "confianza": "alta"
+        }
+      ]
+    },
+    {
+      "id": "servicios_salud",
+      "categoria": "sistema_salud",
+      "evitar": [
+        "centro asistencial",
+        "nosocomio",
+        "establecimiento de salud"
+      ],
+      "coloquial": [
+        {
+          "texto": "la unidad de salud",
+          "confianza": "alta"
+        },
+        {
+          "texto": "el hospital",
+          "confianza": "alta"
+        },
+        {
+          "texto": "el Seguro",
+          "confianza": "alta"
+        },
+        {
+          "texto": "la clínica",
+          "confianza": "alta"
+        }
+      ]
+    },
+    {
+      "id": "registro_clinico",
+      "categoria": "registro",
+      "evitar": [
+        "refiere$",
+        "presenta$",
+        "sintomatologia",
+        "cuadro clinico",
+        "episodio$",
+        "manifiesta$",
+        "acude$",
+        "afebril$",
+        "paciente$"
+      ],
+      "coloquial": [
+        {
+          "texto": "tengo",
+          "confianza": "alta"
+        },
+        {
+          "texto": "siento",
+          "confianza": "alta"
+        },
+        {
+          "texto": "me pasa",
+          "confianza": "alta"
+        },
+        {
+          "texto": "vengo porque",
+          "confianza": "alta"
+        }
+      ]
+    }
+  ],
+  "muletillas": [
+    {
+      "texto": "pues",
+      "confianza": "alta"
+    },
+    {
+      "texto": "verdad",
+      "confianza": "alta"
+    },
+    {
+      "texto": "mire, doctor",
+      "confianza": "alta"
+    },
+    {
+      "texto": "ahorita",
+      "confianza": "alta"
+    },
+    {
+      "texto": "bien + adjetivo (bien cansado, bien feo)",
+      "confianza": "alta"
+    },
+    {
+      "texto": "púchica",
+      "confianza": "media"
+    },
+    {
+      "texto": "cabal",
+      "confianza": "media"
+    }
+  ],
+  "trato": {
+    "con_el_medico": "usted",
+    "voseo": "solo al citar o hablarle a familiares y amigos (le dije a mi hijo: vos, andá)",
+    "diminutivos": "naturales y poco frecuentes (un poquito, ahorita)"
+  },
+  "no_usar_en_consulta": {
+    "nota": "Aparecen hoy en la lista de regionalismos del prompt, pero no encajan en una consulta medica y suenan a caricatura. Revisar con un hablante.",
+    "palabras": [
+      "ruco",
+      "cipote",
+      "pisto",
+      "chivo",
+      "chunche",
+      "chucho"
+    ]
+  }
+}

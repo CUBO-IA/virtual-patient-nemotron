@@ -11,12 +11,17 @@ class Session:
     id: str
     caso: dict
     persona: dict
+    nivel: dict = field(default_factory=dict)
     mensajes: list = field(default_factory=list)  # [{"role": "user"|"assistant", "content": str}]
     finished: bool = False
     result: dict | None = None
     busy_at: float | None = None
     pistas_usadas: int = 0
     nivel_por_item: dict = field(default_factory=dict)  # {item_id: nivel (1..3)}
+
+    @property
+    def preguntas_usadas(self) -> int:
+        return sum(1 for m in self.mensajes if m.get("role") == "user")
 
     @property
     def busy(self) -> bool:
@@ -32,10 +37,10 @@ class Session:
 _store: dict[str, Session] = {}
 
 
-def create(caso: dict, persona: dict) -> Session:
+def create(caso: dict, persona: dict, nivel: dict | None = None) -> Session:
     if len(_store) >= MAX_SESSIONS:
         _store.pop(next(iter(_store)))  # descarta la más antigua
-    s = Session(id=uuid.uuid4().hex, caso=caso, persona=persona)
+    s = Session(id=uuid.uuid4().hex, caso=caso, persona=persona, nivel=nivel or {})
     _store[s.id] = s
     return s
 

@@ -121,18 +121,34 @@ def calcular_peso(persona: dict, caso: dict) -> float:
     return prevalencia * (0.5 + sim)
 
 
-def sortear(caso_id: str | None = None) -> tuple[dict, dict]:
-    """Sorteo de caso y persona compatible con alta coherencia semántica.
+def sortear(caso_id: str | None = None, nivel: dict | None = None) -> tuple[dict, dict]:
+    """Sorteo de caso y persona compatible con alta coherencia semántica y filtro por nivel.
 
-    - Si se indica caso_id: filtra ese caso y sortea una persona compatible ponderada por su afinidad con el caso.
-    - Si caso_id es None: sortea una persona y le asigna la enfermedad más creíble según su perfil mediante sorteo ponderado en 4 capas.
+    - Si se indica caso_id: valida dificultad contra el nivel y sortea una persona compatible.
+    - Si caso_id es None: filtra casos por dificultad_max y pondera favoreciendo la dificultad del nivel.
     """
     personas, casos = _load()
+
+    dif_max = 3
+    peso_dif_igual = 1
+    nivel_id = None
+    if nivel:
+        dif_max = nivel.get("casos", {}).get("dificultad_max", 3)
+        peso_dif_igual = nivel.get("casos", {}).get("peso_dificultad_igual", 2)
+        nivel_id = nivel.get("id")
+
+    casos_candidatos = [c for c in casos if c.get("dificultad", 1) <= dif_max]
+    if not casos_candidatos:
+        raise RuntimeError(f"No hay casos disponibles con dificultad <= {dif_max}")
 
     if caso_id:
         caso = next((c for c in casos if c["id"] == caso_id), None)
         if not caso:
             raise RuntimeError(f"Caso con id '{caso_id}' no encontrado.")
+        if caso.get("dificultad", 1) > dif_max:
+            raise ValueError(
+                f"El caso '{caso_id}' tiene dificultad {caso.get('dificultad')} superior a la permitida ({dif_max}) para este nivel."
+            )
         compatibles = [p for p in personas if _compatible(p, caso)]
         if not compatibles:
             raise RuntimeError(f"No hay personas compatibles para el caso {caso_id}")
@@ -140,11 +156,23 @@ def sortear(caso_id: str | None = None) -> tuple[dict, dict]:
         persona_elegida = random.choices(compatibles, weights=pesos, k=1)[0]
         return caso, persona_elegida
 
-    # Caso general: elegir persona y asignar enfermedad ponderada
-    for persona in random.sample(personas, len(personas)):
-        pesos = [calcular_peso(persona, c) for c in casos]
-        if sum(pesos) > 0:
-            caso_elegido = random.choices(casos, weights=pesos, k=1)[0]
-            return caso_elegido, persona
+    # Ponderar casos elegibles por prevalencia y dificultad del nivel
+    pesos_casos = []
+    for c in casos_candidatos:
+        p = float(c.get("prevalencia", 2))
+        if nivel_id and c.get("dificultad") == nivel_id:
+            p *= peso_dif_igual
+        pesos_casos.append(p)
 
-    raise RuntimeError("Ningún caso es compatible con las personas cargadas")
+    # Intentar asignar caso ponderado con persona compatible por afinidad
+    indices_ordenados = list(range(len(casos_candidatos)))
+    for _ in range(50):
+        c_idx = random.choices(indices_ordenados, weights=pesos_casos, k=1)[0]
+        caso_elegido = casos_candidatos[c_idx]
+        compatibles = [p for p in personas if _compatible(p, caso_elegido)]
+        if compatibles:
+            pesos_p = [0.5 + afinidad_semantica(p, caso_elegido) for p in compatibles]
+            persona_elegida = random.choices(compatibles, weights=pesos_p, k=1)[0]
+            return caso_elegido, persona_elegida
+
+    raise RuntimeError("Ningún caso es compatible con las personas cargadas para este nivel")

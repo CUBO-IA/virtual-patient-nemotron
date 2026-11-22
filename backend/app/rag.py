@@ -15,7 +15,8 @@ async def health() -> bool:
         return False
     try:
         async with httpx.AsyncClient(timeout=1.5) as client:
-            resp = await client.get(f"{config.CHROMA_URL}/api/v1/heartbeat")
+            # Chroma 1.x eliminó la API v1 (responde 410); la v2 es la vigente.
+            resp = await client.get(f"{config.CHROMA_URL}/api/v2/heartbeat")
             return resp.status_code == 200
     except Exception:
         return False

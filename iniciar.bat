@@ -17,7 +17,22 @@ REM 2. Entorno virtual Python
 if not exist ".venv\Scripts\python.exe" (
     echo [INFO] Creando entorno virtual .venv...
     python -m venv .venv
+    if errorlevel 1 (
+        echo [ERROR] No se pudo crear el entorno virtual. Instala Python 3.11+ y marca "Add to PATH".
+        pause
+        exit /b 1
+    )
+)
+REM Instala dependencias si faltan (tambien repara una instalacion que se interrumpio antes)
+.venv\Scripts\python.exe -c "import fastapi, edge_tts, chromadb, pypdf" >nul 2>&1
+if errorlevel 1 (
+    echo [INFO] Instalando dependencias de Python...
     .venv\Scripts\python.exe -m pip install -r backend\requirements.txt
+    if errorlevel 1 (
+        echo [ERROR] Fallo la instalacion de dependencias. Revisa tu conexion a internet.
+        pause
+        exit /b 1
+    )
 )
 
 REM 3. Datos de personas
@@ -50,6 +65,24 @@ if errorlevel 1 (
     echo [AVISO] Iniciando ollama serve...
     start "Ollama" /min ollama serve
     timeout /t 3 /nobreak >nul
+)
+
+REM 6b. Avisar si falta el modelo de lenguaje (no lo descarga solo: pesa unos 4.7 GB)
+set "LLM_MODEL=qwen2.5:7b"
+for /f "tokens=1,* delims==" %%a in ('findstr /b /i "LLM_MODEL=" .env') do set "LLM_MODEL=%%b"
+ollama list 2>nul | findstr /i /c:"%LLM_MODEL%" >nul
+if errorlevel 1 (
+    echo [AVISO] El modelo %LLM_MODEL% no esta descargado. Ejecuta: ollama pull %LLM_MODEL%
+)
+
+REM 6c. RAG opcional: si RAG_ENABLED=true en .env, levanta Chroma con Docker
+findstr /b /i "RAG_ENABLED=true" .env >nul 2>&1
+if not errorlevel 1 (
+    echo [INFO] RAG activado: levantando Chroma con Docker...
+    docker compose up -d chroma
+    if errorlevel 1 (
+        echo [AVISO] No se pudo iniciar Chroma. Abre Docker Desktop. La app funcionara sin citas de guias.
+    )
 )
 
 REM 7. Levantar Backend
