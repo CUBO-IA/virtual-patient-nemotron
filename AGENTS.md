@@ -69,7 +69,7 @@ El entorno virtual de Python está en `.venv/` (raíz). Python 3.13, Node 26.
 ## 5. Contratos de datos
 
 ### `data/personas.json` (generado; no editar a mano)
-Campos reales: `id, nombre, edad, sexo ("F"|"M"), ocupacion, departamento, municipio, area, nivel_educativo, estado_civil, estilo`.
+Campos reales: `id, nombre, edad, sexo ("F"|"M"), ocupacion, departamento, municipio, area, nivel_educativo, estado_civil, uuid, hogar, estilo` (`uuid` y `hogar` se añaden desde el dataset con `scripts/enriquecer_personas.py`).
 El dataset **no trae nombre**: el primer nombre se extrae del texto de las columnas `*_persona`. `ocupacion` es una rama de actividad (p. ej. "Cultivo de hortalizas y melones…"), no un cargo.
 
 ### `data/casos.json` (lista de casos)
@@ -94,7 +94,7 @@ Reglas de los casos: clínicamente simples y correctos; **nunca** poner el nombr
 | Método | Ruta | Cuerpo | Respuesta |
 |---|---|---|---|
 | GET | `/api/health` | — | `{ok, ollama, modelo, modelo_disponible, personas, casos, datos}` (+ `rag` en fase 2) |
-| POST | `/api/sessions` | — | `{session_id, paciente:{nombre,edad,sexo,ocupacion,departamento,municipio,avatar_url}, motivo_consulta}` |
+| POST | `/api/sessions` | — | `{session_id, paciente:{nombre,edad,sexo,ocupacion,departamento,municipio,estado_civil,nivel_educativo,hogar,avatar_url}, motivo_consulta}` |
 | POST | `/api/sessions/{id}/chat` | `{message}` | SSE: `data: {"token": "…"}`, `data: {"done": true}` o `event: error` |
 | POST | `/api/sessions/{id}/finish` | `{diagnostico_estudiante}` | `{diagnostico_real, diagnostico_correcto, puntaje, cumplidos[], faltantes[], banderas[{id,texto,cumplida}], feedback, citas[{fuente,fragmento}]}` |
 

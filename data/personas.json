@@ -21,7 +21,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "f9fd1aba-0e45-47f5-9f64-3da401bdfb0c",
+    "hogar": "pareja"
   },
   {
     "id": "p_002",
@@ -45,7 +47,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "598e59ff-d1fa-468c-a844-cc507145f4dc",
+    "hogar": "extendido"
   },
   {
     "id": "p_003",
@@ -69,7 +73,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "99d423d3-3454-43a4-8180-0a16643c4670",
+    "hogar": "nuclear"
   },
   {
     "id": "p_004",
@@ -93,7 +99,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "c273529c-9991-44a0-bd37-9f7ac8324356",
+    "hogar": "nuclear"
   },
   {
     "id": "p_005",
@@ -117,7 +125,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "147abb2c-46d1-468d-8fd0-e8bd41f29190",
+    "hogar": "monoparental"
   },
   {
     "id": "p_006",
@@ -141,7 +151,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "8160a41a-3716-4f16-9dc6-64d08fdefaa2",
+    "hogar": "nuclear"
   },
   {
     "id": "p_007",
@@ -165,7 +177,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "2169d328-6dff-4bd2-829c-73a4470de240",
+    "hogar": "extendido"
   },
   {
     "id": "p_008",
@@ -189,7 +203,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "2d0a3a89-38a5-44cb-b164-0968aa0be7bf",
+    "hogar": "monoparental"
   },
   {
     "id": "p_009",
@@ -213,7 +229,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "f42424b7-f510-4841-a57e-a66dae5f3b5f",
+    "hogar": "nuclear"
   },
   {
     "id": "p_010",
@@ -237,7 +255,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "2c6d9ef3-d49e-438f-8d3e-08b448ab4ed3",
+    "hogar": "extendido"
   },
   {
     "id": "p_011",
@@ -261,7 +281,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "0843093d-cfc6-4a88-ac0e-353d09fdb8ba",
+    "hogar": "monoparental"
   },
   {
     "id": "p_012",
@@ -285,7 +307,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "b7360a26-d2cf-4331-ba56-ce1d4ea3bdf1",
+    "hogar": "nuclear"
   },
   {
     "id": "p_013",
@@ -309,7 +333,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "1fabf398-63d2-4a10-b059-d049366ff48c",
+    "hogar": "monoparental"
   },
   {
     "id": "p_014",
@@ -333,7 +359,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "0cdd074e-5254-4614-b3f3-780bcf3bee82",
+    "hogar": "extendido"
   },
   {
     "id": "p_015",
@@ -357,7 +385,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "6a295e0f-fd5e-43ab-9055-3607b022f8e0",
+    "hogar": "nuclear"
   },
   {
     "id": "p_016",
@@ -381,7 +411,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "1b84651a-4020-4438-9f1d-825e96c597aa",
+    "hogar": "extendido"
   },
   {
     "id": "p_017",
@@ -405,7 +437,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "b0350026-f363-4470-b471-72107a8ab5a1",
+    "hogar": "nuclear"
   },
   {
     "id": "p_018",
@@ -429,7 +463,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "aef63c9f-53eb-462d-ad04-a1d761b67b71",
+    "hogar": "extendido"
   },
   {
     "id": "p_019",
@@ -453,7 +489,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "5420114a-de2b-4326-91d4-8412746b4509",
+    "hogar": "monoparental"
   },
   {
     "id": "p_020",
@@ -477,7 +515,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "e105bbfa-4dd7-4cb7-8d73-d7e2217558af",
+    "hogar": "nuclear"
   },
   {
     "id": "p_021",
@@ -501,7 +541,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "f2db9428-a534-4f0d-93d7-50ed8ac8c755",
+    "hogar": "nuclear"
   },
   {
     "id": "p_022",
@@ -525,7 +567,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "c73ef341-3f0b-4274-bd2c-801885c2ae8d",
+    "hogar": "extendido"
   },
   {
     "id": "p_023",
@@ -549,7 +593,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "739a50d7-0984-4a1f-b2cc-4397f0faaf45",
+    "hogar": "extendido"
   },
   {
     "id": "p_024",
@@ -573,7 +619,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "b15f9a5f-5970-46ea-8d90-3a60ee61046f",
+    "hogar": "extendido"
   },
   {
     "id": "p_025",
@@ -597,7 +645,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "5557ca47-8897-420e-b71a-1cdaf8b0320d",
+    "hogar": "extendido"
   },
   {
     "id": "p_026",
@@ -621,7 +671,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "dc584392-e544-494f-997d-c8caddc41d15",
+    "hogar": "pareja"
   },
   {
     "id": "p_027",
@@ -645,7 +697,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "38390323-ba48-48e7-a2ec-0c433ee1a3ec",
+    "hogar": "nuclear"
   },
   {
     "id": "p_028",
@@ -669,7 +723,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "1cc97aad-645c-4a14-bf31-cb839d070b74",
+    "hogar": "extendido"
   },
   {
     "id": "p_029",
@@ -693,7 +749,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "57455928-0c35-44ae-b1f8-51f1ab588e2f",
+    "hogar": "nuclear"
   },
   {
     "id": "p_030",
@@ -717,7 +775,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "ad4153a6-a0d9-41a4-b3cc-059a9ace83bd",
+    "hogar": "monoparental"
   },
   {
     "id": "p_031",
@@ -741,7 +801,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "163b37c8-e4a2-41f8-a2d5-52f9300a0be5",
+    "hogar": "extendido"
   },
   {
     "id": "p_032",
@@ -765,7 +827,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "51bf805d-0e4d-462e-b378-eba7c9ef2773",
+    "hogar": "nuclear"
   },
   {
     "id": "p_033",
@@ -789,7 +853,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "daa9c7ef-88d8-4712-bcac-47ee3f413cf0",
+    "hogar": "extendido"
   },
   {
     "id": "p_034",
@@ -813,7 +879,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "e7998290-5d1f-4a16-87c0-797e3f056bdd",
+    "hogar": "extendido"
   },
   {
     "id": "p_035",
@@ -837,7 +905,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "9e76c2dd-2632-4d1f-b78f-ad12742c7963",
+    "hogar": "extendido"
   },
   {
     "id": "p_036",
@@ -861,7 +931,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "32643dd2-bc0c-466d-b342-c79bbaec5729",
+    "hogar": "nuclear"
   },
   {
     "id": "p_037",
@@ -885,7 +957,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "915dafcd-9858-4612-9e82-565258410b72",
+    "hogar": "unipersonal"
   },
   {
     "id": "p_038",
@@ -909,7 +983,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "3e3f4879-4b01-4f79-8e11-f0b8b060ad29",
+    "hogar": "extendido"
   },
   {
     "id": "p_039",
@@ -933,7 +1009,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "18a28deb-a694-4950-9971-f058bc7dc9af",
+    "hogar": "nuclear"
   },
   {
     "id": "p_040",
@@ -957,7 +1035,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "e3f8b79f-fd16-46e9-8ce6-616ddd588fc6",
+    "hogar": "pareja"
   },
   {
     "id": "p_041",
@@ -981,7 +1061,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "8dbe4b62-979f-4440-a0a0-5e2a2c22fb98",
+    "hogar": "extendido"
   },
   {
     "id": "p_042",
@@ -1005,7 +1087,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "9b8b0781-2a3a-4394-a213-9d6f65d9a8d8",
+    "hogar": "unipersonal"
   },
   {
     "id": "p_043",
@@ -1029,7 +1113,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "cacbd749-dc44-46b1-9dc8-fbd39634e98f",
+    "hogar": "nuclear"
   },
   {
     "id": "p_044",
@@ -1053,7 +1139,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "6010b5eb-144c-48a6-8f3b-de7295576a6f",
+    "hogar": "extendido"
   },
   {
     "id": "p_045",
@@ -1077,7 +1165,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "07087664-b0fe-40f9-bce8-50897e2e578f",
+    "hogar": "nuclear"
   },
   {
     "id": "p_046",
@@ -1101,7 +1191,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "18a40386-5fe1-45bf-9e54-255410fba233",
+    "hogar": "monoparental"
   },
   {
     "id": "p_047",
@@ -1125,7 +1217,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "938aee63-8596-4ee8-9a4d-bd482b0daeda",
+    "hogar": "pareja"
   },
   {
     "id": "p_048",
@@ -1149,7 +1243,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "d5d6f8a0-d7ef-4c78-a34b-981c3cfed4fc",
+    "hogar": "extendido"
   },
   {
     "id": "p_049",
@@ -1173,7 +1269,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "cbf3b8b7-5d9c-42d8-8d2e-d6eb083dc8a7",
+    "hogar": "nuclear"
   },
   {
     "id": "p_050",
@@ -1197,7 +1295,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "0c41f21b-d84f-4f32-8613-eafcf6707918",
+    "hogar": "nuclear"
   },
   {
     "id": "p_051",
@@ -1221,7 +1321,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "0f4d0d1c-460a-4acd-a795-75e70a92b5ad",
+    "hogar": "unipersonal"
   },
   {
     "id": "p_052",
@@ -1245,7 +1347,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "18a418c6-4443-4e32-a562-28c9a5cf8c1a",
+    "hogar": "pareja"
   },
   {
     "id": "p_053",
@@ -1269,7 +1373,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "40085f75-4f1e-4405-bb20-0d695c10862a",
+    "hogar": "extendido"
   },
   {
     "id": "p_054",
@@ -1293,7 +1399,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "a75aeba4-09ab-4ee1-bde6-70ce8d0953d7",
+    "hogar": "extendido"
   },
   {
     "id": "p_055",
@@ -1317,7 +1425,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "c02c6a1a-26b8-4b1f-96ab-7603960ef7c3",
+    "hogar": "nuclear"
   },
   {
     "id": "p_056",
@@ -1341,7 +1451,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "1c300afe-69e4-4541-a5d6-ea9aacc518db",
+    "hogar": "pareja"
   },
   {
     "id": "p_057",
@@ -1365,7 +1477,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "aae4fd7f-6b69-4fda-a026-529183730325",
+    "hogar": "monoparental"
   },
   {
     "id": "p_058",
@@ -1389,7 +1503,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "9f9e9460-4201-42d5-bab3-f409c2ef00b1",
+    "hogar": "nuclear"
   },
   {
     "id": "p_059",
@@ -1413,7 +1529,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "f55574b8-2101-43ad-953d-df9f6ec23e93",
+    "hogar": "extendido"
   },
   {
     "id": "p_060",
@@ -1437,7 +1555,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "91e6a8ec-0235-409d-b942-11fc7716e10c",
+    "hogar": "nuclear"
   },
   {
     "id": "p_061",
@@ -1461,7 +1581,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "b56fb353-6fc4-4444-9605-b92e05b5f372",
+    "hogar": "nuclear"
   },
   {
     "id": "p_062",
@@ -1485,7 +1607,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "24e4cae4-a7e8-499d-84d8-2da7ac37a5d8",
+    "hogar": "nuclear"
   },
   {
     "id": "p_063",
@@ -1509,7 +1633,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "6ed4e10f-8201-44b6-8cc3-2076b494626d",
+    "hogar": "unipersonal"
   },
   {
     "id": "p_064",
@@ -1533,7 +1659,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "6619e7ac-9736-46a0-835e-c4a32b014890",
+    "hogar": "extendido"
   },
   {
     "id": "p_065",
@@ -1557,7 +1685,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "049d03d6-d4ba-4f36-8484-fd6540eb70b2",
+    "hogar": "nuclear"
   },
   {
     "id": "p_066",
@@ -1581,7 +1711,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "8bfe4e0c-522d-4234-84c4-5914b9838c50",
+    "hogar": "extendido"
   },
   {
     "id": "p_067",
@@ -1605,7 +1737,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "d7ab331c-7c4c-48cd-89ff-e676e1354188",
+    "hogar": "nuclear"
   },
   {
     "id": "p_068",
@@ -1629,7 +1763,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "0fe7b6f5-4224-4cd6-9d97-7aca8af72f5a",
+    "hogar": "extendido"
   },
   {
     "id": "p_069",
@@ -1653,7 +1789,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "5a308cfb-b091-4709-86db-da71b4d44b80",
+    "hogar": "extendido"
   },
   {
     "id": "p_070",
@@ -1677,7 +1815,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "802638aa-a5b5-418f-8af2-b9f64d7e2fdd",
+    "hogar": "nuclear"
   },
   {
     "id": "p_071",
@@ -1701,7 +1841,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "8bffe7dc-f264-4cf3-b88f-06d4c0e4a531",
+    "hogar": "nuclear"
   },
   {
     "id": "p_072",
@@ -1725,7 +1867,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "99d3b9fe-9515-4da3-97d6-2b2f5247ba5e",
+    "hogar": "nuclear"
   },
   {
     "id": "p_073",
@@ -1749,7 +1893,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "a20023e6-c47d-4e56-b983-5c181794ea5b",
+    "hogar": "extendido"
   },
   {
     "id": "p_074",
@@ -1773,7 +1919,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "54be71a6-2f48-4993-a3f9-b737531c3fa8",
+    "hogar": "unipersonal"
   },
   {
     "id": "p_075",
@@ -1797,7 +1945,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "c73f2d87-3302-4578-a2b5-c7b88a7f9d09",
+    "hogar": "unipersonal"
   },
   {
     "id": "p_076",
@@ -1821,7 +1971,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "586ae38e-418b-4851-a9d2-f565df709ac5",
+    "hogar": "nuclear"
   },
   {
     "id": "p_077",
@@ -1845,7 +1997,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "aef7696a-ec6f-4e19-95e9-331fa0e3a8d2",
+    "hogar": "nuclear"
   },
   {
     "id": "p_078",
@@ -1869,7 +2023,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "3e3f49ef-ba11-4906-ad57-bfc574ce0c4c",
+    "hogar": "extendido"
   },
   {
     "id": "p_079",
@@ -1893,7 +2049,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "3c7a9c7f-5934-48a2-ac04-3fceda33271c",
+    "hogar": "nuclear"
   },
   {
     "id": "p_080",
@@ -1917,7 +2075,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "c0c979d2-f7de-46e9-a018-ded487944fb7",
+    "hogar": "extendido"
   },
   {
     "id": "p_081",
@@ -1941,7 +2101,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "f8450ab8-b7d9-4947-a11b-9be3cf9d68dd",
+    "hogar": "nuclear"
   },
   {
     "id": "p_082",
@@ -1965,7 +2127,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "a5925b3f-9c98-4794-b35b-827bde890ad0",
+    "hogar": "monoparental"
   },
   {
     "id": "p_083",
@@ -1989,7 +2153,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "b735f64a-590d-4ece-9b1b-7da711f0f737",
+    "hogar": "unipersonal"
   },
   {
     "id": "p_084",
@@ -2013,7 +2179,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "c562619f-24b2-4f46-9185-dd024a168a17",
+    "hogar": "nuclear"
   },
   {
     "id": "p_085",
@@ -2037,7 +2205,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "2c6e7662-e146-4c9a-a989-2da3ee5a9357",
+    "hogar": "pareja"
   },
   {
     "id": "p_086",
@@ -2061,7 +2231,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "2570f2b8-3f95-4f36-8e07-7b661e02702b",
+    "hogar": "nuclear"
   },
   {
     "id": "p_087",
@@ -2085,7 +2257,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "b7d0be63-94dd-457f-804e-cc6caa74dbfa",
+    "hogar": "extendido"
   },
   {
     "id": "p_088",
@@ -2109,7 +2283,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "55586095-9fc8-40e9-9e11-aeb1f5d9db5e",
+    "hogar": "nuclear"
   },
   {
     "id": "p_089",
@@ -2133,7 +2309,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "a0dfc081-e56c-4a81-a7c9-9df3b19256ca",
+    "hogar": "nuclear"
   },
   {
     "id": "p_090",
@@ -2157,7 +2335,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "dfe918f9-05c6-45f1-b973-4b049a5c08e3",
+    "hogar": "extendido"
   },
   {
     "id": "p_091",
@@ -2181,7 +2361,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "8f9d02ee-546c-4571-9fba-4abd67c5c8f2",
+    "hogar": "nuclear"
   },
   {
     "id": "p_092",
@@ -2205,7 +2387,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "1f1ceef6-50d9-4b8a-a2ef-828f34799717",
+    "hogar": "nuclear"
   },
   {
     "id": "p_093",
@@ -2229,7 +2413,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "d2f0f999-38c9-4382-b029-a69e949e5ce9",
+    "hogar": "extendido"
   },
   {
     "id": "p_094",
@@ -2253,7 +2439,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "6abf2880-09e9-4566-9f2c-311a7762e91e",
+    "hogar": "nuclear"
   },
   {
     "id": "p_095",
@@ -2277,7 +2465,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "3edd6dc8-5411-4365-ab07-575d81c59051",
+    "hogar": "extendido"
   },
   {
     "id": "p_096",
@@ -2301,7 +2491,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "1fa951d2-0ef3-44e7-ba48-3133c43abd2a",
+    "hogar": "pareja"
   },
   {
     "id": "p_097",
@@ -2325,7 +2517,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "180c1b94-9389-4707-88ee-97d649396b95",
+    "hogar": "pareja"
   },
   {
     "id": "p_098",
@@ -2349,7 +2543,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "84e3eca9-2f18-4771-89d6-ab34d9c410be",
+    "hogar": "extendido"
   },
   {
     "id": "p_099",
@@ -2373,7 +2569,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "d5395445-508f-4f51-930f-4985ab3ad469",
+    "hogar": "extendido"
   },
   {
     "id": "p_100",
@@ -2397,7 +2595,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "397175f2-ab0e-477b-ba1e-ee0086c733c6",
+    "hogar": "extendido"
   },
   {
     "id": "p_101",
@@ -2421,7 +2621,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "760d8cbf-f9aa-40c2-a656-0df5073d0b8e",
+    "hogar": "nuclear"
   },
   {
     "id": "p_102",
@@ -2445,7 +2647,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "4863adbd-021c-4560-8036-0249437214cd",
+    "hogar": "extendido"
   },
   {
     "id": "p_103",
@@ -2469,7 +2673,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "58fe28a3-55b5-4a95-a727-335c0b576253",
+    "hogar": "monoparental"
   },
   {
     "id": "p_104",
@@ -2493,7 +2699,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "c7dfbdf4-987d-4d80-80eb-c54d0a50d912",
+    "hogar": "unipersonal"
   },
   {
     "id": "p_105",
@@ -2517,7 +2725,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "64f93da4-c626-4bbb-b52e-e56622c98f53",
+    "hogar": "monoparental"
   },
   {
     "id": "p_106",
@@ -2541,7 +2751,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "ecefb150-3002-4069-9851-06c817309212",
+    "hogar": "monoparental"
   },
   {
     "id": "p_107",
@@ -2565,7 +2777,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "6866ad76-3a2a-4826-9d1a-766eab5ad69a",
+    "hogar": "extendido"
   },
   {
     "id": "p_108",
@@ -2589,7 +2803,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "8fa04ecb-4a7f-410b-85ed-8b2fc1d649af",
+    "hogar": "extendido"
   },
   {
     "id": "p_109",
@@ -2613,7 +2829,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "94a6e0c3-5863-4cbc-99bd-92cc069decaa",
+    "hogar": "nuclear"
   },
   {
     "id": "p_110",
@@ -2637,7 +2855,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "55ff5d5e-84e5-4dc9-961a-b4718d3f626a",
+    "hogar": "nuclear"
   },
   {
     "id": "p_111",
@@ -2661,7 +2881,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "ab7d18b9-99a5-4dc6-a540-575451bdcfea",
+    "hogar": "nuclear"
   },
   {
     "id": "p_112",
@@ -2685,7 +2907,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "c9114d75-7e6a-4aeb-878a-f1c3d8009d08",
+    "hogar": "extendido"
   },
   {
     "id": "p_113",
@@ -2709,7 +2933,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "8745b561-c03d-4b19-97ea-18a6c5630221",
+    "hogar": "pareja"
   },
   {
     "id": "p_114",
@@ -2733,7 +2959,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "9affd409-a2f0-4c55-befc-a6dce2451351",
+    "hogar": "extendido"
   },
   {
     "id": "p_115",
@@ -2757,7 +2985,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "5ac06cb1-f58d-480a-b3c2-e18c4ddb5d68",
+    "hogar": "extendido"
   },
   {
     "id": "p_116",
@@ -2781,7 +3011,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "2d0b1b10-2a49-4e60-a978-ccacdde1634a",
+    "hogar": "extendido"
   },
   {
     "id": "p_117",
@@ -2805,7 +3037,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "81f48772-0ad7-4045-89ac-ad9ad0de341d",
+    "hogar": "nuclear"
   },
   {
     "id": "p_118",
@@ -2829,7 +3063,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "2723884c-6f30-47e0-8ec6-3884c7e4c03d",
+    "hogar": "nuclear"
   },
   {
     "id": "p_119",
@@ -2853,7 +3089,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "4007ef54-6ffa-4804-aa5f-ed6da48e36ab",
+    "hogar": "nuclear"
   },
   {
     "id": "p_120",
@@ -2877,7 +3115,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "bdd4c380-5688-435c-9289-9f1cee2333f8",
+    "hogar": "nuclear"
   },
   {
     "id": "p_121",
@@ -2901,7 +3141,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "e07b1e72-77b1-4871-bfbb-c71123971c7e",
+    "hogar": "nuclear"
   },
   {
     "id": "p_122",
@@ -2925,7 +3167,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "db388bdb-b1f7-46fb-990e-4c0b6d87c31b",
+    "hogar": "nuclear"
   },
   {
     "id": "p_123",
@@ -2949,7 +3193,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "dbc9ccfc-6b0c-47aa-9ba2-04f1d547cfb2",
+    "hogar": "monoparental"
   },
   {
     "id": "p_124",
@@ -2973,7 +3219,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "fb40a23e-3a3b-4ba3-b345-e98664dad945",
+    "hogar": "monoparental"
   },
   {
     "id": "p_125",
@@ -2997,7 +3245,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "67da5882-24f4-4ae0-b817-7b953c71579e",
+    "hogar": "nuclear"
   },
   {
     "id": "p_126",
@@ -3021,7 +3271,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "d13f4de5-ab06-4a90-a49f-4f9557c05ad0",
+    "hogar": "monoparental"
   },
   {
     "id": "p_127",
@@ -3045,7 +3297,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "d006d7fb-3114-43de-895f-773a80da0e9f",
+    "hogar": "monoparental"
   },
   {
     "id": "p_128",
@@ -3069,7 +3323,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "7d2bb304-3fd2-4141-ba7f-8313249c91e6",
+    "hogar": "extendido"
   },
   {
     "id": "p_129",
@@ -3093,7 +3349,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "74d80542-288b-4675-9cda-0ee03734b5c7",
+    "hogar": "nuclear"
   },
   {
     "id": "p_130",
@@ -3117,7 +3375,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "32f89872-4431-40aa-b40d-517cee59f42c",
+    "hogar": "nuclear"
   },
   {
     "id": "p_131",
@@ -3141,7 +3401,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "11aed819-6f0c-4205-84bd-1de5387bdd54",
+    "hogar": "extendido"
   },
   {
     "id": "p_132",
@@ -3165,7 +3427,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "c5616e67-54f8-4edb-aad3-91d2fb4749d4",
+    "hogar": "extendido"
   },
   {
     "id": "p_133",
@@ -3189,7 +3453,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "a7fb8261-b0c8-4254-979e-76fc46336272",
+    "hogar": "extendido"
   },
   {
     "id": "p_134",
@@ -3213,7 +3479,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "5abf7a6d-8a89-4660-9fd9-4cb251223780",
+    "hogar": "unipersonal"
   },
   {
     "id": "p_135",
@@ -3237,7 +3505,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "05302b59-a624-467a-af2e-5478ae2cfc08",
+    "hogar": "nuclear"
   },
   {
     "id": "p_136",
@@ -3261,7 +3531,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "77d3d1a3-45a9-4a22-97ed-0f7b759c0c60",
+    "hogar": "extendido"
   },
   {
     "id": "p_137",
@@ -3285,7 +3557,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "6abf1017-c45d-40e9-93e3-33faf01883d6",
+    "hogar": "nuclear"
   },
   {
     "id": "p_138",
@@ -3309,7 +3583,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "e6f55e11-1a64-49c0-a739-1899e27247f2",
+    "hogar": "nuclear"
   },
   {
     "id": "p_139",
@@ -3333,7 +3609,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "b878c38b-58ca-4ade-925c-60f9b9435e91",
+    "hogar": "monoparental"
   },
   {
     "id": "p_140",
@@ -3357,7 +3635,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "5db3dd49-b864-4e71-95e8-aa7cb3b65073",
+    "hogar": "pareja"
   },
   {
     "id": "p_141",
@@ -3381,7 +3661,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "95d53898-1fa6-4732-a231-55af0e93f06e",
+    "hogar": "nuclear"
   },
   {
     "id": "p_142",
@@ -3405,7 +3687,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "9de50f63-d485-4fed-9d6f-d14d25e68c59",
+    "hogar": "nuclear"
   },
   {
     "id": "p_143",
@@ -3429,7 +3713,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "d26b5e84-b21c-4c02-aebf-4efc0db9d6f3",
+    "hogar": "monoparental"
   },
   {
     "id": "p_144",
@@ -3453,7 +3739,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "b56ee7c8-353f-464a-b686-82e9fa9b5678",
+    "hogar": "extendido"
   },
   {
     "id": "p_145",
@@ -3477,7 +3765,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "c9b242a4-6c78-47e3-a24f-5cb2ea45226d",
+    "hogar": "monoparental"
   },
   {
     "id": "p_146",
@@ -3501,7 +3791,9 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "070898fd-cf70-4a7f-8dc1-81791acc90c6",
+    "hogar": "nuclear"
   },
   {
     "id": "p_147",
@@ -3525,7 +3817,9 @@
         "ahorita",
         "cabal"
       ]
-    }
+    },
+    "uuid": "02d0cd4f-20d9-4450-bbfa-dceee8be4451",
+    "hogar": "nuclear"
   },
   {
     "id": "p_148",
@@ -3549,7 +3843,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "756d288b-1654-4ab1-bef9-867def7fe26e",
+    "hogar": "monoparental"
   },
   {
     "id": "p_149",
@@ -3573,7 +3869,9 @@
         "ruco",
         "pisto"
       ]
-    }
+    },
+    "uuid": "bd413f6e-8da1-42f9-aeec-95d98fb28a79",
+    "hogar": "pareja"
   },
   {
     "id": "p_150",
@@ -3597,6 +3895,8 @@
         "cabal",
         "púchica"
       ]
-    }
+    },
+    "uuid": "f4b91302-d61e-4760-83d2-f27ec29469e9",
+    "hogar": "monoparental"
   }
 ]

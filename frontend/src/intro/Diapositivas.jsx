@@ -72,6 +72,9 @@ export default function Diapositivas({ onComenzar }) {
           El modelo de lenguaje corre en tu propio equipo (Ollama). El contenido clínico es un borrador pendiente de revisión por
           profesionales de la salud.
         </p>
+        <p className="intro-creditos">
+          Personas basadas en <a href="https://huggingface.co/datasets/nvidia/Nemotron-Personas-El-Salvador" target="_blank" rel="noopener noreferrer">NVIDIA Nemotron‑Personas‑El‑Salvador</a> (licencia CC BY 4.0). Los casos clínicos son ficticios.
+        </p>
         <div className="intro-acciones">
           <button type="button" className="intro-boton secundario" onClick={() => setActual(0)} tabIndex={actual === 1 ? 0 : -1}>
             <i className="bi bi-arrow-left" /> Atrás

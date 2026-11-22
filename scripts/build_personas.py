@@ -16,7 +16,6 @@ from pathlib import Path
 from datasets import load_dataset
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "personas.json"
-N = int(sys.argv[1]) if len(sys.argv) > 1 else 150
 SEED = 42
 
 UP = "A-ZÁÉÍÓÚÑ"
@@ -50,13 +49,11 @@ def estilo(row):
     return f"{base}{extra}; trata de usted al doctor"
 
 
-def main():
+def filas_validas():
+    """Filas del dataset en orden reproducible, después de los filtros canónicos."""
     ds = load_dataset("nvidia/Nemotron-Personas-El-Salvador", split="train", streaming=True)
     ds = ds.shuffle(seed=SEED, buffer_size=2000)
-
-    personas, vistos = [], 0
     for row in ds:
-        vistos += 1
         try:
             edad = int(row["age"])
         except (TypeError, ValueError):
@@ -67,6 +64,14 @@ def main():
         sexo = {"Masculino": "M", "Femenino": "F"}.get(row.get("sex"))
         if not nombre or not sexo:
             continue
+        yield row, nombre, edad, sexo
+
+
+def main(n=None):
+    n = n if n is not None else (int(sys.argv[1]) if len(sys.argv) > 1 else 150)
+    personas, vistos = [], 0
+    for row, nombre, edad, sexo in filas_validas():
+        vistos += 1
         p_data = {
             "id": f"p_{len(personas) + 1:03d}",
             "nombre": nombre,
@@ -78,6 +83,8 @@ def main():
             "area": row.get("area"),
             "nivel_educativo": row.get("education_level"),
             "estado_civil": row.get("marital_status"),
+            "uuid": row.get("uuid"),
+            "hogar": (row.get("household_type") or "").lower() or None,
             "estilo": estilo(row),
         }
         es_oriente = p_data["departamento"] in {"San Miguel", "Usulután", "La Unión", "Morazán"}
@@ -88,7 +95,7 @@ def main():
             "regionalismos": ["calentura", "cuerpo cortado", "ruco", "pisto"] if edad >= 60 else ["calentura", "cipote", "ahorita", "cabal"],
         }
         personas.append(p_data)
-        if len(personas) >= N:
+        if len(personas) >= n:
             break
 
     OUT.parent.mkdir(parents=True, exist_ok=True)

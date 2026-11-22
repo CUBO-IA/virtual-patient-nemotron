@@ -7,6 +7,7 @@ from fastapi.testclient import TestClient
 from app.main import app
 from app.prompts import system_paciente
 from app.evaluate import norm
+from app import config
 
 DATA_DIR = Path(__file__).resolve().parents[2] / "data"
 client = TestClient(app)
@@ -22,6 +23,18 @@ def test_api_sessions_no_contiene_campos_ocultos():
         for field in HIDDEN_FIELDS:
             assert field not in data, f"Campo oculto '{field}' expuesto en POST /api/sessions"
             assert field not in data.get("paciente", {}), f"Campo oculto '{field}' expuesto en paciente"
+        assert {"estado_civil", "nivel_educativo", "hogar"} <= set(data["paciente"])
+
+
+def test_api_sessions_urgencias_expone_perfil_sin_campos_de_urgencia(monkeypatch):
+    monkeypatch.setattr(config, "SEGUIMIENTO_DEMO", True)
+    resp = client.post("/api/sessions", json={"modo":"urgencias", "caso_id":"u_infarto_01"})
+    assert resp.status_code == 200
+    data = resp.json()
+    assert {"estado_civil", "nivel_educativo", "hogar"} <= set(data["paciente"])
+    for field in HIDDEN_FIELDS | {"signos_activos", "accion_esperada", "datos_ocultos", "explicacion"}:
+        assert field not in json.dumps(data, ensure_ascii=False)
+    assert "nivel" not in data and "urgencia" not in data
 
 
 def test_system_paciente_no_contiene_diagnostico_ni_alias():

@@ -214,6 +214,8 @@
 .intro-aviso { margin: 8px 0 0; max-width: 40em; color: rgba(217, 213, 255, 0.65); font-size: 0.85rem; }
 .intro-subtitulo { margin: 0; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; text-shadow: 3px 3px 0 #2b2a5a; }
 .intro-nota { margin: 0; max-width: 46em; color: rgba(217, 213, 255, 0.75); font-size: 0.85rem; line-height: 1.5; }
+.intro-creditos { margin: -.25rem 0 0; max-width: 46em; color: rgba(217, 213, 255, 0.62); font-size: 0.74rem; line-height: 1.4; }
+.intro-creditos a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 
 .intro-tarjetas {
   display: grid;
