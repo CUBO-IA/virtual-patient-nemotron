@@ -2404,3 +2404,77 @@ form.entrada input:focus { box-shadow: none; }
 #btn-musica.is-loading { animation: musica-cargando 0.9s ease-in-out infinite alternate; }
 @keyframes musica-cargando { from { opacity: 0.65; } to { opacity: 1; } }
 
+/* Fases visuales del Modo Urgencias: los estilos quedan confinados a su contenedor. */
+#modo-urgencias.fase-1 .urgencias-reloj {
+  color: #8275E5;
+  animation: urgencias-respirar 4s ease-in-out infinite;
+}
+
+#modo-urgencias.fase-2 .urgencias-reloj {
+  color: color-mix(in srgb, #8275E5 calc((1 - var(--urgencias-fase2-progreso)) * 100%), #FFC93C calc(var(--urgencias-fase2-progreso) * 100%));
+  transition: color 0.5s ease;
+  animation: none;
+}
+
+#modo-urgencias.fase-3 .urgencias-reloj {
+  color: #FF8A3D;
+  animation: none;
+}
+
+#modo-urgencias .urgencias-indicador {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0.65rem 0;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--line-subtle);
+  border-radius: 10px;
+  background: var(--panel-card);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+#modo-urgencias.fase-2 .urgencias-indicador {
+  border-color: rgba(255, 201, 60, 0.5);
+  color: #FFC93C;
+  animation: urgencias-pulso 2s ease-in-out infinite;
+}
+
+#modo-urgencias.fase-3 .urgencias-indicador {
+  border-color: rgba(255, 138, 61, 0.65);
+  color: #FFB27D;
+  animation: urgencias-temblor 0.25s linear infinite, urgencias-brillo-naranja 1s ease-in-out infinite;
+}
+
+@keyframes urgencias-respirar {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes urgencias-pulso {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 201, 60, 0); }
+  50% { transform: scale(1.015); box-shadow: 0 0 10px rgba(255, 201, 60, 0.22); }
+}
+
+@keyframes urgencias-temblor {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+@keyframes urgencias-brillo-naranja {
+  0%, 100% { box-shadow: 0 0 0 rgba(255, 138, 61, 0); }
+  50% { box-shadow: 0 0 16px rgba(255, 138, 61, 0.65); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #modo-urgencias.fase-1 .urgencias-reloj,
+  #modo-urgencias.fase-2 .urgencias-indicador,
+  #modo-urgencias.fase-3 .urgencias-indicador {
+    animation: none !important;
+  }
+}
+

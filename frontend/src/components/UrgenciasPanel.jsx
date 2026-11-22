@@ -47,6 +47,8 @@ export default function UrgenciasPanel({
   const usadas = mensajes.filter((m) => m.role === 'user' && !m.ejemplo).length
   const limitePreguntas = usadas >= sesion.max_preguntas
   const sinTiempo = restante <= 0
+  const faseUrgencias = restante <= 30 ? 4 : restante <= 60 ? 3 : restante <= 120 ? 2 : 1
+  const progresoPrecaucion = Math.min(1, Math.max(0, (120 - restante) / 59))
   const puedeElegir = usadas >= sesion.preguntas_minimas_semaforo
   const chatCerrado = limitePreguntas || sinTiempo
 
@@ -72,7 +74,11 @@ export default function UrgenciasPanel({
   if (resultado) return <ResultadoTriaje r={resultado} onNueva={onNueva} onSalir={onSalir} />
 
   return (
-    <div className="urgencias">
+    <div
+      id="modo-urgencias"
+      className={`urgencias fase-${faseUrgencias}`}
+      style={{ '--urgencias-fase2-progreso': progresoPrecaucion }}
+    >
       <p className="urgencias-aviso" role="note">
         <i className="bi bi-info-circle" /> {AVISO}
       </p>
@@ -90,6 +96,22 @@ export default function UrgenciasPanel({
           {usadas} de {sesion.max_preguntas} preguntas
         </span>
       </div>
+
+      {faseUrgencias < 4 && (
+        <div className={`urgencias-indicador fase-${faseUrgencias}`} role="status" aria-live="polite">
+          <i
+            className={`bi ${faseUrgencias === 1 ? 'bi-heart-pulse' : faseUrgencias === 2 ? 'bi-exclamation-triangle' : 'bi-exclamation-triangle-fill'}`}
+            aria-hidden="true"
+          />
+          <span>
+            {faseUrgencias === 1
+              ? 'Paciente estable'
+              : faseUrgencias === 2
+                ? 'Atención: prioriza la evaluación del paciente'
+                : 'La atención requiere mayor rapidez'}
+          </span>
+        </div>
+      )}
 
       {sesion.acompanante?.relacion && (
         <p className="urgencias-acompanante">
