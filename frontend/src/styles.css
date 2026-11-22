@@ -2267,6 +2267,7 @@ i.bi {
   }
 }
 
+
 /* ¿Por qué? */
 .btn-porque {
   margin-left: 0.5rem;
@@ -2353,3 +2354,53 @@ form.entrada input:focus { box-shadow: none; }
 
 /* Respaldo del avatar sin internet */
 .paciente-iniciales { display: grid; place-items: center; width: 100%; height: 100%; font-size: 2.6rem; font-weight: 800; line-height: 1; color: var(--text); background: linear-gradient(135deg, var(--blue-sec), var(--accent)); }
+
+/* ==========================================================================
+   BOTÓN FLOTANTE DE MÚSICA AMBIENTAL (YOUTUBE)
+   ========================================================================== */
+#btn-musica {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background: #8275E5;
+  color: #F5F5FC;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: background 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#btn-musica:hover {
+  background: #344C8C;
+}
+
+#btn-musica:focus-visible {
+  outline: 2px solid #D9D5FF;
+  outline-offset: 2px;
+}
+
+#yt-player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* YouTube necesita un reproductor de al menos 200 x 200 px. */
+#yt-player { position: fixed; top: -220px; left: -220px; width: 200px; height: 200px; opacity: 0; pointer-events: none; }
+#btn-musica.is-playing { background: #344C8C; box-shadow: 0 0 0 4px rgba(130, 117, 229, 0.24), 0 4px 12px rgba(0, 0, 0, 0.4); }
+#btn-musica.is-loading { animation: musica-cargando 0.9s ease-in-out infinite alternate; }
+@keyframes musica-cargando { from { opacity: 0.65; } to { opacity: 1; } }
+
