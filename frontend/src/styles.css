@@ -694,14 +694,39 @@ i.bi {
   animation: fadeIn 0.3s ease-out;
 }
 
-.datos img {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  background: var(--panel-card);
+.datos .paciente-stage,
+.datos .paciente-standalone {
+  width: 140px;
+  height: 140px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: linear-gradient(180deg, #F5F7FD 0%, #E3E8F5 100%);
   border: 2px solid var(--accent);
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 4px 20px rgba(130, 117, 229, 0.35);
+  display: block;
+  position: relative;
 }
+
+.datos .paciente-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  pointer-events: none;
+  user-select: none;
+  display: block;
+}
+
+.datos .layer-base { z-index: 1; }
+.datos .layer-ojos { z-index: 2; }
+.datos .layer-boca { z-index: 3; }
 
 .datos dl {
   margin: 0;
@@ -2122,22 +2147,69 @@ i.bi {
 .paciente-wrap {
   display: inline-block;
   overflow: hidden;
+  border-radius: var(--radius-lg);
 }
 
-.paciente.reposo     { animation: pv-respirar 4s ease-in-out infinite; }
-.paciente.pensando   { animation: pv-pensar 1.6s ease-in-out infinite; }
-.paciente.hablando   { animation: pv-rebotar .4s ease-in-out infinite alternate; }
-.paciente.escuchando { transform: scale(1.03) translateY(2px); transition: transform .2s ease; }
-.paciente.despedida  { animation: pv-saludar .6s ease-in-out 2; }
+.paciente-stage {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: linear-gradient(180deg, #F5F7FD 0%, #E3E8F5 100%);
+  border: 2px solid var(--accent);
+  box-shadow: 0 4px 20px rgba(130, 117, 229, 0.35);
+  display: block;
+}
+
+.paciente-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  pointer-events: none;
+  user-select: none;
+  border-radius: 0 !important;
+  transition: opacity 0.08s ease;
+}
+
+.layer-base { z-index: 1; }
+.layer-ojos { z-index: 2; }
+.layer-boca { z-index: 3; }
+
+.paciente.reposo     { animation: pv-respirar 4.2s ease-in-out infinite; }
+.paciente.pensando   { animation: pv-pensar 1.8s ease-in-out infinite; }
+.paciente.hablando   { animation: pv-hablar-cabeza 1.8s ease-in-out infinite alternate; }
+.paciente.escuchando { transform: scale(1.02) translateY(1.5px); transition: transform .25s ease; }
+.paciente.despedida  { animation: pv-saludar .8s ease-in-out 2; }
 .paciente.entrando   { animation: pv-entrar 1s ease-out forwards; }
 .paciente-wrap.con-dolor { animation: pv-temblar .6s ease-in-out infinite; }
-.paciente-wrap.con-dolor .paciente { filter: saturate(1.2) drop-shadow(0 0 8px rgba(248, 113, 113, 0.65)); }
+.paciente-wrap.con-dolor .paciente { filter: saturate(1.15) drop-shadow(0 0 8px rgba(248, 113, 113, 0.65)); }
 
-@keyframes pv-respirar { 0%,100% { transform: scale(1); } 50% { transform: scale(1.02); } }
-@keyframes pv-pensar   { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-1.5deg); } }
-@keyframes pv-rebotar  { from { transform: translateY(0); } to { transform: translateY(-3px); } }
-@keyframes pv-temblar  { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-2px); } 75% { transform: translateX(2px); } }
-@keyframes pv-saludar  { 0%,100% { transform: rotate(0); } 50% { transform: rotate(4deg); } }
+@keyframes pv-respirar {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-1.5px) scale(1.008); }
+}
+
+@keyframes pv-pensar {
+  0%, 100% { transform: rotate(0); }
+  50% { transform: rotate(-1.2deg); }
+}
+
+@keyframes pv-hablar-cabeza {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-1.5px) rotate(1.2deg); }
+  100% { transform: translateY(0.5px) rotate(-1deg); }
+}
+
+@keyframes pv-temblar  { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-1.5px); } 75% { transform: translateX(1.5px); } }
+@keyframes pv-saludar  { 0%,100% { transform: rotate(0); } 50% { transform: rotate(3deg); } }
 @keyframes pv-entrar   { from { opacity: 0; transform: translateX(-25px); } to { opacity: 1; transform: translateX(0); } }
 
 /* Mensajes del chat */

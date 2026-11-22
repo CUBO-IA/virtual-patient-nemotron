@@ -75,6 +75,8 @@ export default function Chat({
         audioRef.current.pause()
         audioRef.current = null
       }
+      window.__pvCurrentAudio = null
+      window.dispatchEvent(new CustomEvent('pv-audio-stop'))
       onVozEstado?.(false)
     }
   }, [])
@@ -84,6 +86,7 @@ export default function Chat({
 
     if (reproduciendoIdx === idx && audioRef.current && !audioRef.current.paused) {
       audioRef.current.pause()
+      window.dispatchEvent(new CustomEvent('pv-audio-stop'))
       onVozEstado?.(false)
       setReproduciendoIdx(null)
       return
@@ -92,6 +95,7 @@ export default function Chat({
     if (audioRef.current) {
       audioRef.current.pause()
       audioRef.current = null
+      window.dispatchEvent(new CustomEvent('pv-audio-stop'))
       onVozEstado?.(false)
     }
 
@@ -100,22 +104,32 @@ export default function Chat({
     setCargandoAudioIdx(idx)
 
     const audio = new Audio(urlAudioPaciente(sessionId, contenido))
+    audio.crossOrigin = 'anonymous'
     audioRef.current = audio
+    window.__pvCurrentAudio = audio
 
     audio.onplay = () => {
-      if (pedido.current === miPedido) onVozEstado?.(true)
+      if (pedido.current === miPedido) {
+        window.dispatchEvent(new CustomEvent('pv-audio-play', { detail: audio }))
+        onVozEstado?.(true)
+      }
     }
     audio.onpause = () => {
-      if (pedido.current === miPedido) onVozEstado?.(false)
+      if (pedido.current === miPedido) {
+        window.dispatchEvent(new CustomEvent('pv-audio-stop'))
+        onVozEstado?.(false)
+      }
     }
     audio.onended = () => {
       if (pedido.current === miPedido) {
+        window.dispatchEvent(new CustomEvent('pv-audio-stop'))
         onVozEstado?.(false)
         setReproduciendoIdx(null)
       }
     }
     audio.onerror = () => {
       if (pedido.current === miPedido) {
+        window.dispatchEvent(new CustomEvent('pv-audio-stop'))
         onVozEstado?.(false)
         setReproduciendoIdx(null)
         setCargandoAudioIdx(null)
