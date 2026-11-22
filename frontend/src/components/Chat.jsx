@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { urlAudioPaciente } from '../api.js'
 import { renderWithGlossaryTips } from './GlossaryTip.jsx'
 import AnamnesisGuide from './AnamnesisGuide.jsx'
+import { useDictado } from '../hooks/useDictado.js'
 
 // WAV vacío para habilitar audio en móviles y navegadores con autoplay restringido
 const SILENCIO =
@@ -19,8 +20,12 @@ export default function Chat({
   onPedirPista,
   onCerrarPista,
   cargandoPista,
+  onVozEstado,
+  onEscuchando,
+  sinEnvio = false, // vista previa: sin modelo de lenguaje no se envían mensajes
 }) {
   const [texto, setTexto] = useState('')
+  const [provisional, setProvisional] = useState('')
   const [autoVoz, setAutoVoz] = useState(true)
   const [reproduciendoIdx, setReproduciendoIdx] = useState(null)
   const [cargandoAudioIdx, setCargandoAudioIdx] = useState(null)
@@ -30,7 +35,19 @@ export default function Chat({
   const prevEnviando = useRef(enviando)
   const fin = useRef(null)
 
-  const preguntasUsadas = mensajes.filter((m) => m.role === 'user').length
+  const dictado = useDictado({
+    onEscuchando,
+    onTexto: (t, final) => {
+      if (final) {
+        setTexto(t)
+        setProvisional('')
+      } else {
+        setProvisional(t)
+      }
+    },
+  })
+
+  const preguntasUsadas = mensajes.filter((m) => m.role === 'user' && !m.ejemplo).length
   const maxPreguntas = nivel?.max_preguntas || null
   const preguntasRestantes = maxPreguntas !== null ? Math.max(0, maxPreguntas - preguntasUsadas) : null
   const limiteAlcanzado = maxPreguntas !== null && preguntasRestantes === 0
@@ -44,8 +61,8 @@ export default function Chat({
     if (prevEnviando.current && !enviando && autoVoz && mensajes.length > 0) {
       const ultimoIdx = mensajes.length - 1
       const ultimo = mensajes[ultimoIdx]
-      if (ultimo && ultimo.role === 'assistant' && ultimo.content?.trim()) {
-        reproducirAudio(ultimo.content, ultimoIdx)
+      if (ultimo && ultimo.role === 'assistant' && (ultimo.voz || ultimo.content)?.trim()) {
+        reproducirAudio(ultimo.voz || ultimo.content, ultimoIdx)
       }
     }
     prevEnviando.current = enviando
@@ -58,6 +75,7 @@ export default function Chat({
         audioRef.current.pause()
         audioRef.current = null
       }
+      onVozEstado?.(false)
     }
   }, [])
 
@@ -66,6 +84,7 @@ export default function Chat({
 
     if (reproduciendoIdx === idx && audioRef.current && !audioRef.current.paused) {
       audioRef.current.pause()
+      onVozEstado?.(false)
       setReproduciendoIdx(null)
       return
     }
@@ -73,6 +92,7 @@ export default function Chat({
     if (audioRef.current) {
       audioRef.current.pause()
       audioRef.current = null
+      onVozEstado?.(false)
     }
 
     const miPedido = ++pedido.current
@@ -82,11 +102,21 @@ export default function Chat({
     const audio = new Audio(urlAudioPaciente(sessionId, contenido))
     audioRef.current = audio
 
+    audio.onplay = () => {
+      if (pedido.current === miPedido) onVozEstado?.(true)
+    }
+    audio.onpause = () => {
+      if (pedido.current === miPedido) onVozEstado?.(false)
+    }
     audio.onended = () => {
-      if (pedido.current === miPedido) setReproduciendoIdx(null)
+      if (pedido.current === miPedido) {
+        onVozEstado?.(false)
+        setReproduciendoIdx(null)
+      }
     }
     audio.onerror = () => {
       if (pedido.current === miPedido) {
+        onVozEstado?.(false)
         setReproduciendoIdx(null)
         setCargandoAudioIdx(null)
         setErrorVoz('No se pudo reproducir la voz.')
@@ -106,6 +136,7 @@ export default function Chat({
           if (pedido.current === miPedido) {
             setCargandoAudioIdx(null)
             setReproduciendoIdx(null)
+            onVozEstado?.(false)
             if (err.name === 'NotAllowedError') {
               setErrorVoz('Pulsa el botón de volumen para escuchar al paciente.')
             }
@@ -128,10 +159,12 @@ export default function Chat({
 
   function enviar(e) {
     e.preventDefault()
-    const t = texto.trim()
-    if (!t || enviando || limiteAlcanzado) return
+    const t = (texto || provisional).trim()
+    if (!t || enviando || limiteAlcanzado || sinEnvio) return
     desbloquearAudioNavegador()
+    if (dictado.escuchando) dictado.detener()
     setTexto('')
+    setProvisional('')
     onSend(t)
   }
 
@@ -169,6 +202,7 @@ export default function Chat({
               onClick={() => {
                 if (audioRef.current) {
                   audioRef.current.pause()
+                  onVozEstado?.(false)
                   setReproduciendoIdx(null)
                 }
                 setAutoVoz((v) => !v)
@@ -196,11 +230,12 @@ export default function Chat({
             <div key={i} className={`msg ${m.role === 'user' ? 'yo' : 'paciente'}`}>
               <div className="msg-header">
                 <span className="quien">{m.role === 'user' ? 'Tú' : nombre}</span>
-                {m.role === 'assistant' && m.content && (
+                {m.ejemplo && <span className="tag-ejemplo" title="Mensaje de ejemplo de la vista previa: no se envió">ejemplo</span>}
+                {m.role === 'assistant' && (m.voz || m.content) && (
                   <button
                     type="button"
                     className={`btn-audio-msg ${reproduciendoIdx === i ? 'sonando' : ''}`}
-                    onClick={() => reproducirAudio(m.content, i)}
+                    onClick={() => reproducirAudio(m.voz || m.content, i)}
                     title={reproduciendoIdx === i ? 'Pausar audio' : 'Escuchar respuesta'}
                     disabled={cargandoAudioIdx === i}
                   >
@@ -209,9 +244,17 @@ export default function Chat({
                 )}
               </div>
               <p>
-                {m.role === 'user'
-                  ? m.content || '…'
-                  : renderWithGlossaryTips(m.content) || '…'}
+                {m.role === 'user' ? (
+                  m.content || '…'
+                ) : m.content ? (
+                  renderWithGlossaryTips(m.content)
+                ) : (
+                  <span className="escribiendo" aria-label="El paciente está respondiendo">
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                  </span>
+                )}
               </p>
             </div>
           ))}
@@ -239,15 +282,58 @@ export default function Chat({
           </div>
         )}
 
+        {dictado.error && (
+          <div className="error mic-error" role="alert">
+            {dictado.error}
+          </div>
+        )}
+
         <form className="entrada" onSubmit={enviar}>
           <input
-            value={texto}
-            onChange={(e) => setTexto(e.target.value)}
-            placeholder={limiteAlcanzado ? 'Límite alcanzado. Pulsa Terminar y diagnosticar.' : 'Escribe tu pregunta al paciente…'}
+            value={texto || provisional}
+            onChange={(e) => {
+              setTexto(e.target.value)
+              setProvisional('')
+            }}
+            placeholder={
+              sinEnvio
+                ? 'Vista previa: el paciente no responde sin el modelo de lenguaje'
+                : dictado.escuchando
+                ? 'Escuchando tu voz… habla claro al micrófono'
+                : limiteAlcanzado
+                ? 'Límite alcanzado. Pulsa Terminar y diagnosticar.'
+                : 'Escribe tu pregunta o usa el micrófono…'
+            }
             maxLength={1000}
-            disabled={enviando || limiteAlcanzado}
+            disabled={enviando || limiteAlcanzado || sinEnvio}
+            className={provisional ? 'texto-provisional' : ''}
             autoFocus
           />
+
+          {dictado.soportado && !sinEnvio && (
+            <button
+              type="button"
+              className={`btn btn-mic ${dictado.escuchando ? 'grabando' : ''}`}
+              onClick={() => {
+                if (dictado.escuchando) {
+                  dictado.detener()
+                } else {
+                  if (audioRef.current) {
+                    audioRef.current.pause()
+                    onVozEstado?.(false)
+                    setReproduciendoIdx(null)
+                  }
+                  dictado.iniciar()
+                }
+              }}
+              disabled={enviando || reproduciendoIdx !== null || limiteAlcanzado}
+              aria-pressed={dictado.escuchando}
+              title={dictado.escuchando ? 'Detener dictado' : 'Hablar con el paciente (micrófono)'}
+            >
+              {dictado.escuchando ? '⏹ Escuchando…' : '🎤 Hablar'}
+            </button>
+          )}
+
           {pistasPermitidas && onPedirPista && (
             <button
               type="button"
@@ -259,7 +345,7 @@ export default function Chat({
               {cargandoPista ? 'Pidiendo…' : textoBotonPista}
             </button>
           )}
-          <button className="btn primary" disabled={enviando || !texto.trim() || limiteAlcanzado}>
+          <button className="btn primary" disabled={enviando || !(texto || provisional).trim() || limiteAlcanzado || sinEnvio}>
             Enviar
           </button>
         </form>

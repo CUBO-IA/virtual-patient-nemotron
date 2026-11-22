@@ -65,10 +65,36 @@ export async function enviarMensaje(sessionId, message, onToken, onDone) {
   }
 }
 
-export async function terminarConsulta(sessionId, diagnostico, diferenciales = null) {
+export async function obtenerCatalogoPruebas() {
+  const r = await fetch('/api/catalogo/pruebas')
+  if (!r.ok) throw await apiError(r)
+  return r.json()
+}
+
+export async function obtenerFormulario() {
+  const r = await fetch('/api/catalogo/formulario')
+  if (!r.ok) throw await apiError(r)
+  return r.json()
+}
+
+/** Solicita pruebas (tanda «todo o nada»). Una prueba repetida no cuesta ni cuenta de nuevo. */
+export async function pedirPruebas(sessionId, ids) {
+  const r = await fetch(`/api/sessions/${sessionId}/pruebas`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ids }),
+  })
+  if (!r.ok) throw await apiError(r)
+  return r.json()
+}
+
+export async function terminarConsulta(sessionId, diagnostico, diferenciales = null, plan = null) {
   const body = { diagnostico_estudiante: diagnostico }
   if (diferenciales) {
     body.diferenciales = diferenciales
+  }
+  if (plan) {
+    body.plan = plan
   }
   const r = await fetch(`/api/sessions/${sessionId}/finish`, {
     method: 'POST',

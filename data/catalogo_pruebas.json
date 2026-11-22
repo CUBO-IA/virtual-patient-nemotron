@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "categorias": ["Laboratorio", "Imagen", "Rápidas", "Otras"],
+  "pruebas": [
+    {
+      "id": "hemograma",
+      "nombre": "Hemograma completo",
+      "categoria": "Laboratorio",
+      "nivel_atencion": "primer_nivel",
+      "costo": 1,
+      "nota": "Recuento de glóbulos rojos, blancos y plaquetas con fórmula diferencial."
+    },
+    {
+      "id": "quimica_sanguinea",
+      "nombre": "Química sanguínea (glucosa, creatinina, urea)",
+      "categoria": "Laboratorio",
+      "nivel_atencion": "primer_nivel",
+      "costo": 1,
+      "nota": "Evaluación de función renal básica y nivel de glucosa en sangre."
+    },
+    {
+      "id": "glucosa_capilar",
+      "nombre": "Glucosa capilar (glucometría)",
+      "categoria": "Rápidas",
+      "nivel_atencion": "primer_nivel",
+      "costo": 1,
+      "nota": "Determinación inmediata de glicemia capilar en punto de atención."
+    },
+    {
+      "id": "ego",
+      "nombre": "Examen general de orina (EGO)",
+      "categoria": "Laboratorio",
+      "nivel_atencion": "primer_nivel",
+      "costo": 1,
+      "nota": "Análisis físico, químico y sedimento microscópico de orina."
+    },
+    {
+      "id": "perfil_lipidico",
+      "nombre": "Perfil lipídico completo",
+      "categoria": "Laboratorio",
+      "nivel_atencion": "primer_nivel",
+      "costo": 1,
+      "nota": "Colesterol total, triglicéridos, colesterol HDL y LDL."
+    },
+    {
+      "id": "transaminasas",
+      "nombre": "Transaminasas (TGO / AST, TGP / ALT)",
+      "categoria": "Laboratorio",
+      "nivel_atencion": "primer_nivel",
+      "costo": 1,
+      "nota": "Enzimas marcadoras de inflamación e indemnidad hepatocelular."
+    },
+    {
+      "id": "electrolitos",
+      "nombre": "Electrolitos séricos (sodio, potasio, cloro)",
+      "categoria": "Laboratorio",
+      "nivel_atencion": "hospital",
+      "costo": 2,
+      "nota": "Concentración sérica de electrolitos para balance hidroelectrolítico."
+    },
+    {
+      "id": "gasometria",
+      "nombre": "Gasometría arterial",
+      "categoria": "Laboratorio",
+      "nivel_atencion": "hospital",
+      "costo": 2,
+      "nota": "Medición de pH, presión parcial de O2 y CO2, y bicarbonato sérico."
+    },
+    {
+      "id": "examen_heces",
+      "nombre": "Examen general de heces (coprológico)",
+      "categoria": "Laboratorio",
+      "nivel_atencion": "primer_nivel",
+      "costo": 1,
+      "nota": "Inspección macro y microscópica de heces: parásitos y polimorfonucleares."
+    },
+    {
+      "id": "coprocultivo",
+      "nombre": "Coprocultivo",
+      "categoria": "Laboratorio",
+      "nivel_atencion": "hospital",
+      "costo": 2,
+      "nota": "Aislamiento e identificación bacteriana en muestra fecal."
+    },
+    {
+      "id": "hemocultivo",
+      "nombre": "Hemocultivos seriados",
+      "categoria": "Laboratorio",
+      "nivel_atencion": "hospital",
+      "costo": 3,
+      "nota": "Cultivo de sangre para detección de bacteriemia o sepsis."
+    },
+    {
+      "id": "rx_torax",
+      "nombre": "Radiografía de tórax (PA)",
+      "categoria": "Imagen",
+      "nivel_atencion": "hospital",
+      "costo": 2,
+      "nota": "Proyección posteroanterior para valorar campos pulmonares y silueta cardíaca."
+    },
+    {
+      "id": "rx_columna_cervical",
+      "nombre": "Radiografía de columna cervical (AP y Lateral)",
+      "categoria": "Imagen",
+      "nivel_atencion": "hospital",
+      "costo": 2,
+      "nota": "Proyecciones ortogonales para descartar fracturas o luxaciones vertebrales."
+    },
+    {
+      "id": "ecografia_abdominal",
+      "nombre": "Ecografía abdominal completa",
+      "categoria": "Imagen",
+      "nivel_atencion": "hospital",
+      "costo": 2,
+      "nota": "Visualización por ultrasonido de hígado, vesícula, riñones y líquido libre."
+    },
+    {
+      "id": "ecg",
+      "nombre": "Electrocardiograma de 12 derivaciones",
+      "categoria": "Otras",
+      "nivel_atencion": "primer_nivel",
+      "costo": 1,
+      "nota": "Trazado electrofisiológico de la actividad eléctrica del miocardio."
+    },
+    {
+      "id": "tac_craneo",
+      "nombre": "Tomografía axial computarizada (TAC) de cráneo simple",
+      "categoria": "Imagen",
+      "nivel_atencion": "hospital",
+      "costo": 3,
+      "nota": "Estudio tomográfico cerebral para descartar hemorragia o masa intracraneal."
+    },
+    {
+      "id": "prueba_dengue",
+      "nombre": "Prueba rápida de dengue (Antígeno NS1 y anticuerpos IgM/IgG)",
+      "categoria": "Rápidas",
+      "nivel_atencion": "primer_nivel",
+      "costo": 1,
+      "nota": "Inmunoensayo cromatográfico rápido para infección por flavivirus."
+    },
+    {
+      "id": "gota_gruesa",
+      "nombre": "Gota gruesa y frotis de sangre periférica",
+      "categoria": "Rápidas",
+      "nivel_atencion": "primer_nivel",
+      "costo": 1,
+      "nota": "Examen microscópico para búsqueda de hemoparásitos."
+    },
+    {
+      "id": "prueba_vih",
+      "nombre": "Prueba rápida de VIH (anticuerpos)",
+      "categoria": "Rápidas",
+      "nivel_atencion": "primer_nivel",
+      "costo": 1,
+      "nota": "Prueba rápida cualitativa de tamizaje para VIH-1 y VIH-2."
+    },
+    {
+      "id": "prueba_embarazo",
+      "nombre": "Prueba de embarazo en orina (hCG cualitativa)",
+      "categoria": "Rápidas",
+      "nivel_atencion": "primer_nivel",
+      "costo": 1,
+      "nota": "Detección rápida de subunidad beta de gonadotropina coriónica."
+    },
+    {
+      "id": "pcr",
+      "nombre": "Proteína C Reactiva (PCR) cuantitativa",
+      "categoria": "Laboratorio",
+      "nivel_atencion": "primer_nivel",
+      "costo": 1,
+      "nota": "Reactante de fase aguda sensible a procesos infecciosos e inflamatorios."
+    },
+    {
+      "id": "tsh",
+      "nombre": "Hormona estimulante de tiroides (TSH)",
+      "categoria": "Laboratorio",
+      "nivel_atencion": "primer_nivel",
+      "costo": 1,
+      "nota": "Determinación sérica para tamizaje de disfunción tiroidea."
+    }
+  ]
+}

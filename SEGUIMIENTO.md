@@ -2,7 +2,12 @@
 
 Diseño de tres módulos que completan el ciclo clínico de Paciente Virtual: **pedir pruebas**, **indicar un plan de tratamiento** y **ver la evolución del paciente en un control**. Escrito para que una persona o Codex lo implemente con este archivo, `AGENTS.md`, `NIVELES.md` y el código del repo.
 
-- **Estado:** propuesta; nada implementado.
+- **Estado:** implementado (v1). Backend, interfaz y pruebas automáticas listos; los casos siguen **sin validar clínicamente**, así que los módulos solo se activan con `SEGUIMIENTO_DEMO=true`. Diferencias con lo propuesto abajo:
+  - Se añadió `GET /api/catalogo/formulario` (la interfaz lo necesita para el plan) y `seguimiento_demo` en `/api/health`.
+  - `niveles.json` guarda además `pesos_sin_modulos` (los pesos clásicos), para que con los módulos apagados el puntaje sea exactamente el de antes.
+  - El control es un texto pregrabado; todavía no se reproduce con la voz del paciente ni hay conversación de control (fases 6 y 7).
+  - Las dosis, frecuencias y duraciones son informativas: no se puntúan.
+  - Los 8 casos tienen `revision_clinica.estado = "pendiente"`; **no hay ningún revisor registrado**.
 - **Depende de:** el sistema de niveles ya presente en el código (`data/niveles.json`, `backend/app/niveles.py`, puntaje con `desglose`).
 - **Requisito clínico:** un médico o docente debe validar todo el contenido médico (§11). Sin eso, los módulos no se activan en ningún caso (§4.5).
 

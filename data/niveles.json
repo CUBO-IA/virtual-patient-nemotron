@@ -6,40 +6,58 @@
       "id": 1,
       "nombre": "Básico",
       "lema": "Guiado",
-      "descripcion": "Con guía de anamnesis y pistas gratis. Ideal para empezar.",
+      "descripcion": "Con guía de anamnesis, pistas gratis y pruebas sin límite de solicitud.",
       "casos": { "dificultad_max": 1, "peso_dificultad_igual": 2 },
       "guia_anamnesis": true,
       "pistas": { "permitidas": true, "penalizacion": 0, "max": null },
       "max_preguntas": null,
       "actitud_paciente": "colaborador",
       "diferenciales_requeridos": 0,
-      "pesos": { "checklist": 60, "diagnostico": 30, "banderas": 10, "diferenciales": 0 }
+      "modulos": {
+        "pruebas": { "habilitado": true, "max": null, "mostrar_costo": false, "presupuesto": null },
+        "plan": { "habilitado": true, "bloquea_aprobado_si_contraindicado": false },
+        "seguimiento": { "habilitado": true }
+      },
+      "pesos": { "checklist": 40, "diagnostico": 25, "banderas": 5, "diferenciales": 0, "pruebas": 10, "plan": 20 },
+      "pesos_sin_modulos": { "checklist": 60, "diagnostico": 30, "banderas": 10, "diferenciales": 0 }
     },
     {
       "id": 2,
       "nombre": "Intermedio",
       "lema": "Autónomo",
-      "descripcion": "Sin guía. Las pistas restan puntos y tienes 25 preguntas.",
+      "descripcion": "Sin guía. Pistas con costo, 25 preguntas y hasta 6 pruebas diagnósticas.",
       "casos": { "dificultad_max": 2, "peso_dificultad_igual": 2 },
       "guia_anamnesis": false,
       "pistas": { "permitidas": true, "penalizacion": 0.5, "max": null },
       "max_preguntas": 25,
       "actitud_paciente": "normal",
       "diferenciales_requeridos": 0,
-      "pesos": { "checklist": 60, "diagnostico": 30, "banderas": 10, "diferenciales": 0 }
+      "modulos": {
+        "pruebas": { "habilitado": true, "max": 6, "mostrar_costo": true, "presupuesto": null },
+        "plan": { "habilitado": true, "bloquea_aprobado_si_contraindicado": false },
+        "seguimiento": { "habilitado": true }
+      },
+      "pesos": { "checklist": 35, "diagnostico": 25, "banderas": 5, "diferenciales": 0, "pruebas": 15, "plan": 20 },
+      "pesos_sin_modulos": { "checklist": 60, "diagnostico": 30, "banderas": 10, "diferenciales": 0 }
     },
     {
       "id": 3,
       "nombre": "Avanzado",
       "lema": "Consulta real",
-      "descripcion": "Sin pistas, 15 preguntas, paciente reservado y diagnóstico diferencial.",
+      "descripcion": "Sin pistas, 15 preguntas, presupuesto de pruebas estricto y seguridad clínica obligatoria.",
       "casos": { "dificultad_max": 3, "peso_dificultad_igual": 2 },
       "guia_anamnesis": false,
       "pistas": { "permitidas": false, "penalizacion": 0, "max": 0 },
       "max_preguntas": 15,
       "actitud_paciente": "reservado",
       "diferenciales_requeridos": 2,
-      "pesos": { "checklist": 45, "diagnostico": 25, "banderas": 20, "diferenciales": 10 }
+      "modulos": {
+        "pruebas": { "habilitado": true, "max": 4, "mostrar_costo": true, "presupuesto": 6 },
+        "plan": { "habilitado": true, "bloquea_aprobado_si_contraindicado": true },
+        "seguimiento": { "habilitado": true }
+      },
+      "pesos": { "checklist": 25, "diagnostico": 20, "banderas": 10, "diferenciales": 5, "pruebas": 15, "plan": 25 },
+      "pesos_sin_modulos": { "checklist": 45, "diagnostico": 25, "banderas": 20, "diferenciales": 10 }
     }
   ],
   "desbloqueo": { "ventana": 3, "promedio_minimo": 70, "diagnosticos_correctos_minimos": 2 },

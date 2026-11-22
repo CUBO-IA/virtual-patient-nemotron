@@ -5,8 +5,8 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response, StreamingResponse
 
-from . import assign, avatars, config, evaluate, habla, llm, niveles, prompts, rag, sessions, tts_service
-from .models import ChatIn, FinishIn, SessionCreateIn
+from . import assign, avatars, config, evaluate, habla, llm, niveles, prompts, rag, seguimiento, sessions, tts_service
+from .models import ChatIn, FinishIn, PruebasRequestIn, SessionCreateIn
 
 app = FastAPI(title="Paciente Virtual")
 app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS, allow_methods=["*"], allow_headers=["*"])
@@ -35,8 +35,28 @@ async def health():
         info.update(datos=False, error=str(e))
     info["rag"] = await rag.health()
     info["niveles"] = niveles.health()
+    info["catalogos"] = seguimiento.catalogos_ok()
+    info["seguimiento_demo"] = config.SEGUIMIENTO_DEMO
     info["ok"] = info["ollama"] and info["modelo_disponible"] and info["datos"] and info["niveles"]
     return info
+
+
+@app.get("/api/catalogo/pruebas")
+async def catalogo_pruebas():
+    """Catálogo único para todos los casos. No indica qué prueba es pertinente en cada uno."""
+    try:
+        return seguimiento.catalogo_pruebas_publico()
+    except Exception as e:
+        raise HTTPException(503, f"No se pudo cargar el catálogo de pruebas: {e}")
+
+
+@app.get("/api/catalogo/formulario")
+async def catalogo_formulario():
+    """Medicamentos, indicaciones y disposiciones para el plan de tratamiento."""
+    try:
+        return seguimiento.formulario_publico()
+    except Exception as e:
+        raise HTTPException(503, f"No se pudo cargar el formulario: {e}")
 
 
 @app.get("/api/niveles")
@@ -91,7 +111,32 @@ async def crear_sesion(body: SessionCreateIn | None = None):
             "guia_anamnesis": guia,
             "diferenciales_requeridos": cfg_nivel.get("diferenciales_requeridos", 0),
         },
+        # Qué módulos de SEGUIMIENTO.md están activos en esta sesión (nada del contenido del caso).
+        "modulos": {
+            "pruebas": s.modulos_activos.get("pruebas") or False,
+            "plan": bool(s.modulos_activos.get("plan")),
+            "seguimiento": bool(s.modulos_activos.get("seguimiento")),
+        },
+        "revision_clinica": seguimiento.resumen_revision(caso),
     }
+
+
+@app.get("/api/sessions/{session_id}/pruebas")
+async def ver_pruebas(session_id: str):
+    """Pruebas ya obtenidas (sirve para recuperarlas al recargar la página)."""
+    s = _get_session(session_id)
+    if not s.modulos_activos.get("pruebas"):
+        raise HTTPException(404, "Este caso no incluye pruebas.")
+    return seguimiento.estado_pruebas(s)
+
+
+@app.post("/api/sessions/{session_id}/pruebas")
+async def pedir_pruebas(session_id: str, body: PruebasRequestIn):
+    s = _get_session(session_id)
+    try:
+        return seguimiento.solicitar_pruebas(s, body.ids)
+    except seguimiento.SeguimientoError as e:
+        raise HTTPException(e.status, e.mensaje)
 
 
 @app.post("/api/sessions/{session_id}/chat")
@@ -115,15 +160,24 @@ async def chat(session_id: str, body: ChatIn):
 
     async def gen():
         partial: list[str] = []
+        crudo: list[str] = []
         nivel = habla.nivel_aspiracion(s.persona)
         try:
             tok_stream = llm.stream_chat(prompts.mensajes_paciente(s.persona, s.caso, s.mensajes, nivel=s.nivel))
-            async for tok in habla.aspirar_stream(tok_stream, nivel):
+
+            async def tap(stream):
+                async for tok in stream:
+                    crudo.append(tok)
+                    yield tok
+
+            async for tok in habla.aspirar_stream(tap(tok_stream), nivel):
                 partial.append(tok)
                 yield _sse({"token": tok})
 
+            texto_limpio = "".join(crudo).strip()
             done_payload = {
                 "done": True,
+                "texto_original": texto_limpio,
                 "preguntas": {
                     "usadas": s.preguntas_usadas,
                     "max": s.nivel.get("max_preguntas"),
@@ -137,9 +191,13 @@ async def chat(session_id: str, body: ChatIn):
         except llm.LLMError as e:
             yield _sse({"error": str(e)}, event="error")
         finally:
-            respuesta = "".join(partial).strip()
-            if respuesta:
-                s.mensajes.append({"role": "assistant", "content": respuesta})
+            respuesta_cruda = "".join(crudo).strip()
+            respuesta_aspirada = "".join(partial).strip()
+            if respuesta_cruda:
+                # Se guarda en el historial el texto original para no contaminar el contexto del modelo (§7)
+                s.mensajes.append({"role": "assistant", "content": respuesta_cruda})
+            elif respuesta_aspirada:
+                s.mensajes.append({"role": "assistant", "content": respuesta_aspirada})
             elif len(s.mensajes) == n_antes:
                 s.mensajes.pop()  # sin respuesta: se quita la pregunta para no dejar el historial inconsistente
             s.unlock()
@@ -285,9 +343,17 @@ async def terminar(session_id: str, body: FinishIn):
         if any(evaluate.norm(d) == dx_ppal_norm for d in difs_limpios):
             raise HTTPException(422, "Un diagnóstico diferencial no puede ser idéntico al diagnóstico principal.")
 
+    # Plan de tratamiento: obligatorio solo si el módulo está activo; si no, se ignora.
+    plan = None
+    if s.modulos_activos.get("plan"):
+        try:
+            plan = seguimiento.validar_plan(body.plan.model_dump() if body.plan else None)
+        except seguimiento.SeguimientoError as e:
+            raise HTTPException(e.status, e.mensaje)
+
     s.lock()
     try:
-        s.result = await evaluate.evaluar(s, body.diagnostico_estudiante.strip(), body.diferenciales)
+        s.result = await evaluate.evaluar(s, body.diagnostico_estudiante.strip(), body.diferenciales, plan)
         s.finished = True
     finally:
         s.unlock()

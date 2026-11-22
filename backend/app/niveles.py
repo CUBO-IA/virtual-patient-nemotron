@@ -26,6 +26,10 @@ def cargar_niveles() -> dict:
         pesos = n.get("pesos", {})
         if sum(pesos.values()) != 100:
             raise ValueError(f"Los pesos del nivel {n.get('id')} deben sumar 100")
+        # Pesos que se usan cuando los módulos de pruebas y plan no aplican (puntaje clásico).
+        legacy = n.get("pesos_sin_modulos")
+        if legacy is not None and sum(legacy.values()) != 100:
+            raise ValueError(f"Los pesos_sin_modulos del nivel {n.get('id')} deben sumar 100")
 
     return data
 

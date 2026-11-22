@@ -72,7 +72,9 @@ set "LLM_MODEL=qwen2.5:7b"
 for /f "tokens=1,* delims==" %%a in ('findstr /b /i "LLM_MODEL=" .env') do set "LLM_MODEL=%%b"
 ollama list 2>nul | findstr /i /c:"%LLM_MODEL%" >nul
 if errorlevel 1 (
-    echo [AVISO] El modelo %LLM_MODEL% no esta descargado. Ejecuta: ollama pull %LLM_MODEL%
+    echo [AVISO] No hay modelo de lenguaje: la app abrira en MODO VISTA PREVIA.
+    echo         Podras recorrer toda la interfaz, pero el paciente no respondera.
+    echo         Para activarlo: instala Ollama y ejecuta  ollama pull %LLM_MODEL%
 )
 
 REM 6c. RAG opcional: si RAG_ENABLED=true en .env, levanta Chroma con Docker

@@ -1,10 +1,7 @@
-import { useEffect, useState } from 'react'
 import GlossaryTip from './GlossaryTip.jsx'
+import PacienteAnimado from './PacienteAnimado.jsx'
 
-export default function PatientCard({ paciente, motivo, ver, onToggle }) {
-  const [imgFalla, setImgFalla] = useState(false)
-  useEffect(() => setImgFalla(false), [paciente.avatar_url])
-
+export default function PatientCard({ paciente, motivo, ver, onToggle, estado, expresion }) {
   return (
     <aside className="panel card">
       <h2>Paciente</h2>
@@ -22,7 +19,7 @@ export default function PatientCard({ paciente, motivo, ver, onToggle }) {
 
       {ver && (
         <div className="datos">
-          {!imgFalla && <img src={paciente.avatar_url} alt={`Avatar de ${paciente.nombre}`} onError={() => setImgFalla(true)} />}
+          <PacienteAnimado paciente={paciente} estado={estado} expresion={expresion} />
           <dl>
             <dt>Nombre</dt><dd>{paciente.nombre}</dd>
             <dt>Edad</dt><dd>{paciente.edad} años</dd>

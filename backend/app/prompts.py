@@ -56,11 +56,13 @@ def mensajes_paciente(persona: dict, caso: dict, historial: list[dict], nivel: d
 
 SYSTEM_FEEDBACK = (
     "Eres un docente de medicina. Das retroalimentación breve, amable y concreta a un estudiante, "
-    "en español, en un máximo de 4 frases. Usa solo los datos que se te dan; no inventes datos clínicos."
+    "en español, en un máximo de 6 frases. Usa solo los datos que se te dan; no inventes datos clínicos. "
+    "No recomiendes medicamentos, dosis ni pruebas que no aparezcan en los datos. "
+    "Si hay alertas de seguridad, menciónalas primero y con claridad."
 )
 
 
-def user_feedback(caso: dict, dx_estudiante: str, correcto: bool, cumplidos: list[str], faltantes: list[str], banderas_faltantes: list[str], citas: list[dict] | None = None) -> str:
+def user_feedback(caso: dict, dx_estudiante: str, correcto: bool, cumplidos: list[str], faltantes: list[str], banderas_faltantes: list[str], citas: list[dict] | None = None, extra: str = "") -> str:
     citas_texto = ""
     if citas:
         lineas = [f"- [{c.get('fuente', 'Guía')}]: {c.get('fragmento', '')}" for c in citas]
@@ -73,5 +75,6 @@ def user_feedback(caso: dict, dx_estudiante: str, correcto: bool, cumplidos: lis
         f"Temas que no exploró: {_lista(faltantes)}.\n"
         f"Banderas rojas que no exploró: {_lista(banderas_faltantes)}.\n"
         f"{citas_texto}"
-        "Escribe la retroalimentación para el estudiante."
+        + (f"{extra}\n" if extra else "")
+        + "Escribe la retroalimentación para el estudiante."
     )

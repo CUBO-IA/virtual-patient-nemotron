@@ -20,6 +20,7 @@ Simulador de entrevistas clínicas para estudiantes de medicina. El estudiante c
 | Pistas | Tres niveles de pista sin revelar el diagnóstico; cada una resta puntos. |
 | Glosario | Términos médicos con ayuda emergente (35 términos). |
 | Evaluación | Puntaje 0-100, diagnóstico real, qué preguntaste y qué faltó, señales de alarma y retroalimentación del modelo. |
+| Pruebas, plan y control | Módulos opcionales: pides pruebas (hemograma, radiografía…), indicas un plan de tratamiento y ves cómo evoluciona el paciente a los N días. **Solo se activan en casos validados por un profesional de la salud** (ver más abajo). |
 | RAG (opcional) | Con guías clínicas cargadas, la evaluación cita fragmentos de referencia. |
 
 ## Cómo funciona
@@ -97,6 +98,7 @@ npm run dev
 | `EMBED_MODEL` | `bge-m3` | Modelo de embeddings (solo RAG). |
 | `CHROMA_URL` | `http://localhost:8001` | Dónde está Chroma (solo RAG). |
 | `PENALIZACION_PISTA` | `0.5` | Puntos que resta cada pista. |
+| `SEGUIMIENTO_DEMO` | `false` | Activa pruebas, plan y control aunque el caso **no** esté validado. Solo para demostraciones: la interfaz muestra «Contenido sin validar clínicamente». |
 | `CORS_ORIGINS` | `http://localhost:5173` | Orígenes permitidos por el backend. |
 
 ## RAG con Docker (opcional)
@@ -140,12 +142,31 @@ Ollama y Docker trabajan en segundo plano; para que el público los vea, abre es
 
 La insignia junto al título de la app (● En línea / Sin LLM) indica si el modelo responde.
 
+## Módulos clínicos: pruebas, plan y control
+
+Cierran el ciclo clínico después de la entrevista. Detalle del diseño en [SEGUIMIENTO.md](SEGUIMIENTO.md).
+
+1. **Pruebas:** una pestaña junto al chat con un catálogo único (22 pruebas, el mismo para todos los casos). Cada resultado sale de datos escritos, nunca lo inventa el modelo. Algunos niveles limitan la cantidad o el costo.
+2. **Plan de tratamiento:** al terminar, tras el diagnóstico, eliges disposición, medicamentos e indicaciones. Se compara con un plan esperado; un medicamento contraindicado genera una **alerta de seguridad** y, en el nivel Avanzado, impide aprobar. Las dosis son informativas (no se puntúan).
+3. **Control:** el paciente vuelve y cuenta cómo evolucionó según lo que decidiste (mejora, mejora parcial o empeora). Es un texto pregrabado elegido por reglas.
+
+**Importante:** estos módulos solo se activan en un caso con `revision_clinica.estado: "validado"` y un revisor real (`revisado_por`, `fecha`, `fuente`). Hoy los 8 casos están en `pendiente`: el contenido clínico lo redactó una IA y **nadie lo ha revisado**. Por eso, por defecto, la aplicación funciona como antes (entrevista, diagnóstico y puntaje clásico).
+
+Para demostrarlos antes de tener revisión médica:
+
+```powershell
+# en .env
+SEGUIMIENTO_DEMO=true
+```
+
+Con eso aparecen la pestaña «Pruebas» y el paso del plan, con el aviso visible de contenido sin validar. Cuando un médico revise un caso, cambia su `revision_clinica` a `validado` con su nombre, fecha y la guía en la que se basó; el validador (`scripts\validate_casos.py`) rechaza `validado` sin esos datos.
+
 ## Pruebas y validaciones
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r backend\requirements-dev.txt
 .\.venv\Scripts\python.exe scripts\validate_casos.py          # integridad de los 8 casos
-.\.venv\Scripts\python.exe -m pytest backend\tests -q         # 31 pruebas (no necesitan Ollama)
+.\.venv\Scripts\python.exe -m pytest backend\tests -q         # ~130 pruebas (no necesitan Ollama)
 cd frontend; npm run build                                     # compila el frontend
 ```
 
@@ -168,11 +189,28 @@ Las pruebas incluyen que ni la API ni el prompt del paciente expongan el diagnó
 └─ frontend/src/                React: chat, ficha del paciente, resultados
 ```
 
+## Modo vista previa (sin Ollama)
+
+Pensado para quien solo necesita **ver o editar la interfaz** (diseño, textos, estilos) en un equipo sin Ollama ni GPU. Si el servidor no encuentra Ollama o el modelo, la app abre sola en modo vista previa:
+
+- Aparece la insignia «Vista previa» y un banner azul con el motivo y un botón **Reintentar conexión**.
+- Se puede recorrer **todo**: selector de niveles, ficha del paciente, pestaña de pruebas, plan de tratamiento, resultados y progreso. También funcionan las pistas.
+- **Solo se bloquea el envío de mensajes:** el campo de texto y el micrófono quedan desactivados.
+- El chat muestra dos mensajes de **ejemplo** (marcados «ejemplo», que no se envían ni cuentan como preguntas), para ver cómo se ven las burbujas. «Terminar y diagnosticar» queda habilitado.
+- La evaluación funciona igual, con la retroalimentación automática en lugar de la del modelo.
+
+Cómo arrancarlo en un equipo sin Ollama: `iniciar.bat` (avisa y sigue), o a mano el backend y el frontend como en [Ejecución manual](#ejecución-manual). Las voces y los avatares siguen necesitando internet.
+
+Otras formas de usarlo:
+
+- **Forzarlo aunque haya Ollama:** abre `http://localhost:5173/?vista_previa=1`.
+- **Dos backends a la vez** (por ejemplo, uno sin Ollama para probar este modo): en PowerShell, `$env:API_TARGET="http://localhost:8010"; npm run dev -- --port 5180` hace que ese frontend use ese backend.
+
 ## Solución de problemas
 
 | Síntoma | Qué hacer |
 |---|---|
-| Aviso «Ollama no está disponible» | Abre Ollama o ejecuta `ollama serve`. |
+| Insignia «Vista previa» y banner azul | No hay Ollama o falta el modelo: abre Ollama o ejecuta `ollama serve` y pulsa «Reintentar conexión». Ver [Modo vista previa](#modo-vista-previa-sin-ollama). |
 | Aviso «El modelo … no está descargado» | `ollama pull qwen2.5:7b`. |
 | El paciente responde lento | Cierra programas que usen la GPU; prueba `LLM_MODEL=qwen2.5:3b` o `NUM_CTX=2048`. |
 | No suena la voz o no carga el avatar | Revisa tu conexión a internet; ambos son servicios externos. |

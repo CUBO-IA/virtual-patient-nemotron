@@ -164,3 +164,11 @@ Variables en `.env` (ver `.env.example`): `OLLAMA_URL, LLM_MODEL, EMBED_MODEL, C
 **Tests:** `pytest` pasa; incluye prueba de que `/api/sessions` y `/chat` no exponen campos ocultos.
 **RAG (si se hace):** con Chroma arriba y al menos 1 documento ingerido, `/finish` devuelve `citas`; con Chroma caído, devuelve lo mismo sin `citas` y sin error.
 **UI:** el flujo completo sigue funcionando y el aviso de casos ficticios sigue visible.
+
+## 11. Pruebas, plan y control (SEGUIMIENTO.md)
+
+- Los módulos solo se activan si el caso tiene `revision_clinica.estado == "validado"` **con** `revisado_por`, `fecha` y `fuente` reales, o si el servidor corre con `SEGUIMIENTO_DEMO=true` (aviso visible de contenido sin validar).
+- **Nunca marques un caso como `validado` ni inventes un revisor, una fecha o una fuente.** Todo el contenido clínico de pruebas, plan y evolución está hoy en `pendiente`: lo redactó una IA y nadie lo ha revisado. Solo una persona del área de la salud puede cambiar ese estado.
+- El modelo no genera resultados de pruebas, medicamentos, dosis ni evolución: todo sale de `data/casos.json`, `data/catalogo_pruebas.json` y `data/formulario.json`. El modelo solo redacta la retroalimentación sobre listas ya calculadas.
+- `niveles.json` tiene `pesos` (con módulos) y `pesos_sin_modulos` (clásicos). Los dos deben sumar 100.
+- Endpoints nuevos: `GET /api/catalogo/pruebas`, `GET /api/catalogo/formulario`, `GET|POST /api/sessions/{id}/pruebas`; `POST /api/sessions/{id}/finish` acepta `plan`. Nada de `pertinencia`, `plan_esperado` ni `evolucion` sale al cliente antes de `/finish`.

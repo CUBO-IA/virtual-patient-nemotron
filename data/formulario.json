@@ -1,0 +1,195 @@
+{
+  "version": 1,
+  "medicamentos": [
+    {
+      "id": "acetaminofen",
+      "nombre": "Acetaminofén (paracetamol) 500 mg",
+      "grupo": "Analgésico / Antipirético",
+      "vias": ["oral", "intravenosa"],
+      "alias": ["paracetamol", "acetaminofen", "dolex", "tylenol"]
+    },
+    {
+      "id": "ibuprofeno",
+      "nombre": "Ibuprofeno 400 mg",
+      "grupo": "AINE (Antiinflamatorio no esteroideo)",
+      "vias": ["oral"],
+      "alias": ["ibuprofeno", "motrin", "advil"]
+    },
+    {
+      "id": "aspirina",
+      "nombre": "Ácido acetilsalicílico (Aspirina) 100 mg / 500 mg",
+      "grupo": "Antiagregante plaquetario / AINE",
+      "vias": ["oral"],
+      "alias": ["aspirina", "acido acetilsalicilico", "asa"]
+    },
+    {
+      "id": "sales_rehidratacion",
+      "nombre": "Sales de rehidratación oral (SRO)",
+      "grupo": "Electrolitos y rehidratación oral",
+      "vias": ["oral"],
+      "alias": ["suero oral", "sro", "sales de rehidratacion oral", "rehidratacion"]
+    },
+    {
+      "id": "suero_fisiologico_iv",
+      "nombre": "Solución salina normal 0.9% IV",
+      "grupo": "Cristaloides intravenosos",
+      "vias": ["intravenosa"],
+      "alias": ["solucion salina", "ssn", "suero fisiologico", "cloruro de sodio"]
+    },
+    {
+      "id": "lactato_ringer_iv",
+      "nombre": "Solución Hartmann (Lactato Ringer) IV",
+      "grupo": "Cristaloides intravenosos",
+      "vias": ["intravenosa"],
+      "alias": ["hartmann", "lactato ringer", "solucion hartmann"]
+    },
+    {
+      "id": "amoxicilina",
+      "nombre": "Amoxicilina 500 mg",
+      "grupo": "Antibiótico betalactámico (aminopenicilina)",
+      "vias": ["oral"],
+      "alias": ["amoxicilina", "amoxil"]
+    },
+    {
+      "id": "amoxicilina_clavulanico",
+      "nombre": "Amoxicilina + Ácido clavulánico 875/125 mg",
+      "grupo": "Antibiótico betalactámico con inhibidor",
+      "vias": ["oral"],
+      "alias": ["amoxicilina clavulanico", "augmentin", "curam"]
+    },
+    {
+      "id": "ciprofloxacino",
+      "nombre": "Ciprofloxacino 500 mg",
+      "grupo": "Antibiótico fluoroquinolona",
+      "vias": ["oral", "intravenosa"],
+      "alias": ["ciprofloxacino", "cipro"]
+    },
+    {
+      "id": "ceftriaxona",
+      "nombre": "Ceftriaxona 1 g",
+      "grupo": "Cefalosporina de tercera generación",
+      "vias": ["intravenosa", "intramuscular"],
+      "alias": ["ceftriaxona", "rocephin"]
+    },
+    {
+      "id": "metformina",
+      "nombre": "Metformina 850 mg",
+      "grupo": "Antidiabético oral (biguanida)",
+      "vias": ["oral"],
+      "alias": ["metformina", "glucophage"]
+    },
+    {
+      "id": "insulina_nph",
+      "nombre": "Insulina humana NPH",
+      "grupo": "Insulina de acción intermedia",
+      "vias": ["subcutanea"],
+      "alias": ["insulina nph", "nph"]
+    },
+    {
+      "id": "insulina_regular",
+      "nombre": "Insulina regular (cristalina)",
+      "grupo": "Insulina de acción rápida",
+      "vias": ["subcutanea", "intravenosa"],
+      "alias": ["insulina cristalina", "insulina regular"]
+    },
+    {
+      "id": "enalapril",
+      "nombre": "Enalapril 20 mg",
+      "grupo": "Antihipertensivo IECA",
+      "vias": ["oral"],
+      "alias": ["enalapril", "renitec"]
+    },
+    {
+      "id": "amlodipino",
+      "nombre": "Amlodipino 5 mg / 10 mg",
+      "grupo": "Antihipertensivo calcioantagonista",
+      "vias": ["oral"],
+      "alias": ["amlodipino", "norvasc"]
+    },
+    {
+      "id": "captopril",
+      "nombre": "Captopril 25 mg",
+      "grupo": "Antihipertensivo IECA de acción rápida",
+      "vias": ["oral", "sublingual"],
+      "alias": ["captopril", "capoten"]
+    },
+    {
+      "id": "losartan",
+      "nombre": "Losartán 50 mg",
+      "grupo": "Antihipertensivo ARA-II",
+      "vias": ["oral"],
+      "alias": ["losartan", "cozaar"]
+    },
+    {
+      "id": "salbutamol",
+      "nombre": "Salbutamol aerosol 100 mcg/dosis",
+      "grupo": "Broncodilatador agonista beta-2",
+      "vias": ["inhalatoria"],
+      "alias": ["salbutamol", "albuterol", "ventolin"]
+    },
+    {
+      "id": "omeprazol",
+      "nombre": "Omeprazol 20 mg / 40 mg",
+      "grupo": "Inhibidor de la bomba de protones",
+      "vias": ["oral", "intravenosa"],
+      "alias": ["omeprazol", "losec"]
+    },
+    {
+      "id": "ondansetron",
+      "nombre": "Ondansetrón 4 mg / 8 mg",
+      "grupo": "Antiemético antagonista 5-HT3",
+      "vias": ["oral", "intravenosa"],
+      "alias": ["ondansetron", "zofran"]
+    },
+    {
+      "id": "loperamida",
+      "nombre": "Loperamida 2 mg",
+      "grupo": "Antidiarreico opioide",
+      "vias": ["oral"],
+      "alias": ["loperamida", "imodium"]
+    },
+    {
+      "id": "sertralina",
+      "nombre": "Sertralina 50 mg",
+      "grupo": "Antidepresivo ISRS",
+      "vias": ["oral"],
+      "alias": ["sertralina", "zoloft"]
+    },
+    {
+      "id": "fluoxetina",
+      "nombre": "Fluoxetina 20 mg",
+      "grupo": "Antidepresivo ISRS",
+      "vias": ["oral"],
+      "alias": ["fluoxetina", "prozac"]
+    },
+    {
+      "id": "collarin_cervical",
+      "nombre": "Inmovilización con collarín cervical rígido",
+      "grupo": "Dispositivo de soporte y estabilización espinal",
+      "vias": ["topica"],
+      "alias": ["collarin", "collarin cervical", "inmovilizacion cervical"]
+    }
+  ],
+  "indicaciones": [
+    { "id": "hidratacion", "texto": "Hidratación oral abundante con suero o agua" },
+    { "id": "reposo", "texto": "Reposo relativo en cama" },
+    { "id": "signos_alarma", "texto": "Explicar signos de alarma y cuándo consultar de inmediato" },
+    { "id": "control", "texto": "Cita de control en unidad de salud o consulta externa" },
+    { "id": "dieta", "texto": "Plan de alimentación saludable fraccionado y adecuado" },
+    { "id": "evitar_ains", "texto": "Evitar antiinflamatorios no esteroideos (AINEs) y aspirina" },
+    { "id": "aislamiento_mosquitero", "texto": "Uso estricto de mosquitero y repelente" },
+    { "id": "monitoreo_presion", "texto": "Monitoreo y registro domiciliario de presión arterial" },
+    { "id": "monitoreo_glucosa", "texto": "Automonitoreo periódico de glicemia capilar" },
+    { "id": "inmovilizacion_espinal", "texto": "Inmovilización cervical y espinal estricta hasta descartar daño óseo" },
+    { "id": "psicoeducacion", "texto": "Psicoeducación al paciente y familiares de apoyo" },
+    { "id": "vigilancia_suicida", "texto": "Supervisión continua familiar y retiro de objetos potencialmente lesivos" },
+    { "id": "derivacion_salud_mental", "texto": "Referencia para psicoterapia y seguimiento por salud mental" },
+    { "id": "adherencia_tratamiento", "texto": "Educación en adherencia terapéutica y evitar automedicación" }
+  ],
+  "disposiciones": [
+    { "id": "ambulatorio", "texto": "Manejo ambulatorio en el hogar" },
+    { "id": "observacion", "texto": "Observación y reevaluación en la unidad de salud" },
+    { "id": "referencia", "texto": "Referir a segundo nivel / hospital general" },
+    { "id": "emergencia", "texto": "Traslado de emergencia / ingreso hospitalario inmediato" }
+  ]
+}

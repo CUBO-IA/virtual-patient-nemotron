@@ -2,9 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import {
   crearSesion,
   enviarMensaje,
+  obtenerCatalogoPruebas,
+  obtenerFormulario,
   obtenerHealth,
   obtenerNiveles,
   pedirPista,
+  pedirPruebas,
   terminarConsulta,
 } from './api.js'
 import Chat from './components/Chat.jsx'
@@ -13,6 +16,8 @@ import Results from './components/Results.jsx'
 import Disclaimer from './components/Disclaimer.jsx'
 import LevelSelect from './components/LevelSelect.jsx'
 import Progress from './components/Progress.jsx'
+import PruebasPanel from './components/PruebasPanel.jsx'
+import PlanForm, { PLAN_VACIO, planParaEnviar, validarPlan } from './components/PlanForm.jsx'
 import {
   cargarProgreso,
   estaNivelDesbloqueado,
@@ -42,6 +47,20 @@ export default function App() {
   const [pistasUsadas, setPistasUsadas] = useState(0)
   const [guiaCubierta, setGuiaCubierta] = useState([])
 
+  // Animación del paciente y voz (ANIMACIONES.md)
+  const [audioSonando, setAudioSonando] = useState(false)
+  const [escuchando, setEscuchando] = useState(false)
+  const [entrando, setEntrando] = useState(false)
+
+  // Pruebas y plan de tratamiento (SEGUIMIENTO.md)
+  const [tabConsulta, setTabConsulta] = useState('entrevista') // entrevista | pruebas
+  const [catalogoPruebas, setCatalogoPruebas] = useState(null)
+  const [formulario, setFormulario] = useState(null)
+  const [pruebasEstado, setPruebasEstado] = useState(null)
+  const [pidiendoPruebas, setPidiendoPruebas] = useState(false)
+  const [pasoCierre, setPasoCierre] = useState(1) // 1 = diagnóstico, 2 = plan
+  const [plan, setPlan] = useState(PLAN_VACIO)
+
   // Niveles y estado
   const [configNiveles, setConfigNiveles] = useState({ niveles: [], desbloqueo: {} })
   const [nivelSeleccionado, setNivelSeleccionado] = useState(1)
@@ -50,6 +69,10 @@ export default function App() {
   // Health
   const [healthInfo, setHealthInfo] = useState(null)
   const [healthWarning, setHealthWarning] = useState('')
+  // Vista previa: se fuerza con ?vista_previa=1 o se activa sola cuando no hay modelo de lenguaje
+  const [vistaPreviaForzada] = useState(
+    () => new URLSearchParams(window.location.search).get('vista_previa') === '1',
+  )
   const sesionActual = useRef(null)
 
   useEffect(() => {
@@ -58,22 +81,7 @@ export default function App() {
     setModoDemoState(prog.modo_demo)
 
     // Consultar health
-    obtenerHealth()
-      .then((data) => {
-        setHealthInfo(data)
-        if (!data.ollama) {
-          setHealthWarning('Ollama no está disponible (puerto 11434). El paciente virtual no podrá responder hasta que inicies Ollama.')
-        } else if (!data.modelo_disponible) {
-          setHealthWarning(`El modelo «${data.modelo}» no está descargado en Ollama. Ejecuta: ollama pull ${data.modelo}`)
-        } else if (!data.datos) {
-          setHealthWarning('Faltan archivos de datos de pacientes o casos en el servidor.')
-        } else if (!data.niveles) {
-          setHealthWarning('Falta archivo data/niveles.json en el servidor.')
-        }
-      })
-      .catch(() => {
-        setHealthWarning('No se pudo conectar con el servidor backend (FastAPI :8000).')
-      })
+    comprobarHealth()
 
     // Cargar configuración de niveles
     obtenerNiveles()
@@ -87,6 +95,28 @@ export default function App() {
         console.warn('No se pudieron cargar los niveles:', e)
       })
   }, [])
+
+  /** Consulta /api/health. Se usa al abrir la app y en «Reintentar conexión» del modo vista previa. */
+  function comprobarHealth() {
+    setHealthWarning('')
+    return obtenerHealth()
+      .then((data) => {
+        setHealthInfo(data)
+        if (!data.ollama) {
+          setHealthWarning('Ollama no está disponible (puerto 11434).')
+        } else if (!data.modelo_disponible) {
+          setHealthWarning(`El modelo «${data.modelo}» no está descargado en Ollama (ollama pull ${data.modelo}).`)
+        } else if (!data.datos) {
+          setHealthWarning('Faltan archivos de datos de pacientes o casos en el servidor.')
+        } else if (!data.niveles) {
+          setHealthWarning('Falta archivo data/niveles.json en el servidor.')
+        }
+      })
+      .catch(() => {
+        setHealthInfo(null)
+        setHealthWarning('No se pudo conectar con el servidor backend (FastAPI :8000).')
+      })
+  }
 
   function manejarToggleDemo(val) {
     setModoDemoState(val)
@@ -104,7 +134,15 @@ export default function App() {
       const s = await crearSesion(opciones)
       sesionActual.current = s.session_id
       setSesion(s)
-      setMensajes([])
+      // En vista previa no hay modelo: se muestran dos mensajes de ejemplo (solo locales, no se envían)
+      setMensajes(
+        vistaPrevia
+          ? [
+              { role: 'user', content: 'Buenas tardes, ¿qué le trae por aquí?', ejemplo: true },
+              { role: 'assistant', content: s.motivo_consulta, ejemplo: true },
+            ]
+          : [],
+      )
       setVerPaciente(false)
       setDiagnostico('')
       setDiferencial1('')
@@ -115,6 +153,33 @@ export default function App() {
       setGuiaCubierta([])
       setDesbloqueoNuevo(null)
       setEnviando(false)
+      setTabConsulta('entrevista')
+      setPasoCierre(1)
+      setPlan(PLAN_VACIO)
+      setEntrando(true)
+      setTimeout(() => setEntrando(false), 1000)
+
+      // Módulos de pruebas y plan: solo si el caso los activa (validado, o modo demostración del servidor)
+      const cfgPruebas = s.modulos?.pruebas
+      setPruebasEstado(
+        cfgPruebas
+          ? {
+              resultados: [],
+              pruebas_usadas: 0,
+              limite: cfgPruebas.max ?? null,
+              costo_total: 0,
+              presupuesto: cfgPruebas.presupuesto ?? null,
+              presupuesto_restante: cfgPruebas.presupuesto ?? null,
+              mostrar_costo: Boolean(cfgPruebas.mostrar_costo),
+            }
+          : null,
+      )
+      if (cfgPruebas && !catalogoPruebas) {
+        obtenerCatalogoPruebas().then(setCatalogoPruebas).catch((e) => setError(e.message))
+      }
+      if (s.modulos?.plan && !formulario) {
+        obtenerFormulario().then(setFormulario).catch((e) => setError(e.message))
+      }
       setFase('chat')
     } catch (e) {
       setError(e.message)
@@ -143,7 +208,28 @@ export default function App() {
     }
   }
 
+  async function solicitarPrueba(pruebaId) {
+    if (!sesion || pidiendoPruebas) return
+    const id = sesion.session_id
+    setPidiendoPruebas(true)
+    setError('')
+    try {
+      const res = await pedirPruebas(id, [pruebaId])
+      if (sesionActual.current !== id) return
+      setPruebasEstado((prev) => {
+        const nuevos = res.resultados
+        const resto = (prev?.resultados || []).filter((r) => !nuevos.some((n) => n.id === r.id))
+        return { ...res, resultados: [...nuevos, ...resto] }
+      })
+    } catch (e) {
+      if (sesionActual.current === id) setError(e.message)
+    } finally {
+      setPidiendoPruebas(false)
+    }
+  }
+
   async function enviar(texto) {
+    if (vistaPrevia) return // sin modelo de lenguaje no se envían mensajes
     const id = sesion.session_id
     setError('')
     setEnviando(true)
@@ -160,6 +246,13 @@ export default function App() {
           if (sesionActual.current !== id) return
           if (donePayload.guia_cubierta) {
             setGuiaCubierta(donePayload.guia_cubierta)
+          }
+          if (donePayload.texto_original) {
+            setMensajes((m) =>
+              m.map((x, i) =>
+                i === m.length - 1 ? { ...x, voz: donePayload.texto_original } : x
+              )
+            )
           }
         }
       )
@@ -179,29 +272,48 @@ export default function App() {
     }
   }
 
+  const necesitaPlan = Boolean(sesion?.modulos?.plan)
+
+  /** Valida diagnóstico y diferenciales en el cliente. Devuelve la lista de diferenciales (o null) o undefined si hay error. */
+  function validarDiagnostico() {
+    if (!diagnostico.trim()) return undefined
+    const reqDiferenciales = sesion?.nivel?.diferenciales_requeridos || 0
+    if (reqDiferenciales === 0) return null
+
+    const d1 = diferencial1.trim()
+    const d2 = diferencial2.trim()
+    if (!d1 || !d2) {
+      setError('En nivel Avanzado debes ingresar ambos diagnósticos diferenciales.')
+      return undefined
+    }
+    if (d1.toLowerCase() === d2.toLowerCase()) {
+      setError('Los diagnósticos diferenciales no pueden ser repetidos.')
+      return undefined
+    }
+    if (d1.toLowerCase() === diagnostico.trim().toLowerCase() || d2.toLowerCase() === diagnostico.trim().toLowerCase()) {
+      setError('Los diagnósticos diferenciales no pueden ser idénticos al diagnóstico principal.')
+      return undefined
+    }
+    return [d1, d2]
+  }
+
   async function terminar(e) {
     e.preventDefault()
-    if (!diagnostico.trim()) return
+    const difs = validarDiagnostico()
+    if (difs === undefined) return
 
-    const reqDiferenciales = sesion?.nivel?.diferenciales_requeridos || 0
-    let difs = null
-
-    if (reqDiferenciales > 0) {
-      const d1 = diferencial1.trim()
-      const d2 = diferencial2.trim()
-      if (!d1 || !d2) {
-        setError('En nivel Avanzado debes ingresar ambos diagnósticos diferenciales.')
+    // Con el módulo de plan activo, el cierre tiene dos pasos: diagnóstico y luego plan.
+    if (necesitaPlan && pasoCierre === 1) {
+      setError('')
+      setPasoCierre(2)
+      return
+    }
+    if (necesitaPlan) {
+      const msg = validarPlan(plan)
+      if (msg) {
+        setError(msg)
         return
       }
-      if (d1.toLowerCase() === d2.toLowerCase()) {
-        setError('Los diagnósticos diferenciales no pueden ser repetidos.')
-        return
-      }
-      if (d1.toLowerCase() === diagnostico.trim().toLowerCase() || d2.toLowerCase() === diagnostico.trim().toLowerCase()) {
-        setError('Los diagnósticos diferenciales no pueden ser idénticos al diagnóstico principal.')
-        return
-      }
-      difs = [d1, d2]
     }
 
     setCargando(true)
@@ -212,10 +324,16 @@ export default function App() {
     const n3Antes = estaNivelDesbloqueado(3, configNiveles.desbloqueo).desbloqueado
 
     try {
-      const res = await terminarConsulta(sesion.session_id, diagnostico.trim(), difs)
+      const res = await terminarConsulta(
+        sesion.session_id,
+        diagnostico.trim(),
+        difs,
+        necesitaPlan ? planParaEnviar(plan) : null,
+      )
       setResultado(res)
 
       // Guardar consulta en progreso local
+      const d = res.desglose || {}
       registrarConsulta({
         nivel: res.nivel?.id || sesion?.nivel?.id || 1,
         caso_id: res.caso_id,
@@ -224,6 +342,9 @@ export default function App() {
         diagnostico_correcto: res.diagnostico_correcto,
         pistas_usadas: res.pistas_usadas,
         preguntas_usadas: res.preguntas_usadas,
+        pruebas_puntaje: d.pruebas?.maximo > 0 ? d.pruebas.obtenido : null,
+        plan_puntaje: d.plan?.maximo > 0 ? d.plan.obtenido : null,
+        alertas_seguridad: res.plan ? (res.alertas_seguridad || []).length : null,
       })
 
       // Verificar si se desbloqueó un nivel nuevo
@@ -250,6 +371,26 @@ export default function App() {
     }
   }
 
+  // Sin Ollama (o sin el modelo) la app sigue siendo navegable: solo se bloquea el envío de mensajes.
+  const sinLLM = Boolean(healthInfo && (!healthInfo.ollama || !healthInfo.modelo_disponible))
+  const vistaPrevia = vistaPreviaForzada || sinLLM
+
+  const rev = sesion?.revision_clinica
+  const hayModulos = Boolean(sesion?.modulos?.pruebas || sesion?.modulos?.plan)
+
+  // Estado del paciente derivado (ANIMACIONES.md §3)
+  const ultimo = mensajes[mensajes.length - 1]
+  const hayTokens = ultimo?.role === 'assistant' && ((ultimo.content && ultimo.content.length > 0) || (ultimo.voz && ultimo.voz.length > 0))
+  const estadoPaciente =
+    entrando ? 'entrando'
+    : fase === 'resultados' ? 'despedida'
+    : audioSonando ? 'hablando'
+    : enviando ? (hayTokens ? 'hablando' : 'pensando')
+    : escuchando ? 'escuchando'
+    : 'reposo'
+
+  const expresion = /dolor|duele|c[oó]lico|molest/i.test(sesion?.motivo_consulta || '') ? 'dolor' : 'neutral'
+
   return (
     <div className="app">
       <header className="topbar">
@@ -257,14 +398,16 @@ export default function App() {
           <h1>Paciente Virtual</h1>
           {healthInfo && (
             <span
-              className={`status-badge ${healthInfo.ok ? 'ok' : 'warn'}`}
+              className={`status-badge ${healthInfo.ok && !vistaPrevia ? 'ok' : 'warn'}`}
               title={
-                healthInfo.ok
-                  ? `Ollama conectado (${healthInfo.modelo})`
-                  : healthWarning || 'Problema de conexión con Ollama'
+                vistaPrevia
+                  ? 'Modo vista previa: el paciente no responde'
+                  : healthInfo.ok
+                    ? `Ollama conectado (${healthInfo.modelo})`
+                    : healthWarning || 'Problema de conexión con Ollama'
               }
             >
-              ● {healthInfo.ok ? 'En línea' : 'Sin LLM'}
+              ● {vistaPrevia ? 'Vista previa' : healthInfo.ok ? 'En línea' : 'Sin LLM'}
             </span>
           )}
         </div>
@@ -308,7 +451,24 @@ export default function App() {
       </header>
       <Disclaimer />
 
-      {healthWarning && <div className="error" role="alert">{healthWarning}</div>}
+      {vistaPrevia && (
+        <div className="vista-previa-banner" role="status">
+          <div>
+            <strong>Modo vista previa.</strong>{' '}
+            {sinLLM
+              ? `${healthWarning || 'No hay modelo de lenguaje disponible.'} `
+              : 'Activado con ?vista_previa=1. '}
+            Puedes recorrer toda la interfaz (niveles, pruebas, plan y resultados), pero el paciente no responde y no se envían mensajes.
+          </div>
+          {sinLLM && (
+            <button type="button" className="btn" onClick={comprobarHealth}>
+              Reintentar conexión
+            </button>
+          )}
+        </div>
+      )}
+      {/* Sin modelo, el aviso ya es el banner de vista previa; los demás problemas se siguen mostrando como error */}
+      {healthWarning && !sinLLM && <div className="error" role="alert">{healthWarning}</div>}
       {error && <div className="error" role="alert">{error}</div>}
 
       {/* Pantalla 1: Selector de niveles (§6.2) */}
@@ -342,24 +502,74 @@ export default function App() {
             motivo={sesion.motivo_consulta}
             ver={verPaciente}
             onToggle={() => setVerPaciente((v) => !v)}
+            estado={estadoPaciente}
+            expresion={expresion}
           />
 
           <section className="panel main">
+            {hayModulos && rev && (
+              <p className={`revision-aviso ${rev.contenido_sin_validar ? 'sin-validar' : 'validado'}`} role="note">
+                {rev.contenido_sin_validar
+                  ? 'Contenido de pruebas y plan sin validar clínicamente (modo demostración).'
+                  : `Caso validado por ${rev.revisado_por}.`}
+              </p>
+            )}
+
             {fase === 'chat' && (
               <>
-                <Chat
-                  sessionId={sesion.session_id}
-                  mensajes={mensajes}
-                  enviando={enviando}
-                  onSend={enviar}
-                  nombre={sesion.paciente.nombre}
-                  nivel={sesion.nivel}
-                  guiaCubierta={guiaCubierta}
-                  pista={pista}
-                  onPedirPista={solicitarPista}
-                  onCerrarPista={() => setPista(null)}
-                  cargandoPista={cargandoPista}
-                />
+                {sesion.modulos?.pruebas && (
+                  <div className="tabs-consulta" role="tablist" aria-label="Secciones de la consulta">
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={tabConsulta === 'entrevista'}
+                      className={`tab ${tabConsulta === 'entrevista' ? 'activa' : ''}`}
+                      onClick={() => setTabConsulta('entrevista')}
+                    >
+                      Entrevista
+                    </button>
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={tabConsulta === 'pruebas'}
+                      className={`tab ${tabConsulta === 'pruebas' ? 'activa' : ''}`}
+                      onClick={() => setTabConsulta('pruebas')}
+                    >
+                      Pruebas{pruebasEstado?.pruebas_usadas ? ` (${pruebasEstado.pruebas_usadas})` : ''}
+                    </button>
+                  </div>
+                )}
+
+                {/* El chat se mantiene montado (solo oculto) para no perder el audio ni el desplazamiento */}
+                <div hidden={tabConsulta !== 'entrevista'}>
+                  <Chat
+                    sessionId={sesion.session_id}
+                    mensajes={mensajes}
+                    enviando={enviando}
+                    onSend={enviar}
+                    sinEnvio={vistaPrevia}
+                    nombre={sesion.paciente.nombre}
+                    nivel={sesion.nivel}
+                    guiaCubierta={guiaCubierta}
+                    pista={pista}
+                    onPedirPista={solicitarPista}
+                    onCerrarPista={() => setPista(null)}
+                    cargandoPista={cargandoPista}
+                    onVozEstado={setAudioSonando}
+                    onEscuchando={setEscuchando}
+                  />
+                </div>
+
+                {tabConsulta === 'pruebas' && sesion.modulos?.pruebas && pruebasEstado && (
+                  <PruebasPanel
+                    catalogo={catalogoPruebas}
+                    estado={pruebasEstado}
+                    nivelId={sesion.nivel?.id}
+                    onPedir={solicitarPrueba}
+                    pidiendo={pidiendoPruebas}
+                  />
+                )}
+
                 <div className="actions">
                   <button
                     className="btn primary btn-terminar-consulta"
@@ -374,74 +584,106 @@ export default function App() {
 
             {fase === 'diagnostico' && (
               <form onSubmit={terminar} className="diag">
-                <h2>Conclusión diagnóstica</h2>
-                <p className="diag-sub">
-                  {sesion?.nivel?.id === 3
-                    ? 'Nivel Avanzado: ingresa el diagnóstico de mayor sospecha y dos alternativas clínicas para tu diagnóstico diferencial.'
-                    : 'Ingresa el diagnóstico médico que sospechas tras la entrevista clínica.'}
-                </p>
-
-                <div className="form-group">
-                  <label htmlFor="dx-principal">
-                    <strong>Diagnóstico principal:</strong>
-                  </label>
-                  <input
-                    id="dx-principal"
-                    type="text"
-                    value={diagnostico}
-                    onChange={(e) => setDiagnostico(e.target.value)}
-                    maxLength={500}
-                    placeholder="Ej. Dengue con signos de alarma…"
-                    autoFocus
-                    required
-                  />
-                </div>
-
-                {sesion?.nivel?.diferenciales_requeridos > 0 && (
-                  <div className="diferenciales-inputs-group">
-                    <h3>Diagnósticos diferenciales (obligatorios en Nivel Avanzado)</h3>
-                    <div className="form-group">
-                      <label htmlFor="dx-dif1">Diferencial 1:</label>
-                      <input
-                        id="dx-dif1"
-                        type="text"
-                        value={diferencial1}
-                        onChange={(e) => setDiferencial1(e.target.value)}
-                        maxLength={500}
-                        placeholder="Ej. Chikungunya…"
-                        required
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="dx-dif2">Diferencial 2:</label>
-                      <input
-                        id="dx-dif2"
-                        type="text"
-                        value={diferencial2}
-                        onChange={(e) => setDiferencial2(e.target.value)}
-                        maxLength={500}
-                        placeholder="Ej. Leptospirosis…"
-                        required
-                      />
-                    </div>
-                  </div>
+                {necesitaPlan && (
+                  <p className="paso-cierre" aria-live="polite">
+                    Paso {pasoCierre} de 2 · {pasoCierre === 1 ? 'Diagnóstico' : 'Plan de tratamiento'}
+                  </p>
                 )}
 
-                <div className="actions">
-                  <button type="button" className="btn" onClick={() => setFase('chat')} disabled={cargando}>
-                    Volver al chat
-                  </button>
-                  <button
-                    className="btn primary"
-                    disabled={
-                      cargando ||
-                      !diagnostico.trim() ||
-                      (sesion?.nivel?.diferenciales_requeridos > 0 && (!diferencial1.trim() || !diferencial2.trim()))
-                    }
-                  >
-                    {cargando ? 'Evaluando desempeño…' : 'Entregar diagnóstico y ver evaluación'}
-                  </button>
-                </div>
+                {pasoCierre === 1 && (
+                  <>
+                    <h2>Conclusión diagnóstica</h2>
+                    <p className="diag-sub">
+                      {sesion?.nivel?.id === 3
+                        ? 'Nivel Avanzado: ingresa el diagnóstico de mayor sospecha y dos alternativas clínicas para tu diagnóstico diferencial.'
+                        : 'Ingresa el diagnóstico médico que sospechas tras la entrevista clínica.'}
+                    </p>
+
+                    <div className="form-group">
+                      <label htmlFor="dx-principal">
+                        <strong>Diagnóstico principal:</strong>
+                      </label>
+                      <input
+                        id="dx-principal"
+                        type="text"
+                        value={diagnostico}
+                        onChange={(e) => setDiagnostico(e.target.value)}
+                        maxLength={500}
+                        placeholder="Ej. Dengue con signos de alarma…"
+                        autoFocus
+                        required
+                      />
+                    </div>
+
+                    {sesion?.nivel?.diferenciales_requeridos > 0 && (
+                      <div className="diferenciales-inputs-group">
+                        <h3>Diagnósticos diferenciales (obligatorios en Nivel Avanzado)</h3>
+                        <div className="form-group">
+                          <label htmlFor="dx-dif1">Diferencial 1:</label>
+                          <input
+                            id="dx-dif1"
+                            type="text"
+                            value={diferencial1}
+                            onChange={(e) => setDiferencial1(e.target.value)}
+                            maxLength={500}
+                            placeholder="Ej. Chikungunya…"
+                            required
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="dx-dif2">Diferencial 2:</label>
+                          <input
+                            id="dx-dif2"
+                            type="text"
+                            value={diferencial2}
+                            onChange={(e) => setDiferencial2(e.target.value)}
+                            maxLength={500}
+                            placeholder="Ej. Leptospirosis…"
+                            required
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="actions">
+                      <button type="button" className="btn" onClick={() => setFase('chat')} disabled={cargando}>
+                        Volver al chat
+                      </button>
+                      <button
+                        className="btn primary"
+                        disabled={
+                          cargando ||
+                          !diagnostico.trim() ||
+                          (sesion?.nivel?.diferenciales_requeridos > 0 && (!diferencial1.trim() || !diferencial2.trim()))
+                        }
+                      >
+                        {necesitaPlan
+                          ? 'Continuar al plan de tratamiento →'
+                          : cargando
+                            ? 'Evaluando desempeño…'
+                            : 'Entregar diagnóstico y ver evaluación'}
+                      </button>
+                    </div>
+                  </>
+                )}
+
+                {pasoCierre === 2 && (
+                  <>
+                    <h2>Plan de tratamiento</h2>
+                    <p className="diag-sub">
+                      Indica qué harías con el paciente: disposición, medicamentos e indicaciones.
+                    </p>
+                    <PlanForm formulario={formulario} plan={plan} onChange={setPlan} />
+                    <div className="actions">
+                      <button type="button" className="btn" onClick={() => setPasoCierre(1)} disabled={cargando}>
+                        ← Volver al diagnóstico
+                      </button>
+                      <button className="btn primary" disabled={cargando || !formulario}>
+                        {cargando ? 'Evaluando desempeño…' : 'Entregar y ver evaluación'}
+                      </button>
+                    </div>
+                  </>
+                )}
               </form>
             )}
 

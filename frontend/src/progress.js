@@ -1,12 +1,29 @@
+// La clave conserva «v1» para no perder el progreso ya guardado; el formato interno va en `version`.
 const STORAGE_KEY = 'pv_progreso_v1'
 const MAX_HISTORIAL = 200
+const VERSION_ACTUAL = 2 // v2: añade pruebas_puntaje, plan_puntaje y alertas_seguridad por consulta
 
 function crearProgresoInicial() {
   return {
-    version: 1,
+    version: VERSION_ACTUAL,
     creado: new Date().toISOString(),
     modo_demo: false,
     historial: [],
+  }
+}
+
+/** Migra v1 -> v2: los registros antiguos reciben null en los campos nuevos. */
+function migrar(progreso) {
+  if (progreso.version === VERSION_ACTUAL) return progreso
+  return {
+    ...progreso,
+    version: VERSION_ACTUAL,
+    historial: progreso.historial.map((h) => ({
+      pruebas_puntaje: null,
+      plan_puntaje: null,
+      alertas_seguridad: null,
+      ...h,
+    })),
   }
 }
 
@@ -15,8 +32,8 @@ export function cargarProgreso() {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (!raw) return crearProgresoInicial()
     const parsed = JSON.parse(raw)
-    if (parsed && parsed.version === 1 && Array.isArray(parsed.historial)) {
-      return parsed
+    if (parsed && (parsed.version === 1 || parsed.version === 2) && Array.isArray(parsed.historial)) {
+      return migrar(parsed)
     }
   } catch (e) {
     console.warn('No se pudo leer localStorage para el progreso:', e)
@@ -27,7 +44,7 @@ export function cargarProgreso() {
 export function guardarProgreso(progreso) {
   try {
     const seguro = {
-      version: 1,
+      version: VERSION_ACTUAL,
       creado: progreso.creado || new Date().toISOString(),
       modo_demo: !!progreso.modo_demo,
       historial: (progreso.historial || []).slice(-MAX_HISTORIAL),
@@ -51,6 +68,9 @@ export function registrarConsulta(registro) {
     diagnostico_correcto: !!registro.diagnostico_correcto,
     pistas_usadas: registro.pistas_usadas || 0,
     preguntas_usadas: registro.preguntas_usadas || 0,
+    pruebas_puntaje: registro.pruebas_puntaje ?? null,
+    plan_puntaje: registro.plan_puntaje ?? null,
+    alertas_seguridad: registro.alertas_seguridad ?? null,
   })
   guardarProgreso(progreso)
   return progreso
@@ -181,7 +201,7 @@ export function exportarProgresoArchivo() {
 export function importarProgresoArchivo(jsonString) {
   try {
     const data = JSON.parse(jsonString)
-    if (!data || data.version !== 1 || !Array.isArray(data.historial)) {
+    if (!data || (data.version !== 1 && data.version !== 2) || !Array.isArray(data.historial)) {
       throw new Error('El formato del archivo de progreso no es válido.')
     }
     guardarProgreso(data)

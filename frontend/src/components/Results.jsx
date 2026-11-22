@@ -20,6 +20,24 @@ export default function Results({
         </div>
       )}
 
+      {/* Alerta de seguridad clínica: va primero porque es lo más importante (SEGUIMIENTO.md §6.4) */}
+      {r.alertas_seguridad?.length > 0 && (
+        <div className="seguridad-banner" role="alert">
+          <strong>⚠ Alerta de seguridad clínica</strong>
+          <ul>
+            {r.alertas_seguridad.map((a) => (
+              <li key={a}>{a}</li>
+            ))}
+          </ul>
+          {desglose.seguridad && (
+            <p>
+              Por esta alerta el puntaje se limitó a {desglose.seguridad.tope} (habría sido{' '}
+              {desglose.seguridad.puntaje_original}) y la consulta no cuenta como aprobada en este nivel.
+            </p>
+          )}
+        </div>
+      )}
+
       <div className="results-header-card">
         <div className="score-block">
           <span className="num">{r.puntaje}</span>
@@ -62,6 +80,22 @@ export default function Results({
                 <span className="desglose-label">Diagnóstico diferencial</span>
                 <span className="desglose-val">
                   <strong>{desglose.diferenciales.obtenido}</strong> / {desglose.diferenciales.maximo} pts
+                </span>
+              </div>
+            )}
+            {desglose.pruebas?.maximo > 0 && (
+              <div className="desglose-item">
+                <span className="desglose-label">Pruebas solicitadas</span>
+                <span className="desglose-val">
+                  <strong>{desglose.pruebas.obtenido}</strong> / {desglose.pruebas.maximo} pts
+                </span>
+              </div>
+            )}
+            {desglose.plan?.maximo > 0 && (
+              <div className="desglose-item">
+                <span className="desglose-label">Plan de tratamiento</span>
+                <span className="desglose-val">
+                  <strong>{desglose.plan.obtenido}</strong> / {desglose.plan.maximo} pts
                 </span>
               </div>
             )}
@@ -126,6 +160,88 @@ export default function Results({
           ))}
         </ul>
       </section>
+
+      {/* Pruebas pedidas (SEGUIMIENTO.md módulo A) */}
+      {r.pruebas && (
+        <section className="modulo-resultado">
+          <h3>Pruebas</h3>
+          {r.pruebas.solicitadas.length === 0 ? (
+            <p>No solicitaste ninguna prueba.</p>
+          ) : (
+            <ul className="lista">
+              {r.pruebas.solicitadas.map((p) => (
+                <li key={p.id} className={p.pertinencia === 'innecesaria' ? 'mal' : 'ok'}>
+                  {p.pertinencia === 'innecesaria' ? '✗' : '✓'} {p.nombre}{' '}
+                  <span className="chip">
+                    {p.pertinencia === 'esencial' ? 'Esencial' : p.pertinencia === 'util' ? 'Útil' : 'Sin indicación'}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+          {r.pruebas.esenciales_faltantes.length > 0 && (
+            <p className="mal-texto">
+              <strong>Esenciales que no pediste:</strong> {r.pruebas.esenciales_faltantes.join('; ')}.
+            </p>
+          )}
+        </section>
+      )}
+
+      {/* Plan de tratamiento (módulo B) */}
+      {r.plan && (
+        <section className="modulo-resultado">
+          <h3>Plan de tratamiento</h3>
+          <ul className="lista">
+            {r.plan.medicamentos.map((m) => (
+              <li key={m.id} className={m.veredicto === 'adecuado' ? 'ok' : m.veredicto === 'aceptable' ? '' : 'mal'}>
+                {m.veredicto === 'adecuado' ? '✓' : m.veredicto === 'aceptable' ? '≈' : '✗'} {m.nombre}{' '}
+                <span className="chip">{m.veredicto}</span>
+                {m.nota && <span className="nota-inline"> — {m.nota}</span>}
+              </li>
+            ))}
+          </ul>
+          {r.plan.medicamentos_faltantes.length > 0 && (
+            <p className="mal-texto">
+              <strong>Faltó:</strong> {r.plan.medicamentos_faltantes.join('; ')}.
+            </p>
+          )}
+          <p>
+            <strong>Disposición:</strong> {r.plan.disposicion.texto}{' '}
+            <span className={`chip veredicto-${r.plan.disposicion.veredicto}`}>{r.plan.disposicion.veredicto}</span>
+          </p>
+          {r.plan.indicaciones.faltantes.length > 0 && (
+            <p className="mal-texto">
+              <strong>Indicaciones esenciales que faltaron:</strong> {r.plan.indicaciones.faltantes.join('; ')}.
+            </p>
+          )}
+        </section>
+      )}
+
+      {/* Seguimiento: cómo evoluciona el paciente según lo decidido (módulo C) */}
+      {r.seguimiento && (
+        <section className={`modulo-resultado control-${r.seguimiento.evolucion}`}>
+          <h3>Control a los {r.seguimiento.dias} días</h3>
+          <p className="control-etiqueta">
+            Evolución:{' '}
+            <strong>
+              {r.seguimiento.evolucion === 'mejora'
+                ? '✓ Mejora'
+                : r.seguimiento.evolucion === 'parcial'
+                  ? '≈ Mejora parcial'
+                  : '✗ Empeora'}
+            </strong>
+          </p>
+          <blockquote className="control-relato">«{r.seguimiento.relato}»</blockquote>
+        </section>
+      )}
+
+      {(r.pruebas || r.plan) && r.revision_clinica && (
+        <p className={`revision-aviso ${r.revision_clinica.contenido_sin_validar ? 'sin-validar' : 'validado'}`} role="note">
+          {r.revision_clinica.contenido_sin_validar
+            ? 'Contenido de pruebas y plan sin validar clínicamente: no lo uses como referencia médica.'
+            : `Caso validado por ${r.revision_clinica.revisado_por}.`}
+        </p>
+      )}
 
       {r.citas?.length > 0 && (
         <section className="citas-box">

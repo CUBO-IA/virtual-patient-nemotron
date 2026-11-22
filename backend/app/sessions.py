@@ -18,6 +18,9 @@ class Session:
     busy_at: float | None = None
     pistas_usadas: int = 0
     nivel_por_item: dict = field(default_factory=dict)  # {item_id: nivel (1..3)}
+    pruebas_pedidas: list = field(default_factory=list)  # [prueba_id, ...] en orden sin repetir
+    costo_pruebas: int = 0
+    modulos_activos: dict = field(default_factory=dict)
 
     @property
     def preguntas_usadas(self) -> int:
@@ -40,7 +43,18 @@ _store: dict[str, Session] = {}
 def create(caso: dict, persona: dict, nivel: dict | None = None) -> Session:
     if len(_store) >= MAX_SESSIONS:
         _store.pop(next(iter(_store)))  # descarta la más antigua
-    s = Session(id=uuid.uuid4().hex, caso=caso, persona=persona, nivel=nivel or {})
+
+    cfg_nivel = nivel or {}
+    from . import seguimiento
+    modulos = seguimiento.calcular_modulos_activos(cfg_nivel, caso)
+
+    s = Session(
+        id=uuid.uuid4().hex,
+        caso=caso,
+        persona=persona,
+        nivel=cfg_nivel,
+        modulos_activos=modulos,
+    )
     _store[s.id] = s
     return s
 
