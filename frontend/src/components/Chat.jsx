@@ -171,7 +171,7 @@ export default function Chat({
   const pistasPermitidas = nivel?.pistas?.permitidas !== false
   const penalizacionPista = nivel?.pistas?.penalizacion ?? 0.5
   const textoBotonPista =
-    penalizacionPista === 0 ? '💡 Pedir pista (gratis)' : '💡 Pedir pista (−0,5 pts)'
+    penalizacionPista === 0 ? 'Pedir pista (gratis)' : 'Pedir pista (−0,5 pts)'
 
   return (
     <div className="chat-layout-wrapper">
@@ -209,14 +209,22 @@ export default function Chat({
               }}
               title={autoVoz ? 'Voz automática activada (clic para silenciar)' : 'Voz silenciada (clic para activar)'}
             >
-              {autoVoz ? '🔊 Voz activa' : '🔇 Silenciada'}
+              {autoVoz ? (
+                <>
+                  <i className="bi bi-volume-up-fill" /> Voz activa
+                </>
+              ) : (
+                <>
+                  <i className="bi bi-volume-mute-fill" /> Silenciada
+                </>
+              )}
             </button>
           </div>
         </div>
 
         {limiteAlcanzado && (
           <div className="limite-preguntas-banner" role="alert">
-            🛑 <strong>Alcanzaste el límite de preguntas de este nivel.</strong> Pulsa «Terminar y diagnosticar» para emitir tu conclusión.
+            <i className="bi bi-exclamation-octagon-fill" /> <strong>Alcanzaste el límite de preguntas de este nivel.</strong> Pulsa «Terminar y diagnosticar» para emitir tu conclusión.
           </div>
         )}
 
@@ -239,7 +247,13 @@ export default function Chat({
                     title={reproduciendoIdx === i ? 'Pausar audio' : 'Escuchar respuesta'}
                     disabled={cargandoAudioIdx === i}
                   >
-                    {cargandoAudioIdx === i ? '⏳' : reproduciendoIdx === i ? '⏸️' : '🔊'}
+                    {cargandoAudioIdx === i ? (
+                      <i className="bi bi-hourglass-split" />
+                    ) : reproduciendoIdx === i ? (
+                      <i className="bi bi-pause-fill" />
+                    ) : (
+                      <i className="bi bi-volume-up-fill" />
+                    )}
                   </button>
                 )}
               </div>
@@ -265,7 +279,7 @@ export default function Chat({
           <div className="pista-box" role="region" aria-label="Pista clínica">
             <div className="pista-header">
               <span className="pista-title">
-                💡 <strong>Pista {pista.nivel ? `(Nivel ${pista.nivel}/3)` : ''}</strong>
+                <i className="bi bi-lightbulb-fill" /> <strong>Pista {pista.nivel ? `(Nivel ${pista.nivel}/3)` : ''}</strong>
               </span>
               {onCerrarPista && (
                 <button
@@ -330,7 +344,15 @@ export default function Chat({
               aria-pressed={dictado.escuchando}
               title={dictado.escuchando ? 'Detener dictado' : 'Hablar con el paciente (micrófono)'}
             >
-              {dictado.escuchando ? '⏹ Escuchando…' : '🎤 Hablar'}
+              {dictado.escuchando ? (
+                <>
+                  <i className="bi bi-stop-fill" /> Escuchando…
+                </>
+              ) : (
+                <>
+                  <i className="bi bi-mic-fill" /> Hablar
+                </>
+              )}
             </button>
           )}
 
@@ -342,7 +364,7 @@ export default function Chat({
               disabled={enviando || cargandoPista}
               title={penalizacionPista === 0 ? 'Pedir orientación clínica sin descuento de puntaje' : 'Pedir orientación clínica (−0,5 puntos)'}
             >
-              {cargandoPista ? 'Pidiendo…' : textoBotonPista}
+              <i className="bi bi-lightbulb" /> {cargandoPista ? 'Pidiendo…' : textoBotonPista}
             </button>
           )}
           <button className="btn primary" disabled={enviando || !(texto || provisional).trim() || limiteAlcanzado || sinEnvio}>

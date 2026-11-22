@@ -404,7 +404,12 @@ export default function App() {
     <div className="app">
       <header className="topbar">
         <div className="brand">
-          <h1>Paciente Virtual</h1>
+          <div className="brand-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M12 2v20M2 12h20" />
+            </svg>
+          </div>
+          <h1>Paciente <span className="brand-accent">Virtual</span></h1>
           {healthInfo && (
             <span
               className={`status-badge ${healthInfo.ok && !vistaPrevia ? 'ok' : 'warn'}`}
@@ -416,7 +421,7 @@ export default function App() {
                     : healthWarning || 'Problema de conexión con Ollama'
               }
             >
-              ● {vistaPrevia ? 'Vista previa' : healthInfo.ok ? 'En línea' : 'Sin LLM'}
+              <i className="bi bi-circle-fill status-dot" /> {vistaPrevia ? 'Vista previa' : healthInfo.ok ? 'En línea' : 'Sin LLM'}
             </span>
           )}
         </div>
@@ -444,7 +449,7 @@ export default function App() {
               className="btn"
               onClick={() => setFase('progreso')}
             >
-              📊 Mi progreso
+              <i className="bi bi-bar-chart-line" /> Mi progreso
             </button>
           )}
 

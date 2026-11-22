@@ -38,7 +38,7 @@ export default function LevelSelect({
   return (
     <div className="level-select-container">
       <div className="level-select-header">
-        <h2>Elige tu nivel de práctica</h2>
+        <h2>Elige tu <span className="title-accent">nivel de práctica</span></h2>
         <p className="level-select-subtitle">
           Avanza progresivamente desde una consulta guiada hasta la simulación de una consulta médica real.
         </p>
@@ -50,7 +50,9 @@ export default function LevelSelect({
               checked={modoDemo}
               onChange={(e) => onToggleModoDemo(e.target.checked)}
             />
-            <span>🔓 Modo demostración (desbloquea todos los niveles para evaluación)</span>
+            <span>
+              <i className="bi bi-unlock-fill" /> Modo demostración (desbloquea todos los niveles para evaluación)
+            </span>
           </label>
         </div>
       </div>
@@ -84,7 +86,7 @@ export default function LevelSelect({
                 <div className="level-card-badge">Nivel {n.id}</div>
                 {bloqueado ? (
                   <span className="lock-icon" title="Nivel bloqueado" aria-label="Bloqueado">
-                    🔒
+                    <i className="bi bi-lock-fill" />
                   </span>
                 ) : (
                   <span className="level-lema">«{n.lema}»</span>
@@ -96,11 +98,11 @@ export default function LevelSelect({
 
               <div className="level-rules">
                 <div className="rule-item">
-                  <span className="rule-icon">📋</span>
+                  <span className="rule-icon"><i className="bi bi-clipboard2-pulse" /></span>
                   <span>{n.guia_anamnesis ? 'Guía de anamnesis en vivo' : 'Sin guía asistida'}</span>
                 </div>
                 <div className="rule-item">
-                  <span className="rule-icon">💡</span>
+                  <span className="rule-icon"><i className="bi bi-lightbulb" /></span>
                   <span>
                     {!n.pistas.permitidas
                       ? 'Sin pistas disponibles'
@@ -110,17 +112,17 @@ export default function LevelSelect({
                   </span>
                 </div>
                 <div className="rule-item">
-                  <span className="rule-icon">⏱️</span>
+                  <span className="rule-icon"><i className="bi bi-stopwatch" /></span>
                   <span>{n.max_preguntas ? `Máximo ${n.max_preguntas} preguntas` : 'Preguntas ilimitadas'}</span>
                 </div>
                 <div className="rule-item">
-                  <span className="rule-icon">🗣️</span>
+                  <span className="rule-icon"><i className="bi bi-chat-quote" /></span>
                   <span>
                     Paciente {n.actitud_paciente === 'colaborador' ? 'colaborador' : n.actitud_paciente === 'reservado' ? 'reservado (pocas palabras)' : 'habitual'}
                   </span>
                 </div>
                 <div className="rule-item">
-                  <span className="rule-icon">🩺</span>
+                  <span className="rule-icon"><i className="bi bi-heart-pulse" /></span>
                   <span>
                     {n.diferenciales_requeridos > 0
                       ? `Diagnóstico + ${n.diferenciales_requeridos} diferenciales`
@@ -154,7 +156,7 @@ export default function LevelSelect({
 
       {puntoDebilInfo && (
         <div className="info-banner" role="status">
-          ℹ️ {puntoDebilInfo}
+          <i className="bi bi-info-circle-fill" /> {puntoDebilInfo}
         </div>
       )}
 
@@ -165,7 +167,7 @@ export default function LevelSelect({
           onClick={onVerProgreso}
           title="Ver historial y mapa de enfermedades"
         >
-          📊 Mi progreso
+          <i className="bi bi-bar-chart-line" /> Mi progreso
         </button>
 
         <button
@@ -175,7 +177,7 @@ export default function LevelSelect({
           disabled={cargando || !desbloqueoActual.desbloqueado}
           title="Practicar el caso con menor puntaje registrado"
         >
-          🎯 Practicar mi punto débil
+          <i className="bi bi-bullseye" /> Practicar mi punto débil
         </button>
 
         <button
