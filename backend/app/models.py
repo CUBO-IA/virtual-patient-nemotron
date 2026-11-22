@@ -4,6 +4,7 @@ from pydantic import BaseModel, Field
 class SessionCreateIn(BaseModel):
     nivel: int | None = None
     caso_id: str | None = None
+    modo: str = "consulta"
 
 
 class ChatIn(BaseModel):
@@ -38,3 +39,8 @@ class FinishIn(BaseModel):
     diagnostico_estudiante: str = Field(min_length=1, max_length=500)
     diferenciales: list[str] | None = None
     plan: PlanTratamientoIn | None = None
+
+
+class TriajeIn(BaseModel):
+    prioridad: str
+    accion: str

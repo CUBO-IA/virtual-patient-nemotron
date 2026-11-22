@@ -2210,3 +2210,48 @@ i.bi {
 .porque-panel p { margin: 0 0 0.4rem; }
 .porque-nota, .porque-aviso { color: var(--text-muted); font-size: 0.82rem; }
 .porque-fuentes blockquote { margin: 0.4rem 0; padding-left: 0.6rem; border-left: 2px solid #44506a; font-size: 0.82rem; }
+
+/* Modo Urgencias */
+.urgencias-inicio {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  margin: 1rem 0; padding: 0.9rem 1.1rem; border-radius: 12px;
+  background: var(--panel-card); border: 1px solid var(--line-subtle);
+}
+.urgencias-inicio p { margin: 0.2rem 0 0; color: var(--text-muted); font-size: 0.9rem; }
+.urgencias-aviso {
+  margin: 0.5rem 0; padding: 0.55rem 0.8rem; border-left: 4px solid #d97706; border-radius: 6px;
+  background: rgba(217, 119, 6, 0.12); font-size: 0.85rem;
+}
+.urgencias-reloj {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  margin: 0.75rem 0; padding: 0.6rem 1rem; border-radius: 10px;
+  background: var(--panel-card); font-size: 1.3rem; font-weight: 700; font-variant-numeric: tabular-nums;
+}
+.urgencias-contador { font-size: 0.9rem; font-weight: 500; color: var(--text-muted); }
+.urgencias-reloj-rojo { background: rgba(220, 38, 38, 0.2); color: #fca5a5; animation: urgencias-parpadeo 1s ease-in-out infinite; }
+@keyframes urgencias-parpadeo { 50% { opacity: 0.6; } }
+@media (prefers-reduced-motion: reduce) { .urgencias-reloj-rojo { animation: none; } }
+.urgencias-acompanante { margin: 0.4rem 0; color: var(--text-muted); font-size: 0.9rem; }
+.urgencias-fin {
+  margin: 0.6rem 0; padding: 0.6rem 0.9rem; border-radius: 8px; font-weight: 600;
+  background: rgba(220, 38, 38, 0.15); border: 1px solid rgba(220, 38, 38, 0.5);
+}
+.triaje { margin-top: 1rem; padding: 1rem; border-radius: 12px; background: var(--panel-card); border: 1px solid var(--line-subtle); }
+.triaje h3 { margin: 0 0 0.5rem; }
+.triaje-ayuda { color: var(--text-muted); font-size: 0.85rem; margin: 0.4rem 0; }
+.triaje-prioridades { display: flex; gap: 0.6rem; flex-wrap: wrap; margin: 0.75rem 0; }
+.triaje-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1.1rem; border-radius: 999px;
+  border: 2px solid var(--line); background: transparent; color: inherit; font: inherit; font-weight: 600; cursor: pointer;
+}
+.triaje-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.triaje-btn.triaje-rojo i, .triaje-chip.triaje-rojo { color: #ef4444; }
+.triaje-btn.triaje-amarillo i, .triaje-chip.triaje-amarillo { color: #f59e0b; }
+.triaje-btn.triaje-verde i, .triaje-chip.triaje-verde { color: #22c55e; }
+.triaje-btn.elegido { background: var(--accent-subtle); border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+.triaje-accion { display: flex; flex-direction: column; gap: 0.3rem; margin: 0.6rem 0 0.9rem; font-weight: 600; }
+.triaje-accion select { padding: 0.5rem; border-radius: 8px; font: inherit; max-width: 28rem; }
+.triaje-resultado { margin: 1rem 0; }
+.triaje-veredicto.ok { color: #86efac; }
+.triaje-veredicto.mal { color: #fca5a5; }
+.triaje-chip { font-weight: 700; }

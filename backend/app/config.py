@@ -33,7 +33,7 @@ NUM_CTX = int(os.getenv("NUM_CTX", "2048"))
 CORS_ORIGINS = [o.strip() for o in os.getenv("CORS_ORIGINS", "http://localhost:5173").split(",") if o.strip()]
 
 # Mensajes de historial enviados al modelo (evita desbordar el contexto y perder el prompt de sistema).
-MAX_HISTORY = 16
+MAX_HISTORY = 12
 
 # Activa los módulos de pruebas, plan y control aunque el caso NO esté validado por un profesional
 # (revision_clinica.estado != "validado"). Solo para demostraciones: la interfaz muestra el aviso

@@ -17,6 +17,7 @@ import Results from './components/Results.jsx'
 import Disclaimer from './components/Disclaimer.jsx'
 import LevelSelect from './components/LevelSelect.jsx'
 import Progress from './components/Progress.jsx'
+import UrgenciasPanel from './components/UrgenciasPanel.jsx'
 import PruebasPanel from './components/PruebasPanel.jsx'
 import PlanForm, { PLAN_VACIO, planParaEnviar, validarPlan } from './components/PlanForm.jsx'
 import {
@@ -124,12 +125,12 @@ export default function App() {
     setModoDemo(val)
   }
 
-  async function iniciarConsulta(nivelId = null, casoId = null) {
+  async function iniciarConsulta(nivelId = null, casoId = null, modo = 'consulta') {
     const nivelTarget = nivelId || nivelSeleccionado || 1
     setCargando(true)
     setError('')
     try {
-      const opciones = { nivel: nivelTarget }
+      const opciones = { nivel: nivelTarget, modo }
       if (casoId) opciones.caso_id = casoId
 
       const s = await crearSesion(opciones)
@@ -255,13 +256,6 @@ export default function App() {
           if (sesionActual.current !== id) return
           if (donePayload.guia_cubierta) {
             setGuiaCubierta(donePayload.guia_cubierta)
-          }
-          if (donePayload.texto_original) {
-            setMensajes((m) =>
-              m.map((x, i) =>
-                i === m.length - 1 ? { ...x, voz: donePayload.texto_original } : x
-              )
-            )
           }
         }
       )
@@ -486,6 +480,17 @@ export default function App() {
       {error && <div className="error" role="alert">{error}</div>}
 
       {/* Pantalla 1: Selector de niveles (§6.2) */}
+      {fase === 'inicio' && healthInfo?.urgencias && (
+        <div className="urgencias-inicio">
+          <div>
+            <strong><i className="bi bi-heart-pulse" /> Modo Urgencias</strong>
+            <p>Práctica aparte: reconoce señales de alarma y decide la prioridad en poco tiempo.</p>
+          </div>
+          <button type="button" className="btn" disabled={cargando} onClick={() => iniciarConsulta(1, null, 'urgencias')}>
+            Empezar
+          </button>
+        </div>
+      )}
       {fase === 'inicio' && (
         <LevelSelect
           niveles={configNiveles.niveles}
@@ -521,6 +526,24 @@ export default function App() {
           />
 
           <section className="panel main">
+            {sesion.modo === 'urgencias' ? (
+              <UrgenciasPanel
+                key={sesion.session_id}
+                sesion={sesion}
+                mensajes={mensajes}
+                enviando={enviando}
+                onSend={enviar}
+                pista={pista}
+                onPedirPista={solicitarPista}
+                onCerrarPista={() => setPista(null)}
+                cargandoPista={cargandoPista}
+                onVozEstado={setAudioSonando}
+                onEscuchando={setEscuchando}
+                vistaPrevia={vistaPrevia}
+                onNueva={() => iniciarConsulta(1, null, 'urgencias')}
+                onSalir={() => setFase('inicio')}
+              />
+            ) : <>
             {hayModulos && rev && (
               <p className={`revision-aviso ${rev.contenido_sin_validar ? 'sin-validar' : 'validado'}`} role="note">
                 {rev.contenido_sin_validar
@@ -700,6 +723,7 @@ export default function App() {
                 )}
               </form>
             )}
+            </>}
 
             {fase === 'resultados' && resultado && (
               <Results

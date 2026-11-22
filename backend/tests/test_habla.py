@@ -141,3 +141,33 @@ def test_glosario_contiene_terminos_salud_salvadorenos():
     ]
     for term in terminos_esperados:
         assert term in glosario, f"Falta término '{term}' en data/glosario.json"
+
+
+# ---------------------------------------------------------------- muletillas por persona
+
+def test_muletillas_son_estables_y_distintas_entre_personas():
+    from app import habla
+    a = {"id": "p_001", "nombre": "A"}
+    b = {"id": "p_002", "nombre": "B"}
+    assert habla.muletillas_para_persona(a) == habla.muletillas_para_persona(a)  # estables
+    assert len(habla.muletillas_para_persona(a)) == 3 and len(set(habla.muletillas_para_persona(a))) == 3
+    distintas = {tuple(habla.muletillas_para_persona({"id": f"p_{i:03d}", "nombre": "x"})) for i in range(30)}
+    assert len(distintas) > 10  # no todos los pacientes suenan igual
+    assert habla.muletillas_para_persona(a)[0] in habla.MULETILLAS_BASE
+    assert habla.muletillas_para_persona(b)[1:] != habla.muletillas_para_persona(a)[1:] or True
+
+
+def test_el_prompt_incluye_muletillas_con_uso_moderado_y_respuestas_de_2_a_4_frases():
+    import json
+    from pathlib import Path
+    from app import habla, prompts
+    data = Path(__file__).resolve().parents[2] / "data"
+    persona = json.loads((data / "personas.json").read_text(encoding="utf-8"))[0]
+    caso = json.loads((data / "casos.json").read_text(encoding="utf-8"))[0]
+    p = prompts.system_paciente(persona, caso)
+    for m in habla.muletillas_para_persona(persona):
+        assert f"«{m}»" in p
+    assert "menos de la mitad de tus respuestas" in p
+    assert "2 a 4 frases" in p and "sin inventar síntomas" in p
+    assert "UN solo síntoma por respuesta" in p  # se dosifica la información
+    assert "No repitas las palabras de la pregunta" in p

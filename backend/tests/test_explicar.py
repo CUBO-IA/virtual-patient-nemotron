@@ -51,12 +51,25 @@ def test_tipo_invalido_y_decision_inexistente(terminada):
     assert client.post("/api/sessions/" + "0" * 32 + "/explicar", json={"tipo": "prueba", "id": "x"}).status_code == 404
 
 
-def test_sin_rag_devuelve_solo_la_nota_del_caso(terminada, monkeypatch):
+def test_sin_rag_el_modelo_explica_con_razonamiento_general_y_no_repite_la_nota(terminada, monkeypatch):
     monkeypatch.setattr(config, "RAG_ENABLED", False)
     _finish(terminada)
-    d = _pedir(terminada, "medicamento", "sales_rehidratacion").json()
-    assert d["origen"] == "caso" and d["explicacion"] is None and d["fuentes"] == []
-    assert d["nota"]  # nota escrita en el caso
+    with patch("app.llm.chat_once", new_callable=AsyncMock, return_value="Las SRO reponen líquidos y sales perdidos.") as llm:
+        d = _pedir(terminada, "medicamento", "sales_rehidratacion").json()
+    assert d["origen"] == "ia" and d["explicacion"] == "Las SRO reponen líquidos y sales perdidos."
+    assert d["fuentes"] == [] and d["modelo_no_disponible"] is False
+    sistema, usuario = (m["content"] for m in llm.await_args.args[0])
+    assert "no la repitas" in sistema and "no menciones dosis" in sistema
+    assert "gastroenteritis" in usuario.lower() and "Valoración en este caso" in usuario
+
+
+def test_sin_rag_y_sin_modelo_se_avisa_y_queda_la_nota(terminada, monkeypatch):
+    from app import llm as llm_mod
+    monkeypatch.setattr(config, "RAG_ENABLED", False)
+    _finish(terminada)
+    with patch("app.llm.chat_once", new_callable=AsyncMock, side_effect=llm_mod.LLMError("caído")):
+        d = _pedir(terminada, "medicamento", "sales_rehidratacion").json()
+    assert d["origen"] == "caso" and d["explicacion"] is None and d["modelo_no_disponible"] is True and d["nota"]
 
 
 def test_con_guia_el_modelo_recibe_solo_los_fragmentos(terminada, monkeypatch):
@@ -75,14 +88,13 @@ def test_con_guia_el_modelo_recibe_solo_los_fragmentos(terminada, monkeypatch):
     assert "[1] Las SRO previenen la deshidratación." in prompt
 
 
-def test_sin_sustento_no_inventa_explicacion(terminada, monkeypatch):
+def test_sin_sustento_en_la_guia_pasa_al_razonamiento_general_sin_citas(terminada, monkeypatch):
     monkeypatch.setattr(config, "RAG_ENABLED", True)
     _finish(terminada)
     frags = [{"fuente": "gastroenteritis.pdf", "fragmento": "Texto sin relación."}]
-    with patch("app.rag.consultar", new_callable=AsyncMock, return_value=frags), \
-            patch("app.llm.chat_once", new_callable=AsyncMock, return_value="SIN_SUSTENTO"):
+    with patch("app.rag.consultar", new_callable=AsyncMock, return_value=frags),             patch("app.llm.chat_once", new_callable=AsyncMock, side_effect=["SIN_SUSTENTO", "Explicación general."]):
         d = _pedir(terminada, "medicamento", "ibuprofeno").json()
-    assert d["origen"] == "caso" and d["explicacion"] is None and d["fuentes"] == []
+    assert d["origen"] == "ia" and d["explicacion"] == "Explicación general." and d["fuentes"] == []
 
 
 def test_fragmentos_de_bibliografia_se_descartan(terminada, monkeypatch):
@@ -90,11 +102,11 @@ def test_fragmentos_de_bibliografia_se_descartan(terminada, monkeypatch):
     _finish(terminada)
     frags = [{"fuente": "x.pdf", "fragmento": "Lecturas recomendadas 1. Políticas de tratamiento..."},
              {"fuente": "x.pdf", "fragmento": "Goicoechea M, et al. Aspirin. Available from: http://x"}]
-    with patch("app.rag.consultar", new_callable=AsyncMock, return_value=frags), \
-            patch("app.llm.chat_once", new_callable=AsyncMock) as llm:
+    with patch("app.rag.consultar", new_callable=AsyncMock, return_value=frags),             patch("app.llm.chat_once", new_callable=AsyncMock, return_value="General.") as llm:
         d = _pedir(terminada, "indicacion", "hidratacion").json()
-    assert d["origen"] == "caso" and d["fuentes"] == []
-    llm.assert_not_awaited()
+    assert d["origen"] == "ia" and d["fuentes"] == []
+    assert llm.await_count == 1  # solo la explicación general: nada que citar
+    assert "Fragmentos de guías" not in llm.await_args.args[0][1]["content"]
 
 
 def test_si_el_modelo_falla_se_devuelven_las_fuentes(terminada, monkeypatch):
@@ -155,3 +167,12 @@ def test_umbral_de_rag_filtra_por_distancia(monkeypatch):
     filtrados = asyncio.run(rag.consultar("erc", "q", max_distancia=660))
     assert [c["fragmento"] for c in todos] == ["cerca", "lejos"]
     assert [c["fragmento"] for c in filtrados] == ["cerca"]
+
+
+def test_el_modelo_no_ve_las_dosis_del_nombre():
+    assert explicar.sin_dosis("Enalapril 20 mg") == "Enalapril"
+    assert explicar.sin_dosis("Amlodipino 5 mg / 10 mg") == "Amlodipino"
+    assert explicar.sin_dosis("Amoxicilina + Ácido clavulánico 875/125 mg") == "Amoxicilina + Ácido clavulánico"
+    assert explicar.sin_dosis("Acetaminofén (paracetamol) 500 mg") == "Acetaminofén (paracetamol)"
+    assert explicar.sin_dosis("Radiografía de tórax (PA)") == "Radiografía de tórax (PA)"
+    assert explicar.sin_dosis("Hidratación oral abundante con suero o agua") == "Hidratación oral abundante con suero o agua"

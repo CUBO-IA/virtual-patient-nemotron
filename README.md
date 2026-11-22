@@ -14,7 +14,7 @@ Simulador de entrevistas clínicas para estudiantes de medicina. El estudiante c
 |---|---|
 | 8 casos clínicos | Dengue, enfermedad renal crónica, diabetes tipo 2, crisis hipertensiva, trauma por accidente de tránsito, gastroenteritis, neumonía y depresión. |
 | Paciente coherente | Cada caso se asigna a una persona compatible (sexo, edad, zona y ocupación típicas). Habla en español salvadoreño, trata de usted al doctor y no revela el diagnóstico. |
-| Chat en streaming | El paciente responde en 1-3 frases y cuenta los síntomas poco a poco, solo si se le pregunta. |
+| Chat en streaming | El paciente responde en 2-4 frases con algo de emoción y muletillas propias (distintas en cada paciente), y cuenta los síntomas poco a poco, solo si se le pregunta. La voz lee el texto tal como se ve, con la «j» de la aspiración en los pacientes del oriente. |
 | Voz | Voz salvadoreña (Lorena/Rodrigo) con tono y ritmo según la edad. |
 | Avatar | "Ver paciente" muestra un avatar coherente con sexo y edad. |
 | Pistas | Tres niveles de pista sin revelar el diagnóstico; cada una resta puntos. |
@@ -165,6 +165,10 @@ SEGUIMIENTO_DEMO=true
 ```
 
 Con eso aparecen la pestaña «Pruebas» y el paso del plan, con el aviso visible de contenido sin validar. Cuando un médico revise un caso, cambia su `revision_clinica` a `validado` con su nombre, fecha y la guía en la que se basó; el validador (`scripts\validate_casos.py`) rechaza `validado` sin esos datos.
+
+## Modo Urgencias (borrador de demostración)
+
+El modo de práctica independiente propone reconocer señales de alarma y elegir prioridad y acción. Sus cuatro casos están en `data/urgencias.json` y todos permanecen pendientes de revisión clínica. Para habilitarlo en una demostración local, configura `SEGUIMIENTO_DEMO=true`; el aviso de contenido sin validar permanece visible. Valida su estructura con `python scripts/validate_urgencias.py`. No usar como orientación para emergencias reales.
 
 ## Pruebas y validaciones
 

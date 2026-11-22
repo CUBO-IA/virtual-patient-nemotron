@@ -11,8 +11,10 @@ Implementa:
 """
 
 import json
+import random
 import re
 import unicodedata
+import zlib
 from functools import lru_cache
 from typing import AsyncGenerator
 
@@ -76,6 +78,26 @@ def configurar_habla(persona: dict) -> dict:
         "voseo_con_familia": True,
         "regionalismos": regionalismos,
     }
+
+
+# Muletillas conversacionales (borrador sin validar por hablantes nativos, como el glosario).
+MULETILLAS_BASE = ["pues", "verdad", "mire, doctor", "bien + adjetivo (bien cansado, bien mal)"]
+MULETILLAS_EXTRA = [
+    "fíjese que…", "ay, Dios mío", "ni modo (solo al resignarte ante algo inevitable)", "la verdad", "poquito", "cabal (justo, exacto: «aquí cabal»)",
+]
+
+
+def muletillas_para_persona(persona: dict, n: int = 3) -> list[str]:
+    """Muletillas propias de esta persona: estables entre respuestas y distintas entre personas.
+
+    Se eligen con una semilla derivada del id, de modo que un mismo paciente suena siempre igual
+    y dos pacientes distintos no suenan idénticos.
+    """
+    rng = random.Random(zlib.crc32(str(persona.get("id", persona.get("nombre", ""))).encode("utf-8")))
+    elegidas = [rng.choice(MULETILLAS_BASE)]
+    resto = [m for m in MULETILLAS_EXTRA if m not in elegidas]
+    rng.shuffle(resto)
+    return elegidas + resto[: max(0, n - 1)]
 
 
 def obtener_habla(persona: dict) -> dict:

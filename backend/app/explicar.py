@@ -20,6 +20,14 @@ def rag_norm(t: str) -> str:
 _BIBLIOGRAFIA = re.compile(r"lecturas recomendadas|referencias|bibliograf|available from|doi\.org|https?://|cochrane database|\bet al\b", re.I)
 
 
+_DOSIS = re.compile(r"\s*\d[\d.,/\- ]*\s*(mg|mcg|g|ml|ui|%)\b[^()+;]*", re.I)
+
+
+def sin_dosis(titulo: str) -> str:
+    """Nombre sin la dosis («Enalapril 20 mg» → «Enalapril»): el modelo no debe razonar sobre dosis."""
+    return re.sub(r"\s{2,}", " ", _DOSIS.sub(" ", titulo)).strip(" ,;/")
+
+
 def _terminos(titulo: str) -> list[str]:
     """Raíces (6 letras) de las palabras propias del título de la decisión."""
     out = []
@@ -77,44 +85,59 @@ def resolver(caso: dict, resultado: dict, tipo: str, item_id: str) -> dict | Non
     return None
 
 
+async def _fragmentos(caso: dict, info: dict) -> list[dict]:
+    """Fragmentos de guía relevantes para la decisión (vacío si el RAG está apagado o nada es relevante)."""
+    if not config.RAG_ENABLED:
+        return []
+    consulta = f"{info['titulo']} {caso['diagnostico']}"
+    try:
+        candidatos = await rag.consultar(caso.get("guia_ref"), consulta, top_k=6, max_distancia=config.RAG_MAX_DISTANCIA_LEXICA)
+    except Exception:
+        return []
+    candidatos = [c for c in candidatos if not _BIBLIOGRAFIA.search(c["fragmento"])]
+    return [{"fuente": f["fuente"], "fragmento": _recorte(f["fragmento"], info["titulo"])}
+            for f in _elegir(candidatos, info["titulo"])]
+
+
 async def explicar(session: Session, caso: dict, tipo: str, item_id: str) -> dict | None:
+    """Explica una decisión. Origen: «guia» (apoyada en fragmentos), «ia» (razonamiento general del modelo,
+    sin guía) o «caso» (el modelo no estuvo disponible: solo queda la nota escrita en el caso)."""
     info = resolver(caso, session.result or {}, tipo, item_id)
     if info is None:
         return None
     salida = {
         "tipo": tipo, "id": item_id, "titulo": info["titulo"], "valoracion": info["valoracion"],
-        "nota": info["nota"], "explicacion": None, "fuentes": [], "origen": "caso",
+        "nota": info["nota"], "explicacion": None, "fuentes": [], "origen": "caso", "modelo_no_disponible": False,
     }
-    if not config.RAG_ENABLED:
-        return salida
 
-    consulta = f"{info['titulo']} {caso['diagnostico']}"
-    try:
-        candidatos = await rag.consultar(caso.get("guia_ref"), consulta, top_k=6, max_distancia=config.RAG_MAX_DISTANCIA_LEXICA)
-    except Exception:
-        candidatos = []
-    candidatos = [c for c in candidatos if not _BIBLIOGRAFIA.search(c["fragmento"])]
-    frags = _elegir(candidatos, info["titulo"])
-    if not frags:
-        return salida
+    # 1) Con guía: el modelo redacta solo a partir de los fragmentos.
+    frags = await _fragmentos(caso, info)
+    if frags:
+        try:
+            texto = (await llm.chat_once([
+                {"role": "system", "content": prompts.SYSTEM_EXPLICAR},
+                {"role": "user", "content": prompts.user_explicar(
+                    caso["diagnostico"], info["titulo"], info["valoracion"], info["nota"],
+                    [f["fragmento"] for f in frags])},
+            ], num_predict=260) or "").strip()
+        except llm.LLMError:
+            salida.update(fuentes=frags, origen="guia", modelo_no_disponible=True)  # se devuelven las citas literales
+            return salida
+        if "SIN_SUSTENTO" not in texto and texto:
+            salida.update(explicacion=texto, fuentes=frags, origen="guia")
+            return salida
+        # los fragmentos no hablan de esta decisión: se pasa al razonamiento general
 
-    frags = [{"fuente": f["fuente"], "fragmento": _recorte(f["fragmento"], info["titulo"])} for f in frags]
-    if not frags:
-        return salida
-    salida["fuentes"] = frags
-    salida["origen"] = "guia"
+    # 2) Sin guía que lo respalde: el modelo razona sobre la decisión (material educativo, sin validar).
     try:
-        texto = await llm.chat_once([
-            {"role": "system", "content": prompts.SYSTEM_EXPLICAR},
-            {"role": "user", "content": prompts.user_explicar(
-                caso["diagnostico"], info["titulo"], info["valoracion"], info["nota"],
-                [f["fragmento"] for f in frags])},
-        ], num_predict=260)
+        texto = (await llm.chat_once([
+            {"role": "system", "content": prompts.SYSTEM_EXPLICAR_GENERAL},
+            {"role": "user", "content": prompts.user_explicar_general(
+                caso["diagnostico"], tipo, sin_dosis(info["titulo"]), info["valoracion"], info["nota"])},
+        ], temperature=0.3, num_predict=360) or "").strip()
     except llm.LLMError:
-        texto = ""  # se devuelven los fragmentos literales como cita
-    texto = (texto or "").strip()
-    if "SIN_SUSTENTO" in texto:
-        salida["fuentes"], salida["origen"] = [], "caso"
-    else:
-        salida["explicacion"] = texto or None
+        salida["modelo_no_disponible"] = True
+        return salida
+    if texto:
+        salida.update(explicacion=texto, origen="ia")
     return salida

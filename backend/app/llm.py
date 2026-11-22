@@ -24,7 +24,7 @@ def _conn_error(e: Exception) -> LLMError:
     return LLMError(f"No se pudo conectar con Ollama en {config.OLLAMA_URL}. ¿Está corriendo? ({type(e).__name__})")
 
 
-async def stream_chat(messages: list[dict], temperature: float = 0.7, num_predict: int = 120) -> AsyncIterator[str]:
+async def stream_chat(messages: list[dict], temperature: float = 0.7, num_predict: int = 180) -> AsyncIterator[str]:
     timeout = httpx.Timeout(120.0, connect=5.0)
     try:
         async with httpx.AsyncClient(timeout=timeout) as client:

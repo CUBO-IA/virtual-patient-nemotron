@@ -45,6 +45,9 @@ class Session:
     pruebas_pedidas: list = field(default_factory=list)  # [prueba_id, ...] en orden sin repetir
     costo_pruebas: int = 0
     modulos_activos: dict = field(default_factory=dict)
+    modo: str = "consulta"
+    iniciada_en: float | None = None
+    triaje: dict | None = None
 
     @property
     def preguntas_usadas(self) -> int:
@@ -92,6 +95,9 @@ def guardar(s: Session) -> bool:
         "pruebas_pedidas": s.pruebas_pedidas,
         "costo_pruebas": s.costo_pruebas,
         "modulos_activos": s.modulos_activos,
+        "modo": s.modo,
+        "iniciada_en": s.iniciada_en,
+        "triaje": s.triaje,
         "guardado": time.time(),
     }
     tmp = ruta.with_name(f".{ruta.stem}.{uuid.uuid4().hex[:8]}.tmp")
@@ -120,7 +126,13 @@ def _cargar(session_id: str) -> Session | None:
         d = json.loads(ruta.read_text(encoding="utf-8"))
         if d.get("v") != VERSION_ARCHIVO or d.get("id") != session_id:
             raise ValueError("formato desconocido")
-        caso = assign.obtener_caso(d["caso_id"])
+        modo = d.get("modo", "consulta")
+        if modo == "urgencias":
+            from . import urgencias  # import local: urgencias usa evaluate, que usa sessions
+
+            caso = urgencias.buscar_caso(d["caso_id"])
+        else:
+            caso = assign.obtener_caso(d["caso_id"])
         persona = assign.obtener_persona(d["persona_id"])
         if caso is None or persona is None:
             log.warning("La sesión %s apunta a un caso o persona que ya no existe", session_id)
@@ -143,6 +155,9 @@ def _cargar(session_id: str) -> Session | None:
             pruebas_pedidas=list(d.get("pruebas_pedidas", [])),
             costo_pruebas=int(d.get("costo_pruebas", 0)),
             modulos_activos=d.get("modulos_activos", {}),
+            modo=modo,
+            iniciada_en=d.get("iniciada_en"),
+            triaje=d.get("triaje"),
         )
     except (OSError, ValueError, KeyError, TypeError) as e:
         log.warning("Sesión %s ilegible, se descarta: %s", session_id, e)
@@ -205,7 +220,7 @@ def _hacer_espacio():
         _store.pop(next(iter(_store)))  # descarta de memoria la más antigua (sigue en disco)
 
 
-def create(caso: dict, persona: dict, nivel: dict | None = None) -> Session:
+def create(caso: dict, persona: dict, nivel: dict | None = None, modo: str = "consulta") -> Session:
     _hacer_espacio()
 
     cfg_nivel = nivel or {}
@@ -218,6 +233,8 @@ def create(caso: dict, persona: dict, nivel: dict | None = None) -> Session:
         persona=persona,
         nivel=cfg_nivel,
         modulos_activos=modulos,
+        modo=modo,
+        iniciada_en=time.time() if modo == "urgencias" else None,
     )
     _store[s.id] = s
     guardar(s)

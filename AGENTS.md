@@ -106,7 +106,7 @@ Códigos: 404 sesión inexistente, 409 sesión ocupada o terminada, 422 mensaje 
 
 ## 6. Prompt del paciente (`prompts.py`)
 
-Recibe la persona y lo que el paciente sabe de sí mismo; **jamás** el diagnóstico ni la lista de verificación. Reglas ya validadas que no se deben aflojar: motivo primero y síntomas poco a poco, 1-3 frases, sin términos médicos ni nombres de enfermedades, sin placeholders, no salir del personaje. Parámetros: `temperature 0.7`, `num_predict 120`, `num_ctx` desde `NUM_CTX` (2048 por defecto), últimos 16 mensajes de historial.
+Recibe la persona y lo que el paciente sabe de sí mismo; **jamás** el diagnóstico ni la lista de verificación. Reglas ya validadas que no se deben aflojar: motivo primero y síntomas poco a poco, 2-4 frases cortas con algo de emoción y muletillas propias de cada persona (sin inventar síntomas), sin términos médicos ni nombres de enfermedades, sin placeholders, no salir del personaje. Parámetros: `temperature 0.7`, `num_predict 180`, `num_ctx` desde `NUM_CTX` (2048 por defecto), últimos 12 mensajes de historial (peor caso medido: prompt con síntoma del turno, 12 mensajes largos y 180 tokens de respuesta ≈1920 de 2048; una consulta normal usa ≈1100).
 
 ## 7. RAG con Docker (fase 2)
 
@@ -191,11 +191,33 @@ Variables en `.env` (ver `.env.example`): `OLLAMA_URL, LLM_MODEL, EMBED_MODEL, C
 - Al añadir o recortar claves: no incluir el diagnóstico ni sus alias, no usar palabras genéricas sueltas (`dolor`, `pecho`, `agua`…) si suben los cruces, y anotar en `CLAVES_RECORTADAS` (del test) las que se quiten.
 
 
-## 14. «¿Por qué?» (explicaciones con guías)
+## 13b. Habla del paciente
 
-- `POST /api/sessions/{id}/explicar` con `{tipo: "prueba"|"medicamento"|"indicacion"|"disposicion", id}`. Solo tras `/finish` (409 antes). Devuelve `{tipo, id, titulo, valoracion, nota, explicacion, fuentes[{fuente,fragmento}], origen: "guia"|"caso"}`.
-- Lógica en `backend/app/explicar.py`. El modelo redacta **solo** a partir de fragmentos recuperados (`rag.consultar(..., max_distancia=RAG_MAX_DISTANCIA)`); si no hay fragmentos relevantes o el modelo responde `SIN_SUSTENTO`, se devuelve únicamente la `nota` escrita en el caso (`origen: "caso"`). Se descartan fragmentos de bibliografía. La búsqueda es híbrida: primero los fragmentos que contienen términos propios de la decisión (hasta `RAG_MAX_DISTANCIA_LEXICA`, 780) y luego los semánticamente cercanos (≤ `RAG_MAX_DISTANCIA`); el prompt no incluye la nota del caso para que el modelo no la presente como cita. Con `RAG_ENABLED=false` siempre es `origen: "caso"`.
-- `RAG_MAX_DISTANCIA` (por defecto 660, distancia L2 de Chroma con `bge-m3`): relevantes ~480-640, ajenos >700. Si cambias el modelo de embeddings, vuelve a medirla.
-- `/finish` añade ids opcionales (`pruebas.esenciales_faltantes_ids`, `plan.medicamentos_faltantes_ids`, `plan.indicaciones.faltantes_ids`) para poder pedir la explicación de lo que faltó.
-- Los PDFs de `data/guias/` no se suben a git; fuentes y enlaces en `data/guias/README.md`. No inventes contenido de guías. La explicación se muestra como generada con IA y sin validar clínicamente.
-- Interfaz: `frontend/src/components/PorQue.jsx` (botón «¿Por qué?» en `Results.jsx`).
+- Respuestas de 2-4 frases con reacción emocional breve; el primer mensaje es solo el motivo, en una frase. Cada persona tiene 3 **muletillas** estables (`habla.muletillas_para_persona`, semilla = id de la persona) que el prompt pide usar en menos de la mitad de las respuestas: sin esa instrucción el 7B las pegaba al final de todas. Cada muletilla lleva su uso entre paréntesis cuando se presta a mal uso («ni modo» = resignación ante algo inevitable). Dosificación: `system_paciente(..., turno)` (turno = respuestas previas del paciente, calculado en `mensajes_paciente`) separa el síntoma principal de «otros síntomas» (solo se confirman si preguntan por ellos) e indica **un único síntoma nuevo por turno** para las preguntas generales («¿algo más?»), empezando por los que el motivo no menciona. Una regla genérica de «poco a poco» no bastaba con el 7B. Medido en HTA: de 4+ síntomas por respuesta a 1-3; no es determinista. No uses esto con urgencias (allí los signos se muestran sin que los pidan). También exige **no repetir las palabras de la pregunta** (contestar directo). Son un borrador sin validar por hablantes nativos, igual que `data/habla_salvadorena.json`.
+- La voz (TTS) lee el texto **tal como se muestra**, con la «j» de la aspiración. El `done` del chat sigue trayendo `texto_original` (sin «j»), pero el frontend ya no lo usa para la voz; el historial del modelo guarda el texto sin «j».
+- Si añades reglas al prompt, mantén `MAX_CHARS_PROMPT` en `test_prompt_habla.py` (peor caso ≈1320 tokens de 2048).
+
+## 14. «¿Por qué?» (explicaciones)
+
+- `POST /api/sessions/{id}/explicar` con `{tipo: "prueba"|"medicamento"|"indicacion"|"disposicion", id}`. Solo tras `/finish` (409 antes). Devuelve `{tipo, id, titulo, valoracion, nota, explicacion, fuentes[{fuente,fragmento}], origen: "guia"|"ia"|"caso", modelo_no_disponible}`.
+- Lógica en `backend/app/explicar.py`, en dos niveles:
+  1. **Con guía** (`origen: "guia"`): si `RAG_ENABLED=true` y hay fragmentos relevantes, el modelo redacta **solo** a partir de ellos y cita `[n]`. Búsqueda híbrida: primero los fragmentos con términos propios de la decisión (hasta `RAG_MAX_DISTANCIA_LEXICA`, 780) y luego los cercanos (≤ `RAG_MAX_DISTANCIA`, 660; distancia L2 de Chroma con `bge-m3`, relevantes ~480-640, ajenos >700). Se descartan fragmentos de bibliografía y el prompt no incluye la nota del caso (el modelo no debe presentarla como cita).
+  2. **Sin guía** (`origen: "ia"`): si el RAG está apagado, no hay fragmentos o el modelo responde `SIN_SUSTENTO`, el modelo **razona de forma general** (para qué sirve, por qué encaja con el diagnóstico según la valoración, alternativa o precaución). El prompt le prohíbe dosis y contradicciones y le pide ampliar, no repetir, la nota del caso; el nombre llega sin dosis (`sin_dosis`: «Enalapril 20 mg» → «Enalapril»). Es lo que hace útil el botón sin necesidad de guías: **no vuelvas a devolver solo la nota**, que el estudiante ya ve en la lista.
+  3. `origen: "caso"` solo si el modelo no está disponible (`modelo_no_disponible: true`); la interfaz lo dice y ofrece reintentar.
+- La explicación general sale del conocimiento del 7B, **sin validar**: se muestra siempre como «generada con IA como apoyo educativo, sin validar por un profesional». Medido con el 7B: razona bien el mecanismo y el porqué, pero puede ser impreciso en matices clínicos (p. ej. afirmar que conviene no medicar al inicio, o cómo actúa el reposo); no la presentes como recomendación médica.
+- `/finish` añade ids opcionales (`pruebas.esenciales_faltantes_ids`, `plan.medicamentos_faltantes_ids`, `plan.indicaciones.faltantes_ids`) para pedir la explicación de lo que faltó.
+- Los PDFs de `data/guias/` no se suben a git; fuentes y enlaces en `data/guias/README.md`. No inventes contenido de guías.
+- Interfaz: `frontend/src/components/PorQue.jsx` (botón «¿Por qué?» en `Results.jsx`; «Pensando…» mientras responde, ~6-9 s con el 7B).
+
+## 15. Modo urgencias (borrador)
+
+- Datos en `data/urgencias.json` (5 casos: 3 rojos, 1 amarillo, 1 verde); misma estructura conversacional que `casos.json` más `caso_base`, `urgencia` y `revision_clinica`. Validación: `scripts/validate_urgencias.py` (estructura, ids de signos, alias del diagnóstico fuera de lo que dice el paciente, los tres niveles presentes).
+- Lógica en `backend/app/urgencias.py` (carga, límites, datos públicos y `calcular_triaje`); `main.py` solo enruta. **No metas lógica de urgencias en `main.py`.** Cuidado con los imports locales: un `import json` dentro de una función hace local ese nombre en toda la función (rompió `sessions._cargar` una vez).
+- Todo caso de urgencias debe permanecer `revision_clinica.estado: "pendiente"` hasta revisión real por personal de salud. El modo solo se ofrece con `SEGUIMIENTO_DEMO=true` o con casos `validado`; `GET /api/health` reporta `urgencias: true|false` y la interfaz oculta el modo si es `false`. Muestra aviso de contenido no validado.
+- `POST /api/sessions` acepta `modo: "consulta"|"urgencias"`. En urgencias solo expone `tiempo_limite_seg`, `max_preguntas`, `preguntas_minimas_semaforo` y `acompanante: {relacion}`; nunca prioridad correcta, signos, acción ni explicación antes del triaje. `caso_id` inexistente → 404.
+- `POST /api/sessions/{id}/triaje` acepta `{prioridad, accion}` (409 con menos preguntas de las mínimas o si ya se envió, 422 valores inválidos). Devuelve prioridad/acción correctas y elegidas, signos y preguntas esenciales como **texto**, `puntaje`, `desglose`, `aprobado`, `alerta_seguridad`, `explicacion`. El reloj y los límites (8 preguntas, 180 s, 2 pistas) se aplican en el servidor.
+- Puntaje: prioridad 50 (exacta) / 25 (más urgente de lo necesario) / 0 (menos urgente); signos 30 (un caso sin signos activos, como el verde, los otorga completos); esenciales 10; rapidez 10; −5 por pista (máx. 2). Prioridad o acción menos urgente que la esperada → `alerta_seguridad` y `aprobado: false`. El modelo no decide nada de esto.
+- El prompt de urgencias **se añade** al del paciente (`prompts.system_paciente`); no aflojes las reglas de `AGENTS.md` §6. Medido con `qwen2.5:7b` (30 respuestas): 0 fugas de la enfermedad o la prioridad, 1 respuesta de 13 palabras; el acompañante casi nunca responde por el paciente.
+- Interfaz: `frontend/src/components/UrgenciasPanel.jsx` (cronómetro, chat, semáforo, acción, resultado).
+- Aviso obligatorio en todas las pantallas: «Esto es una práctica con casos ficticios. En una emergencia real, llama a los servicios de emergencia de tu país.»
+- Estas decisiones clínicas son borradores generados y no deben presentarse como recomendación médica. La activación real requiere revisión profesional completa.

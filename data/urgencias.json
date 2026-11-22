@@ -1,0 +1,709 @@
+[
+  {
+    "id": "u_infarto_01",
+    "caso_base": null,
+    "motivo_consulta": "Me aprieta fuerte el pecho y me siento sudoroso desde hace un rato.",
+    "sintomas": [
+      "presión fuerte en el pecho",
+      "sudor frío",
+      "dolor que se va hacia el brazo",
+      "ganas de vomitar"
+    ],
+    "antecedentes": [
+      "presión alta desde hace años, a veces no se toma las pastillas"
+    ],
+    "habitos": [
+      "trabaja en comercio",
+      "casi no hace ejercicio"
+    ],
+    "datos_si_pregunta": {
+      "inicio": "Empezó hace como una hora.",
+      "respiracion": "Sí, me cuesta respirar.",
+      "antecedentes": "Tengo la presión alta; a veces no me tomo la pastilla.",
+      "nauseas": "Sí, tengo ganas de vomitar."
+    },
+    "restricciones": {
+      "sexo": [
+        "F",
+        "M"
+      ],
+      "edad_min": 30,
+      "edad_max": 80
+    },
+    "diagnostico": "Sospecha de síndrome coronario agudo",
+    "diagnostico_alias": [
+      "infarto",
+      "ataque al corazon"
+    ],
+    "lista_verificacion": [
+      {
+        "id": "inicio",
+        "texto": "Cuándo empezó el dolor",
+        "keywords": [
+          "cuando empezo",
+          "desde cuando",
+          "hace cuanto",
+          "cuanto tiempo",
+          "hace cuantas horas"
+        ]
+      },
+      {
+        "id": "respiracion",
+        "texto": "Dificultad para respirar",
+        "keywords": [
+          "respira",
+          "falta de aire",
+          "ahogo",
+          "aire"
+        ]
+      },
+      {
+        "id": "antecedentes",
+        "texto": "Antecedentes (presión alta, diabetes, corazón)",
+        "keywords": [
+          "presion alta",
+          "hipertens",
+          "diabet",
+          "corazon",
+          "enfermedad",
+          "cronic",
+          "pastilla"
+        ]
+      },
+      {
+        "id": "nauseas",
+        "texto": "Náuseas o vómito",
+        "keywords": [
+          "nausea",
+          "vomit",
+          "ganas de vomitar"
+        ]
+      }
+    ],
+    "banderas_rojas": [
+      {
+        "id": "presion_pecho",
+        "texto": "Presión fuerte en el pecho",
+        "keywords": [
+          "pecho",
+          "opresion",
+          "presion en el pecho",
+          "aprieta",
+          "donde le duele",
+          "donde siente",
+          "donde es el dolor",
+          "como es el dolor"
+        ]
+      },
+      {
+        "id": "sudor_frio",
+        "texto": "Sudor frío",
+        "keywords": [
+          "sudor",
+          "sudando",
+          "sudoroso",
+          "frio"
+        ]
+      },
+      {
+        "id": "dolor_brazo",
+        "texto": "Dolor que se va al brazo o a la mandíbula",
+        "keywords": [
+          "brazo",
+          "mandibula",
+          "espalda",
+          "se le va",
+          "se le corre",
+          "irradia"
+        ]
+      }
+    ],
+    "urgencia": {
+      "nivel": "rojo",
+      "signos_activos": [
+        "presion_pecho",
+        "sudor_frio",
+        "dolor_brazo"
+      ],
+      "accion_esperada": "emergencias",
+      "tiempo_limite_seg": 180,
+      "max_preguntas": 8,
+      "preguntas_minimas_semaforo": 3,
+      "acompanante": {
+        "tiene": true,
+        "relacion": "hija"
+      },
+      "datos_ocultos": [
+        "comenzó hace aproximadamente una hora",
+        "le cuesta respirar"
+      ],
+      "explicacion": "Presión fuerte en el pecho con sudor frío y dolor que se va al brazo es una combinación de alarma: puede ser un problema del corazón, y cada minuto cuenta. Aunque el dolor parezca soportable, no se espera ni se maneja en casa: lo correcto es llamar a emergencias de inmediato."
+    },
+    "revision_clinica": {
+      "estado": "pendiente",
+      "revisado_por": null,
+      "fecha": null,
+      "fuente": null
+    }
+  },
+  {
+    "id": "u_derrame_01",
+    "caso_base": null,
+    "motivo_consulta": "De repente se me trabó la lengua y siento débil un lado del cuerpo.",
+    "sintomas": [
+      "habla enredada",
+      "debilidad de un lado del cuerpo",
+      "la cara se le siente torcida"
+    ],
+    "antecedentes": [
+      "presión alta sin buen control"
+    ],
+    "habitos": [
+      "fuma desde joven"
+    ],
+    "datos_si_pregunta": {
+      "inicio": "De repente, hace menos de una hora.",
+      "golpe": "No, no me he golpeado ni me caí.",
+      "antecedentes": "Tengo la presión alta, sin control.",
+      "cabeza": "Sí, un dolor de cabeza muy fuerte."
+    },
+    "restricciones": {
+      "sexo": [
+        "F",
+        "M"
+      ],
+      "edad_min": 30,
+      "edad_max": 85
+    },
+    "diagnostico": "Sospecha de evento cerebrovascular",
+    "diagnostico_alias": [
+      "derrame cerebral",
+      "derrame",
+      "embolia"
+    ],
+    "lista_verificacion": [
+      {
+        "id": "inicio",
+        "texto": "Cuándo y cómo empezó (de repente o poco a poco)",
+        "keywords": [
+          "cuando empezo",
+          "desde cuando",
+          "hace cuanto",
+          "de repente",
+          "de golpe",
+          "cuanto tiempo"
+        ]
+      },
+      {
+        "id": "golpe",
+        "texto": "Golpe o caída previa",
+        "keywords": [
+          "golpe",
+          "caida",
+          "cayo",
+          "se cayo"
+        ]
+      },
+      {
+        "id": "antecedentes",
+        "texto": "Antecedentes (presión alta, diabetes, corazón)",
+        "keywords": [
+          "presion alta",
+          "hipertens",
+          "diabet",
+          "corazon",
+          "enfermedad",
+          "cronic",
+          "pastilla"
+        ]
+      },
+      {
+        "id": "cabeza",
+        "texto": "Dolor de cabeza",
+        "keywords": [
+          "dolor de cabeza",
+          "cabeza",
+          "cefalea"
+        ]
+      }
+    ],
+    "banderas_rojas": [
+      {
+        "id": "habla",
+        "texto": "Dificultad para hablar",
+        "keywords": [
+          "habla",
+          "hablar",
+          "lengua",
+          "palabras",
+          "enreda",
+          "entiende"
+        ]
+      },
+      {
+        "id": "debilidad",
+        "texto": "Debilidad de un lado del cuerpo",
+        "keywords": [
+          "debil",
+          "fuerza",
+          "mover",
+          "brazo",
+          "pierna",
+          "un lado",
+          "adormec",
+          "hormigue"
+        ]
+      },
+      {
+        "id": "cara",
+        "texto": "Cara torcida o caída",
+        "keywords": [
+          "cara",
+          "boca",
+          "sonrisa",
+          "torcid"
+        ]
+      }
+    ],
+    "urgencia": {
+      "nivel": "rojo",
+      "signos_activos": [
+        "habla",
+        "debilidad",
+        "cara"
+      ],
+      "accion_esperada": "emergencias",
+      "tiempo_limite_seg": 180,
+      "max_preguntas": 8,
+      "preguntas_minimas_semaforo": 3,
+      "acompanante": {
+        "tiene": true,
+        "relacion": "hija"
+      },
+      "datos_ocultos": [
+        "empezó hace poco, de repente",
+        "dolor de cabeza fuerte al empezar"
+      ],
+      "explicacion": "Que se trabe la lengua, que un lado del cuerpo o de la cara esté débil y que todo empiece de repente son señales de alarma de un problema en el cerebro. El tratamiento depende de la rapidez, así que no se espera a ver si pasa: lo correcto es llamar a emergencias de inmediato."
+    },
+    "revision_clinica": {
+      "estado": "pendiente",
+      "revisado_por": null,
+      "fecha": null,
+      "fuente": null
+    }
+  },
+  {
+    "id": "u_neumonia_alarma_01",
+    "caso_base": "c_nac_01",
+    "motivo_consulta": "La tos y la fiebre empeoraron y ahora me cuesta mucho respirar.",
+    "sintomas": [
+      "tos con flema",
+      "fiebre alta",
+      "dificultad para respirar",
+      "labios morados",
+      "está desorientado"
+    ],
+    "antecedentes": [
+      "lleva varios días con tos y fiebre"
+    ],
+    "habitos": [
+      "fuma a veces"
+    ],
+    "datos_si_pregunta": {
+      "fiebre": "Tengo fiebre alta desde hace varios días.",
+      "comer": "Casi no puedo comer ni tomar nada.",
+      "inicio": "Hace cinco días; cada día peor.",
+      "tos": "Tengo tos con flema amarilla."
+    },
+    "restricciones": {
+      "sexo": [
+        "F",
+        "M"
+      ],
+      "edad_min": 18,
+      "edad_max": 85
+    },
+    "diagnostico": "Neumonía con signos de alarma",
+    "diagnostico_alias": [
+      "neumonia",
+      "pulmonia"
+    ],
+    "lista_verificacion": [
+      {
+        "id": "fiebre",
+        "texto": "Fiebre y cuánto tiempo lleva",
+        "keywords": [
+          "fiebre",
+          "calentura",
+          "temperatura"
+        ]
+      },
+      {
+        "id": "comer",
+        "texto": "Puede comer y beber",
+        "keywords": [
+          "comer",
+          "beber",
+          "tomar liquido",
+          "tomar agua",
+          "alimentar"
+        ]
+      },
+      {
+        "id": "inicio",
+        "texto": "Cuánto tiempo lleva así",
+        "keywords": [
+          "cuando empezo",
+          "desde cuando",
+          "hace cuanto",
+          "cuantos dias",
+          "cuanto tiempo"
+        ]
+      },
+      {
+        "id": "tos",
+        "texto": "Tos y flema",
+        "keywords": [
+          "tos",
+          "flema",
+          "expectora"
+        ]
+      }
+    ],
+    "banderas_rojas": [
+      {
+        "id": "respira",
+        "texto": "Respiración muy difícil o muy rápida",
+        "keywords": [
+          "respira",
+          "falta de aire",
+          "ahogo",
+          "aire",
+          "agitad"
+        ]
+      },
+      {
+        "id": "confusion",
+        "texto": "Confusión o desorientación",
+        "keywords": [
+          "confus",
+          "desorient",
+          "raro",
+          "no reconoce",
+          "somnolien",
+          "muy dormido"
+        ]
+      },
+      {
+        "id": "labios",
+        "texto": "Labios o uñas azulados o morados",
+        "keywords": [
+          "labios",
+          "morad",
+          "azul",
+          "unas",
+          "coloracion"
+        ]
+      }
+    ],
+    "urgencia": {
+      "nivel": "rojo",
+      "signos_activos": [
+        "respira",
+        "confusion",
+        "labios"
+      ],
+      "accion_esperada": "emergencias",
+      "tiempo_limite_seg": 180,
+      "max_preguntas": 8,
+      "preguntas_minimas_semaforo": 3,
+      "acompanante": {
+        "tiene": true,
+        "relacion": "esposa"
+      },
+      "datos_ocultos": [
+        "la familia nota que está confundido",
+        "casi no puede comer ni beber"
+      ],
+      "explicacion": "Cuando una infección del pecho llega a dar mucha falta de aire, confusión y labios morados, el cuerpo no está recibiendo suficiente oxígeno. Eso es una emergencia: no se maneja en casa ni se espera a una cita. Lo correcto es llamar a emergencias de inmediato."
+    },
+    "revision_clinica": {
+      "estado": "pendiente",
+      "revisado_por": null,
+      "fecha": null,
+      "fuente": null
+    }
+  },
+  {
+    "id": "u_dengue_alarma_01",
+    "caso_base": "c_dengue_01",
+    "motivo_consulta": "Llevo varios días con fiebre y ahora me duele mucho la barriga.",
+    "sintomas": [
+      "fiebre de varios días",
+      "dolor fuerte de barriga",
+      "vómitos repetidos",
+      "sangrado de las encías"
+    ],
+    "antecedentes": [
+      "hay casos de fiebre en su colonia"
+    ],
+    "habitos": [
+      "vive cerca de un cauce con zancudos"
+    ],
+    "datos_si_pregunta": {
+      "fiebre": "Cuatro días con fiebre; hoy casi no.",
+      "orina": "Estoy orinando poco.",
+      "sangrado": "Me sangran las encías al cepillarme.",
+      "vomitos": "Varias veces hoy; no aguanto el agua."
+    },
+    "restricciones": {
+      "sexo": [
+        "F",
+        "M"
+      ],
+      "edad_min": 18,
+      "edad_max": 70
+    },
+    "diagnostico": "Dengue con signos de alarma",
+    "diagnostico_alias": [
+      "dengue"
+    ],
+    "lista_verificacion": [
+      {
+        "id": "fiebre",
+        "texto": "Fiebre y cuántos días",
+        "keywords": [
+          "fiebre",
+          "calentura",
+          "cuantos dias",
+          "desde cuando",
+          "hace cuanto"
+        ]
+      },
+      {
+        "id": "orina",
+        "texto": "Cantidad de orina",
+        "keywords": [
+          "orina",
+          "orinar",
+          "orinando"
+        ]
+      },
+      {
+        "id": "sangrado",
+        "texto": "Sangrado en encías o nariz",
+        "keywords": [
+          "sangr",
+          "encias",
+          "nariz"
+        ]
+      },
+      {
+        "id": "vomitos",
+        "texto": "Vómitos",
+        "keywords": [
+          "vomit",
+          "arroj",
+          "devuelve",
+          "nausea"
+        ]
+      }
+    ],
+    "banderas_rojas": [
+      {
+        "id": "dolor_abdominal",
+        "texto": "Dolor fuerte de barriga",
+        "keywords": [
+          "barriga",
+          "abdomen",
+          "estomago",
+          "panza",
+          "donde le duele",
+          "donde siente",
+          "donde es el dolor"
+        ]
+      },
+      {
+        "id": "vomitos_repetidos",
+        "texto": "Vómitos que no paran",
+        "keywords": [
+          "vomit",
+          "arroj",
+          "devuelve",
+          "no aguanta"
+        ]
+      },
+      {
+        "id": "sangrado",
+        "texto": "Sangrado de encías o nariz",
+        "keywords": [
+          "sangr",
+          "encias",
+          "nariz"
+        ]
+      }
+    ],
+    "urgencia": {
+      "nivel": "amarillo",
+      "signos_activos": [
+        "dolor_abdominal",
+        "vomitos_repetidos",
+        "sangrado"
+      ],
+      "accion_esperada": "evaluacion_pronto",
+      "tiempo_limite_seg": 180,
+      "max_preguntas": 8,
+      "preguntas_minimas_semaforo": 3,
+      "acompanante": {
+        "tiene": false,
+        "relacion": ""
+      },
+      "datos_ocultos": [
+        "fiebre desde hace cuatro días",
+        "orina muy poco"
+      ],
+      "explicacion": "Después de varios días de fiebre, un dolor fuerte de barriga, vómitos que no paran y sangrado de las encías son señales de alarma de que la enfermedad puede empeorar. No es momento de esperar en casa: necesita que lo evalúe personal de salud pronto. Si además se pusiera muy decaído o confundido, pasaría a emergencia."
+    },
+    "revision_clinica": {
+      "estado": "pendiente",
+      "revisado_por": null,
+      "fecha": null,
+      "fuente": null
+    }
+  },
+  {
+    "id": "u_gastro_leve_01",
+    "caso_base": "c_gea_01",
+    "motivo_consulta": "Desde ayer tengo diarrea y algo de retortijones, pero puedo tomar líquidos.",
+    "sintomas": [
+      "diarrea desde ayer",
+      "retortijones leves"
+    ],
+    "antecedentes": [],
+    "habitos": [
+      "comió en un comedor el día anterior"
+    ],
+    "datos_si_pregunta": {
+      "inicio": "Desde ayer en la mañana.",
+      "liquidos": "Sí, tomo agua y suero sin problema.",
+      "sangre": "No, no he visto sangre.",
+      "orina": "Orino normal, como siempre.",
+      "fiebre": "No he tenido fiebre."
+    },
+    "restricciones": {
+      "sexo": [
+        "F",
+        "M"
+      ],
+      "edad_min": 18,
+      "edad_max": 75
+    },
+    "diagnostico": "Gastroenteritis leve",
+    "diagnostico_alias": [
+      "gastroenteritis"
+    ],
+    "lista_verificacion": [
+      {
+        "id": "inicio",
+        "texto": "Desde cuándo",
+        "keywords": [
+          "cuando empezo",
+          "desde cuando",
+          "hace cuanto",
+          "cuantos dias",
+          "cuanto tiempo"
+        ]
+      },
+      {
+        "id": "liquidos",
+        "texto": "Tolera líquidos",
+        "keywords": [
+          "liquido",
+          "tomar",
+          "beber",
+          "aguanta",
+          "suero"
+        ]
+      },
+      {
+        "id": "sangre",
+        "texto": "Sangre en las heces",
+        "keywords": [
+          "sangre",
+          "sangrado",
+          "heces negras"
+        ]
+      },
+      {
+        "id": "orina",
+        "texto": "Orina normal",
+        "keywords": [
+          "orina",
+          "orinar",
+          "orinando"
+        ]
+      },
+      {
+        "id": "fiebre",
+        "texto": "Fiebre",
+        "keywords": [
+          "fiebre",
+          "calentura",
+          "temperatura"
+        ]
+      }
+    ],
+    "banderas_rojas": [
+      {
+        "id": "sangre",
+        "texto": "Sangre en las heces",
+        "keywords": [
+          "sangre",
+          "sangrado",
+          "heces negras"
+        ]
+      },
+      {
+        "id": "sin_orina",
+        "texto": "Casi no orina",
+        "keywords": [
+          "orina",
+          "orinar",
+          "orinando"
+        ]
+      },
+      {
+        "id": "confusion",
+        "texto": "Confusión o mucho decaimiento",
+        "keywords": [
+          "confus",
+          "desorient",
+          "decaid",
+          "debil",
+          "muy dormido"
+        ]
+      }
+    ],
+    "urgencia": {
+      "nivel": "verde",
+      "signos_activos": [],
+      "accion_esperada": "consulta_normal",
+      "tiempo_limite_seg": 180,
+      "max_preguntas": 8,
+      "preguntas_minimas_semaforo": 3,
+      "acompanante": {
+        "tiene": false,
+        "relacion": ""
+      },
+      "datos_ocultos": [],
+      "explicacion": "Una diarrea reciente, sin sangre, sin fiebre, con buena tolerancia a los líquidos y con orina normal no tiene señales de alarma. Puede manejarse con líquidos y vigilancia, y una consulta normal. Se volvería urgente si aparece sangre en las heces, casi no orina, hay mucha sed o boca muy seca, o se pone confundido."
+    },
+    "revision_clinica": {
+      "estado": "pendiente",
+      "revisado_por": null,
+      "fecha": null,
+      "fuente": null
+    }
+  }
+]

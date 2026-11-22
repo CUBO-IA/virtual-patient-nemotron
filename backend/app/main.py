@@ -1,12 +1,14 @@
 import json
+import random
+import time
 from urllib.parse import quote
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response, StreamingResponse
 
-from . import assign, avatars, config, evaluate, explicar, habla, llm, niveles, prompts, rag, seguimiento, sessions, tts_service
-from .models import ChatIn, ExplicarIn, FinishIn, PruebasRequestIn, SessionCreateIn
+from . import assign, avatars, config, evaluate, explicar, habla, llm, niveles, prompts, rag, seguimiento, sessions, tts_service, urgencias
+from .models import ChatIn, ExplicarIn, FinishIn, PruebasRequestIn, SessionCreateIn, TriajeIn
 
 app = FastAPI(title="Paciente Virtual")
 app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS, allow_methods=["*"], allow_headers=["*"])
@@ -37,6 +39,7 @@ async def health():
     info["niveles"] = niveles.health()
     info["catalogos"] = seguimiento.catalogos_ok()
     info["seguimiento_demo"] = config.SEGUIMIENTO_DEMO
+    info["urgencias"] = urgencias.disponible()
     info["ok"] = info["ollama"] and info["modelo_disponible"] and info["datos"] and info["niveles"]
     return info
 
@@ -71,6 +74,32 @@ async def obtener_niveles():
 async def crear_sesion(body: SessionCreateIn | None = None):
     nivel_id = body.nivel if body else None
     caso_id = body.caso_id if body else None
+    modo = body.modo if body else "consulta"
+    if modo not in ("consulta", "urgencias"):
+        raise HTTPException(422, "Modo no válido.")
+    if modo == "urgencias":
+        try:
+            caso = urgencias.elegir_caso(caso_id)
+            personas, _ = assign._load()
+            compatibles = [p for p in personas if assign._compatible(p, caso)]
+            if not compatibles:
+                raise urgencias.UrgenciasError(503, "No hay paciente compatible para este caso de urgencias.")
+        except urgencias.UrgenciasError as e:
+            raise HTTPException(e.status, e.mensaje)
+        persona = random.choice(compatibles)
+        s = sessions.create(caso, persona, nivel={"id": 1}, modo="urgencias")
+        return {
+            "session_id": s.id,
+            "modo": "urgencias",
+            "paciente": {
+                "nombre": persona["nombre"], "edad": persona["edad"], "sexo": persona["sexo"],
+                "ocupacion": persona["ocupacion"], "departamento": persona["departamento"],
+                "municipio": persona["municipio"], "avatar_url": avatars.avatar_url(persona),
+                "habla": habla.obtener_habla(persona),
+            },
+            "motivo_consulta": caso["motivo_consulta"],
+            **urgencias.datos_publicos(caso),
+        }
 
     if nivel_id is not None and nivel_id not in (1, 2, 3):
         raise HTTPException(422, "Nivel debe ser 1, 2 o 3.")
@@ -87,7 +116,7 @@ async def crear_sesion(body: SessionCreateIn | None = None):
     except (FileNotFoundError, RuntimeError) as e:
         raise HTTPException(503, str(e))
 
-    s = sessions.create(caso, persona, nivel=cfg_nivel)
+    s = sessions.create(caso, persona, nivel=cfg_nivel, modo=modo)
 
     guia = niveles.guia_publica() if cfg_nivel.get("guia_anamnesis") else None
     return {
@@ -148,6 +177,11 @@ async def chat(session_id: str, body: ChatIn):
         raise HTTPException(409, "La consulta ya terminó. Pulsa «Nuevo paciente».")
     if s.busy:
         raise HTTPException(409, "El paciente aún está respondiendo.")
+    if s.modo == "urgencias":
+        try:
+            urgencias.verificar_limites(s)
+        except urgencias.UrgenciasError as e:
+            raise HTTPException(e.status, e.mensaje)
     max_preguntas = s.nivel.get("max_preguntas")
     if max_preguntas is not None and s.preguntas_usadas >= max_preguntas:
         raise HTTPException(409, "Alcanzaste el límite de preguntas de este nivel. Pulsa «Terminar y diagnosticar».")
@@ -209,6 +243,22 @@ async def chat(session_id: str, body: ChatIn):
     return StreamingResponse(gen(), media_type="text/event-stream", headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
 
+@app.post("/api/sessions/{session_id}/triaje")
+async def enviar_triaje(session_id: str, body: TriajeIn):
+    s = _get_session(session_id)
+    if s.modo != "urgencias":
+        raise HTTPException(404, "Esta sesión no es de urgencias.")
+    if s.busy:
+        raise HTTPException(409, "El paciente aún está respondiendo.")
+    try:
+        s.triaje = urgencias.calcular_triaje(s, body.prioridad, body.accion)
+    except urgencias.UrgenciasError as e:
+        raise HTTPException(e.status, e.mensaje)
+    s.finished = True
+    sessions.guardar(s)
+    return s.triaje
+
+
 @app.post("/api/sessions/{session_id}/pista")
 async def pedir_pista(session_id: str):
     s = _get_session(session_id)
@@ -216,6 +266,8 @@ async def pedir_pista(session_id: str):
         raise HTTPException(409, "La consulta ya terminó.")
     if s.busy:
         raise HTTPException(409, "El paciente aún está respondiendo.")
+    if s.modo == "urgencias" and s.pistas_usadas >= urgencias.MAX_PISTAS:
+        raise HTTPException(409, "Ya usaste las dos pistas disponibles en este modo.")
 
     pistas_cfg = s.nivel.get("pistas", {})
     if not pistas_cfg.get("permitidas", True):

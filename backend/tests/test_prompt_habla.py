@@ -8,10 +8,11 @@ from app import assign, habla, niveles, prompts
 
 DATA = Path(__file__).resolve().parents[2] / "data"
 PALABRAS_FORZADAS = ["ruco", "cipote", "pisto", "chivo", "chunche", "chucho"]
-# Tope del prompt de sistema en el peor caso (persona con ocupación larga, nivel 3): ≈1150 tokens.
-# Con num_ctx=2048 hay que dejar sitio al historial (16 mensajes) y a la respuesta (120 tokens).
+# Tope del prompt de sistema en el peor caso (persona con ocupación larga, nivel 3).
+# Medido con qwen2.5:7b: ≈3,9 caracteres por token, así que 4800 caracteres ≈ 1320 tokens. Con num_ctx=2048
+# quedan ≈750 para el historial (12 mensajes ≈ 400) y la respuesta (180). Medido en el peor caso: 1939 de 2048.
 # Si necesitas más reglas, recorta otras o sube NUM_CTX; no subas este número sin pensarlo.
-MAX_CHARS_PROMPT = 4200
+MAX_CHARS_PROMPT = 4800
 
 
 def _casos():
@@ -89,5 +90,5 @@ def test_tamano_del_prompt_cabe_en_el_contexto():
     peor = max(personas, key=lambda p: len(p["ocupacion"]) + len(p["estilo"]) + len(p["municipio"]))
     cfg = niveles.obtener_nivel(3)  # el nivel 3 añade la línea de actitud: es el más largo
     for caso in _casos():
-        largo = len(prompts.system_paciente(peor, caso, cfg))
+        largo = max(len(prompts.system_paciente(peor, caso, cfg, turno=t)) for t in (0, 1, 2))
         assert largo <= MAX_CHARS_PROMPT, f"{caso['id']}: {largo} caracteres (máx. {MAX_CHARS_PROMPT})"

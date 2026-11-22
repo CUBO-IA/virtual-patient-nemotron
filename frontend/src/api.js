@@ -112,6 +112,12 @@ export async function terminarConsulta(sessionId, diagnostico, diferenciales = n
   return r.json()
 }
 
+export async function enviarTriaje(sessionId, prioridad, accion) {
+  const r = await fetch(`/api/sessions/${sessionId}/triaje`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prioridad, accion }) })
+  if (!r.ok) throw await apiError(r)
+  return r.json()
+}
+
 export async function pedirPista(sessionId) {
   const r = await fetch(`/api/sessions/${sessionId}/pista`, { method: 'POST' })
   if (!r.ok) throw await apiError(r)
