@@ -11,6 +11,77 @@
   </head>
   <body>
     <div id="root"></div>
+    <button id="btn-musica" type="button" aria-label="Música ambiental" aria-pressed="false" title="Reproducir música">
+      <i class="bi bi-volume-mute-fill" aria-hidden="true"></i>
+    </button>
+    <div id="yt-player" aria-hidden="true"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+      const VIDEO_ID = 'OiKCknAScYY';
+      const botonMusica = document.getElementById('btn-musica');
+      const iconoMusica = botonMusica.querySelector('i');
+      let player = null;
+      let playSolicitado = false;
+
+      function actualizarBoton(estado) {
+        const reproduciendo = estado === 'reproduciendo';
+        const cargando = estado === 'cargando';
+        botonMusica.classList.toggle('is-playing', reproduciendo);
+        botonMusica.classList.toggle('is-loading', cargando);
+        botonMusica.setAttribute('aria-pressed', String(reproduciendo));
+        iconoMusica.className = reproduciendo ? 'bi bi-volume-up-fill' : 'bi bi-volume-mute-fill';
+        botonMusica.title = reproduciendo ? 'Pausar música' : cargando ? 'Cargando música…' : 'Reproducir música';
+      }
+
+      window.onYouTubeIframeAPIReady = function () {
+        player = new YT.Player('yt-player', {
+          height: '200', width: '200', videoId: VIDEO_ID,
+          playerVars: { autoplay: 0, controls: 0, playsinline: 1, loop: 1, playlist: VIDEO_ID, origin: window.location.origin },
+          events: {
+            onReady: (event) => {
+              event.target.setVolume(30);
+              if (playSolicitado) iniciarMusica();
+            },
+            onStateChange: (event) => {
+              if (event.data === YT.PlayerState.PLAYING) actualizarBoton('reproduciendo');
+              else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+                playSolicitado = false;
+                actualizarBoton('pausado');
+              } else if (event.data === YT.PlayerState.BUFFERING) actualizarBoton('cargando');
+            },
+            onError: () => {
+              playSolicitado = false;
+              actualizarBoton('pausado');
+              botonMusica.title = 'No se pudo cargar la música';
+            }
+          }
+        });
+      };
+
+      function iniciarMusica() {
+        if (!player) return;
+        player.unMute();
+        player.setVolume(30);
+        player.playVideo();
+      }
+
+      botonMusica.addEventListener('click', () => {
+        if (!player || typeof player.playVideo !== 'function') {
+          playSolicitado = true;
+          actualizarBoton('cargando');
+          return;
+        }
+        if (player.getPlayerState() === YT.PlayerState.PLAYING || playSolicitado) {
+          playSolicitado = false;
+          player.pauseVideo();
+          actualizarBoton('pausado');
+        } else {
+          playSolicitado = true;
+          actualizarBoton('cargando');
+          iniciarMusica();
+        }
+      });
+    </script>
   </body>
 </html>
